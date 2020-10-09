@@ -22,6 +22,7 @@ while true {
 				print("\(num) X \(i) = \(num * i) ")
 			}
 			print("enter the number : ",  terminator: "")
+// step 3.
 		} else {
 			print("The number is wrong. Please re-enter. (2 <= n <= 9) : ", terminator: "")
 		}     
