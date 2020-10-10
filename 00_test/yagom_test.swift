@@ -13,10 +13,12 @@ for i in 1...9 {
 print("enter the number : ",  terminator: "")
 
 while true {
-	let input = readLine()!
-	let end = String(input)
+	guard let input = readLine() else {
+		print("\nPlease enter only numbers. : ", terminator: "") 
+		continue
+	}
 
-	if let num = Int(end) {
+	if let num = Int(input) {
 		if num >= 2 && num <= 9 { 
 			for i in 1...9 {
 				print("\(num) X \(i) = \(num * i) ")
@@ -26,7 +28,7 @@ while true {
 		} else {
 			print("The number is wrong. Please re-enter. (2 <= n <= 9) : ", terminator: "")
 		}     
-	} else if end == "exit" {
+	} else if input == "exit" {
 		print("Exit the program.")
 		break
 	} else {
