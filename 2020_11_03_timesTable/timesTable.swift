@@ -1,6 +1,5 @@
 import Foundation
 
-// step 1. 
 /*
 for i in 1...9 {
 	for j in 1...9 {
@@ -9,7 +8,6 @@ for i in 1...9 {
 }
 */
 
-// step 2.
 print("enter the number : ",  terminator: "")
 
 while true {
@@ -24,7 +22,6 @@ while true {
 				print("\(num) X \(i) = \(num * i) ")
 			}
 			print("enter the number : ",  terminator: "")
-// step 3.
 		} else {
 			print("The number is wrong. Please re-enter. (2 <= n <= 9) : ", terminator: "")
 		}     
