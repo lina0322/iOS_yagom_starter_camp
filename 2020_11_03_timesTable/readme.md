@@ -7,7 +7,9 @@
 exit를 입력할 경우 프로그램 종료
   　
   　
-  　
+  　<br>
+   <br>
+   <br>
   　
     　
 ### 리팩토링 시도 후 달라진 점(re-timesTable.swift)
@@ -25,7 +27,7 @@ exit를 입력할 경우 프로그램 종료
 3. if-else 구문 대신 switch 사용
 > 해당프로그램에서 switch를 사용하는것이 더 깔끔할 것으로 판단되어 변경!
 
-4. guard let를 사용했을때 else 뒤쪽이 지저분해지는 것 같아서,
+4. guard let를 사용했을때 else 뒤쪽이 지저분해지는 것 같아서,  
 if let을 사용하여 정리해봄
 
 5. 한글
