@@ -2,7 +2,7 @@
 // % 사용해서 변경해보기!
 func rspWinnerChecker(_ player: Int) -> Int {
   let computer = Int.random(in: 1...3)
-  print(computer)
+
   if player == computer { return 0 }
   if player == 3 {
     if computer == 2 { return 1 }
@@ -14,7 +14,7 @@ func rspWinnerChecker(_ player: Int) -> Int {
 
 func mcbWinnerChecker(_ player: Int) -> Int {
   let computer = Int.random(in: 1...3)
-  print(computer)
+
   if player == computer { return 0 }
   if player == 3 {
     if computer == 1 { return 1 }
@@ -65,7 +65,6 @@ func mukchiba() {
   var condition: Int = 3
 
   while true {
-    print("winner: \(winner)")
     if winner == 1 { print("[사용자 턴] ", terminator: "") } 
     else { print("[컴퓨터 턴] ", terminator: "") }
     print("묵(1), 찌(2), 빠(3)! <종료: 0> : ", terminator: "")
