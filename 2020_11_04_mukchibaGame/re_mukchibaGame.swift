@@ -58,7 +58,11 @@ func playRockPaperSsissorsGame() -> Bool {
     print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
     
     var player: Hand = .empty
-    guard let computer: Hand = Hand(rawValue: Int.random(in: 1...3)) else { return true }
+    guard let computer: Hand = Hand(rawValue: Int.random(in: 1...3)) else { 
+        return 
+        playRockPaperSsissorsGame()
+        true 
+    }
     guard let input = readLine() else {
         printInputErrorAndResartRPSGame()
         return true
@@ -121,9 +125,9 @@ func palyMukchibaGame() {
             print("\(winnerIs.rawValue)의 승리!")
             break
         }
-        print("\(winnerIs.rawValue)턴 입니다.")
         if playerIs == .win { winnerIs = .player }
         else if playerIs == .lose { winnerIs = .computer }
+        print("\(winnerIs.rawValue)턴 입니다.")
     }
 }
 
