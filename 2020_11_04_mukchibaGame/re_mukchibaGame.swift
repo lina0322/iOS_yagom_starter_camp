@@ -59,9 +59,8 @@ func playRockPaperSsissorsGame() -> Bool {
     
     var player: Hand = .empty
     guard let computer: Hand = Hand(rawValue: Int.random(in: 1...3)) else { 
-        return 
         playRockPaperSsissorsGame()
-        true 
+        return true
     }
     guard let input = readLine() else {
         printInputErrorAndResartRPSGame()
