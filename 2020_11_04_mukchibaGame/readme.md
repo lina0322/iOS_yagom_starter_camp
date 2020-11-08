@@ -12,7 +12,7 @@
 4. 전역변수를 사용함
 
 
-### 두번째 리팩토링 시도(rere_mukchibaGame.swift)
+### 두번째 리팩토링 시도(re_re_mukchibaGame.swift)
 
 1. 전역변수를 사용하지 않기 위해, 클래스로 구현해봄
 2. 좀 더 함수를 잘게 쪼개어봄
