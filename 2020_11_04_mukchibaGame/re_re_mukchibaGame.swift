@@ -32,20 +32,20 @@ enum Hand: Int {
 }
 
 // 누가 승리했는지
-enum WinnerState: String {
+enum PlayerType: String {
     case player = "사용자"
     case computer = "컴퓨터"
 }
 
 // 어떤 게임을 진행하는지
-enum SelectGame {
+enum GameType {
     case rockPaperScissors
     case mukchiba
 }
 
 class MukchibaGame {
     var gameState: GameState = .draw
-    var winner: WinnerState = .player
+    var winner: PlayerType = .player
     var player: Hand = .rock
     var computer: Hand = .rock
     var continueGame: Bool = true
@@ -73,9 +73,6 @@ class MukchibaGame {
             if computerHand == .scissors { gameState = .win }
         case .paper:
             if computerHand == .rock { gameState = .win }
-        default:
-            printInputError()
-            playRockPaperScissorsGame()
         }
         return
     }
@@ -83,11 +80,11 @@ class MukchibaGame {
     // 게임 상황에 따라 누가 승자인지
     func changeWinner() {
         if gameState == .win { winner = .player }
-        else if gameState == .lose { winner = .computer }
+        else { winner = .computer }
     }
     
     // 메뉴 출력
-    func printMenu(in place: SelectGame) {
+    func printMenu(in place: GameType) {
         if place == .rockPaperScissors {
             print("가위(1), 바위(2), 보(3)! <종료: 0> : ", terminator: "")
         } else {
@@ -96,37 +93,32 @@ class MukchibaGame {
     }
     
     // 메뉴 출력-> 컴퓨터 패 생성 -> 인풋처리 -> 승자 확인 -> 출력 -> 종료 혹은 재실행
-    func playRockPaperScissorsGame() {
-        printMenu(in: .rockPaperScissors)
-        computer = makeComputerHand()
+     func playRockPaperScissorsGame() {
+         while true {
+             printMenu(in: .rockPaperScissors)
+             computer = makeComputerHand()
+             
+             guard let input = readLine() else {
+                 printInputError()
+                 continue
+             }
         
-        guard let input = readLine() else {
-            printInputError()
-            playRockPaperScissorsGame()
-            return
-        }
+            if input == "0" {
+                print("게임 종료")
+                continueGame = false
+                return
+            } else if input == "1" { player = .scissors}
+            else if input == "2" { player = .rock }
+            else if input == "3" { player = .paper }
+            else {
+                printInputError()
+            continue
+            }
         
-        switch input {
-        case "0":
-            print("게임 종료")
-            continueGame = false
-            return
-        case "1":
-            player = .scissors
-        case "2":
-            player = .rock
-        case "3":
-            player = .paper
-        default:
-            printInputError()
-            playRockPaperScissorsGame()
-            return
-        }
-        
-        determineGameState(playerHand: player, computerHand: computer)
-        print(gameState.rawValue)
-        if gameState == .draw { playRockPaperScissorsGame() }
-        return
+            determineGameState(playerHand: player, computerHand: computer)
+            print(gameState.rawValue)
+            if gameState != .draw { break }
+         }
     }
     
     // 가위바위보 실행 -> 선 확인 -> 메뉴 출력 -> 컴퓨터 패 처리 -> 인풋처리 -> 승자확인 -> 출력 -> 종료 혹은 선 확인 후 재실행
@@ -164,9 +156,4 @@ class MukchibaGame {
     }
 }
 
-func main() {
-    var mukchibaGame = MukchibaGame()
-    mukchibaGame.playMukchibaGame()
-}
-
-main()
+MukchibaGame().playMukchibaGame()
