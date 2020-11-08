@@ -40,7 +40,7 @@ func printSystempError() {
 }
 
 func getInputNumber() -> [Int] {
-  var inputNumbers: [Int] = []
+  var numbers: [Int] = []
 
   while true {
     printInfo()
@@ -51,15 +51,21 @@ func getInputNumber() -> [Int] {
     }
 
     let splitInput = input.split(separator: " ")
-    if let numbers: [Int] = splitInput.map({ Int(String($0))! }) {
-      if numbers.count == 3 {
-        if numbers[0] != numbers[1] 
-        && numbers[1] != numbers[2] 
-        && numbers[0] != numbers[2] { inputNumbers = numbers }
+    if splitInput.count == 3 {
+      if let number1 = Int(splitInput[0]) , let number2 = Int(splitInput[1]), let number3 = Int(splitInput[2]) {
+        if number1 != number2 
+        && number2 != number3 
+        && number3 != number1 { 
+          numbers.append(number1)
+          numbers.append(number2)
+          numbers.append(number3)
+          break;
+        }
       }
     }
+    printInputError()
   }
-  return inputNumbers
+  return numbers
 }
 
 func checkStrike(answer: [Int], input: [Int]) -> Int {
@@ -80,13 +86,13 @@ func checkBall(answer: [Int], input: [Int]) -> Int {
   return count
 }
 
-func startGame() -> ture {
+func startGame() -> Bool {
   while true {
     printMenu()
     if let input = readLine() {
       switch input {
       case "1":
-        break
+        return true
       case "2":
         print("게임이 종료되었습니다.")
         return false
@@ -110,7 +116,7 @@ func BullsAndCows() {
   var ball: Int
   var round: Int = 9
 
-  if !startGame { return } 
+  if !startGame() { return } 
 
   for _ in 1...9 {
     inputNumber = getInputNumber()
