@@ -17,30 +17,54 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uaJ-L6-l5X">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PD7-A0-wT5">
+                                <rect key="frame" x="16" y="44" width="382" height="44"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="주소를 입력하세요" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mtk-Fb-jGb">
+                                        <rect key="frame" x="0.0" y="0.0" width="344" height="44"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="URL"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3tM-7F-m5X">
+                                        <rect key="frame" x="352" y="0.0" width="30" height="44"/>
+                                        <state key="normal" title="이동"/>
+                                        <connections>
+                                            <action selector="goInputUrl:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bbT-K6-2Xs"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="9po-Dp-Q10"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="uaJ-L6-l5X" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="5Vg-mT-hSp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uaJ-L6-l5X" secondAttribute="trailing" id="6jk-66-Riq"/>
+                            <constraint firstItem="PD7-A0-wT5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="EqT-Dz-fDV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uaJ-L6-l5X" secondAttribute="bottom" id="G3s-kQ-HGf"/>
                             <constraint firstItem="uaJ-L6-l5X" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="LHk-qV-Nul"/>
+                            <constraint firstItem="PD7-A0-wT5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="NmZ-W7-bEw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PD7-A0-wT5" secondAttribute="trailing" constant="16" id="ZeW-U9-BQQ"/>
+                            <constraint firstItem="uaJ-L6-l5X" firstAttribute="top" secondItem="PD7-A0-wT5" secondAttribute="bottom" id="fLx-9P-CnJ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="inputUrlTextField" destination="Mtk-Fb-jGb" id="JN3-6T-0qQ"/>
                         <outlet property="webView" destination="uaJ-L6-l5X" id="78X-D2-SSR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="118.29085457271366"/>
+            <point key="canvasLocation" x="136.23188405797103" y="117.85714285714285"/>
         </scene>
     </scenes>
     <resources>
