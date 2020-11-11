@@ -11,7 +11,7 @@ final class ViewController: UIViewController {
 
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var goForwardButton: UIBarButtonItem!
-    
+    @IBOutlet weak var goBackButton: UIBarButtonItem!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -33,6 +33,10 @@ final class ViewController: UIViewController {
     
     @IBAction func goForwardButton(_ sender: UIBarButtonItem) {
         if webView.canGoForward { webView.goForward() }
+    }
+    
+    @IBAction func goBackButton(_ sender: UIBarButtonItem) {
+        if webView.canGoBack { webView.goBack() }
     }
 }
 
