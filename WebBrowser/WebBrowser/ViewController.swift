@@ -37,13 +37,19 @@ final class ViewController: UIViewController {
     }
     
     @IBAction func goForwardPage(_ sender: UIBarButtonItem) {
-        if webView.canGoForward { webView.goForward() }
-        else { showError(error: .noForwardPage)  }
+        guard webView.canGoForward else {
+            return showError(error: .noForwardPage)
+        }
+        
+        webView.goForward()
     }
     
     @IBAction func goBackPage(_ sender: UIBarButtonItem) {
-        if webView.canGoBack { webView.goBack() }
-        else { showError(error: .noBackePage)  }
+        guard webView.canGoBack else {
+            return showError(error: .noBackPage)
+        }
+        
+        webView.goBack()
     }
     
     @IBAction func reloadPage(_sender: UIBarButtonItem) {
