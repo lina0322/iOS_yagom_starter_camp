@@ -8,9 +8,18 @@ import UIKit
 import WebKit
 
 final class ViewController: UIViewController {
-
+    // MARK: - IBOutlets
     @IBOutlet weak var webView: WKWebView!
-    @IBOutlet weak var userInput: UITextField! // 텍스트 필드로할지, 서치바로할지 고민하다가 일단 텍스트필드로 했어요!
+    @IBOutlet weak var inputUrlTextField: UITextField!
+    @IBOutlet weak var goBackButton: UIBarButtonItem!
+    @IBOutlet weak var goForwardButton: UIBarButtonItem!
+    
+    // MARK: - Life cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        webView.navigationDelegate = self
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -22,10 +31,11 @@ final class ViewController: UIViewController {
         }
     }
     
+    // MARK: - Types & IBActions & Methods
     enum ErrorMessage: String {
         case urlError = "입력한 주소가 올바른 형태가 아닙니다."
-        case noBackePage = "이전 페이지가 없습니다."
-        case noForwardPage = "돌아갈 페이지가 없습니다."
+        case noBackPage = "이전 페이지로 갈 수 없습니다"
+        case noForwardPage = "다음 페이지로 갈 수 없습니다."
     }
     
     func showError(error: ErrorMessage) {
@@ -37,13 +47,19 @@ final class ViewController: UIViewController {
     }
     
     @IBAction func goForwardPage(_ sender: UIBarButtonItem) {
-        if webView.canGoForward { webView.goForward() }
-        else { showError(error: .noForwardPage)  }
+        guard webView.canGoForward else {
+            return showError(error: .noForwardPage)
+        }
+        
+        webView.goForward()
     }
     
     @IBAction func goBackPage(_ sender: UIBarButtonItem) {
-        if webView.canGoBack { webView.goBack() }
-        else { showError(error: .noBackePage)  }
+        guard webView.canGoBack else {
+            return showError(error: .noBackPage)
+        }
+        
+        webView.goBack()
     }
     
     @IBAction func reloadPage(_sender: UIBarButtonItem) {
@@ -51,12 +67,26 @@ final class ViewController: UIViewController {
     }
     
     @IBAction func goInputUrl(_ sender: UIBarButtonItem) {
-        guard let newURL = userInput.text,  webView.load(urlString: newURL) else {
+        guard let newUrl = inputUrlTextField.text, webView.load(urlString: newUrl) else {
             return showError(error: .urlError)
         }
     }
 }
 
+// MARK: - WKNavigationDelegate Methods
+extension ViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        // 주소 입력 필드에 현재 URL 표시
+        inputUrlTextField.text = webView.url?.absoluteString
+ 
+        // 앞/뒤로 갈 수 있을때 버튼 활성화, 못가면 비활성화
+        goForwardButton.isEnabled = webView.canGoForward
+        goBackButton.isEnabled = webView.canGoBack
+    }
+}
+
+// MARK: - WKWebView Extension
 extension WKWebView {
     enum FavoriteWebPageURL: String {
         case google = "https://www.google.com/"
