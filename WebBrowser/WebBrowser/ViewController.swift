@@ -17,7 +17,7 @@ final class ViewController: UIViewController {
         // viewDidLoad()에서는 view가 아직 view hierarchy에 추가되지 않아서 alert을 present할 수 없다.
         // viewDidApear()는 view가 view hierarchy에 추가된 후 호출되므로 alert을 present할 수 있다.
         guard webView.load(favoriteWebPageURL: .google) else {
-            showError(message: "URL값이 잘못되었습니다.")
+            showError(message: "입력한 주소가 올바른 형태가 아닙니다.")
             return
         }
     }
@@ -42,7 +42,6 @@ extension WKWebView {
     func load(favoriteWebPageURL: FavoriteWebPageURL) -> Bool {
         guard load(urlString: favoriteWebPageURL.rawValue) else {
             print("즐겨찾는 웹페이지의 URL값이 잘못됨")
-            
             return false
         }
         
