@@ -10,7 +10,7 @@ import WebKit
 final class ViewController: UIViewController {
 
     @IBOutlet weak var webView: WKWebView!
-    @IBOutlet weak var userInput: UITextField! // 텍스트 필드로할지, 서치바로할지 고민하다가 일단 텍스트필드로 했어요!
+    @IBOutlet weak var inputUrlTextField: UITextField!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -51,7 +51,7 @@ final class ViewController: UIViewController {
     }
     
     @IBAction func goInputUrl(_ sender: UIBarButtonItem) {
-        guard let newURL = userInput.text,  webView.load(urlString: newURL) else {
+        guard let newUrl = inputUrlTextField.text, webView.load(urlString: newUrl) else {
             return showError(error: .urlError)
         }
     }
