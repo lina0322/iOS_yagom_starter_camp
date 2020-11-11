@@ -44,17 +44,45 @@
                                     <constraint firstAttribute="height" constant="44" id="9po-Dp-Q10"/>
                                 </constraints>
                             </stackView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oei-Oz-nYT">
+                                <rect key="frame" x="0.0" y="818" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="EM4-lg-hLi"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Item" image="chevron.left" catalog="system" style="plain" id="uaa-5L-J5T">
+                                        <connections>
+                                            <action selector="goBackPage:" destination="BYZ-38-t0r" id="Ago-lM-XzI"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="njm-wx-rcI"/>
+                                    <barButtonItem title="Item" image="chevron.right" catalog="system" id="Het-1m-joW">
+                                        <connections>
+                                            <action selector="goForwardPage:" destination="BYZ-38-t0r" id="m9J-aN-SOq"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="d1M-EZ-Ahk"/>
+                                    <barButtonItem systemItem="refresh" id="m6J-vk-mlu">
+                                        <connections>
+                                            <action selector="reloadPageWith_sender:" destination="BYZ-38-t0r" id="BnD-pe-tnx"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uaJ-L6-l5X" secondAttribute="trailing" id="6jk-66-Riq"/>
+                            <constraint firstItem="oei-Oz-nYT" firstAttribute="top" secondItem="uaJ-L6-l5X" secondAttribute="bottom" id="73j-mm-wRL"/>
+                            <constraint firstItem="oei-Oz-nYT" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="DOE-yp-1Qp"/>
                             <constraint firstItem="PD7-A0-wT5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="EqT-Dz-fDV"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uaJ-L6-l5X" secondAttribute="bottom" id="G3s-kQ-HGf"/>
                             <constraint firstItem="uaJ-L6-l5X" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="LHk-qV-Nul"/>
                             <constraint firstItem="PD7-A0-wT5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="NmZ-W7-bEw"/>
+                            <constraint firstItem="oei-Oz-nYT" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Pwo-Md-mUk"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PD7-A0-wT5" secondAttribute="trailing" constant="16" id="ZeW-U9-BQQ"/>
                             <constraint firstItem="uaJ-L6-l5X" firstAttribute="top" secondItem="PD7-A0-wT5" secondAttribute="bottom" id="fLx-9P-CnJ"/>
+                            <constraint firstItem="oei-Oz-nYT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rkX-jG-ZWl"/>
                         </constraints>
                     </view>
                     <connections>
@@ -68,6 +96,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.left" catalog="system" width="96" height="128"/>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
