@@ -47,15 +47,24 @@ final class ViewController: UIViewController {
     }
     
     @IBAction func goInputUrlButton(_ sender: UIBarButtonItem) {
-        guard validateyUrl(url: inputText.text), let newURL = inputText.text,  webView.load(urlString: newURL) else {
+        guard let newUrl = inputText.text, let validUrl = makeValidUrl(url: newUrl), webView.load(urlString: validUrl) else {
             return showError()
         }
     }
     
     func validateyUrl(url: String?) -> Bool {
-        let UrlRegex = "^https?://[\\w]+.[\\w]+"
+        let urlRegEx = "^https?://[\\w]+.[\\w]+"
         
-        return NSPredicate(format: "SELF MATCHES %@", UrlRegex).evaluate(with: url)
+        return NSPredicate(format: "SELF MATCHES %@", urlRegEx).evaluate(with: url)
+    }
+    
+    // 이것만으로 주소값이 유효하다고 볼 수는 없을 것 같음. 실제로 열리는 url인지 확인하는 방법이 필요함
+    // 우선 https://를 붙이는 작업만 시도!
+    func makeValidUrl(url: String) -> String? {
+        if !validateyUrl(url: url) {
+            return "https://" + url
+        }
+        return url
     }
 }
 
