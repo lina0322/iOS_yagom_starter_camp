@@ -8,9 +8,18 @@ import UIKit
 import WebKit
 
 final class ViewController: UIViewController {
-
+    // MARK: - IBOutlets
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var inputUrlTextField: UITextField!
+    @IBOutlet weak var goBackButton: UIBarButtonItem!
+    @IBOutlet weak var goForwardButton: UIBarButtonItem!
+    
+    // MARK: - Life cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        webView.navigationDelegate = self
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -22,6 +31,7 @@ final class ViewController: UIViewController {
         }
     }
     
+    // MARK: - Types & IBActions & Methods
     enum ErrorMessage: String {
         case urlError = "입력한 주소가 올바른 형태가 아닙니다."
         case noBackPage = "이전 페이지로 갈 수 없습니다"
@@ -63,6 +73,20 @@ final class ViewController: UIViewController {
     }
 }
 
+// MARK: - WKNavigationDelegate Methods
+extension ViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        // 주소 입력 필드에 현재 URL 표시
+        inputUrlTextField.text = webView.url?.absoluteString
+ 
+        // 앞/뒤로 갈 수 있을때 버튼 활성화, 못가면 비활성화
+        goForwardButton.isEnabled = webView.canGoForward
+        goBackButton.isEnabled = webView.canGoBack
+    }
+}
+
+// MARK: - WKWebView Extension
 extension WKWebView {
     enum FavoriteWebPageURL: String {
         case google = "https://www.google.com/"
