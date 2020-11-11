@@ -24,8 +24,8 @@ final class ViewController: UIViewController {
     
     enum ErrorMessage: String {
         case urlError = "입력한 주소가 올바른 형태가 아닙니다."
-        case noBackePage = "이전 페이지가 없습니다."
-        case noForwardPage = "돌아갈 페이지가 없습니다."
+        case noBackPage = "이전 페이지로 갈 수 없습니다"
+        case noForwardPage = "다음 페이지로 갈 수 없습니다."
     }
     
     func showError(error: ErrorMessage) {
