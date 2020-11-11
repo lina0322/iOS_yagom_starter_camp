@@ -10,24 +10,29 @@ import WebKit
 final class ViewController: UIViewController {
 
     @IBOutlet weak var webView: WKWebView!
-            
+    @IBOutlet weak var goForwardButton: UIBarButtonItem!
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // viewDidLoad()에서는 view가 아직 view hierarchy에 추가되지 않아서 alert을 present할 수 없다.
         // viewDidApear()는 view가 view hierarchy에 추가된 후 호출되므로 alert을 present할 수 있다.
         guard webView.load(favoriteWebPageURL: .google) else {
-            showError(message: "입력한 주소가 올바른 형태가 아닙니다.")
-            return
+            return showError()
         }
     }
     
-    func showError(message: String?) {
-        let errorAlert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
+    func showError() {
+        let errorAlert = UIAlertController(title: "Error!", message: "입력한 주소가 올바른 형태가 아닙니다.", preferredStyle: .alert)
         let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
         errorAlert.addAction(ok)
         
         self.present(errorAlert, animated: false)
+    }
+    
+    @IBAction func goForwardButton(_ sender: UIBarButtonItem) {
+        if webView.canGoForward { webView.goForward() }
     }
 }
 
