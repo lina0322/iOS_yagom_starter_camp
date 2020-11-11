@@ -13,6 +13,8 @@ final class ViewController: UIViewController {
     @IBOutlet weak var goForwardButton: UIBarButtonItem!
     @IBOutlet weak var goBackButton: UIBarButtonItem!
     @IBOutlet weak var reloadButton: UIBarButtonItem!
+    @IBOutlet weak var inputText: UITextField! // 텍스트 필드로할지, 서치바로할지 고민하다가 일단 텍스트필드로 했어요!
+    @IBOutlet weak var goInputUrlButton: UIButton!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -42,6 +44,12 @@ final class ViewController: UIViewController {
     
     @IBAction func reloadButton(_sender: UIBarButtonItem) {
         webView.reload()
+    }
+    
+    @IBAction func goInputUrlButton(_ sender: UIBarButtonItem) {
+        guard let newURL = inputText.text,  webView.load(urlString: newURL) else {
+            return showError()
+        }
     }
 }
 
