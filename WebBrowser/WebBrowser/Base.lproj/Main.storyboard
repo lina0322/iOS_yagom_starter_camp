@@ -29,7 +29,7 @@
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="주소를 입력하세요" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Mtk-Fb-jGb">
                                         <rect key="frame" x="0.0" y="0.0" width="344" height="44"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" keyboardType="URL" textContentType="url"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3tM-7F-m5X">
@@ -39,7 +39,7 @@
                                         </constraints>
                                         <state key="normal" title="이동"/>
                                         <connections>
-                                            <action selector="goInputUrl:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bbT-K6-2Xs"/>
+                                            <action selector="loadPage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bbT-K6-2Xs"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -91,7 +91,7 @@
                     <connections>
                         <outlet property="goBackButton" destination="uaa-5L-J5T" id="bLT-od-UkU"/>
                         <outlet property="goForwardButton" destination="Het-1m-joW" id="gfZ-AT-Sqb"/>
-                        <outlet property="inputUrlTextField" destination="Mtk-Fb-jGb" id="JN3-6T-0qQ"/>
+                        <outlet property="urlTextField" destination="Mtk-Fb-jGb" id="B3j-UK-f4H"/>
                         <outlet property="webView" destination="uaJ-L6-l5X" id="78X-D2-SSR"/>
                     </connections>
                 </viewController>
