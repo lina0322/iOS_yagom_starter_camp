@@ -56,16 +56,17 @@ final class ViewController: UIViewController {
         webView.reload()
     }
     
-    @IBAction func goInputUrl(_ sender: UIBarButtonItem) {
-        guard let newUrl = urlTextField.text, validateyUrl(url: newUrl), webView.load(urlString: newUrl) else {
+    @IBAction func loadPage(_ sender: UIBarButtonItem) {
+        guard let newUrl = urlTextField.text, validateUrl(newUrl), webView.load(urlString: newUrl) else {
             return showError(error: .url)
         }
     }
     
-    func validateyUrl(url: String?) -> Bool {
-        let UrlRegex = "^https?://[\\w]+.[\\w]+"
+    func validateUrl(_ url: String?) -> Bool {
+        // 정규표현식으로 URL 검증
+        let urlRegex = "((http|https)://)[\\S]+"
         
-        return NSPredicate(format: "SELF MATCHES %@", UrlRegex).evaluate(with: url)
+        return NSPredicate(format: "SELF MATCHES %@", urlRegex).evaluate(with: url)
     }
 }
 
