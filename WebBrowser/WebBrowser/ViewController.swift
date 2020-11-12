@@ -8,29 +8,75 @@ import UIKit
 import WebKit
 
 final class ViewController: UIViewController {
-
+    // MARK: - IBOutlets
     @IBOutlet weak var webView: WKWebView!
-            
+    @IBOutlet weak var urlTextField: UITextField!
+    @IBOutlet weak var goBackButton: UIBarButtonItem!
+    @IBOutlet weak var goForwardButton: UIBarButtonItem!
+    
+    // MARK: - Life cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        webView.navigationDelegate = self
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // viewDidLoad()에서는 view가 아직 view hierarchy에 추가되지 않아서 alert을 present할 수 없다.
         // viewDidApear()는 view가 view hierarchy에 추가된 후 호출되므로 alert을 present할 수 있다.
         guard webView.load(favoriteWebPageURL: .google) else {
-            showError(message: "입력한 주소가 올바른 형태가 아닙니다.")
-            return
+            return showError(error: .url)
         }
     }
     
-    func showError(message: String?) {
-        let errorAlert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
+    // MARK: - Types & IBActions & Methods
+    enum ErrorMessage: String {
+        case url = "입력한 주소가 올바른 형태가 아닙니다."
+    }
+    
+    func showError(error: ErrorMessage) {
+        let errorAlert = UIAlertController(title: "Error!", message: error.rawValue, preferredStyle: .alert)
         let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
         errorAlert.addAction(ok)
         
         self.present(errorAlert, animated: false)
     }
+    
+    @IBAction func goForwardPage(_ sender: UIBarButtonItem) {
+        webView.goForward()
+    }
+    
+    @IBAction func goBackPage(_ sender: UIBarButtonItem) {
+        webView.goBack()
+    }
+    
+    @IBAction func reloadPage(_sender: UIBarButtonItem) {
+        webView.reload()
+    }
+    
+    @IBAction func goInputUrl(_ sender: UIBarButtonItem) {
+        guard let newUrl = urlTextField.text, webView.load(urlString: newUrl) else {
+            return showError(error: .url)
+        }
+    }
 }
 
+// MARK: - WKNavigationDelegate Methods
+extension ViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        // 주소 입력 필드에 현재 URL 표시
+        urlTextField.text = webView.url?.absoluteString
+ 
+        // 앞/뒤로 갈 수 있을때 버튼 활성화, 못가면 비활성화
+        goForwardButton.isEnabled = webView.canGoForward
+        goBackButton.isEnabled = webView.canGoBack
+    }
+}
+
+// MARK: - WKWebView Extension
 extension WKWebView {
     enum FavoriteWebPageURL: String {
         case google = "https://www.google.com/"
