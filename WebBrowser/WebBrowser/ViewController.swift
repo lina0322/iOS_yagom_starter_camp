@@ -57,9 +57,15 @@ final class ViewController: UIViewController {
     }
     
     @IBAction func goInputUrl(_ sender: UIBarButtonItem) {
-        guard let newUrl = urlTextField.text, webView.load(urlString: newUrl) else {
+        guard let newUrl = urlTextField.text, validateyUrl(url: newUrl), webView.load(urlString: newUrl) else {
             return showError(error: .url)
         }
+    }
+    
+    func validateyUrl(url: String?) -> Bool {
+        let UrlRegex = "^https?://[\\w]+.[\\w]+"
+        
+        return NSPredicate(format: "SELF MATCHES %@", UrlRegex).evaluate(with: url)
     }
 }
 
