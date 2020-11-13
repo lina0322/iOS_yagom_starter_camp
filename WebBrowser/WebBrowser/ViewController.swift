@@ -1,8 +1,8 @@
 //
 //  WebBrowser - ViewController.swift
-//  Created by yagom. 
+//  Created by yagom.
 //  Copyright © yagom. All rights reserved.
-// 
+//
 
 import UIKit
 import WebKit
@@ -19,17 +19,25 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         
         webView.navigationDelegate = self
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        guard webView.load(favoriteWebPageURL: .google) else {
-            return showError(error: .url)
-        }
+        openPage(url: FavoriteWebPageURL.google.rawValue)
     }
     
     // MARK: - Types & IBActions & Methods
+    enum FavoriteWebPageURL: String {
+        case google = "https://www.google/"
+        case yagomDotNet = "https://yagom.net/"
+        case naver = "https://www.naver.com/"
+    }
+    
+    func openPage(url: String) {
+        guard let url = URL(string: url) else {
+            return showError(error: .url)
+        }
+        
+        let request: URLRequest = URLRequest(url: url)
+        webView.load(request)
+    }
+    
     enum ErrorMessage: String {
         case url = "입력한 주소가 올바른 형태가 아닙니다."
     }
@@ -57,14 +65,14 @@ final class ViewController: UIViewController {
     @IBAction func loadPage(_ sender: UIBarButtonItem) {
         guard var newUrl = urlTextField.text else { return showError(error: .url) }
         if !checkFront(of: newUrl) { newUrl = addHttpsFront(of: newUrl) }
-        guard webView.load(urlString: newUrl) else { return showError(error: .url) }
+        openPage(url: newUrl)
     }
     
     func addHttpsFront(of url: String) -> String {
         return "https://" + url
     }
     
-	func checkFront(of url: String?) -> Bool {
+    func checkFront(of url: String?) -> Bool {
         let urlRegex = "((http|https)://)[\\S]+"
         
         return NSPredicate(format: "SELF MATCHES %@", urlRegex).evaluate(with: url)
@@ -76,43 +84,12 @@ extension ViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         // 주소 입력 필드에 현재 URL 표시
         urlTextField.text = webView.url?.absoluteString
- 
-        // 앞/뒤로 갈 수 있을때 버튼 활성화, 못가면 비활성화
+        
         goForwardButton.isEnabled = webView.canGoForward
         goBackButton.isEnabled = webView.canGoBack
     }
     
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         showError(error: .url)
-    }
-}
-
-// MARK: - WKWebView Extension
-extension WKWebView {
-    enum FavoriteWebPageURL: String {
-        case google = "https://www.google.com/"
-        case yagomDotNet = "https://yagom.net/"
-        case naver = "https://www.naver.com/"
-    }
-    
-    /// 즐겨찾는 웹페이지 불러오기
-    func load(favoriteWebPageURL: FavoriteWebPageURL) -> Bool {
-        guard load(urlString: favoriteWebPageURL.rawValue) else {
-            return false
-        }
-        
-        return true
-    }
-    
-    /// URL 불러오기
-    func load(urlString: String) -> Bool {
-        guard let url = URL(string: urlString) else {
-            return false
-        }
-        
-        let request: URLRequest = URLRequest(url: url)
-        load(request)
-        
-        return true
     }
 }
