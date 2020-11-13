@@ -14,42 +14,29 @@ final class ViewController: UIViewController {
     @IBOutlet weak var goBackButton: UIBarButtonItem!
     @IBOutlet weak var goForwardButton: UIBarButtonItem!
     
-    // MARK: - Life cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        webView.navigationDelegate = self
-        openPage(url: FavoriteWebPageURL.google.rawValue)
-    }
-    
-    // MARK: - Types & IBActions & Methods
+    // MARK: - Types
     enum FavoriteWebPageURL: String {
-        case google = "https://www.google/"
+        case google = "https://www.google.com/"
         case yagomDotNet = "https://yagom.net/"
         case naver = "https://www.naver.com/"
-    }
-    
-    func openPage(url: String) {
-        guard let url = URL(string: url) else {
-            return showError(error: .url)
-        }
-        
-        let request: URLRequest = URLRequest(url: url)
-        webView.load(request)
     }
     
     enum ErrorMessage: String {
         case url = "입력한 주소가 올바른 형태가 아닙니다."
     }
     
-    func showError(error: ErrorMessage) {
-        let errorAlert = UIAlertController(title: "Error!", message: error.rawValue, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
-        errorAlert.addAction(ok)
+    // MARK: - Life cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        self.present(errorAlert, animated: false)
+        webView.navigationDelegate = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        openPage(url: FavoriteWebPageURL.google.rawValue)
+    }
+    
+    // MARK: - IBActions & Methods
     @IBAction func goForwardPage(_ sender: UIBarButtonItem) {
         webView.goForward()
     }
@@ -63,9 +50,35 @@ final class ViewController: UIViewController {
     }
     
     @IBAction func loadPage(_ sender: UIBarButtonItem) {
-        guard var newUrl = urlTextField.text else { return showError(error: .url) }
-        if !checkFront(of: newUrl) { newUrl = addHttpsFront(of: newUrl) }
+        guard var newUrl = urlTextField.text else {
+            return showError(error: .url)
+        }
+        
+        if !checkFront(of: newUrl) {
+            newUrl = addHttpsFront(of: newUrl)
+        }
+        
         openPage(url: newUrl)
+    }
+    
+    func openPage(url: String) {
+        guard !webView.isLoading else {
+            return
+        }
+        guard let url = URL(string: url) else {
+            return showError(error: .url)
+        }
+        
+        let request: URLRequest = URLRequest(url: url)
+        webView.load(request)
+    }
+    
+    func showError(error: ErrorMessage) {
+        let errorAlert = UIAlertController(title: "Error!", message: error.rawValue, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
+        errorAlert.addAction(ok)
+        
+        self.present(errorAlert, animated: false)
     }
     
     func addHttpsFront(of url: String) -> String {
