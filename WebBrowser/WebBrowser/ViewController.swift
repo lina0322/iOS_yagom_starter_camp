@@ -64,9 +64,6 @@ final class ViewController: UIViewController {
     }
     
     func openPage(url: String) {
-        guard !webView.isLoading else {
-            return
-        }
         guard let url = URL(string: url) else {
             return showError(error: .url)
         }
