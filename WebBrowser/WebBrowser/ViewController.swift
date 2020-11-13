@@ -73,7 +73,6 @@ final class ViewController: UIViewController {
 
 // MARK: - WKNavigationDelegate Methods
 extension ViewController: WKNavigationDelegate {
-    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         // 주소 입력 필드에 현재 URL 표시
         urlTextField.text = webView.url?.absoluteString
@@ -119,19 +118,3 @@ extension WKWebView {
         return true
     }
 }
-
-
-/*
-
-extension GithubLoginViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
-        guard let url = webView.url else { return }
-        let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
-        guard let queryItems = urlComponents?.queryItems,
-            let token = queryItems.first(where: {$0.name == queryName})?.value else { return }
-        dismiss(animated: true) { [weak self] in
-            self?.delegate?.loginComplete(token: token)
-        }
-    }
-}
-*/
