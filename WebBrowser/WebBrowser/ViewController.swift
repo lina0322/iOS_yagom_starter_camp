@@ -15,12 +15,6 @@ final class ViewController: UIViewController {
     @IBOutlet weak var goForwardButton: UIBarButtonItem!
     
     // MARK: - Types
-    enum FavoriteWebPageURL: String {
-        case google = "https://www.google.com/"
-        case yagomDotNet = "https://yagom.net/"
-        case naver = "https://www.naver.com/"
-    }
-    
     enum ErrorMessage: String {
         case url = "입력한 주소가 올바른 형태가 아닙니다."
     }
@@ -35,7 +29,7 @@ final class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        openPage(url: FavoriteWebPageURL.google.rawValue)
+        openPage(url: "https://www.google.com/")
     }
     
     // MARK: - IBActions & Methods
