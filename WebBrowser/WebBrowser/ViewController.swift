@@ -24,8 +24,6 @@ final class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // viewDidLoad()에서는 view가 아직 view hierarchy에 추가되지 않아서 alert을 present할 수 없다.
-        // viewDidApear()는 view가 view hierarchy에 추가된 후 호출되므로 alert을 present할 수 있다.
         guard webView.load(favoriteWebPageURL: .google) else {
             return showError(error: .url)
         }
@@ -57,19 +55,16 @@ final class ViewController: UIViewController {
     }
     
     @IBAction func loadPage(_ sender: UIBarButtonItem) {
-        guard let newUrl = urlTextField.text, validateUrl(newUrl), webView.load(urlString: newUrl) else {
-            return showError(error: .url)
-        }
+        guard var newUrl = urlTextField.text else { return showError(error: .url) }
+        if !checkFront(of: newUrl) { newUrl = addHttpsFront(of: newUrl) }
+        guard webView.load(urlString: newUrl) else { return showError(error: .url) }
     }
     
-    func makeValidUrl(url: String) -> String? {
-        if !validateyUrl(url: url) {
-            return "https://" + url
-        }
-        return url
+    func addHttpsFront(of url: String) -> String {
+        return "https://" + url
+    }
     
-	func validateUrl(_ url: String?) -> Bool {
-        // 정규표현식으로 URL 검증
+	func checkFront(of url: String?) -> Bool {
         let urlRegex = "((http|https)://)[\\S]+"
         
         return NSPredicate(format: "SELF MATCHES %@", urlRegex).evaluate(with: url)
@@ -86,6 +81,10 @@ extension ViewController: WKNavigationDelegate {
         // 앞/뒤로 갈 수 있을때 버튼 활성화, 못가면 비활성화
         goForwardButton.isEnabled = webView.canGoForward
         goBackButton.isEnabled = webView.canGoBack
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        showError(error: .url)
     }
 }
 
@@ -120,3 +119,19 @@ extension WKWebView {
         return true
     }
 }
+
+
+/*
+
+extension GithubLoginViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
+        guard let url = webView.url else { return }
+        let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
+        guard let queryItems = urlComponents?.queryItems,
+            let token = queryItems.first(where: {$0.name == queryName})?.value else { return }
+        dismiss(animated: true) { [weak self] in
+            self?.delegate?.loginComplete(token: token)
+        }
+    }
+}
+*/
