@@ -82,7 +82,7 @@ extension ViewController: WKNavigationDelegate {
         goBackButton.isEnabled = webView.canGoBack
     }
     
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         showError(error: .url)
     }
 }
@@ -98,7 +98,6 @@ extension WKWebView {
     /// 즐겨찾는 웹페이지 불러오기
     func load(favoriteWebPageURL: FavoriteWebPageURL) -> Bool {
         guard load(urlString: favoriteWebPageURL.rawValue) else {
-            print("즐겨찾는 웹페이지의 URL값이 잘못됨")
             return false
         }
         
@@ -108,7 +107,6 @@ extension WKWebView {
     /// URL 불러오기
     func load(urlString: String) -> Bool {
         guard let url = URL(string: urlString) else {
-            print("URL값이 잘못됨")
             return false
         }
         
