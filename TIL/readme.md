@@ -2,7 +2,7 @@ summary
 
 |날짜|내용|
 |:------:|---|
-|__2020_11__|
+|__[2020_11](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_11)__|2020년 11월|
 |[2020_11_02](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_11/2020_11_03.md)|강제언래핑, 짝 프로그래밍, 고차함수, 순환 함수|
 |[2020_11_03](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_11/2020_11_03.md)|git 명령어, git pull request|
 |[2020_11_05](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_11/2020_11_03.md)|컴퓨터의 역사, 컴퓨터의 구성, 컴퓨터의 연산|
