@@ -10,7 +10,7 @@ import UIKit
 class User {
     let id: String?
     private(set) var password: String?
-    private(set) var image: UIImage?
+    private(set) var profieImage: UIImage?
     private(set) var introduction: String?
     private(set) var phoneNumber: String?
     private(set) var dateOfBirth: Date?
@@ -19,23 +19,23 @@ class User {
         self.id = id
     }
     
-    func setPassword(password: String) {
+    func setPassword(_ password: String) {
         self.password = password
     }
     
-    func setImage(image: UIImage) {
-        self.image = image
+    func setprofieImage(_ profieImage: UIImage) {
+        self.profieImage = profieImage
     }
     
-    func setIntroduction(introduction: String) {
+    func setIntroduction(_ introduction: String) {
         self.introduction = introduction
     }
     
-    func setPhoneNumber(phoneNumber: String) {
+    func setPhoneNumber(_ phoneNumber: String) {
         self.phoneNumber = phoneNumber
     }
     
-    func setDateOfBirth(dateOfBirth: Date) {
+    func setDateOfBirth(_ dateOfBirth: Date) {
         self.dateOfBirth = dateOfBirth
     }
 }
