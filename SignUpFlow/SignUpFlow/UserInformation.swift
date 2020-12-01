@@ -23,7 +23,7 @@ class User {
         self.password = password
     }
     
-    func setprofieImage(_ profieImage: UIImage) {
+    func setProfieImage(_ profieImage: UIImage) {
         self.profieImage = profieImage
     }
     
@@ -48,10 +48,9 @@ class UserInformation {
     
     func addNewUser(id: String) {
         if let _ = userList[id] {
-            userList[id] = User(id)
-        } else {
             debugPrint("이미 존재하는 아이디입니다")
         }
         
+        userList[id] = User(id)
     }
 }
