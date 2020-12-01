@@ -22,15 +22,19 @@ class User {
     func setPassword(password: String) {
         self.password = password
     }
+    
     func setImage(image: UIImage) {
         self.image = image
     }
+    
     func setIntroduction(introduction: String) {
         self.introduction = introduction
     }
+    
     func setPhoneNumber(phoneNumber: String) {
         self.phoneNumber = phoneNumber
     }
+    
     func setDateOfBirth(dateOfBirth: Date) {
         self.dateOfBirth = dateOfBirth
     }
