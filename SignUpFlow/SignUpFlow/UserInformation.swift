@@ -1,7 +1,11 @@
+//
+//  SignUpFlow - ViewController.swift
+//  Created by yagom.
+//  Copyright © yagom academy. All rights reserved.
+//
 
 import Foundation
 import UIKit
-
 
 class User {
     let id: String?
@@ -34,7 +38,6 @@ class User {
 
 class UserInformation {
     static let common: UserInformation = UserInformation()
-    
     private init() {}
     
     private(set) var userList = [String : User]()
@@ -43,5 +46,3 @@ class UserInformation {
         userList[id] = user
     }
 }
-
-
