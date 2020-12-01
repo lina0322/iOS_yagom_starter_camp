@@ -47,7 +47,7 @@ class UserInformation {
     private(set) var userList = [String : User]()
     
     func addNewUser(id: String) {
-        if let _ = userList[id] {
+        guard userList[id] == nil else {
             debugPrint("이미 존재하는 아이디입니다")
             return
         }
