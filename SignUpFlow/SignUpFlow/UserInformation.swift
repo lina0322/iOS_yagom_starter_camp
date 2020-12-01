@@ -15,7 +15,7 @@ class User {
     private(set) var phoneNumber: String?
     private(set) var dateOfBirth: Date?
     
-    init (id: String) {
+    init (_ id: String) {
         self.id = id
     }
     
@@ -46,7 +46,7 @@ class UserInformation {
     
     private(set) var userList = [String : User]()
     
-    func addNewUser(id: String, user: User) {
-        userList[id] = user
+    func addNewUser(id: String) {
+        userList[id] = User(id)
     }
 }
