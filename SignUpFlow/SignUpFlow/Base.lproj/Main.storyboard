@@ -16,18 +16,76 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.up" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1dC-xa-VPT">
+                                <rect key="frame" x="87" y="73" width="240" height="241"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1dC-xa-VPT" secondAttribute="height" multiplier="1:1" id="Hkq-dq-DAH"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W2y-Zr-EIa">
+                                <rect key="frame" x="87" y="335" width="240" height="34"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="buS-xm-nM9">
+                                <rect key="frame" x="87" y="377" width="240" height="34"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSS-Ju-7FF">
+                                <rect key="frame" x="227" y="426" width="100" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleColor" systemColor="systemRedColor"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wvX-1P-BPD">
+                                <rect key="frame" x="87" y="426" width="100" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign In"/>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="buS-xm-nM9" secondAttribute="bottom" constant="451" id="5vQ-06-IX8"/>
+                            <constraint firstItem="1dC-xa-VPT" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="8sy-QO-Xzj"/>
+                            <constraint firstItem="buS-xm-nM9" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="ONz-IY-3em"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="1dC-xa-VPT" secondAttribute="bottom" constant="548" id="cLg-Fg-v59"/>
+                            <constraint firstItem="W2y-Zr-EIa" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="dzZ-up-Mvk"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1dC-xa-VPT" secondAttribute="trailing" constant="87" id="edp-AM-dal"/>
+                            <constraint firstItem="buS-xm-nM9" firstAttribute="leading" secondItem="W2y-Zr-EIa" secondAttribute="leading" id="g4y-fT-Ff7"/>
+                            <constraint firstItem="buS-xm-nM9" firstAttribute="leading" secondItem="1dC-xa-VPT" secondAttribute="leading" id="kFv-je-k8l"/>
+                            <constraint firstItem="1dC-xa-VPT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="koq-un-07e"/>
+                            <constraint firstItem="buS-xm-nM9" firstAttribute="top" secondItem="W2y-Zr-EIa" secondAttribute="bottom" constant="8" id="rOv-VL-Map"/>
+                            <constraint firstItem="1dC-xa-VPT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="wSu-oB-Niv"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="wu3-15-JLJ" appends="YES" id="cQF-vC-eF9"/>
+                        </connections>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="wu3-15-JLJ">
+                    <connections>
+                        <action selector="tapView:" destination="BYZ-38-t0r" id="cV4-3K-hq6"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-197.10144927536234" y="96.428571428571431"/>
         </scene>
     </scenes>
     <resources>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
