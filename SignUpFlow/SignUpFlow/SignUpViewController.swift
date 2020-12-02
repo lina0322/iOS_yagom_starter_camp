@@ -12,4 +12,8 @@ class SignUpViewController: UIViewController {
     @IBAction func dismissSignUpView() {
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func tapView(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
 }

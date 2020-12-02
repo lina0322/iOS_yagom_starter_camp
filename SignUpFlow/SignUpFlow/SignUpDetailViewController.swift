@@ -17,8 +17,11 @@ class SignUpDetailViewController: UIViewController {
            self.navigationController?.popViewController(animated: true)
        }
     
-    
     @IBAction func completeSignUp() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func tapView(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
 }
