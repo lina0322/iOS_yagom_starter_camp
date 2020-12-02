@@ -9,7 +9,7 @@ import UIKit
 
 class SignUpViewController: UIViewController {
     
-    @IBAction func dismissPage() {
+    @IBAction func dismissSignUpView() {
         dismiss(animated: true, completion: nil)
     }
 }
