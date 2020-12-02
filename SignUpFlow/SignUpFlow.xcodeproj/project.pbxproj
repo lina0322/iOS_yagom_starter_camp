@@ -13,7 +13,6 @@
 		C7352B8E256F59BD00C3B7F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7352B8C256F59BD00C3B7F1 /* Main.storyboard */; };
 		C7352B90256F59BF00C3B7F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7352B8F256F59BF00C3B7F1 /* Assets.xcassets */; };
 		C7352B93256F59BF00C3B7F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7352B91256F59BF00C3B7F1 /* LaunchScreen.storyboard */; };
-		FD19C53D257636AF00ED9BB9 /* image in Resources */ = {isa = PBXBuildFile; fileRef = FD19C53C257636AF00ED9BB9 /* image */; };
 		FD19C5412576B1B100ED9BB9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD19C5402576B1B100ED9BB9 /* SignUpViewController.swift */; };
 		FD414EDD2575DF4300BB4C42 /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD414EDC2575DF4300BB4C42 /* UserInformation.swift */; };
 /* End PBXBuildFile section */
@@ -27,7 +26,6 @@
 		C7352B8F256F59BF00C3B7F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7352B92256F59BF00C3B7F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7352B94256F59BF00C3B7F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FD19C53C257636AF00ED9BB9 /* image */ = {isa = PBXFileReference; lastKnownFileType = folder; path = image; sourceTree = "<group>"; };
 		FD19C5402576B1B100ED9BB9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		FD414EDC2575DF4300BB4C42 /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,7 +66,6 @@
 				C7352B8A256F59BD00C3B7F1 /* MainViewController.swift */,
 				FD19C5402576B1B100ED9BB9 /* SignUpViewController.swift */,
 				C7352B8C256F59BD00C3B7F1 /* Main.storyboard */,
-				FD19C53C257636AF00ED9BB9 /* image */,
 				C7352B8F256F59BF00C3B7F1 /* Assets.xcassets */,
 				C7352B91256F59BF00C3B7F1 /* LaunchScreen.storyboard */,
 				C7352B94256F59BF00C3B7F1 /* Info.plist */,
@@ -133,7 +130,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD19C53D257636AF00ED9BB9 /* image in Resources */,
 				C7352B93256F59BF00C3B7F1 /* LaunchScreen.storyboard in Resources */,
 				C7352B90256F59BF00C3B7F1 /* Assets.xcassets in Resources */,
 				C7352B8E256F59BD00C3B7F1 /* Main.storyboard in Resources */,
