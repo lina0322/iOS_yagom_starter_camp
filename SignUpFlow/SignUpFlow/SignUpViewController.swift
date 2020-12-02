@@ -41,7 +41,7 @@ class SignUpViewController: UIViewController {
     }
     
     // 안되어있는 경우 라벨이나 palceholder에 표시하기
-    func makeEnableNextButton() {
+    func checkCanGoNext() {
         guard isFullfill(textField: idTextField, passwordTextField, checkPasswordField),
               profileImage.image != nil,
               introductionTextView.text != "" else {
@@ -76,7 +76,7 @@ extension SignUpViewController: UIImagePickerControllerDelegate & UINavigationCo
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             profileImage.image = image
         }
-        makeEnableNextButton()
+        checkCanGoNext()
         dismiss(animated: true, completion: nil)
     }
 }
