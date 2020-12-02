@@ -17,7 +17,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         
         idTextField.delegate = self
         passwordTextField.delegate = self
-        changeLabel(text: statusMessageLabel, to: .empty)
+        makeLabel(text: statusMessageLabel, to: .empty)
     }
     
     @IBAction func tapView(_ sender: UITapGestureRecognizer) {
@@ -36,26 +36,26 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func touchUpSignIn(_ sender: UIButton?) {
         guard isFullfill(textField: idTextField) else {
-            changeLabel(text: statusMessageLabel, to: .enterId)
+            makeLabel(text: statusMessageLabel, to: .enterId)
             return
         }
         
         guard isFullfill(textField: passwordTextField) else {
-            changeLabel(text: statusMessageLabel, to: .enterPassword)
+            makeLabel(text: statusMessageLabel, to: .enterPassword)
             return
         }
         
-        changeLabel(text: statusMessageLabel, to: .empty)
+        makeLabel(text: statusMessageLabel, to: .disableSignIn)
     }
     
     func isFullfill(textField: UITextField) -> Bool {
-        guard textField.text != nil else {
+        guard textField.text != "" else {
             return false
         }
         return true
     }
     
-    func changeLabel(text label: UILabel, to message: Message) {
+    func makeLabel(text label: UILabel, to message: Message) {
         label.text = message.rawValue
     }
 }
