@@ -90,7 +90,7 @@
             <objects>
                 <viewController id="D3w-eY-75i" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oQf-qF-PFA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="xb2-e9-HQs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -115,7 +115,7 @@
                                     <color key="titleColor" systemColor="systemRedColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="dismissPage" destination="xZe-LD-dNY" eventType="touchUpInside" id="06z-Pk-t4n"/>
+                                    <action selector="dismissSignUpView" destination="xZe-LD-dNY" eventType="touchUpInside" id="TC8-6g-mbu"/>
                                 </connections>
                             </button>
                         </subviews>
