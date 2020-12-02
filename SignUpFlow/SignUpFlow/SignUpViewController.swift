@@ -3,11 +3,11 @@
 //  SignUpFlow
 //
 //  Created by sole on 2020/12/02.
-//
+//  textView Return 키,
 
 import UIKit
 
-class SignUpViewController: UIViewController, UITextFieldDelegate {
+class SignUpViewController: UIViewController {
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -28,6 +28,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
        
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
+        
+        idTextField.delegate = self
+        passwordTextField.delegate = self
+        checkPasswordField.delegate = self
+        introductionTextView.delegate = self
+        
+        passwordTextField.isSecureTextEntry = true
+        checkPasswordField.isSecureTextEntry = true
         
         inactivateButton(nextButton)
     }
@@ -81,5 +89,30 @@ extension SignUpViewController: UIImagePickerControllerDelegate & UINavigationCo
         }
         checkCanGoNext()
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension SignUpViewController: UITextViewDelegate, UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case idTextField:
+            passwordTextField.becomeFirstResponder()
+        case passwordTextField:
+            checkPasswordField.becomeFirstResponder()
+        case checkPasswordField:
+            introductionTextView.becomeFirstResponder()
+        default:
+            break
+        }
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        checkCanGoNext()
+    }
+  
+    func textViewDidEndEditing(_ textView: UITextView) {
+        checkCanGoNext()
     }
 }

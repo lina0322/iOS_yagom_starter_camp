@@ -17,6 +17,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         
         idTextField.delegate = self
         passwordTextField.delegate = self
+        passwordTextField.isSecureTextEntry = true
         changeLabel(text: statusMessageLabel, to: .empty)
     }
     
