@@ -9,6 +9,10 @@ import UIKit
 
 class SignUpViewController: UIViewController {
     
+    @IBOutlet weak var idTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var checkPasswordField: UITextField!
+
     @IBAction func dismissSignUpView() {
         dismiss(animated: true, completion: nil)
     }

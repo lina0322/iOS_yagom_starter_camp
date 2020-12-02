@@ -177,6 +177,11 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="L2c-fr-0rb"/>
+                    <connections>
+                        <outlet property="checkPasswordField" destination="Goq-Cx-Xmj" id="SRz-H2-77a"/>
+                        <outlet property="idTextField" destination="8zg-u4-fZq" id="KTO-Xl-Zcx"/>
+                        <outlet property="passwordTextField" destination="4M1-cC-7PE" id="5q1-l3-0GL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7mr-3B-Agx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="psB-cq-XEO">
