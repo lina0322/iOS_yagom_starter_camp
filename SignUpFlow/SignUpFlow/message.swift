@@ -8,5 +8,8 @@
 import Foundation
 
 enum Message: String {
-    case existedId = "이미 존재하는 아이디입니다"
+    case existedId = "이미 존재하는 아이디입니다."
+    case enterId = "아이디를 입력해주세요."
+    case enterPassword = "패스워드를 입력해주세요."
+    case empty = ""
 }
