@@ -6,7 +6,10 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class MainViewController: UIViewController, UITextFieldDelegate {
+    
+    @IBOutlet weak var idTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,25 +18,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.delegate = self
     }
     
-    @IBOutlet weak var idTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    
     @IBAction func tapView(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == idTextField {
-            passwordTextField
-                .becomeFirstResponder()
+            passwordTextField.becomeFirstResponder()
         } else {
             passwordTextField.resignFirstResponder()
         }
         return true
-        
     }
-
-
-
 }
 
