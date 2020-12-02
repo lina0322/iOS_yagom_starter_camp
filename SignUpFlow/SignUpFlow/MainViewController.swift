@@ -48,15 +48,16 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         makeLabel(text: statusMessageLabel, to: .empty)
     }
     
+    func makeLabel(text label: UILabel, to message: Message) {
+        label.text = message.rawValue
+    }
+}
+
+extension UIViewController {
     func IsFullfill(textField: UITextField) -> Bool {
         guard textField.text != "" else {
             return false
         }
         return true
     }
-    
-    func makeLabel(text label: UILabel, to message: Message) {
-        label.text = message.rawValue
-    }
 }
-

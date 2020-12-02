@@ -20,4 +20,10 @@ class SignUpViewController: UIViewController {
     @IBAction func tapView(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
+    
+    func checkPassword() {
+        guard passwordTextField.text == checkPasswordField.text else {
+            return
+        }
+    }
 }
