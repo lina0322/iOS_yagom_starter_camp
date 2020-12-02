@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -32,15 +32,6 @@ class SignUpViewController: UIViewController {
         inactivateButton(nextButton)
     }
     
-    @IBAction func dismissSignUpView() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func tapView(_ sender: UITapGestureRecognizer) {
-        self.view.endEditing(true)
-    }
-    
-    // 안되어있는 경우 라벨이나 palceholder에 표시하기
     func checkCanGoNext() {
         guard isFullfill(textField: idTextField, passwordTextField, checkPasswordField),
               profileImage.image != nil,
@@ -49,9 +40,13 @@ class SignUpViewController: UIViewController {
         }
         
         guard checkPasswordField.text == passwordTextField.text else {
+            passwordTextField.textColor = .red
+            checkPasswordField.textColor = .red
             return inactivateButton(nextButton)
         }
         
+        passwordTextField.textColor = .black
+        checkPasswordField.textColor = .black
         activateButton(nextButton)
     }
     
@@ -63,6 +58,14 @@ class SignUpViewController: UIViewController {
     func inactivateButton(_ button: UIButton) {
         button.isEnabled = false
         button.setTitleColor(.systemGray, for: .normal)
+    }
+    
+    @IBAction func dismissSignUpView() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func tapView(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
 }
 
