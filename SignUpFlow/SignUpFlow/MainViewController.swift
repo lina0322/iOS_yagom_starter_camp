@@ -32,16 +32,6 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
-    @IBAction func touchUpSignIn(_ sender: UIButton?) {
-        showCanNotSignInAlert()
-    }
-    
-    func showCanNotSignInAlert() {
-        let alert = UIAlertController(title: nil, message: Message.canNotSignIn.rawValue, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
-        
-        alert.addAction(okButton)
-        present(alert, animated: true, completion: nil)
-    }
+    @IBAction func touchUpSignIn(_ sender: UIButton?) { }
 }
 
