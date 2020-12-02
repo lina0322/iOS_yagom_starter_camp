@@ -168,6 +168,14 @@
                                     <segue destination="qgI-ZA-c9O" kind="show" id="wfI-be-MV8"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndL-Ey-lEW">
+                                <rect key="frame" x="164" y="748" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="touchUpImage:" destination="xZe-LD-dNY" eventType="touchUpInside" id="q0w-p7-hDp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Oyg-NX-NJt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

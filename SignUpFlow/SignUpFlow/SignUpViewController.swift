@@ -12,7 +12,12 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var checkPasswordField: UITextField!
-
+    @IBOutlet weak var profileImage: UIImage!
+    
+    @IBAction func touchUpImage(_ sender: UIImage) {
+       pickImage()
+    }
+    
     @IBAction func dismissSignUpView() {
         dismiss(animated: true, completion: nil)
     }
@@ -25,5 +30,17 @@ class SignUpViewController: UIViewController {
         guard passwordTextField.text == checkPasswordField.text else {
             return
         }
+    }
+}
+
+extension SignUpViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    
+    func pickImage() {
+        let imagePicker = UIImagePickerController()
+        
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        
+        self.present(imagePicker, animated: true, completion: nil)
     }
 }
