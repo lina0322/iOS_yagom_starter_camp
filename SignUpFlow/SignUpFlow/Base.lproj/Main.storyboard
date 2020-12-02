@@ -27,13 +27,13 @@
                                 <rect key="frame" x="87" y="335" width="240" height="34"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="buS-xm-nM9">
                                 <rect key="frame" x="87" y="377" width="240" height="34"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSS-Ju-7FF">
                                 <rect key="frame" x="227" y="426" width="100" height="30"/>
@@ -71,6 +71,10 @@
                             <outletCollection property="gestureRecognizers" destination="wu3-15-JLJ" appends="YES" id="cQF-vC-eF9"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="idTextField" destination="W2y-Zr-EIa" id="LGc-pt-aH0"/>
+                        <outlet property="passwordTextField" destination="buS-xm-nM9" id="Nqo-g4-kaY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="wu3-15-JLJ">
