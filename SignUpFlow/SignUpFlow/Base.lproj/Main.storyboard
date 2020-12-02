@@ -41,14 +41,14 @@
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" systemColor="systemRedColor"/>
                                 </state>
+                                <connections>
+                                    <segue destination="xZe-LD-dNY" kind="presentation" modalPresentationStyle="fullScreen" id="HA6-ny-S6k"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wvX-1P-BPD">
                                 <rect key="frame" x="87" y="426" width="100" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign In"/>
-                                <connections>
-                                    <segue destination="xZe-LD-dNY" kind="presentation" modalPresentationStyle="fullScreen" id="LM2-A2-FX1"/>
-                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -92,6 +92,18 @@
                     <view key="view" contentMode="scaleToFill" id="iSC-xv-0hG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="00p-Tv-HWZ">
+                                <rect key="frame" x="127" y="563" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="취소">
+                                    <color key="titleColor" systemColor="systemRedColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissPage" destination="xZe-LD-dNY" eventType="touchUpInside" id="06z-Pk-t4n"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Oyg-NX-NJt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
