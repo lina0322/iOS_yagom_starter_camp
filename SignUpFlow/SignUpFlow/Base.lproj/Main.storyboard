@@ -29,7 +29,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="done" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="done" secureTextEntry="YES" textContentType="one-time-code"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSS-Ju-7FF">
                                 <rect key="frame" x="185" y="448" width="100" height="30"/>
@@ -132,13 +132,13 @@
                                 <rect key="frame" x="139" y="97" width="220" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Check Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Goq-Cx-Xmj">
                                 <rect key="frame" x="139" y="138" width="220" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wah-9L-jbP">
                                 <rect key="frame" x="16" y="180" width="343" height="540"/>
@@ -163,10 +163,18 @@
                                 <rect key="frame" x="218" y="738" width="100" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="다음">
-                                    <color key="titleColor" systemColor="systemBlueColor"/>
+                                    <color key="titleColor" systemColor="systemGray2Color"/>
                                 </state>
                                 <connections>
                                     <segue destination="qgI-ZA-c9O" kind="show" id="wfI-be-MV8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uqW-zS-F7q">
+                                <rect key="frame" x="164" y="738" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="makeEnableNextButton" destination="xZe-LD-dNY" eventType="touchUpInside" id="m9r-TL-17j"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -181,6 +189,8 @@
                     <connections>
                         <outlet property="checkPasswordField" destination="Goq-Cx-Xmj" id="SRz-H2-77a"/>
                         <outlet property="idTextField" destination="8zg-u4-fZq" id="KTO-Xl-Zcx"/>
+                        <outlet property="introductionTextView" destination="Wah-9L-jbP" id="UTh-Bl-ITj"/>
+                        <outlet property="nextButton" destination="5HR-0e-6eR" id="Uyr-yn-cKF"/>
                         <outlet property="passwordTextField" destination="4M1-cC-7PE" id="5q1-l3-0GL"/>
                         <outlet property="profileImage" destination="OsD-4a-STD" id="zBW-bt-nZr"/>
                     </connections>
@@ -303,8 +313,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
