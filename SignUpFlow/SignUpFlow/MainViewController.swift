@@ -29,7 +29,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             passwordTextField.resignFirstResponder()
             touchUpSignIn(nil)
         }
-        return true
+        return false
     }
     
     @IBAction func touchUpSignIn(_ sender: UIButton?) {
@@ -37,7 +37,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     }
     
     func showCanNotSignInAlert() {
-        let alert = UIAlertController(title: nil, message: "로그인 할 수 없습니다.", preferredStyle: .alert)
+        let alert = UIAlertController(title: nil, message: Message.canNotSignIn.rawValue, preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
         
         alert.addAction(okButton)
