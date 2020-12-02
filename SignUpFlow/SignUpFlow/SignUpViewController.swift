@@ -13,9 +13,11 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var checkPasswordField: UITextField!
     @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var introductionTextView: UITextView!
+    @IBOutlet weak var nextButton: UIButton!
     
+    let imagePicker = UIImagePickerController()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,6 +25,9 @@ class SignUpViewController: UIViewController {
      
         profileImage.addGestureRecognizer(tapGestureRecognizer)
         profileImage.isUserInteractionEnabled = true
+       
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
         
         inactivateButton(nextButton)
     }
@@ -36,15 +41,15 @@ class SignUpViewController: UIViewController {
     }
     
     // 안되어있는 경우 라벨이나 palceholder에 표시하기
-    @IBAction func makeEnableNextButton() {
+    func makeEnableNextButton() {
         guard isFullfill(textField: idTextField, passwordTextField, checkPasswordField),
               profileImage.image != nil,
               introductionTextView.text != "" else {
-            return print("뭔가안채워짐")
+            return inactivateButton(nextButton)
         }
         
         guard checkPasswordField.text == passwordTextField.text else {
-            return print("비번다름")
+            return inactivateButton(nextButton)
         }
         
         activateButton(nextButton)
@@ -64,11 +69,6 @@ class SignUpViewController: UIViewController {
 extension SignUpViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     @objc func pickImage() {
-        let imagePicker = UIImagePickerController()
-        
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = true
-        
         self.present(imagePicker, animated: true, completion: nil)
     }
     
@@ -76,6 +76,7 @@ extension SignUpViewController: UIImagePickerControllerDelegate & UINavigationCo
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             profileImage.image = image
         }
+        makeEnableNextButton()
         dismiss(animated: true, completion: nil)
     }
 }
