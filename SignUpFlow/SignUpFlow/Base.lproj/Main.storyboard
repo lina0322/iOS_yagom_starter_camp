@@ -120,6 +120,7 @@
                                 <rect key="frame" x="16" y="57" width="115" height="115"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                <gestureRecognizers/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8zg-u4-fZq">
                                 <rect key="frame" x="139" y="57" width="220" height="34"/>
@@ -166,14 +167,6 @@
                                 </state>
                                 <connections>
                                     <segue destination="qgI-ZA-c9O" kind="show" id="wfI-be-MV8"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndL-Ey-lEW">
-                                <rect key="frame" x="164" y="748" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="touchUpImage:" destination="xZe-LD-dNY" eventType="touchUpInside" id="q0w-p7-hDp"/>
                                 </connections>
                             </button>
                         </subviews>

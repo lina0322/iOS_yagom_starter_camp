@@ -14,8 +14,13 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var checkPasswordField: UITextField!
     @IBOutlet weak var profileImage: UIImageView!
     
-    @IBAction func touchUpImage(_ sender: UITapGestureRecognizer) {
-        pickImage()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(pickImage))
+        
+        profileImage.addGestureRecognizer(tapGestureRecognizer)
+        profileImage.isUserInteractionEnabled = true
     }
     
     @IBAction func dismissSignUpView() {
@@ -35,7 +40,7 @@ class SignUpViewController: UIViewController {
 
 extension SignUpViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
-    func pickImage() {
+    @objc func pickImage() {
         let imagePicker = UIImagePickerController()
         
         imagePicker.delegate = self
