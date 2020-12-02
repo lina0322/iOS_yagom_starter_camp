@@ -85,10 +85,10 @@
             </objects>
             <point key="canvasLocation" x="-197.10144927536234" y="96.428571428571431"/>
         </scene>
-        <!--Second View Controller-->
+        <!--Sign Up View Controller-->
         <scene sceneID="jUS-G6-Cvn">
             <objects>
-                <viewController id="xZe-LD-dNY" customClass="SecondViewController" sceneMemberID="viewController">
+                <viewController id="xZe-LD-dNY" customClass="SignUpViewController" customModule="SignUpFlow" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iSC-xv-0hG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
