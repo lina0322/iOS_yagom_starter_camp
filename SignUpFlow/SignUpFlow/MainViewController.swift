@@ -35,12 +35,12 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func touchUpSignIn(_ sender: UIButton?) {
-        guard IsFullfill(textField: idTextField) else {
+        guard isFullfill(textField: idTextField) else {
             makeLabel(text: statusMessageLabel, to: .enterId)
             return
         }
         
-        guard IsFullfill(textField: passwordTextField) else {
+        guard isFullfill(textField: passwordTextField) else {
             makeLabel(text: statusMessageLabel, to: .enterPassword)
             return
         }
@@ -48,8 +48,8 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         makeLabel(text: statusMessageLabel, to: .empty)
     }
     
-    func IsFullfill(textField: UITextField) -> Bool {
-        guard textField.text != "" else {
+    func isFullfill(textField: UITextField) -> Bool {
+        guard textField.text != nil else {
             return false
         }
         return true
