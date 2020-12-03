@@ -37,35 +37,27 @@ class SignUpViewController: UIViewController {
         passwordTextField.isSecureTextEntry = true
         checkPasswordField.isSecureTextEntry = true
         
-        inactivateButton(nextButton)
+        nextButton.isEnabled = false
     }
     
     func checkCanGoNext() {
         guard isFullfill(textField: idTextField, passwordTextField, checkPasswordField),
               profileImage.image != nil,
               introductionTextView.text != "" else {
-            return inactivateButton(nextButton)
+            nextButton.isEnabled = false
+            return
         }
         
         guard checkPasswordField.text == passwordTextField.text else {
             passwordTextField.textColor = .red
             checkPasswordField.textColor = .red
-            return inactivateButton(nextButton)
+            nextButton.isEnabled = false
+            return
         }
         
         passwordTextField.textColor = .black
         checkPasswordField.textColor = .black
-        activateButton(nextButton)
-    }
-    
-    func activateButton(_ button: UIButton) {
-        button.isEnabled = true
-        button.setTitleColor(.systemBlue, for: .normal)
-    }
-    
-    func inactivateButton(_ button: UIButton) {
-        button.isEnabled = false
-        button.setTitleColor(.systemGray, for: .normal)
+        nextButton.isEnabled = true
     }
     
     @IBAction func dismissSignUpView() {
