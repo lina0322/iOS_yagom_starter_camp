@@ -3,7 +3,7 @@
 //  SignUpFlow
 //
 //  Created by sole on 2020/12/02.
-//  textView Return 키,
+//
 
 import UIKit
 
@@ -59,8 +59,8 @@ class SignUpViewController: UIViewController {
     }
     
     func activateButton(_ button: UIButton) {
-        nextButton.setTitleColor(.systemBlue, for: .normal)
-        nextButton.isEnabled = true
+        button.isEnabled = true
+        button.setTitleColor(.systemBlue, for: .normal)
     }
     
     func inactivateButton(_ button: UIButton) {
