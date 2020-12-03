@@ -16,7 +16,12 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var introductionTextView: UITextView!
     @IBOutlet weak var nextButton: UIButton!
     
-    let imagePicker = UIImagePickerController()
+    lazy var imagePicker: UIImagePickerController = {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        return picker
+    }()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +31,6 @@ class SignUpViewController: UIViewController {
         profileImage.addGestureRecognizer(tapGestureRecognizer)
         profileImage.isUserInteractionEnabled = true
        
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = true
-        
         idTextField.delegate = self
         passwordTextField.delegate = self
         checkPasswordField.delegate = self
@@ -74,14 +76,14 @@ class SignUpViewController: UIViewController {
     }
 }
 
-extension SignUpViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @objc func pickImage() {
         self.present(imagePicker, animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+        if let image = info[.editedImage] as? UIImage {
             profileImage.image = image
         }
         checkCanGoNext()
