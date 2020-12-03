@@ -56,10 +56,9 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 
 extension UIViewController {
     func isFullfill(textField: UITextField...) -> Bool {
-        for text in textField {
-            guard text.text != "" else {
-                return false
-            }
+        for eachTextField in textField {
+            guard let text = eachTextField.text else { return false }
+            if text.isEmpty { return false }
         }
         return true
     }
