@@ -34,13 +34,18 @@ class SignUpDetailViewController: UIViewController {
         dateLabel.text = format.string(from: date)
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        self.view.endEditing(true)
+    }
+    
     @IBAction func dismissSignUpView() {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func popToPrev() {
-           self.navigationController?.popViewController(animated: true)
-       }
+        self.navigationController?.popViewController(animated: true)
+    }
     
     @IBAction func completeSignUp() {
         dismiss(animated: true, completion: nil)
