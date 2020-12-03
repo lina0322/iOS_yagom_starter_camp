@@ -8,7 +8,7 @@
 import UIKit
 
 class SignUpDetailViewController: UIViewController {
-
+    
     @IBAction func dismissSignUpView() {
         dismiss(animated: true, completion: nil)
     }
@@ -19,9 +19,5 @@ class SignUpDetailViewController: UIViewController {
     
     @IBAction func completeSignUp() {
         dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func tapView(_ sender: UITapGestureRecognizer) {
-        self.view.endEditing(true)
     }
 }

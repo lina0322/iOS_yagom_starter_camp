@@ -39,7 +39,7 @@ class SignUpViewController: UIViewController {
         passwordTextField.isSecureTextEntry = true
         checkPasswordField.isSecureTextEntry = true
         
-        nextButton.isEnabled = false
+       // nextButton.isEnabled = false
     }
     
     func checkCanGoNext() {
