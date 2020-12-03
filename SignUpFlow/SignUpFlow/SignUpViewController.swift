@@ -41,9 +41,14 @@ class SignUpViewController: UIViewController {
     }
     
     func checkCanGoNext() {
+        guard let textViewText = introductionTextView.text else {
+            nextButton.isEnabled = false
+            return
+        }
+        
         guard isFullfill(textField: idTextField, passwordTextField, checkPasswordField),
               profileImage.image != nil,
-              introductionTextView.text != "" else {
+              !textViewText.isEmpty else {
             nextButton.isEnabled = false
             return
         }
