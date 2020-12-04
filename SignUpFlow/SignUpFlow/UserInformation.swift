@@ -56,4 +56,3 @@ class UserInformation {
         userDirectory[id] = User(id)
     }
 }
-

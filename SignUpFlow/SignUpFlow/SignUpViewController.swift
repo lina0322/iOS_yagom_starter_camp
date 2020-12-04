@@ -43,14 +43,11 @@ class SignUpViewController: UIViewController {
     }
     
     func checkCanGoNext() {
-        guard let textViewText = introductionTextView.text else {
-            nextButton.isEnabled = false
-            return
-        }
-        
-        guard isFullfill(textField: idTextField, passwordTextField, checkPasswordField),
-              profileImage.image != nil,
-              !textViewText.isEmpty else {
+        guard idTextField.isFilled(),
+              passwordTextField.isFilled(),
+              checkPasswordField.isFilled(),
+              introductionTextView.isFilled(),
+              profileImage.image != nil else {
             nextButton.isEnabled = false
             return
         }
@@ -113,5 +110,13 @@ extension SignUpViewController: UITextViewDelegate, UITextFieldDelegate {
   
     func textViewDidEndEditing(_ textView: UITextView) {
         checkCanGoNext()
+    }
+}
+
+extension UITextView {
+    func isFilled() -> Bool {
+        guard let text = self.text else { return false }
+        if text.isEmpty { return false }
+        return true
     }
 }
