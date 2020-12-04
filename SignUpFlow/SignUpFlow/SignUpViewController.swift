@@ -33,15 +33,15 @@ class SignUpViewController: UIViewController {
     }
     
     private func checkCanGoNext() {
-        guard idTextField.isFilled(),
-              passwordTextField.isFilled(),
+        guard passwordTextField.isFilled(),
               checkPasswordField.isFilled(),
+              isPasswordSame(),
+              idTextField.isFilled(),
               introductionTextView.isFilled(),
-              profileImage.image != nil,
-              isPasswordSame() else {
-            nextButton.isEnabled = false
-            return
-        }
+              profileImage.image != nil else {
+                nextButton.isEnabled = false
+                return
+              }
         
         nextButton.isEnabled = true
         saveTempData()
@@ -86,8 +86,8 @@ class SignUpViewController: UIViewController {
         toolBarKeyboard.sizeToFit()
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(tapView(_:)))
-        toolBarKeyboard.items = [flexibleSpace, doneButton]
         
+        toolBarKeyboard.items = [flexibleSpace, doneButton]
         introductionTextView.inputAccessoryView = toolBarKeyboard
     }
     
