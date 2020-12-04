@@ -29,7 +29,6 @@ class SignUpViewController: UIViewController {
         setUpImageViewTap()
         setUpPasswordSecure()
         setKeyboardDoneButton()
-        nextButton.isEnabled = false
     }
     
     private func checkCanGoNext() {
