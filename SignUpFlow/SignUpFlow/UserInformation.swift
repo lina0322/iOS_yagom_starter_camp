@@ -94,4 +94,3 @@ class UserInformation {
                                  phoneNumber: phoneNumber, dateOfBirth: dateOfBirth)
     }
 }
-

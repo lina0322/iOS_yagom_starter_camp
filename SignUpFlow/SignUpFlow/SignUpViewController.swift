@@ -22,50 +22,43 @@ class SignUpViewController: UIViewController {
         picker.allowsEditing = true
         return picker
     }()
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(pickImage))
-     
-        profileImage.addGestureRecognizer(tapGestureRecognizer)
-        profileImage.isUserInteractionEnabled = true
-       
-        idTextField.delegate = self
-        passwordTextField.delegate = self
-        checkPasswordField.delegate = self
-        introductionTextView.delegate = self
-        
-        passwordTextField.isSecureTextEntry = true
-        checkPasswordField.isSecureTextEntry = true
-        
+        setUpImageViewTap()
+        setUpPasswordSecure()
+        setKeyboardDoneButton()
         nextButton.isEnabled = false
     }
     
-    func checkCanGoNext() {
-        guard let textViewText = introductionTextView.text else {
-            nextButton.isEnabled = false
-            return
-        }
-        
-        guard isFullfill(textField: idTextField, passwordTextField, checkPasswordField),
+    private func checkCanGoNext() {
+        guard idTextField.isFilled(),
+              passwordTextField.isFilled(),
+              checkPasswordField.isFilled(),
+              introductionTextView.isFilled(),
               profileImage.image != nil,
-              !textViewText.isEmpty else {
+              isPasswordSame() else {
             nextButton.isEnabled = false
             return
         }
         
+        nextButton.isEnabled = true
+        saveTempData()
+    }
+    
+    private func isPasswordSame() -> Bool {
         guard checkPasswordField.text == passwordTextField.text else {
             passwordTextField.textColor = .red
             checkPasswordField.textColor = .red
             nextButton.isEnabled = false
-            return
+            return false
         }
         
         passwordTextField.textColor = .black
         checkPasswordField.textColor = .black
         nextButton.isEnabled = true
-        saveTempData()
+        return true
     }
     
     func saveTempData() {
@@ -73,6 +66,29 @@ class SignUpViewController: UIViewController {
         TempInformation.common.password = passwordTextField.text
         TempInformation.common.profileImage = profileImage.image
         TempInformation.common.introduction = introductionTextView.text
+        return
+    }
+    
+    private func setUpImageViewTap() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(showActionSheet))
+        
+        profileImage.addGestureRecognizer(tapGestureRecognizer)
+        profileImage.isUserInteractionEnabled = true
+    }
+    
+    private func setUpPasswordSecure() {
+        passwordTextField.isSecureTextEntry = true
+        checkPasswordField.isSecureTextEntry = true
+    }
+    
+    private func setKeyboardDoneButton() {
+        let toolBarKeyboard = UIToolbar()
+        toolBarKeyboard.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(tapView(_:)))
+        toolBarKeyboard.items = [flexibleSpace, doneButton]
+        
+        introductionTextView.inputAccessoryView = toolBarKeyboard
     }
     
     @IBAction func dismissSignUpView() {
@@ -86,8 +102,31 @@ class SignUpViewController: UIViewController {
 
 extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @objc func pickImage() {
-        self.present(imagePicker, animated: true, completion: nil)
+    @objc func showActionSheet() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let albumButton = UIAlertAction(title: "앨범에서 선택", style: .default) {
+            _ in self.openAlbum()
+        }
+        let cameraButton = UIAlertAction(title: "카메라로 촬영", style: .default) {
+            _ in self.openCamera()
+        }
+        let cancelButton = UIAlertAction(title: "취소", style: .default, handler: nil)
+        
+        actionSheet.addAction(albumButton)
+        actionSheet.addAction(cameraButton)
+        actionSheet.addAction(cancelButton)
+        
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func openAlbum() {
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func openCamera() {
+        imagePicker.sourceType = .camera
+        present(imagePicker, animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -100,7 +139,7 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
 }
 
 extension SignUpViewController: UITextViewDelegate, UITextFieldDelegate {
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case idTextField:
@@ -118,8 +157,16 @@ extension SignUpViewController: UITextViewDelegate, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         checkCanGoNext()
     }
-  
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         checkCanGoNext()
+    }
+}
+
+extension UITextView {
+    func isFilled() -> Bool {
+        guard let text = self.text else { return false }
+        if text.isEmpty { return false }
+        return true
     }
 }

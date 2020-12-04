@@ -17,10 +17,8 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        idTextField.delegate = self
-        passwordTextField.delegate = self
         passwordTextField.isSecureTextEntry = true
-        changeLabelText(with: statusMessageLabel, to: .empty)
+        changeStatusMessage(to: .empty)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,36 +44,47 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             passwordTextField.becomeFirstResponder()
         } else {
             passwordTextField.resignFirstResponder()
-            touchUpSignIn(nil)
+            signIn()
         }
         return false
     }
     
     @IBAction func touchUpSignIn(_ sender: UIButton?) {
-        guard isFullfill(textField: idTextField) else {
-            changeLabelText(with: statusMessageLabel, to: .enterId)
-            return
-        }
-        
-        guard isFullfill(textField: passwordTextField) else {
-            changeLabelText(with: statusMessageLabel, to: .enterPassword)
-            return
-        }
-        
-        changeLabelText(with: statusMessageLabel, to: .disableSignIn)
+        signIn()
     }
     
-    func changeLabelText(with label: UILabel, to message: Message) {
-        label.text = message.rawValue
+    func signIn() {
+        guard isAllFull() else {
+            return
+        }
+        // 아이디와 패스워드를 확인하고 맞으면 로그인하는 힘수 들어갈 자리
+        // 만약 없는 아이디나 잘못된 패스워드이면 아래 문구 출력
+        changeStatusMessage(to: .disableSignIn)
+    }
+    
+    func isAllFull() -> Bool {
+        guard idTextField.isFilled() else {
+            changeStatusMessage(to: .enterId)
+            return false
+        }
+        
+        guard passwordTextField.isFilled() else {
+            changeStatusMessage(to: .enterPassword)
+            return false
+        }
+        
+        return true
+    }
+    
+    private func changeStatusMessage(to message: Message) {
+        statusMessageLabel.text = message.rawValue
     }
 }
 
-extension UIViewController {
-    func isFullfill(textField: UITextField...) -> Bool {
-        for eachTextField in textField {
-            guard let text = eachTextField.text else { return false }
-            if text.isEmpty { return false }
-        }
+extension UITextField {
+    func isFilled() -> Bool {
+        guard let text = self.text else { return false }
+        if text.isEmpty { return false }
         return true
     }
 }
