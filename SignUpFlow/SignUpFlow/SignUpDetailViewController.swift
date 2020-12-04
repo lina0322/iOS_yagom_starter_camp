@@ -104,7 +104,7 @@ class SignUpDetailViewController: UIViewController {
     }
     
     @IBAction func popToPrev() {
-        saveTempDate()
+        saveTempData()
         
         guard let currentView = self.navigationController else {
             return
