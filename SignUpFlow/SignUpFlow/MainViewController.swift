@@ -48,9 +48,19 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         guard isAllFull() else {
             return
         }
-        // 아이디와 패스워드를 확인하고 맞으면 로그인하는 힘수 들어갈 자리
-        // 만약 없는 아이디나 잘못된 패스워드이면 아래 문구 출력
-        changeStatusMessage(to: .disableSignIn)
+        guard isVaild(id: idTextField.text ?? "",
+                      password: passwordTextField.text ?? "") else {
+            return changeStatusMessage(to: .disableSignIn)
+        }
+        // 성공한 경우 로그인 화면으로 이동
+    }
+    
+    private func isVaild(id: String, password: String) -> Bool {
+        guard let user = UserInformation.common.userDirectory[id],
+              user.password == password else {
+            return false
+        }
+        return true
     }
     
     private func isAllFull() -> Bool {
