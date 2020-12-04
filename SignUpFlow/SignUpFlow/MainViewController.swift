@@ -18,7 +18,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         idTextField.delegate = self
         passwordTextField.delegate = self
         passwordTextField.isSecureTextEntry = true
-        changeLabelText(with: statusMessageLabel, to: .empty)
+        changeStatusMessage(to: .empty)
     }
     
     @IBAction func tapView(_ sender: UITapGestureRecognizer) {
@@ -37,20 +37,20 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func touchUpSignIn(_ sender: UIButton?) {
         guard idTextField.isFilled() else {
-            changeLabelText(with: statusMessageLabel, to: .enterId)
+            changeStatusMessage(to: .enterId)
             return
         }
         
         guard idTextField.isFilled() else {
-            changeLabelText(with: statusMessageLabel, to: .enterPassword)
+            changeStatusMessage(to: .enterPassword)
             return
         }
         
-        changeLabelText(with: statusMessageLabel, to: .disableSignIn)
+        changeStatusMessage(to: .disableSignIn)
     }
     
-    func changeLabelText(with label: UILabel, to message: Message) {
-        label.text = message.rawValue
+    private func changeStatusMessage(to message: Message) {
+        statusMessageLabel.text = message.rawValue
     }
 }
 
