@@ -3,7 +3,7 @@
 //  SignUpFlow
 //
 //  Created by sole on 2020/12/02.
-//  Todo: 전화번호 사이에 - 넣어주기
+//  
 
 import UIKit
 
@@ -66,7 +66,28 @@ class SignUpDetailViewController: UIViewController {
     }
     
     @IBAction func completeSignUp() {
+        saveTempData()
+        UserInformation.common.addNewUser(userInformation: TempInformation.common)
+        sendNewId()
+        TempInformation.common.clearAll()
         dismiss(animated: true, completion: nil)
+    }
+    
+    func sendNewId() {
+        guard let currentStoryboard = self.storyboard else {
+            return
+        }
+        
+        guard let mainView = currentStoryboard.instantiateViewController(withIdentifier: "MainView") as? MainViewController else {
+            return
+        }
+        mainView.newId = TempInformation.common.id ?? ""
+        print("마지막페이지 \(mainView.newId)")
+    }
+    
+    func saveTempData() {
+        TempInformation.common.phoneNumber = phoneNumberTextField.text
+        TempInformation.common.dateOfBirth = datePicker.date
     }
 }
 

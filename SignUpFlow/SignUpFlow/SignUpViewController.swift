@@ -65,6 +65,14 @@ class SignUpViewController: UIViewController {
         passwordTextField.textColor = .black
         checkPasswordField.textColor = .black
         nextButton.isEnabled = true
+        saveTempData()
+    }
+    
+    func saveTempData() {
+        TempInformation.common.id = idTextField.text
+        TempInformation.common.password = passwordTextField.text
+        TempInformation.common.profileImage = profileImage.image
+        TempInformation.common.introduction = introductionTextView.text
     }
     
     @IBAction func dismissSignUpView() {
