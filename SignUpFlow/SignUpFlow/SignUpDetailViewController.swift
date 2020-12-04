@@ -3,7 +3,7 @@
 //  SignUpFlow
 //
 //  Created by sole on 2020/12/02.
-//  Todo: 아이디 유효성 검사, 비밀번호랑 아이디 길이...? 전화번호 길이 확인
+//  Todo: 아이디 유효성 검사, 비밀번호랑 아이디 길이...? 전화번호 길이 확인, 첫페이지 비번;;
 
 import UIKit
 
@@ -22,6 +22,7 @@ class SignUpDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         showTempData()
+        checkCanFinish()
     }
     
     @objc func touchUpDatePicker(_ sender: UIDatePicker) {
@@ -39,10 +40,8 @@ class SignUpDetailViewController: UIViewController {
     }
     
     private func checkCanFinish() {
-        guard let phoneNumber = phoneNumberTextField.text,
-              !phoneNumber.isEmpty,
-              let dateOfbirth = dateLabel.text,
-              !dateOfbirth.isEmpty else {
+        guard phoneNumberTextField.isFilled(),
+              dateLabel.isFilled() else {
             doneButton.isEnabled = false
             return
         }
@@ -50,21 +49,13 @@ class SignUpDetailViewController: UIViewController {
     }
     
     @IBAction func completeSignUp() {
+        saveTempData()
         UserInformation.common.addNewUser(userInformation: TempInformation.common)
-        sendNewId()
+        UserInformation.common.recentId = TempInformation.common.id ?? ""
         TempInformation.common.clearAll()
         dismiss(animated: true, completion: nil)
     }
-    
-    private func sendNewId() {
-        let currentView = self.presentingViewController
-        guard let mainView = currentView as? MainViewController else {
-            return
-        }
-        
-        mainView.newId = TempInformation.common.id ?? ""
-    }
-    
+   
     private func saveTempData() {
         if let phoneNumberField = phoneNumberTextField {
             if let phoneNumber = phoneNumberField.text {
@@ -99,6 +90,7 @@ class SignUpDetailViewController: UIViewController {
     }
     
     @IBAction func dismissSignUpView() {
+        TempInformation.common.clearAll()
         dismiss(animated: true, completion: nil)
     }
     
@@ -120,5 +112,13 @@ extension SignUpDetailViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         checkCanFinish()
+    }
+}
+
+extension UILabel {
+    func isFilled() -> Bool {
+        guard let text = self.text else { return false }
+        if text.isEmpty { return false }
+        return true
     }
 }

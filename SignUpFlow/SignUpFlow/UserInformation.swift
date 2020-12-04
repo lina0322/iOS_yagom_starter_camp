@@ -73,6 +73,7 @@ class UserInformation {
     private init() {}
     typealias UserId = String
     private(set) var userDirectory = [UserId : User]()
+    var recentId: String = ""
     
     func addNewUser(userInformation: TempInformation) {
         guard let id = userInformation.id,

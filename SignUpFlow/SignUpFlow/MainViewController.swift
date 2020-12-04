@@ -7,24 +7,21 @@
 import UIKit
 
 class MainViewController: UIViewController, UITextFieldDelegate {
-    
+
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var statusMessageLabel: UILabel!
-    
-    var newId: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         passwordTextField.isSecureTextEntry = true
-        changeStatusMessage(to: .empty)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        idTextField.text = newId
+        super.viewWillAppear(animated)
+      
+        setUpIdPasswordField()
     }
     
     @IBAction func tapView(_ sender: UITapGestureRecognizer) {
@@ -83,6 +80,12 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
     private func changeStatusMessage(to message: Message) {
         statusMessageLabel.text = message.rawValue
+    }
+    
+    func setUpIdPasswordField() {
+        idTextField.text = UserInformation.common.recentId
+        passwordTextField.text = ""
+        changeStatusMessage(to: .empty)
     }
 }
 
