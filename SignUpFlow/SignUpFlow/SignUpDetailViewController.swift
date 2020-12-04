@@ -3,7 +3,7 @@
 //  SignUpFlow
 //
 //  Created by sole on 2020/12/02.
-//  Todo: 전화번호 사이에 - 넣어주기, 전화번호 길이 확인, 마지막 페이지 정보저장, 마지막페이지에서 첫번째 페이지로 아이디 넘겨주기
+//  Todo: 전화번호 사이에 - 넣어주기, 전화번호 길이 확인, 마지막페이지에서 첫번째 페이지로 아이디 넘겨주기
 
 import UIKit
 
@@ -58,13 +58,11 @@ class SignUpDetailViewController: UIViewController {
     }
     
     private func sendNewId() {
-        guard let currentStoryboard = self.storyboard else {
+        let currentView = self.presentingViewController
+        guard let mainView = currentView as? MainViewController else {
             return
         }
-        
-        guard let mainView = currentStoryboard.instantiateViewController(withIdentifier: "MainView") as? MainViewController else {
-            return
-        }
+
         mainView.newId = TempInformation.common.id ?? ""
         print("마지막페이지 \(mainView.newId)")
     }
@@ -96,6 +94,7 @@ class SignUpDetailViewController: UIViewController {
             return
         }
         datePicker.date = date
+        changeDateLabel(to: date)
     }
 
     private func setUpDatePicker() {
