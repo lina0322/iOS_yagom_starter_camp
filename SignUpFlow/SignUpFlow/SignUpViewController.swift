@@ -22,12 +22,13 @@ class SignUpViewController: UIViewController {
         picker.allowsEditing = true
         return picker
     }()
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpImagePicker()
+        setUpImageViewTap()
         setUpPasswordSecure()
+        setKeyboardDoneButton()
         nextButton.isEnabled = false
     }
     
@@ -58,9 +59,9 @@ class SignUpViewController: UIViewController {
         return true
     }
     
-    private func setUpImagePicker() {
+    private func setUpImageViewTap() {
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(pickImage))
-     
+        
         profileImage.addGestureRecognizer(tapGestureRecognizer)
         profileImage.isUserInteractionEnabled = true
     }
@@ -68,6 +69,16 @@ class SignUpViewController: UIViewController {
     private func setUpPasswordSecure() {
         passwordTextField.isSecureTextEntry = true
         checkPasswordField.isSecureTextEntry = true
+    }
+    
+    private func setKeyboardDoneButton() {
+        let toolBarKeyboard = UIToolbar()
+        toolBarKeyboard.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(tapView(_:)))
+        toolBarKeyboard.items = [flexibleSpace, doneButton]
+        
+        introductionTextView.inputAccessoryView = toolBarKeyboard
     }
     
     @IBAction func dismissSignUpView() {
@@ -95,7 +106,7 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
 }
 
 extension SignUpViewController: UITextViewDelegate, UITextFieldDelegate {
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case idTextField:
@@ -113,7 +124,7 @@ extension SignUpViewController: UITextViewDelegate, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         checkCanGoNext()
     }
-  
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         checkCanGoNext()
     }
