@@ -14,3 +14,9 @@ enum Message: String {
     case disableSignIn = "아이디, 비밀번호를 확인해주세요."
     case empty = ""
 }
+
+enum ImageSelect: String {
+    case album = "앨범에서 선택"
+    case camera = "카메라로 촬영"
+    case cancel = "취소"
+}

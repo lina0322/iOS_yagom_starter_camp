@@ -101,13 +101,13 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
     
     @objc func showActionSheet() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let albumButton = UIAlertAction(title: "앨범에서 선택", style: .default) {
+        let albumButton = UIAlertAction(title: ImageSelect.album.rawValue, style: .default) {
             _ in self.openAlbum()
         }
-        let cameraButton = UIAlertAction(title: "카메라로 촬영", style: .default) {
+        let cameraButton = UIAlertAction(title: ImageSelect.camera.rawValue, style: .default) {
             _ in self.openCamera()
         }
-        let cancelButton = UIAlertAction(title: "취소", style: .default, handler: nil)
+        let cancelButton = UIAlertAction(title: ImageSelect.cancel.rawValue, style: .cancel, handler: nil)
         
         actionSheet.addAction(albumButton)
         actionSheet.addAction(cameraButton)
@@ -135,7 +135,6 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
 }
 
 extension SignUpViewController: UITextViewDelegate, UITextFieldDelegate {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case idTextField:

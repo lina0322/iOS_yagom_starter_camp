@@ -63,7 +63,6 @@ class SignUpDetailViewController: UIViewController {
         }
         
         mainView.newId = TempInformation.common.id ?? ""
-        print("마지막페이지 \(mainView.newId)")
     }
     
     private func saveTempData() {

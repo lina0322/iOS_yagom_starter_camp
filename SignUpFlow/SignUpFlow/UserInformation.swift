@@ -71,9 +71,7 @@ class TempInformation {
 class UserInformation {
     static let common = UserInformation()
     private init() {}
-    
     typealias UserId = String
-    
     private(set) var userDirectory = [UserId : User]()
     
     func addNewUser(userInformation: TempInformation) {
