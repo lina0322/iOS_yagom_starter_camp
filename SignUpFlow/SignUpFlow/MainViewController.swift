@@ -51,12 +51,10 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             changeStatusMessage(to: .enterId)
             return false
         }
-        
         guard passwordTextField.isFilled() else {
             changeStatusMessage(to: .enterPassword)
             return false
         }
-        
         return true
     }
     
