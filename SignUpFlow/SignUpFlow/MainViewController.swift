@@ -24,6 +24,8 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         idTextField.text = newId
+        
+        print(UserInformation.common.userDirectory)
     }
     
     @IBAction func tapView(_ sender: UITapGestureRecognizer) {
@@ -57,9 +59,12 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
     private func successSigIn() {
         changeStatusMessage(to: .empty)
+        performSegue(withIdentifier: "SignInView", sender: nil)
     }
     
     private func isVaild(id: String, password: String) -> Bool {
+        print(UserInformation.common.userDirectory[id]?.password)//
+        print(password)//
         guard let user = UserInformation.common.userDirectory[id],
               user.password == password else {
             return false
