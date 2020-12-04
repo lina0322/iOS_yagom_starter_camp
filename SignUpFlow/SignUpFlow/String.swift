@@ -12,6 +12,7 @@ enum Message: String {
     case enterId = "아이디를 입력해주세요."
     case enterPassword = "패스워드를 입력해주세요."
     case disableSignIn = "아이디, 비밀번호를 확인해주세요."
+    case wrongNumber = "전화번호를 확인해주세요."
     case empty = ""
 }
 

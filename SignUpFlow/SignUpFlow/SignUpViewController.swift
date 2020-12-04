@@ -88,7 +88,7 @@ class SignUpViewController: UIViewController {
         let toolBarKeyboard = UIToolbar()
         toolBarKeyboard.sizeToFit()
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(tapView(_:)))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tapView(_:)))
         
         toolBarKeyboard.items = [flexibleSpace, doneButton]
         introductionTextView.inputAccessoryView = toolBarKeyboard
@@ -106,6 +106,8 @@ class SignUpViewController: UIViewController {
 extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @objc func showActionSheet() {
+        self.view.endEditing(true)
+        
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let albumButton = UIAlertAction(title: ImageSelect.album.rawValue, style: .default) {
             _ in self.openAlbum()

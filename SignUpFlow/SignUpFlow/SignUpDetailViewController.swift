@@ -3,7 +3,7 @@
 //  SignUpFlow
 //
 //  Created by sole on 2020/12/02.
-//  Todo: 아이디 유효성 검사, 비밀번호랑 아이디 길이...? 전화번호 길이 확인, 첫페이지 비번;;
+//  Todo: 아이디 유효성 검사, 비밀번호랑 길이, 전화번호 길이 확인
 
 import UIKit
 
@@ -18,9 +18,12 @@ class SignUpDetailViewController: UIViewController {
         super.viewDidLoad()
         
         setUpDatePicker()
+        setKeyboardDoneButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         showTempData()
         checkCanFinish()
     }
@@ -30,6 +33,7 @@ class SignUpDetailViewController: UIViewController {
         
         changeDateLabel(to: date)
         checkCanFinish()
+        self.view.endEditing(true)
     }
     
     private func changeDateLabel(to date: Date) {
@@ -55,7 +59,7 @@ class SignUpDetailViewController: UIViewController {
         TempInformation.common.clearAll()
         dismiss(animated: true, completion: nil)
     }
-   
+    
     private func saveTempData() {
         if let phoneNumberField = phoneNumberTextField {
             if let phoneNumber = phoneNumberField.text {
@@ -84,8 +88,23 @@ class SignUpDetailViewController: UIViewController {
         datePicker.addTarget(self, action: #selector(touchUpDatePicker(_:)), for: .valueChanged)
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    private func setKeyboardDoneButton() {
+        let toolBarKeyboard = UIToolbar()
+        toolBarKeyboard.sizeToFit()
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(touchUpDoneButton))
+        
+        toolBarKeyboard.items = [flexibleSpace, doneButton]
+        phoneNumberTextField.inputAccessoryView = toolBarKeyboard
+    }
+    
+    @objc override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
+        
+        self.view.endEditing(true)
+    }
+    
+    @objc func touchUpDoneButton() {
         self.view.endEditing(true)
     }
     
