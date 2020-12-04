@@ -100,7 +100,7 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
         let cameraButton = UIAlertAction(title: "카메라로 촬영", style: .default) {
             _ in self.openCamera()
         }
-        let cancelButton = UIAlertAction(title: "취소", style: .default, handler: nil)
+        let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         
         actionSheet.addAction(albumButton)
         actionSheet.addAction(cameraButton)
