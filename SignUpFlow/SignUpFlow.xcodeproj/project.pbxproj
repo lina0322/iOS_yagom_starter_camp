@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4C2D79EF25774E3700E284EE /* message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D79EE25774E3700E284EE /* message.swift */; };
+		4CB4C03A257A202B009B4DA9 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB4C039257A202B009B4DA9 /* SignInViewController.swift */; };
 		C7352B87256F59BD00C3B7F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7352B86256F59BD00C3B7F1 /* AppDelegate.swift */; };
 		C7352B89256F59BD00C3B7F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7352B88256F59BD00C3B7F1 /* SceneDelegate.swift */; };
 		C7352B8B256F59BD00C3B7F1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7352B8A256F59BD00C3B7F1 /* MainViewController.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		4C2D79EE25774E3700E284EE /* message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = message.swift; sourceTree = "<group>"; };
+		4CB4C039257A202B009B4DA9 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		C7352B83256F59BD00C3B7F1 /* SignUpFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignUpFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7352B86256F59BD00C3B7F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7352B88256F59BD00C3B7F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				FD414EDC2575DF4300BB4C42 /* UserInformation.swift */,
 				4C2D79EE25774E3700E284EE /* message.swift */,
 				C7352B8A256F59BD00C3B7F1 /* MainViewController.swift */,
+				4CB4C039257A202B009B4DA9 /* SignInViewController.swift */,
 				FD19C5402576B1B100ED9BB9 /* SignUpViewController.swift */,
 				FD75767225775819009C4AE7 /* SignUpDetailViewController.swift */,
 				C7352B8C256F59BD00C3B7F1 /* Main.storyboard */,
@@ -153,6 +156,7 @@
 				FD414EDD2575DF4300BB4C42 /* UserInformation.swift in Sources */,
 				C7352B87256F59BD00C3B7F1 /* AppDelegate.swift in Sources */,
 				FD19C5412576B1B100ED9BB9 /* SignUpViewController.swift in Sources */,
+				4CB4C03A257A202B009B4DA9 /* SignInViewController.swift in Sources */,
 				C7352B89256F59BD00C3B7F1 /* SceneDelegate.swift in Sources */,
 				FD75767325775819009C4AE7 /* SignUpDetailViewController.swift in Sources */,
 				4C2D79EF25774E3700E284EE /* message.swift in Sources */,

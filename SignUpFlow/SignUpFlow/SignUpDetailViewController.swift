@@ -116,7 +116,11 @@ class SignUpDetailViewController: UIViewController {
     @IBAction func popToPrev() {
         saveTempPhoneNumber()
         saveTempDateOfBirth()
-        self.navigationController?.popViewController(animated: true)
+        
+        guard let currentView = self.navigationController else {
+            return
+        }
+        currentView.popViewController(animated: true)
     }
 }
 

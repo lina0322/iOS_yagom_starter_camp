@@ -52,7 +52,11 @@ class MainViewController: UIViewController, UITextFieldDelegate {
                       password: passwordTextField.text ?? "") else {
             return changeStatusMessage(to: .disableSignIn)
         }
-        // 성공한 경우 로그인 화면으로 이동
+        successSigIn()
+    }
+    
+    private func successSigIn() {
+        changeStatusMessage(to: .empty)
     }
     
     private func isVaild(id: String, password: String) -> Bool {
