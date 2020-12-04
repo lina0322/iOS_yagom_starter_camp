@@ -38,10 +38,9 @@ class SignUpViewController: UIViewController {
               idTextField.isFilled(),
               introductionTextView.isFilled(),
               profileImage.image != nil else {
-                nextButton.isEnabled = false
-                return
-              }
-        
+            nextButton.isEnabled = false
+            return
+        }
         nextButton.isEnabled = true
         saveTempData()
     }
@@ -53,7 +52,6 @@ class SignUpViewController: UIViewController {
             nextButton.isEnabled = false
             return false
         }
-        
         passwordTextField.textColor = .black
         checkPasswordField.textColor = .black
         nextButton.isEnabled = true
@@ -114,7 +112,6 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
         actionSheet.addAction(albumButton)
         actionSheet.addAction(cameraButton)
         actionSheet.addAction(cancelButton)
-        
         self.present(actionSheet, animated: true, completion: nil)
     }
     
@@ -128,7 +125,7 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
         present(imagePicker, animated: true, completion: nil)
     }
     
-     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.editedImage] as? UIImage {
             profileImage.image = image
         }

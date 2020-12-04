@@ -22,18 +22,9 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print(newId)
-        print("보여?")
         super.viewDidAppear(animated)
         idTextField.text = newId
-        print(UserInformation.common.userDirectory)
     }
-    
-//    override func viewDidDisappear(_ animated: Bool) {
-//        super.viewDidDisappear(animated)
-//        newId = ""
-//        passwordTextField.text = ""
-//    }
     
     @IBAction func tapView(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
@@ -67,12 +58,10 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             changeStatusMessage(to: .enterId)
             return false
         }
-        
         guard passwordTextField.isFilled() else {
             changeStatusMessage(to: .enterPassword)
             return false
         }
-        
         return true
     }
     
