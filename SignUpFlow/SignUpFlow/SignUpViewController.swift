@@ -60,7 +60,7 @@ class SignUpViewController: UIViewController {
         return true
     }
     
-    func saveTempData() {
+    private func saveTempData() {
         TempInformation.common.id = idTextField.text
         TempInformation.common.password = passwordTextField.text
         TempInformation.common.profileImage = profileImage.image
@@ -118,17 +118,17 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
         self.present(actionSheet, animated: true, completion: nil)
     }
     
-    func openAlbum() {
+    private func openAlbum() {
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
     }
     
-    func openCamera() {
+    private func openCamera() {
         imagePicker.sourceType = .camera
         present(imagePicker, animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.editedImage] as? UIImage {
             profileImage.image = image
         }

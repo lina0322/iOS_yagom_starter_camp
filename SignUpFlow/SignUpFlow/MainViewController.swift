@@ -53,7 +53,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         signIn()
     }
     
-    func signIn() {
+    private func signIn() {
         guard isAllFull() else {
             return
         }
@@ -62,7 +62,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         changeStatusMessage(to: .disableSignIn)
     }
     
-    func isAllFull() -> Bool {
+    private func isAllFull() -> Bool {
         guard idTextField.isFilled() else {
             changeStatusMessage(to: .enterId)
             return false

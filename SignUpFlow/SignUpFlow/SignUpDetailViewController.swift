@@ -3,7 +3,7 @@
 //  SignUpFlow
 //
 //  Created by sole on 2020/12/02.
-//  Todo: 전화번호 사이에 - 넣어주기, 전화번호 길이 확인, 자기소개랑 전화번호에 done키 같은거 만들어주기, 마지막 페이지 정보저장, 마지막페이지에서 첫번째 페이지로 아이디 넘겨주기
+//  Todo: 전화번호 사이에 - 넣어주기, 전화번호 길이 확인, 마지막 페이지 정보저장, 마지막페이지에서 첫번째 페이지로 아이디 넘겨주기
 
 import UIKit
 
@@ -16,17 +16,13 @@ class SignUpDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        phoneNumberTextField.delegate = self
-        
-        datePicker.timeZone = NSTimeZone.local
-        datePicker.date = Date()
-        datePicker.maximumDate = Date()
-        datePicker.addTarget(self, action: #selector(onDidChangeDate(_:)), for: .valueChanged)
-        
-        showSaveInformation()
-        
-        doneButton.isEnabled = false
+                
+        setUpDatePicker()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        showSavePhoneNumber()
+        showSaveDateOfBrith()
     }
     
     @objc func onDidChangeDate(_ sender: UIDatePicker) {
@@ -35,7 +31,7 @@ class SignUpDetailViewController: UIViewController {
         changeDateLabel(to: date)
     }
     
-    func changeDateLabel(to date: Date) {
+    private func changeDateLabel(to date: Date) {
         let format = DateFormatter()
         
         format.dateFormat = "MMMM d, yyyy"
@@ -43,7 +39,7 @@ class SignUpDetailViewController: UIViewController {
         checkCanFinish()
     }
     
-    func checkCanFinish() {
+    private func checkCanFinish() {
         guard let phoneNumber = phoneNumberTextField.text,
               !phoneNumber.isEmpty,
               let dateOfbirth = dateLabel.text,
@@ -52,6 +48,61 @@ class SignUpDetailViewController: UIViewController {
             return
         }
         doneButton.isEnabled = true
+    }
+
+    @IBAction func completeSignUp() {
+        UserInformation.common.addNewUser(userInformation: TempInformation.common)
+        sendNewId()
+        TempInformation.common.clearAll()
+        dismiss(animated: true, completion: nil)
+    }
+    
+    private func sendNewId() {
+        guard let currentStoryboard = self.storyboard else {
+            return
+        }
+        
+        guard let mainView = currentStoryboard.instantiateViewController(withIdentifier: "MainView") as? MainViewController else {
+            return
+        }
+        mainView.newId = TempInformation.common.id ?? ""
+        print("마지막페이지 \(mainView.newId)")
+    }
+    
+    private func saveTempPhoneNumber() {
+        guard let phoneNumberField = phoneNumberTextField,
+              let phoneNumber = phoneNumberField.text else {
+            return
+        }
+        TempInformation.common.phoneNumber = phoneNumber
+    }
+
+    private func saveTempDateOfBirth() {
+        guard let selectDate = datePicker else {
+            return
+        }
+        TempInformation.common.dateOfBirth = selectDate.date
+    }
+
+    private func showSavePhoneNumber() {
+        guard let phoneNumber = TempInformation.common.phoneNumber else {
+            return
+        }
+        phoneNumberTextField.text = phoneNumber
+    }
+    
+    private func showSaveDateOfBrith() {
+        guard let date = TempInformation.common.dateOfBirth else {
+            return
+        }
+        datePicker.date = date
+    }
+
+    private func setUpDatePicker() {
+        datePicker.timeZone = NSTimeZone.local
+        datePicker.date = Date()
+        datePicker.maximumDate = Date()
+        datePicker.addTarget(self, action: #selector(onDidChangeDate(_:)), for: .valueChanged)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -64,32 +115,9 @@ class SignUpDetailViewController: UIViewController {
     }
     
     @IBAction func popToPrev() {
+        saveTempPhoneNumber()
+        saveTempDateOfBirth()
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func completeSignUp() {
-        saveTempData()
-        UserInformation.common.addNewUser(userInformation: TempInformation.common)
-        sendNewId()
-        TempInformation.common.clearAll()
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func sendNewId() {
-        guard let currentStoryboard = self.storyboard else {
-            return
-        }
-        
-        guard let mainView = currentStoryboard.instantiateViewController(withIdentifier: "MainView") as? MainViewController else {
-            return
-        }
-        mainView.newId = TempInformation.common.id ?? ""
-        print("마지막페이지 \(mainView.newId)")
-    }
-    
-    func saveTempData() {
-        TempInformation.common.phoneNumber = phoneNumberTextField.text
-        TempInformation.common.dateOfBirth = datePicker.date
     }
 }
 
