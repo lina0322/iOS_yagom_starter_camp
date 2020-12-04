@@ -48,13 +48,13 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         }
         guard isVaild(id: idTextField.text ?? "",
                       password: passwordTextField.text ?? "") else {
-            return changeStatusMessage(to: .disableSignIn)
+            return statusMessageLabel.changeText(to: .disableSignIn)
         }
         successSigIn()
     }
     
     private func successSigIn() {
-        changeStatusMessage(to: .empty)
+        statusMessageLabel.changeText(to: .empty)
         performSegue(withIdentifier: "SignInView", sender: nil)
     }
     
@@ -68,24 +68,20 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
     private func isAllFull() -> Bool {
         guard idTextField.isFilled() else {
-            changeStatusMessage(to: .enterId)
+            statusMessageLabel.changeText(to: .enterId)
             return false
         }
         guard passwordTextField.isFilled() else {
-            changeStatusMessage(to: .enterPassword)
+            statusMessageLabel.changeText(to: .enterPassword)
             return false
         }
         return true
     }
-    
-    private func changeStatusMessage(to message: Message) {
-        statusMessageLabel.text = message.rawValue
-    }
-    
+
     func setUpIdPasswordField() {
         idTextField.text = UserInformation.common.recentId
         passwordTextField.text = ""
-        changeStatusMessage(to: .empty)
+        statusMessageLabel.changeText(to: .empty)
     }
 }
 
@@ -94,5 +90,11 @@ extension UITextField {
         guard let text = self.text else { return false }
         if text.isEmpty { return false }
         return true
+    }
+}
+
+extension UILabel {
+    func changeText(to message: Message) {
+        self.text = message.rawValue
     }
 }

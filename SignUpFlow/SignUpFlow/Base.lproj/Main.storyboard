@@ -308,7 +308,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5J-aT-xfg">
-                                <rect key="frame" x="34" y="142" width="33" height="16"/>
+                                <rect key="frame" x="34" y="142" width="215" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                 <color key="textColor" systemColor="systemRedColor"/>
@@ -325,6 +325,7 @@
                         <outlet property="datePicker" destination="RaN-z8-ulp" id="fnH-mT-8If"/>
                         <outlet property="doneButton" destination="VaW-ax-ogU" id="X1e-Py-NGG"/>
                         <outlet property="phoneNumberTextField" destination="M2Z-tF-MQR" id="W8t-fi-JkN"/>
+                        <outlet property="statusMessageLabel" destination="D5J-aT-xfg" id="l6w-3c-WXQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Iq-jJ-pcl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

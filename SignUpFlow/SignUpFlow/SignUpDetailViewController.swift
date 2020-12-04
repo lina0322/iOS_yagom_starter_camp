@@ -3,7 +3,7 @@
 //  SignUpFlow
 //
 //  Created by sole on 2020/12/02.
-//  Todo: 아이디 유효성 검사, 비밀번호랑 길이, 전화번호 길이 확인
+//  Todo: 아이디 유효성 검사, 비밀번호랑 길이
 
 import UIKit
 
@@ -13,12 +13,14 @@ class SignUpDetailViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var statusMessageLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpDatePicker()
         setKeyboardDoneButton()
+        statusMessageLabel.text = ""
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +47,7 @@ class SignUpDetailViewController: UIViewController {
     
     private func checkCanFinish() {
         guard phoneNumberTextField.isFilled(),
+              isValidPhoneNumber(),
               dateLabel.isFilled() else {
             doneButton.isEnabled = false
             return
@@ -60,6 +63,18 @@ class SignUpDetailViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    private func isValidPhoneNumber() -> Bool {
+        guard let phoneNumber = phoneNumberTextField.text,
+              phoneNumber.hasPrefix("01"),
+              (phoneNumber.count == 11 || phoneNumber.count == 10),
+              let _ = Int(phoneNumber) else {
+            statusMessageLabel.changeText(to: .wrongNumber)
+            return false
+        }
+        statusMessageLabel.changeText(to: .empty)
+        return true
+    }
+    
     private func saveTempData() {
         if let phoneNumberField = phoneNumberTextField {
             if let phoneNumber = phoneNumberField.text {
@@ -70,7 +85,7 @@ class SignUpDetailViewController: UIViewController {
             TempInformation.common.dateOfBirth = selectDate.date
         }
     }
-
+    
     private func showTempData() {
         if let phoneNumber = TempInformation.common.phoneNumber {
             phoneNumberTextField.text = phoneNumber
@@ -86,6 +101,10 @@ class SignUpDetailViewController: UIViewController {
         datePicker.date = Date()
         datePicker.maximumDate = Date()
         datePicker.addTarget(self, action: #selector(touchUpDatePicker(_:)), for: .valueChanged)
+    }
+    
+    private func changeStatusMessage(to message: Message) {
+        statusMessageLabel.text = message.rawValue
     }
     
     private func setKeyboardDoneButton() {
