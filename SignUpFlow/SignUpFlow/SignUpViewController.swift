@@ -26,37 +26,48 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(pickImage))
-     
-        profileImage.addGestureRecognizer(tapGestureRecognizer)
-        profileImage.isUserInteractionEnabled = true
-
-        passwordTextField.isSecureTextEntry = true
-        checkPasswordField.isSecureTextEntry = true
-        
+        setUpImagePicker()
+        setUpPasswordSecure()
         nextButton.isEnabled = false
     }
     
-    func checkCanGoNext() {
+    private func checkCanGoNext() {
         guard idTextField.isFilled(),
               passwordTextField.isFilled(),
               checkPasswordField.isFilled(),
               introductionTextView.isFilled(),
-              profileImage.image != nil else {
+              profileImage.image != nil,
+              isPasswordSame() else {
             nextButton.isEnabled = false
             return
         }
         
+        nextButton.isEnabled = true
+    }
+    
+    private func isPasswordSame() -> Bool {
         guard checkPasswordField.text == passwordTextField.text else {
             passwordTextField.textColor = .red
             checkPasswordField.textColor = .red
             nextButton.isEnabled = false
-            return
+            return false
         }
         
         passwordTextField.textColor = .black
         checkPasswordField.textColor = .black
-        nextButton.isEnabled = true
+        return true
+    }
+    
+    private func setUpImagePicker() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(pickImage))
+     
+        profileImage.addGestureRecognizer(tapGestureRecognizer)
+        profileImage.isUserInteractionEnabled = true
+    }
+    
+    private func setUpPasswordSecure() {
+        passwordTextField.isSecureTextEntry = true
+        checkPasswordField.isSecureTextEntry = true
     }
     
     @IBAction func dismissSignUpView() {

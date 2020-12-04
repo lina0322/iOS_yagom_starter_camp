@@ -39,7 +39,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        guard idTextField.isFilled() else {
+        guard passwordTextField.isFilled() else {
             changeStatusMessage(to: .enterPassword)
             return
         }

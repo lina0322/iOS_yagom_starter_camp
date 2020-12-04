@@ -24,7 +24,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="next" textContentType="name"/>
                                 <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="HBM-Bl-lLt"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="ZXr-3l-oVb"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="buS-xm-nM9">
@@ -34,7 +34,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="done" textContentType="password"/>
                                 <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="4ay-nN-IRz"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="lqr-oO-UIe"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSS-Ju-7FF">
