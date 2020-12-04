@@ -60,7 +60,7 @@ class SignUpViewController: UIViewController {
     }
     
     private func setUpImageViewTap() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(tapProfileImage))
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(showActionSheet))
         
         profileImage.addGestureRecognizer(tapGestureRecognizer)
         profileImage.isUserInteractionEnabled = true
@@ -92,7 +92,7 @@ class SignUpViewController: UIViewController {
 
 extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @objc func tapProfileImage() {
+    @objc func showActionSheet() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let albumButton = UIAlertAction(title: "앨범에서 선택", style: .default) {
             _ in self.openAlbum()
@@ -118,7 +118,7 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
         imagePicker.sourceType = .camera
         present(imagePicker, animated: true, completion: nil)
     }
-
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.editedImage] as? UIImage {
             profileImage.image = image
