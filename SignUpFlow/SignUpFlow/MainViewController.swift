@@ -24,6 +24,12 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         setUpIdPasswordField()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        UserInformation.common.recentId = ""
+    }
+    
     @IBAction func tapView(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }

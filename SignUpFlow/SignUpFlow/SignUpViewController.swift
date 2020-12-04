@@ -30,12 +30,6 @@ class SignUpViewController: UIViewController {
         setUpPasswordSecure()
         setKeyboardDoneButton()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        UserInformation.common.recentId = ""
-    }
 
     private func checkCanGoNext() {
         guard passwordTextField.isFilled(),
