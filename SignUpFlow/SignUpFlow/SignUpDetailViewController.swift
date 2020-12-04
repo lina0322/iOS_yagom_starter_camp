@@ -16,19 +16,19 @@ class SignUpDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         setUpDatePicker()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        showSavePhoneNumber()
-        showSaveDateOfBrith()
+        showTempData()
     }
     
-    @objc func onDidChangeDate(_ sender: UIDatePicker) {
+    @objc func touchUpDatePicker(_ sender: UIDatePicker) {
         let date = sender.date
         
         changeDateLabel(to: date)
+        checkCanFinish()
     }
     
     private func changeDateLabel(to date: Date) {
@@ -36,7 +36,6 @@ class SignUpDetailViewController: UIViewController {
         
         format.dateFormat = "MMMM d, yyyy"
         dateLabel.text = format.string(from: date)
-        checkCanFinish()
     }
     
     private func checkCanFinish() {
@@ -49,7 +48,7 @@ class SignUpDetailViewController: UIViewController {
         }
         doneButton.isEnabled = true
     }
-
+    
     @IBAction func completeSignUp() {
         UserInformation.common.addNewUser(userInformation: TempInformation.common)
         sendNewId()
@@ -62,46 +61,37 @@ class SignUpDetailViewController: UIViewController {
         guard let mainView = currentView as? MainViewController else {
             return
         }
-
+        
         mainView.newId = TempInformation.common.id ?? ""
         print("마지막페이지 \(mainView.newId)")
     }
     
-    private func saveTempPhoneNumber() {
-        guard let phoneNumberField = phoneNumberTextField,
-              let phoneNumber = phoneNumberField.text else {
-            return
+    private func saveTempData() {
+        if let phoneNumberField = phoneNumberTextField {
+            if let phoneNumber = phoneNumberField.text {
+                TempInformation.common.phoneNumber = phoneNumber
+            }
         }
-        TempInformation.common.phoneNumber = phoneNumber
+        if let selectDate = datePicker {
+            TempInformation.common.dateOfBirth = selectDate.date
+        }
     }
 
-    private func saveTempDateOfBirth() {
-        guard let selectDate = datePicker else {
-            return
+    private func showTempData() {
+        if let phoneNumber = TempInformation.common.phoneNumber {
+            phoneNumberTextField.text = phoneNumber
         }
-        TempInformation.common.dateOfBirth = selectDate.date
-    }
-
-    private func showSavePhoneNumber() {
-        guard let phoneNumber = TempInformation.common.phoneNumber else {
-            return
+        if let date = TempInformation.common.dateOfBirth {
+            datePicker.date = date
+            changeDateLabel(to: date)
         }
-        phoneNumberTextField.text = phoneNumber
     }
     
-    private func showSaveDateOfBrith() {
-        guard let date = TempInformation.common.dateOfBirth else {
-            return
-        }
-        datePicker.date = date
-        changeDateLabel(to: date)
-    }
-
     private func setUpDatePicker() {
         datePicker.timeZone = NSTimeZone.local
         datePicker.date = Date()
         datePicker.maximumDate = Date()
-        datePicker.addTarget(self, action: #selector(onDidChangeDate(_:)), for: .valueChanged)
+        datePicker.addTarget(self, action: #selector(touchUpDatePicker(_:)), for: .valueChanged)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -114,8 +104,7 @@ class SignUpDetailViewController: UIViewController {
     }
     
     @IBAction func popToPrev() {
-        saveTempPhoneNumber()
-        saveTempDateOfBirth()
+        saveTempDate()
         
         guard let currentView = self.navigationController else {
             return
