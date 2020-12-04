@@ -15,8 +15,6 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        idTextField.delegate = self
-        passwordTextField.delegate = self
         passwordTextField.isSecureTextEntry = true
         changeStatusMessage(to: .empty)
     }

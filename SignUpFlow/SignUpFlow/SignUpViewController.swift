@@ -30,12 +30,7 @@ class SignUpViewController: UIViewController {
      
         profileImage.addGestureRecognizer(tapGestureRecognizer)
         profileImage.isUserInteractionEnabled = true
-       
-        idTextField.delegate = self
-        passwordTextField.delegate = self
-        checkPasswordField.delegate = self
-        introductionTextView.delegate = self
-        
+
         passwordTextField.isSecureTextEntry = true
         checkPasswordField.isSecureTextEntry = true
         
