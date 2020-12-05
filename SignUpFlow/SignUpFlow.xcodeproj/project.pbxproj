@@ -47,6 +47,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C236BEA257B2BC60070F623 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4CB4C039257A202B009B4DA9 /* SignInViewController.swift */,
+				C7352B8A256F59BD00C3B7F1 /* MainViewController.swift */,
+				FD19C5402576B1B100ED9BB9 /* SignUpViewController.swift */,
+				FD75767225775819009C4AE7 /* SignUpDetailViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		C7352B7A256F59BD00C3B7F1 = {
 			isa = PBXGroup;
 			children = (
@@ -66,14 +77,11 @@
 		C7352B85256F59BD00C3B7F1 /* SignUpFlow */ = {
 			isa = PBXGroup;
 			children = (
+				4C236BEA257B2BC60070F623 /* ViewController */,
 				C7352B86256F59BD00C3B7F1 /* AppDelegate.swift */,
 				C7352B88256F59BD00C3B7F1 /* SceneDelegate.swift */,
 				FD414EDC2575DF4300BB4C42 /* UserInformation.swift */,
 				4C2D79EE25774E3700E284EE /* String.swift */,
-				4CB4C039257A202B009B4DA9 /* SignInViewController.swift */,
-				C7352B8A256F59BD00C3B7F1 /* MainViewController.swift */,
-				FD19C5402576B1B100ED9BB9 /* SignUpViewController.swift */,
-				FD75767225775819009C4AE7 /* SignUpDetailViewController.swift */,
 				C7352B8C256F59BD00C3B7F1 /* Main.storyboard */,
 				C7352B8F256F59BF00C3B7F1 /* Assets.xcassets */,
 				C7352B91256F59BF00C3B7F1 /* LaunchScreen.storyboard */,
