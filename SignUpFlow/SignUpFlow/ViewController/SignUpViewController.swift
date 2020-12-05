@@ -11,7 +11,7 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var checkPasswordField: UITextField!
+    @IBOutlet weak var confirmationPasswordField: UITextField!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var introductionTextView: UITextView!
     @IBOutlet weak var nextButton: UIButton!
@@ -33,9 +33,17 @@ class SignUpViewController: UIViewController {
 
     private func checkCanGoNext() {
         guard passwordTextField.isFilled(),
-              checkPasswordField.isFilled(),
-              isPasswordSame(),
-              idTextField.isFilled(),
+              confirmationPasswordField.isFilled(),
+              isPasswordSame() else {
+            passwordTextField.textColor = .red
+            confirmationPasswordField.textColor = .red
+            nextButton.isEnabled = false
+            return
+        }
+        passwordTextField.textColor = .black
+        confirmationPasswordField.textColor = .black
+
+        guard idTextField.isFilled(),
               introductionTextView.isFilled(),
               profileImage.image != nil else {
             nextButton.isEnabled = false
@@ -46,15 +54,9 @@ class SignUpViewController: UIViewController {
     }
     
     private func isPasswordSame() -> Bool {
-        guard checkPasswordField.text == passwordTextField.text else {
-            passwordTextField.textColor = .red
-            checkPasswordField.textColor = .red
-            nextButton.isEnabled = false
+        guard confirmationPasswordField.text == passwordTextField.text else {
             return false
         }
-        passwordTextField.textColor = .black
-        checkPasswordField.textColor = .black
-        nextButton.isEnabled = true
         return true
     }
     
@@ -75,7 +77,7 @@ class SignUpViewController: UIViewController {
     
     private func setUpPasswordSecure() {
         passwordTextField.isSecureTextEntry = true
-        checkPasswordField.isSecureTextEntry = true
+        confirmationPasswordField.isSecureTextEntry = true
     }
     
     private func setKeyboardDoneButton() {
@@ -142,8 +144,8 @@ extension SignUpViewController: UITextViewDelegate, UITextFieldDelegate {
         case idTextField:
             passwordTextField.becomeFirstResponder()
         case passwordTextField:
-            checkPasswordField.becomeFirstResponder()
-        case checkPasswordField:
+            confirmationPasswordField.becomeFirstResponder()
+        case confirmationPasswordField:
             introductionTextView.becomeFirstResponder()
         default:
             break
