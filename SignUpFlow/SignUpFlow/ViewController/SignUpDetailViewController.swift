@@ -64,10 +64,9 @@ class SignUpDetailViewController: UIViewController {
     }
     
     private func isValidPhoneNumber() -> Bool {
+        let regex = "^01([0-9]{8,9})$"
         guard let phoneNumber = phoneNumberTextField.text,
-              phoneNumber.hasPrefix("01"),
-              (phoneNumber.count == 11 || phoneNumber.count == 10),
-              let _ = Int(phoneNumber) else {
+              NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: phoneNumber) else {
             statusMessageLabel.changeText(to: .wrongNumber)
             return false
         }
