@@ -29,7 +29,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="돌아가기"/>
                                 <connections>
-                                    <action selector="popToPrev" destination="rya-bF-BEp" eventType="touchUpInside" id="Zrp-uP-9d3"/>
+                                    <action selector="popToPreviousPage" destination="rya-bF-BEp" eventType="touchUpInside" id="Zrp-uP-9d3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -282,7 +282,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="이전"/>
                                 <connections>
-                                    <action selector="popToPrev" destination="qgI-ZA-c9O" eventType="touchUpInside" id="K0s-Yb-jKI"/>
+                                    <action selector="popToPreviousPage" destination="qgI-ZA-c9O" eventType="touchUpInside" id="K0s-Yb-jKI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VaW-ax-ogU">

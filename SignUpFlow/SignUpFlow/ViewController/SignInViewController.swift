@@ -9,7 +9,7 @@ import UIKit
 
 class SignInViewController: UIViewController {
 
-    @IBAction func popToPrev() {
+    @IBAction func popToPreviousPage() {
         guard let currentView = self.navigationController else {
             return
         }

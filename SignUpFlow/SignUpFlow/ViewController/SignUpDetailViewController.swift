@@ -132,7 +132,7 @@ class SignUpDetailViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func popToPrev() {
+    @IBAction func popToPreviousPage() {
         saveTempData()
         
         guard let currentView = self.navigationController else {
