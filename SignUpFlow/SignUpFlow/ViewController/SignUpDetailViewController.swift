@@ -19,7 +19,7 @@ class SignUpDetailViewController: UIViewController {
         super.viewDidLoad()
         
         setUpDatePicker()
-        setKeyboardDoneButton()
+        setUpKeyboardDoneButton()
         statusMessageLabel.text = ""
     }
     
@@ -27,14 +27,14 @@ class SignUpDetailViewController: UIViewController {
         super.viewWillAppear(animated)
         
         showTempData()
-        checkCanFinish()
+        changeNextButtonStatus()
     }
     
     @objc func touchUpDatePicker(_ sender: UIDatePicker) {
         let date = sender.date
         
         changeDateLabel(to: date)
-        checkCanFinish()
+        changeNextButtonStatus()
         self.view.endEditing(true)
     }
     
@@ -45,7 +45,7 @@ class SignUpDetailViewController: UIViewController {
         dateLabel.text = format.string(from: date)
     }
     
-    private func checkCanFinish() {
+    private func changeNextButtonStatus() {
         guard phoneNumberTextField.isFilled(),
               isValidPhoneNumber(),
               dateLabel.isFilled() else {
@@ -107,7 +107,7 @@ class SignUpDetailViewController: UIViewController {
         statusMessageLabel.text = message.rawValue
     }
     
-    private func setKeyboardDoneButton() {
+    private func setUpKeyboardDoneButton() {
         let toolBarKeyboard = UIToolbar()
         toolBarKeyboard.sizeToFit()
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
@@ -149,7 +149,7 @@ extension SignUpDetailViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        checkCanFinish()
+        changeNextButtonStatus()
     }
 }
 

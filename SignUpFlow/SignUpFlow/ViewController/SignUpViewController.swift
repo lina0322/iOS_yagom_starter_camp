@@ -28,10 +28,10 @@ class SignUpViewController: UIViewController {
         
         setUpImageViewTap()
         setUpPasswordSecure()
-        setKeyboardDoneButton()
+        setUpKeyboardDoneButton()
     }
 
-    private func checkCanGoNext() {
+    private func changeNextButtonStatus() {
         guard passwordTextField.isFilled(),
               confirmationPasswordField.isFilled(),
               isPasswordSame() else {
@@ -80,7 +80,7 @@ class SignUpViewController: UIViewController {
         confirmationPasswordField.isSecureTextEntry = true
     }
     
-    private func setKeyboardDoneButton() {
+    private func setUpKeyboardDoneButton() {
         let toolBarKeyboard = UIToolbar()
         toolBarKeyboard.sizeToFit()
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
@@ -133,7 +133,7 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
         if let image = info[.editedImage] as? UIImage {
             profileImage.image = image
         }
-        checkCanGoNext()
+        changeNextButtonStatus()
         dismiss(animated: true, completion: nil)
     }
 }
@@ -154,11 +154,11 @@ extension SignUpViewController: UITextViewDelegate, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        checkCanGoNext()
+        changeNextButtonStatus()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        checkCanGoNext()
+        changeNextButtonStatus()
     }
 }
 
