@@ -187,7 +187,3 @@ extension UITextView {
         return true
     }
 }
-
-extension String {
-    
-}

@@ -131,13 +131,9 @@ class SignUpDetailViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func popToPreviousPage() {
+    @IBAction func touchUpCancelButton() {
         saveTempData()
-        
-        guard let currentView = self.navigationController else {
-            return
-        }
-        currentView.popViewController(animated: true)
+        popToPreviousPage()
     }
 }
 
