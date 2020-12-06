@@ -57,10 +57,17 @@ class SignUpDetailViewController: UIViewController {
     
     @IBAction func completeSignUp() {
         saveTempData()
-        UserInformation.common.addNewUser()
-        UserInformation.common.recentId = UserInformation.common.id ?? ""
-        UserInformation.common.clearTempData()
-        dismiss(animated: true, completion: nil)
+        
+        do {
+            try UserInformation.common.addNewUser()
+            if let newID = UserInformation.common.id {
+                UserInformation.common.recentId = newID
+            }
+            UserInformation.common.clearTempData()
+            dismiss(animated: true, completion: nil)
+        } catch {
+            systemAlert()
+        }
     }
     
     private func isValidPhoneNumber() -> Bool {
@@ -153,5 +160,15 @@ extension UILabel {
         guard let text = self.text else { return false }
         if text.isEmpty { return false }
         return true
+    }
+}
+
+extension UIViewController {
+    func systemAlert() {
+        let alert = UIAlertController(title: "", message: "회원가입에 실패하였습니다. 확인 후 다시 시도해주세요.", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
     }
 }

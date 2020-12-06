@@ -49,8 +49,9 @@ class SignUpViewController: UIViewController {
     
     private func isValidID(_ textField: UITextField) -> Bool {
         let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        guard let password = textField.text,
-              NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: password) else {
+        guard let id = textField.text,
+              NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: id),
+              UserInformation.common.userDirectory[id] == nil else {
             idTextField.textColor = .red
             return false
         }

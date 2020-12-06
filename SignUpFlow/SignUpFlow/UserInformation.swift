@@ -62,18 +62,15 @@ class UserInformation {
     var dateOfBirth: Date?
     var recentId: String = ""
     
-    func addNewUser() {
+    func addNewUser() throws {
         guard let id = self.id,
-              userDirectory[id] == nil else {
-            debugPrint(Message.existedId)
-            return
-        }
-        guard let password = self.password,
+              userDirectory[id] == nil,
+              let password = self.password,
               let profileImage = self.profileImage,
               let introduction = self.introduction,
               let phoneNumber = self.phoneNumber,
               let dateOfBirth = self.dateOfBirth else {
-            return
+            throw SystemError.registrationFailure
         }
         userDirectory[id] = User(id: id, password: password,
                                  profieImage: profileImage, introduction: introduction,
@@ -88,4 +85,8 @@ class UserInformation {
         phoneNumber = nil
         dateOfBirth = nil
     }
+}
+
+enum SystemError: Error {
+    case registrationFailure
 }
