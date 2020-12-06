@@ -16,7 +16,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var introductionTextView: UITextView!
     @IBOutlet weak var nextButton: UIButton!
     
-    private lazy var imagePicker: UIImagePickerController = {
+    lazy var imagePicker: UIImagePickerController = {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.allowsEditing = true
@@ -30,20 +30,14 @@ class SignUpViewController: UIViewController {
         setUpPasswordSecure()
         setUpKeyboardDoneButton()
     }
-
+    
     private func changeNextButtonStatus() {
-        guard passwordTextField.isFilled(),
-              confirmationPasswordField.isFilled(),
-              isPasswordSame() else {
-            passwordTextField.textColor = .red
-            confirmationPasswordField.textColor = .red
-            nextButton.isEnabled = false
-            return
-        }
-        passwordTextField.textColor = .black
-        confirmationPasswordField.textColor = .black
-
         guard idTextField.isFilled(),
+              isValidID(idTextField),
+              passwordTextField.isFilled(),
+              isValidPassword(passwordTextField),
+              confirmationPasswordField.isFilled(),
+              isPasswordSame(passwordTextField, as: confirmationPasswordField),
               introductionTextView.isFilled(),
               profileImage.image != nil else {
             nextButton.isEnabled = false
@@ -53,10 +47,36 @@ class SignUpViewController: UIViewController {
         saveTempData()
     }
     
-    private func isPasswordSame() -> Bool {
-        guard confirmationPasswordField.text == passwordTextField.text else {
+    private func isValidID(_ textField: UITextField) -> Bool {
+        let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        guard let password = textField.text,
+              NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: password) else {
+            idTextField.textColor = .red
             return false
         }
+        idTextField.textColor = .black
+        return true
+    }
+    
+    private func isValidPassword(_ textField: UITextField) -> Bool {
+        let regex = "[\\S]{8,}"
+        guard let password = textField.text,
+              NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: password) else {
+            passwordTextField.textColor = .red
+            return false
+        }
+        passwordTextField.textColor = .black
+        return true
+    }
+    
+    private func isPasswordSame(_ textField: UITextField, as anoterTextField: UITextField) -> Bool {
+        guard textField.text == anoterTextField.text else {
+            passwordTextField.textColor = .red
+            confirmationPasswordField.textColor = .red
+            return false
+        }
+        passwordTextField.textColor = .black
+        confirmationPasswordField.textColor = .black
         return true
     }
     
@@ -65,7 +85,6 @@ class SignUpViewController: UIViewController {
         UserInformation.common.password = passwordTextField.text
         UserInformation.common.profileImage = profileImage.image
         UserInformation.common.introduction = introductionTextView.text
-        return
     }
     
     private func setUpImageViewTap() {
@@ -167,4 +186,8 @@ extension UITextView {
         guard let text = self.text, text.isEmpty == false else { return false }
         return true
     }
+}
+
+extension String {
+    
 }
