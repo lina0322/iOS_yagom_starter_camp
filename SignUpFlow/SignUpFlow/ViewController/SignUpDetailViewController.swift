@@ -30,7 +30,7 @@ class SignUpDetailViewController: UIViewController {
         changeNextButtonStatus()
     }
     
-    @objc func touchUpDatePicker(_ sender: UIDatePicker) {
+    @objc func valueChangedDatePicker(_ sender: UIDatePicker) {
         let date = sender.date
         
         changeDataLabelText(to: date)
@@ -100,7 +100,7 @@ class SignUpDetailViewController: UIViewController {
         datePicker.timeZone = NSTimeZone.local
         datePicker.date = Date()
         datePicker.maximumDate = Date()
-        datePicker.addTarget(self, action: #selector(touchUpDatePicker(_:)), for: .valueChanged)
+        datePicker.addTarget(self, action: #selector(valueChangedDatePicker(_:)), for: .valueChanged)
     }
     
     private func changeStatusMessage(to message: Message) {
