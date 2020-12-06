@@ -93,8 +93,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 
 extension UITextField {
     func isFilled() -> Bool {
-        guard let text = self.text else { return false }
-        if text.isEmpty { return false }
+        guard let text = self.text, text.isEmpty == false else { return false }
         return true
     }
 }
