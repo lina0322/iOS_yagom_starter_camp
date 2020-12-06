@@ -88,7 +88,7 @@ class SignUpViewController: UIViewController {
     }
     
     private func setUpImageViewTap() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(showActionSheet))
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(showImagePickerActionSheet))
         
         profileImage.addGestureRecognizer(tapGestureRecognizer)
         profileImage.isUserInteractionEnabled = true
@@ -120,7 +120,7 @@ class SignUpViewController: UIViewController {
 
 extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @objc func showActionSheet() {
+    @objc func showImagePickerActionSheet() {
         self.view.endEditing(true)
         
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
