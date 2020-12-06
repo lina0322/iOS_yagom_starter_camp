@@ -61,10 +61,10 @@ class SignUpViewController: UIViewController {
     }
     
     private func saveTempData() {
-        TempInformation.common.id = idTextField.text
-        TempInformation.common.password = passwordTextField.text
-        TempInformation.common.profileImage = profileImage.image
-        TempInformation.common.introduction = introductionTextView.text
+        UserInformation.common.id = idTextField.text
+        UserInformation.common.password = passwordTextField.text
+        UserInformation.common.profileImage = profileImage.image
+        UserInformation.common.introduction = introductionTextView.text
         return
     }
     

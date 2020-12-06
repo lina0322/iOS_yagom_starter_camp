@@ -47,49 +47,45 @@ class User {
     }
 }
 
-class TempInformation {
-    static let common = TempInformation()
+class UserInformation {
+    static let common = UserInformation()
     private init() {}
     
-    var id: String?
+    typealias UserID = String
+    private(set) var userDirectory = [UserID : User]()
+    
+    var id: UserID?
     var password: String?
     var profileImage: UIImage?
     var introduction: String?
     var phoneNumber: String?
     var dateOfBirth: Date?
+    var recentId: String = ""
     
-    func clearAll() {
+    func addNewUser() {
+        guard let id = self.id,
+              userDirectory[id] == nil else {
+            debugPrint(Message.existedId)
+            return
+        }
+        guard let password = self.password,
+              let profileImage = self.profileImage,
+              let introduction = self.introduction,
+              let phoneNumber = self.phoneNumber,
+              let dateOfBirth = self.dateOfBirth else {
+            return
+        }
+        userDirectory[id] = User(id: id, password: password,
+                                 profieImage: profileImage, introduction: introduction,
+                                 phoneNumber: phoneNumber, dateOfBirth: dateOfBirth)
+    }
+    
+    func clearTempData() {
         id = nil
         password = nil
         profileImage = nil
         introduction = nil
         phoneNumber = nil
         dateOfBirth = nil
-    }
-}
-
-class UserInformation {
-    static let common = UserInformation()
-    private init() {}
-    typealias UserId = String
-    private(set) var userDirectory = [UserId : User]()
-    var recentId: String = ""
-    
-    func addNewUser(userInformation: TempInformation) {
-        guard let id = userInformation.id,
-              userDirectory[id] == nil else {
-            debugPrint(Message.existedId)
-            return
-        }
-        guard let password = userInformation.password,
-              let profileImage = userInformation.profileImage,
-              let introduction = userInformation.introduction,
-              let phoneNumber = userInformation.phoneNumber,
-              let dateOfBirth = userInformation.dateOfBirth else {
-            return
-        }
-        userDirectory[id] = User(id: id, password: password,
-                                 profieImage: profileImage, introduction: introduction,
-                                 phoneNumber: phoneNumber, dateOfBirth: dateOfBirth)
     }
 }

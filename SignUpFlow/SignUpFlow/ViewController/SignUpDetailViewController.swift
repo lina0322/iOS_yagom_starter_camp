@@ -57,9 +57,9 @@ class SignUpDetailViewController: UIViewController {
     
     @IBAction func completeSignUp() {
         saveTempData()
-        UserInformation.common.addNewUser(userInformation: TempInformation.common)
-        UserInformation.common.recentId = TempInformation.common.id ?? ""
-        TempInformation.common.clearAll()
+        UserInformation.common.addNewUser()
+        UserInformation.common.recentId = UserInformation.common.id ?? ""
+        UserInformation.common.clearTempData()
         dismiss(animated: true, completion: nil)
     }
     
@@ -78,19 +78,19 @@ class SignUpDetailViewController: UIViewController {
     private func saveTempData() {
         if let phoneNumberField = phoneNumberTextField {
             if let phoneNumber = phoneNumberField.text {
-                TempInformation.common.phoneNumber = phoneNumber
+                UserInformation.common.phoneNumber = phoneNumber
             }
         }
         if let selectDate = datePicker {
-            TempInformation.common.dateOfBirth = selectDate.date
+            UserInformation.common.dateOfBirth = selectDate.date
         }
     }
     
     private func showTempData() {
-        if let phoneNumber = TempInformation.common.phoneNumber {
+        if let phoneNumber = UserInformation.common.phoneNumber {
             phoneNumberTextField.text = phoneNumber
         }
-        if let date = TempInformation.common.dateOfBirth {
+        if let date = UserInformation.common.dateOfBirth {
             datePicker.date = date
             changeDateLabel(to: date)
         }
@@ -128,7 +128,7 @@ class SignUpDetailViewController: UIViewController {
     }
     
     @IBAction func dismissSignUpView() {
-        TempInformation.common.clearAll()
+        UserInformation.common.clearTempData()
         dismiss(animated: true, completion: nil)
     }
     
