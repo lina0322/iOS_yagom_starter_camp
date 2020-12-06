@@ -84,7 +84,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         return true
     }
 
-    func setUpIdPasswordField() {
+    private func setUpIdPasswordField() {
         idTextField.text = UserInformation.common.recentId
         passwordTextField.text = ""
         statusMessageLabel.changeText(to: .empty)
