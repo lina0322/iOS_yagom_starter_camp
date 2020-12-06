@@ -33,12 +33,12 @@ class SignUpDetailViewController: UIViewController {
     @objc func touchUpDatePicker(_ sender: UIDatePicker) {
         let date = sender.date
         
-        changeDateLabel(to: date)
+        changeDataLabelText(to: date)
         changeNextButtonStatus()
         self.view.endEditing(true)
     }
     
-    private func changeDateLabel(to date: Date) {
+    private func changeDataLabelText(to date: Date) {
         let format = DateFormatter()
         
         format.dateFormat = "MMMM d, yyyy"
@@ -92,7 +92,7 @@ class SignUpDetailViewController: UIViewController {
         }
         if let date = UserInformation.common.dateOfBirth {
             datePicker.date = date
-            changeDateLabel(to: date)
+            changeDataLabelText(to: date)
         }
     }
     
