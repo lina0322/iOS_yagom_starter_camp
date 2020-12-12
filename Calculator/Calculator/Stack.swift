@@ -8,6 +8,7 @@
 import Foundation
 
 struct Stack {
+    
     var stack = [String]()
     
     mutating func push(_ value: String) {
