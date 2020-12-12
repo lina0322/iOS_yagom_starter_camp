@@ -1,8 +1,14 @@
+//
+//  BinaryCalculator.swift
+//  Calculator
+//
+//  Created by 김태형 on 2020/12/11.
+//
+
 class BinaryCalculator: Calculator {
-    
     init() {
-            super.init(calculatorMode: .binary)
-        }
+        super.init(calculatorMode: .binary)
+    }
     
     override func determineOperatorType(operator: String) {
         if `operator` == OperatorType.not.rawValue || `operator` == OperatorType.rightShift.rawValue || `operator` == OperatorType.leftShift.rawValue {

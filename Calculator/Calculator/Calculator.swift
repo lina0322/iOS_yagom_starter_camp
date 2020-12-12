@@ -1,8 +1,13 @@
+//
+//  Calculator.swift
+//  Calculator
+//
+//  Created by 김태형 on 2020/12/11.
+//
 
 import Foundation
 
 class Calculator {
-    
     var currentMode: CalculatorMode
     var postfix: [String] = []
     var stack: Stack = Stack()
@@ -40,7 +45,6 @@ class Calculator {
             guard let `operator` = OperatorType(rawValue: input),
                   let peekedValue = stack.peek(),
                   let peekedOperator = OperatorType(rawValue: peekedValue) else { return }
-            
             if `operator`.isHighPriority(than: peekedOperator) {
                 stack.push(input)
             } else if `operator`.isLowPriority(than: peekedOperator) {
@@ -67,7 +71,6 @@ class Calculator {
     }
     
     func determineOperatorType(`operator`: String) {
-        
         guard let calculatorOperator = OperatorType(rawValue: `operator`),
               let secondValue = stack.pop(),
               let firstValue = stack.pop() else { return }
@@ -80,7 +83,6 @@ class Calculator {
         if currentMode == CalculatorMode.binary {
             guard let firstNumber = Int(firstValue),
                   let secondNumber = Int(secondValue) else { return Constants.zero }
-            
             switch calculatorOperator {
             case .add:
                 return String(firstNumber + secondNumber, radix: 2)

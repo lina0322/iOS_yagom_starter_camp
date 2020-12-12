@@ -1,9 +1,15 @@
+//
+//  DecimalCalculator.swift
+//  Calculator
+//
+//  Created by 김태형 on 2020/12/11.
+//
 
 class DecimalCalculator : Calculator {
     
     init() {
-            super.init(calculatorMode: .decimal)
-        }
+        super.init(calculatorMode: .decimal)
+    }
     
     override func operate(calculatorOperator: OperatorType, firstValue: String, secondValue: String = Constants.zero) -> String {
         guard let firstNumber = Double(firstValue),
@@ -23,11 +29,11 @@ class DecimalCalculator : Calculator {
     }
     
     override func handleDigit(_ fullNumber: String) {
-        let frountNumber = fullNumber.components(separatedBy: Constants.dot)[0]
-        if frountNumber.count > Constants.maxLength {
-            let offsetLength = frountNumber.count - Constants.maxLength
-            let startIndex = frountNumber.index(frountNumber.startIndex, offsetBy: offsetLength)
-            resultValue = String(frountNumber[startIndex...])
+        let frontNumber = fullNumber.components(separatedBy: Constants.dot)[0]
+        if frontNumber.count > Constants.maxLength {
+            let offsetLength = frontNumber.count - Constants.maxLength
+            let startIndex = frontNumber.index(frontNumber.startIndex, offsetBy: offsetLength)
+            resultValue = String(frontNumber[startIndex...])
         } else {
             super.handleDigit(fullNumber)
         }
