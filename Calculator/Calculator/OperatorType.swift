@@ -31,5 +31,31 @@ enum OperatorType: String, CaseIterable {
             return .binary
         }
     }
-
+    
+    var priority: Int {
+        switch self {
+        case .multiple, .divide, .not, .nand, .nor:
+            return 100
+        case .add, .subtract:
+            return 90
+        case .leftShift, .rightShift:
+            return 80
+        case .and:
+            return 70
+        case .xor:
+            return 60
+        case .or:
+            return 50
+        }
+    }
+    
+    func isHighPriority(than input: OperatorType) -> Bool {
+        let operatorPriority = self.priority - input.priority
+        return operatorPriority > 0
+    }
+    
+    func isLowPriority(than input: OperatorType) -> Bool {
+        let operatorPriority = self.priority - input.priority
+        return operatorPriority < 0
+    }
 }
