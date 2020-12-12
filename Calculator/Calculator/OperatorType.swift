@@ -21,5 +21,15 @@ enum OperatorType: String, CaseIterable {
     case leftShift = "<<"
     case rightShift = ">>"
     
+    var mode: CalculatorMode {
+        switch self {
+        case .add, .subtract:
+            return .common
+        case .multiple, .divide:
+            return .decimal
+        default:
+            return .binary
+        }
+    }
 
 }
