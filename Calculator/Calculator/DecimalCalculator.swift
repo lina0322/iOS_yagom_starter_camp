@@ -21,4 +21,17 @@ class DecimalCalculator : Calculator {
             return Constants.zero
         }
     }
+    
+    override func handleDigit(_ fullNumber: String) {
+        let frountNumber = fullNumber.components(separatedBy: Constants.dot)[0]
+        if frountNumber.count > Constants.maxLength {
+            let offsetLength = frountNumber.count - Constants.maxLength
+            let startIndex = frountNumber.index(frountNumber.startIndex, offsetBy: offsetLength)
+            resultValue = String(frountNumber[startIndex...])
+        } else {
+            super.handleDigit(fullNumber)
+        }
+        if resultValue.hasSuffix(Constants.zero) { resultValue.removeLast() }
+        if resultValue.hasSuffix(Constants.dot) { resultValue.removeLast() }
+    }
 }
