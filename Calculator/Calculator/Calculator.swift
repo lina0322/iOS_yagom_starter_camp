@@ -63,7 +63,7 @@ class Calculator {
             }
         }
         guard let stackLastValue = stack.pop() else { return }
-        //handleDigit(stackLastValue)
+        handleDigit(stackLastValue)
     }
     
     func determineOperatorType(`operator`: String) {
@@ -102,6 +102,12 @@ class Calculator {
             }
         }
         
+    }
+    
+    func handleDigit(_ fullNumber: String) {
+        let offsetLength = fullNumber.count > Constants.maxLength  ? Constants.maxLength : fullNumber.count - 1
+        let endIndex = fullNumber.index(fullNumber.startIndex, offsetBy: offsetLength)
+        resultValue = String(fullNumber[...endIndex])
     }
     
     func isOperator(_ input: String) -> Bool {
