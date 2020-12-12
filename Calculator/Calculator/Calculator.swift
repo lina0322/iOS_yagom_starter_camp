@@ -71,9 +71,37 @@ class Calculator {
         guard let calculatorOperator = OperatorType(rawValue: `operator`),
               let secondValue = stack.pop(),
               let firstValue = stack.pop() else { return }
-        //let result = operate(calculatorOperator: calculatorOperator, firstValue: firstValue, secondValue: secondValue)
-        //stack.push(result)
+        let result = operate(calculatorOperator: calculatorOperator, firstValue: firstValue, secondValue: secondValue)
+        stack.push(result)
         postfix.removeFirst()
+    }
+    
+    func operate(calculatorOperator: OperatorType, firstValue: String, secondValue: String = Constants.zero) -> String {
+        if currentMode == CalculatorMode.binary {
+            guard let firstNumber = Int(firstValue),
+                  let secondNumber = Int(secondValue) else { return Constants.zero }
+            
+            switch calculatorOperator {
+            case .add:
+                return String(firstNumber + secondNumber, radix: 2)
+            case .subtract:
+                return String(firstNumber - secondNumber, radix: 2)
+            default:
+                return Constants.zero
+            }
+        } else {
+            guard let firstNumber = Double(firstValue),
+                  let secondNumber = Double(secondValue) else { return Constants.zero }
+            switch calculatorOperator {
+            case .add:
+                return String(firstNumber + secondNumber)
+            case .subtract:
+                return String(firstNumber - secondNumber)
+            default:
+                return Constants.zero
+            }
+        }
+        
     }
     
     func isOperator(_ input: String) -> Bool {
