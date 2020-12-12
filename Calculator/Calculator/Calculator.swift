@@ -23,7 +23,7 @@ class Calculator {
     
     func handleInput(_ input: String) {
         if isOperator(input) {
-            //handleOperator(input)
+            handleOperator(input)
         } else if isEqual(input) {
             popAllStackToPostfix()
             //handlePostfix()
@@ -52,6 +52,18 @@ class Calculator {
                 stack.push(input)
             }
         }
+    }
+    
+    func handlePostfix() {
+        for postfixValue in postfix {
+            if operators.contains(postfixValue) {
+                //determineOperatorType(operator: postfixValue)
+            } else {
+                stack.push(postfixValue)
+            }
+        }
+        guard let stackLastValue = stack.pop() else { return }
+        handleDigit(stackLastValue)
     }
     
     func isOperator(_ input: String) -> Bool {
