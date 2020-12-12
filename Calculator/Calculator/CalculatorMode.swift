@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+enum CalculatorMode {
+    case decimal
+    case binary
+    case common
+}
