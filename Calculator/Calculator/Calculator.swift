@@ -33,6 +33,27 @@ class Calculator {
         }
     }
     
+    func handleOperator(_ input: String) {
+        if stack.isEmpty() {
+            stack.push(input)
+        } else {
+            guard let `operator` = OperatorType(rawValue: input),
+                  let peekedValue = stack.peek(),
+                  let peekedOperator = OperatorType(rawValue: peekedValue) else { return }
+            
+            if `operator`.isHighPriority(than: peekedOperator) {
+                stack.push(input)
+            } else if `operator`.isLowPriority(than: peekedOperator) {
+                popAllStackToPostfix()
+                stack.push(input)
+            } else {
+                guard let popedValue = stack.pop() else { return }
+                postfix.append(popedValue)
+                stack.push(input)
+            }
+        }
+    }
+    
     func isOperator(_ input: String) -> Bool {
         return operators.contains(input)
     }
