@@ -1,60 +1,24 @@
-//
-//  Calculator.swift
-//  Calculator
-//
-//  Created by 김태형 on 2020/12/07.
-//
 
-import Foundation
-
-class Calculator {
-    static let common = Calculator()
-    private init() {}
+class DecimalCalculator : Calculator {
     
-    var currentValue: Double = 0
-    var valueToBeCalculated: Double = 0
-    var performingOperation: Bool = false
+    init() {
+            super.init(calculatorMode: .decimal)
+        }
     
-    func add() {
-        Calculator.common.currentValue = Calculator.common.currentValue + Calculator.common.valueToBeCalculated
-    }
-    
-    func substract() {
-        Calculator.common.currentValue = Calculator.common.currentValue - Calculator.common.valueToBeCalculated
-    }
-    
-    func multiple() {
-        Calculator.common.currentValue = Calculator.common.currentValue * Calculator.common.valueToBeCalculated
-    }
-    
-}
-
-class DecimalOperator {
-    func division() {
-        Calculator.common.currentValue = Calculator.common.currentValue / Calculator.common.valueToBeCalculated
-    }
-}
-
-class BinaryOperator {
-    func andOperate() {
-    }
-}
-
-class Clear {
-    func clear() {
-        Calculator.common.valueToBeCalculated = 0
-        Calculator.common.currentValue = 0
-    }
-}
-
-class TypeChanger {
-    func StringToInteger(input: String) -> Int {
-        guard let inputValue = Int(input, radix: 2) else { return 0 }
-        return inputValue
-    }
-    
-    func IntegerToString(input: Int) -> String {
-        let convertedValue = String(input, radix: 2)
-        return convertedValue
+    override func operate(calculatorOperator: OperatorType, firstValue: String, secondValue: String = Constants.zero) -> String {
+        guard let firstNumber = Double(firstValue),
+              let secondNumber = Double(secondValue) else { return Constants.zero }
+        switch calculatorOperator {
+        case .add:
+            return String(firstNumber + secondNumber)
+        case .subtract:
+            return String(firstNumber - secondNumber)
+        case .multiple:
+            return String(firstNumber * secondNumber)
+        case .divide:
+            return String(firstNumber / secondNumber)
+        default:
+            return Constants.zero
+        }
     }
 }
