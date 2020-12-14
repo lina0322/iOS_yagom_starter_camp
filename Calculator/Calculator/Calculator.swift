@@ -44,14 +44,18 @@ class Calculator {
         } else {
             guard let `operator` = OperatorType(rawValue: input),
                   let peekedValue = stack.peek(),
-                  let peekedOperator = OperatorType(rawValue: peekedValue) else { return }
+                  let peekedOperator = OperatorType(rawValue: peekedValue) else {
+                return
+            }
             if `operator`.isHighPriority(than: peekedOperator) {
                 stack.push(input)
             } else if `operator`.isLowPriority(than: peekedOperator) {
                 popAllStackToPostfix()
                 stack.push(input)
             } else {
-                guard let popedValue = stack.pop() else { return }
+                guard let popedValue = stack.pop() else {
+                    return
+                }
                 postfix.append(popedValue)
                 stack.push(input)
             }
@@ -66,14 +70,18 @@ class Calculator {
                 stack.push(postfixValue)
             }
         }
-        guard let stackLastValue = stack.pop() else { return }
+        guard let stackLastValue = stack.pop() else {
+            return
+        }
         handleDigit(stackLastValue)
     }
     
     func determineOperatorType(`operator`: String) {
         guard let calculatorOperator = OperatorType(rawValue: `operator`),
               let secondValue = stack.pop(),
-              let firstValue = stack.pop() else { return }
+              let firstValue = stack.pop() else {
+            return
+        }
         let result = operate(calculatorOperator: calculatorOperator, firstValue: firstValue, secondValue: secondValue)
         stack.push(result)
         postfix.removeFirst()
@@ -82,7 +90,9 @@ class Calculator {
     func operate(calculatorOperator: OperatorType, firstValue: String, secondValue: String = Constants.zero) -> String {
         if currentMode == CalculatorMode.binary {
             guard let firstNumber = Int(firstValue),
-                  let secondNumber = Int(secondValue) else { return Constants.zero }
+                  let secondNumber = Int(secondValue) else {
+                return Constants.zero
+            }
             switch calculatorOperator {
             case .add:
                 return String(firstNumber + secondNumber, radix: 2)
@@ -93,7 +103,9 @@ class Calculator {
             }
         } else {
             guard let firstNumber = Double(firstValue),
-                  let secondNumber = Double(secondValue) else { return Constants.zero }
+                  let secondNumber = Double(secondValue) else {
+                return Constants.zero
+            }
             switch calculatorOperator {
             case .add:
                 return String(firstNumber + secondNumber)
