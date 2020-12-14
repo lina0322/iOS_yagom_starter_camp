@@ -30,7 +30,7 @@ class Calculator {
         if isOperator(input) {
             handleOperator(input)
         } else if isEqual(input) {
-            popAllStackToPostfix()
+            popAllValuesToPostfix()
             handlePostfix()
             allClear()
         } else {
@@ -50,7 +50,7 @@ class Calculator {
             if `operator`.isHighPriority(than: peekedOperator) {
                 stack.push(input)
             } else if `operator`.isLowPriority(than: peekedOperator) {
-                popAllStackToPostfix()
+                popAllValuesToPostfix()
                 stack.push(input)
             } else {
                 guard let popedValue = stack.pop() else {
@@ -132,8 +132,9 @@ class Calculator {
         return input == Constants.equal
     }
     
-    func popAllStackToPostfix() {
-        while !stack.isEmpty() {
+    func popAllValuesToPostfix() {
+        let remainingValues = stack.stack
+        for _ in remainingValues {
             postfix.append(stack.pop()!)
         }
     }
