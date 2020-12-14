@@ -20,7 +20,8 @@ class Calculator {
         currentMode = calculatorMode
         operators = operators.filter ({ (value: String) -> Bool in
             if let `operator` = OperatorType(rawValue: value) {
-                return `operator`.mode == CalculatorMode.common || `operator`.mode == currentMode
+                let isEqualing = `operator`.mode == CalculatorMode.common || `operator`.mode == currentMode
+                return isEqualing
             }
             return false
         })
