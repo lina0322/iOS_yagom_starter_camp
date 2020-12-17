@@ -21,23 +21,6 @@ final class CalculatorTests: XCTestCase {
         sut = nil
         super.tearDown()
     }
-
-    func testIsOperator() {
-        XCTAssertEqual(sut.isOperator("+"), true)
-        XCTAssertEqual(sut.isOperator("-"), true)
-        XCTAssertEqual(sut.isOperator("*"), true)
-        XCTAssertEqual(sut.isOperator("/"), true)
-        XCTAssertEqual(sut.isOperator("&"), true)
-        XCTAssertEqual(sut.isOperator("~&"), true)
-        XCTAssertEqual(sut.isOperator("|"), true)
-        XCTAssertEqual(sut.isOperator("~|"), true)
-        XCTAssertEqual(sut.isOperator("^"), true)
-        XCTAssertEqual(sut.isOperator("~"), true)
-        XCTAssertEqual(sut.isOperator("<<"), true)
-        XCTAssertEqual(sut.isOperator(">>"), true)
-        XCTAssertEqual(sut.isOperator("="), false)
-        XCTAssertEqual(sut.isOperator(")"), false)
-    }
     
     func testIsEqual() {
         XCTAssertEqual(sut.isEqual("="), true)

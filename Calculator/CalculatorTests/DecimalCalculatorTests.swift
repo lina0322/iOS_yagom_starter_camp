@@ -63,6 +63,15 @@ final class DecimalCalculatorTests: XCTestCase {
         XCTAssertEqual(sut.resultValue, "355557777")
    }
 
+    func testIsOperator() {
+        XCTAssertEqual(sut.isOperator("+"), true)
+        XCTAssertEqual(sut.isOperator("-"), true)
+        XCTAssertEqual(sut.isOperator("*"), true)
+        XCTAssertEqual(sut.isOperator("/"), true)
+        XCTAssertEqual(sut.isOperator("="), false)
+        XCTAssertEqual(sut.isOperator(")"), false)
+    }
+    
     func testCalculateVariousIntValues() {
         sut.handleInput("10")
         sut.handleInput("+")

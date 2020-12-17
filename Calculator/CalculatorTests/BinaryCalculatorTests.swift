@@ -109,6 +109,21 @@ final class BinaryCalculatorTests: XCTestCase {
         XCTAssertEqual(sut.resultValue, "111")
     }
     
+    func testIsOperator() {
+        XCTAssertEqual(sut.isOperator("+"), true)
+        XCTAssertEqual(sut.isOperator("-"), true)
+        XCTAssertEqual(sut.isOperator("&"), true)
+        XCTAssertEqual(sut.isOperator("~&"), true)
+        XCTAssertEqual(sut.isOperator("|"), true)
+        XCTAssertEqual(sut.isOperator("~|"), true)
+        XCTAssertEqual(sut.isOperator("^"), true)
+        XCTAssertEqual(sut.isOperator("~"), true)
+        XCTAssertEqual(sut.isOperator("<<"), true)
+        XCTAssertEqual(sut.isOperator(">>"), true)
+        XCTAssertEqual(sut.isOperator("="), false)
+        XCTAssertEqual(sut.isOperator(")"), false)
+    }
+    
     func testHandleDigit() {
         sut.handleInput("11111111")
         sut.handleInput("+")
