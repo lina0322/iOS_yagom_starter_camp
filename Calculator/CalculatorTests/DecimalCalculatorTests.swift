@@ -43,25 +43,10 @@ final class DecimalCalculatorTests: XCTestCase {
         XCTAssertEqual(sut.operate(calculatorOperator: .divide, firstValue: "10", secondValue: "2"), "5.0")
     }
     
-//  0으로 나누었을 때 에러 코드 추가 필요
-//    func testDivideByzero() {
-//        XCTAssertEqual(sut.operate(calculatorOperator: .divide, firstValue: "15", secondValue: "0"), "error")
-//    }
-    
-    func testIsOperator() {
-        XCTAssertEqual(sut.isOperator("+"), true)
-        XCTAssertEqual(sut.isOperator("-"), true)
-        XCTAssertEqual(sut.isOperator("*"), true)
-        XCTAssertEqual(sut.isOperator("/"), true)
-        XCTAssertEqual(sut.isOperator("="), false)
-        XCTAssertEqual(sut.isOperator(")"), false)
+    func testDivideByzero() {
+        XCTAssertEqual(sut.operate(calculatorOperator: .divide, firstValue: "15", secondValue: "0"), "오류")
     }
-    
-    func testIsEqual() {
-        XCTAssertEqual(sut.isEqual("="), true)
-        XCTAssertEqual(sut.isEqual("*"), false)
-    }
-    
+ 
     func testHandleDigit() {
         //정수 + 소수 = 9자리 이상일때 정수부터 총 9자리까지만 출력
         sut.handleInput("1234.123456")

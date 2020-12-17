@@ -15,7 +15,6 @@ final class BinaryCalculatorTests: XCTestCase {
     override func setUp() {
         super.setUp()
         sut = BinaryCalculator()
-        
     }
     
     override func tearDown() {
@@ -30,7 +29,6 @@ final class BinaryCalculatorTests: XCTestCase {
         sut.handleInput("=")
         
         XCTAssertEqual(sut.resultValue, "1111")
-        XCTAssertEqual(sut.operate(calculatorOperator: .add, firstValue: "1010", secondValue: "10"), "1100")
     }
     
     func testSubtract() {
@@ -40,7 +38,6 @@ final class BinaryCalculatorTests: XCTestCase {
         sut.handleInput("=")
         
         XCTAssertEqual(sut.resultValue, "1001")
-        XCTAssertEqual(sut.operate(calculatorOperator: .subtract, firstValue: "1010", secondValue: "10"), "1000")
     }
     
     func testAnd() {
@@ -111,5 +108,15 @@ final class BinaryCalculatorTests: XCTestCase {
         
         XCTAssertEqual(sut.resultValue, "111")
     }
+    
+    func testHandleDigit() {
+        sut.handleInput("11111111")
+        sut.handleInput("+")
+        sut.handleInput("11111111")
+        sut.handleInput("=")
+        
+        XCTAssertEqual(sut.resultValue, "111111110")
+   }
+
 }
 

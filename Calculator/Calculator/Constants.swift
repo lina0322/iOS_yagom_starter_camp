@@ -10,4 +10,5 @@ struct Constants {
     static let zero = "0"
     static let maxLength = 9
     static let dot = "."
+    static let error = "오류"
 }

@@ -6,6 +6,8 @@
 //
 
 class DecimalCalculator : Calculator {
+    var zeroDivideError: Bool = false
+    
     init() {
         super.init(calculatorMode: .decimal)
     }
@@ -23,6 +25,10 @@ class DecimalCalculator : Calculator {
         case .multiple:
             return String(firstNumber * secondNumber)
         case .divide:
+            if secondNumber == 0 {
+                zeroDivideError = true
+                return Constants.error
+            }
             return String(firstNumber / secondNumber)
         default:
             return Constants.zero
@@ -30,6 +36,11 @@ class DecimalCalculator : Calculator {
     }
     
     override func handleDigit(_ fullNumber: String) {
+        if zeroDivideError {
+            resultValue = Constants.error
+            return 
+        }
+        
         let frontNumber = fullNumber.components(separatedBy: Constants.dot)[0]
         if frontNumber.count > Constants.maxLength {
             let offsetLength = frontNumber.count - Constants.maxLength

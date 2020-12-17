@@ -34,6 +34,8 @@ class Calculator {
             popAllValuesToPostfix()
             handlePostfix()
             allClear()
+        } else if input == "오류" {
+            return
         } else {
             postfix.append(input)
         }
