@@ -49,7 +49,10 @@ class DecimalCalculator : Calculator {
         } else {
             super.handleDigit(fullNumber)
         }
-        if resultValue.hasSuffix(Constants.dotZero) { resultValue.removeLast() }
+        if resultValue.hasSuffix(Constants.dotZero) {
+            resultValue.removeLast()
+            resultValue.removeLast()
+        }
         if fullNumber.hasPrefix(Constants.minus) { resultValue = Constants.minus + resultValue }
     }
 }
