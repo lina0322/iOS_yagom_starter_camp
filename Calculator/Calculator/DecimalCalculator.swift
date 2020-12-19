@@ -6,7 +6,7 @@
 //
 
 class DecimalCalculator : Calculator {
-    var zeroDivideError: Bool = false
+    var isDividingByZero: Bool = false
     
     init() {
         super.init(calculatorMode: .decimal)
@@ -25,8 +25,8 @@ class DecimalCalculator : Calculator {
         case .multiple:
             return String(firstNumber * secondNumber)
         case .divide:
-            if secondNumber == 0 {
-                zeroDivideError = true
+            guard secondNumber != 0 else {
+                isDividingByZero = true
                 return Constants.error
             }
             return String(firstNumber / secondNumber)
@@ -36,7 +36,7 @@ class DecimalCalculator : Calculator {
     }
     
     override func handleDigit(_ fullNumber: String) {
-        if zeroDivideError {
+        if isDividingByZero {
             resultValue = Constants.error
             return 
         }
@@ -49,7 +49,7 @@ class DecimalCalculator : Calculator {
         } else {
             super.handleDigit(fullNumber)
         }
-        if resultValue.hasSuffix(Constants.zero) { resultValue.removeLast() }
-        if resultValue.hasSuffix(Constants.dot) { resultValue.removeLast() }
+        if resultValue.hasSuffix(Constants.dotZero) { resultValue.removeLast() }
+        if fullNumber.hasPrefix(Constants.minus) { resultValue = Constants.minus + resultValue }
     }
 }
