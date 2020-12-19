@@ -41,7 +41,7 @@ final class DecimalCalculatorTests: XCTestCase {
     
     func testDivide() {
         XCTAssertEqual(sut.operate(calculatorOperator: .divide, firstValue: "10", secondValue: "2"), "5.0")
-        XCTAssertEqual(sut.operate(calculatorOperator: .divide, firstValue: "0", secondValue: "2"), "0")
+        XCTAssertEqual(sut.operate(calculatorOperator: .divide, firstValue: "0", secondValue: "2"), "0.0")
     }
     
     func testDivideByzero() {
