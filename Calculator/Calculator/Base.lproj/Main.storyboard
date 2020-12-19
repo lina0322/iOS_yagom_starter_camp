@@ -325,7 +325,7 @@
                                                     <segue destination="ieK-qB-91I" kind="presentation" modalPresentationStyle="fullScreen" id="tsR-RP-1ey"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="srd-7K-7p6">
+                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="srd-7K-7p6">
                                                 <rect key="frame" x="310.5" y="0.5" width="103.5" height="102.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="srd-7K-7p6" secondAttribute="height" multiplier="1:1" id="Arg-Jw-Nff"/>
@@ -335,6 +335,9 @@
                                                 <state key="normal" title="÷" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="calculate:" destination="qms-qp-KuJ" eventType="touchUpInside" id="gF4-T0-fUX"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -383,7 +386,7 @@
                                                     <action selector="touchUpNumber:" destination="qms-qp-KuJ" eventType="touchUpInside" id="brb-us-jCc"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BxJ-Vo-wNs">
+                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BxJ-Vo-wNs">
                                                 <rect key="frame" x="310.5" y="0.5" width="103.5" height="102.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="BxJ-Vo-wNs" secondAttribute="height" multiplier="1:1" id="uE8-KV-kGW"/>
@@ -393,6 +396,9 @@
                                                 <state key="normal" title="×" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="calculate:" destination="qms-qp-KuJ" eventType="touchUpInside" id="Ea6-S1-2ft"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -441,7 +447,7 @@
                                                     <action selector="touchUpNumber:" destination="qms-qp-KuJ" eventType="touchUpInside" id="LMd-89-2Oz"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWx-fH-vUd">
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWx-fH-vUd">
                                                 <rect key="frame" x="310.5" y="0.5" width="103.5" height="102.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="BWx-fH-vUd" secondAttribute="height" multiplier="1:1" id="dPp-g2-0az"/>
@@ -451,6 +457,9 @@
                                                 <state key="normal" title="-" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="calculate:" destination="qms-qp-KuJ" eventType="touchDragInside" id="Tix-WS-Kns"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -499,7 +508,7 @@
                                                     <action selector="touchUpNumber:" destination="qms-qp-KuJ" eventType="touchUpInside" id="VSG-ca-CGj"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcB-wj-bwW">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcB-wj-bwW">
                                                 <rect key="frame" x="310.5" y="0.5" width="103.5" height="102.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="hcB-wj-bwW" secondAttribute="height" multiplier="1:1" id="lPS-k2-aye"/>
@@ -509,6 +518,9 @@
                                                 <state key="normal" title="+" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="calculate:" destination="qms-qp-KuJ" eventType="touchUpInside" id="E7P-HK-4RY"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -553,6 +565,9 @@
                                                 <state key="normal" title="=" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="touchUpEqual" destination="qms-qp-KuJ" eventType="touchUpInside" id="Zkt-vM-8Am"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>

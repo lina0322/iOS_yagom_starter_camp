@@ -11,6 +11,7 @@ class DecimalViewController: UIViewController {
     @IBOutlet weak var valueLabel: UILabel!
     var isPositive: Bool = true
     var isIntegerNumber: Bool = true
+    var `operator`: String = Constants.empty
     
     override func viewDidLoad() {
         valueLabel.text = Constants.zero
@@ -28,15 +29,41 @@ class DecimalViewController: UIViewController {
         }
     }
     
-    @IBAction func addDot() {
-        if isIntegerNumber == true {
-            guard let labelText = valueLabel.text else { return }
-            valueLabel.text = labelText + Constants.dot
-            isIntegerNumber = false
+    @IBAction func calculate(_ sender: UIButton) {
+        switch sender.tag {
+        case 1:
+            `operator` = "+"
+        case 2:
+            `operator` = "-"
+        case 3:
+            `operator` = "*"
+        case 4:
+            `operator` = "/"
+        default:
+            `operator` = "오류"
         }
     }
     
-    @IBAction func touchUpNumber(_ sender: UIButton) {
+    @IBAction func touchUpEqual() {
+        guard var labelText = valueLabel.text else { return }
+        labelText = labelText.components(separatedBy: Constants.comma).joined()
+        DecimalCalculator.common.handleInput(labelText)
+        
+        DecimalCalculator.common.handleInput("=")
+        let text = addComma(DecimalCalculator.common.resultValue)
+        valueLabel.text = text
+//        reset()
+    }
+    
+    @IBAction func touchUpNumber(_ sender: UIButton) {        if `operator` != Constants.empty {
+            guard var labelText = valueLabel.text else { return }
+            labelText = labelText.components(separatedBy: Constants.comma).joined()
+            DecimalCalculator.common.handleInput(labelText)
+            DecimalCalculator.common.handleInput(`operator`)
+            `operator` = Constants.empty
+            valueLabel.text = Constants.zero
+        }
+
         guard var labelText = valueLabel.text else { return }
         let NotNumberCount = countNotNumber(labelText)
         guard labelText.count < 9 + NotNumberCount else { return }
@@ -72,11 +99,20 @@ class DecimalViewController: UIViewController {
         return count
     }
     
+    @IBAction func addDot() {
+        if isIntegerNumber == true {
+            guard let labelText = valueLabel.text else { return }
+            valueLabel.text = labelText + Constants.dot
+            isIntegerNumber = false
+        }
+    }
+    
     @IBAction func reset() {
         DecimalCalculator.common.allClear()
         valueLabel.text = Constants.zero
         isPositive = true
         isIntegerNumber = true
+        `operator` = Constants.empty
     }
 }
 
