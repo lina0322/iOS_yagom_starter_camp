@@ -21,7 +21,7 @@ class DecimalViewController: UIViewController {
         
         if isPositive {
             isPositive = false
-            valueLabel.text = "-" + labelText
+            valueLabel.text = Constants.minus + labelText
         } else {
             isPositive = true
             valueLabel.text?.removeFirst()
@@ -55,7 +55,7 @@ class DecimalViewController: UIViewController {
         numberFormatter.numberStyle = .decimal
         numberFormatter.maximumFractionDigits = 8
         
-        var changedText = labelText.components(separatedBy: ",").joined()
+        var changedText = labelText.components(separatedBy: Constants.comma).joined()
         guard let number = Double(changedText) else { return Constants.zero }
         changedText = numberFormatter.string(from: NSNumber(value: number))!
         return changedText

@@ -14,7 +14,7 @@ class BinaryViewController: UIViewController {
     var isPositive: Bool = true
     
     override func viewDidLoad() {
-        valueLabel.text = "0"
+        valueLabel.text = Constants.zero
     }
     
     @IBAction func togglePlusMinus() {
@@ -22,7 +22,7 @@ class BinaryViewController: UIViewController {
         
         if isPositive {
             isPositive = false
-            valueLabel.text = "-" + labelText
+            valueLabel.text = Constants.minus + labelText
         } else {
             isPositive = true
             valueLabel.text?.removeFirst()
@@ -34,10 +34,10 @@ class BinaryViewController: UIViewController {
         if isPositive && labelText.count >= 9 { return }
         if isPositive == false && labelText.count >= 10 { return }
         
-        if labelText == "0" {
-            labelText = ""
-        } else if labelText == "-0" {
-            labelText = "-"
+        if labelText == Constants.zero {
+            labelText = Constants.empty
+        } else if labelText == Constants.minusZero {
+            labelText = Constants.minus
         }
         valueLabel.text = labelText + String(sender.tag)
     }
