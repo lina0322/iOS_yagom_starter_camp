@@ -13,11 +13,11 @@
             <objects>
                 <viewController id="ieK-qB-91I" customClass="BinaryViewController" customModule="Calculator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PQy-td-S3u">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8uW-7l-ekC">
-                                <rect key="frame" x="5" y="298" width="404" height="505"/>
+                                <rect key="frame" x="5" y="352" width="404" height="505"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="elS-eJ-5aA">
                                         <rect key="frame" x="0.0" y="0.0" width="404" height="101"/>
@@ -57,6 +57,9 @@
                                                 <state key="normal" title="2/10" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="dismissBinaryCalculator" destination="ieK-qB-91I" eventType="touchUpInside" id="bYR-OI-D5m"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xcv-vc-L5q">
                                                 <rect key="frame" x="303" y="0.5" width="101" height="100"/>
@@ -231,7 +234,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123,456,789" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="25" translatesAutoresizingMaskIntoConstraints="NO" id="hKF-K5-V9G">
-                                <rect key="frame" x="10" y="203" width="394" height="90"/>
+                                <rect key="frame" x="10" y="257" width="394" height="90"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="75"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -307,7 +310,7 @@
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="ieK-qB-91I" kind="show" id="tsR-RP-1ey"/>
+                                                    <segue destination="ieK-qB-91I" kind="presentation" modalPresentationStyle="fullScreen" id="tsR-RP-1ey"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="srd-7K-7p6">

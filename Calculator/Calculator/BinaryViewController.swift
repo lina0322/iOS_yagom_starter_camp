@@ -28,4 +28,8 @@ class BinaryViewController: UIViewController {
             valueLabel.text?.removeFirst()
         }
     }
+    
+    @IBAction func dismissBinaryCalculator() {
+        dismiss(animated: true, completion: nil)
+    }
 }
