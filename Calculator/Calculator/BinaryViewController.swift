@@ -18,7 +18,7 @@ class BinaryViewController: UIViewController {
     }
     
     @IBAction func togglePlusMinus() {
-        guard var labelText = valueLabel.text else { return }
+        guard let labelText = valueLabel.text else { return }
         
         if isPositive {
             isPositive = false
@@ -27,6 +27,12 @@ class BinaryViewController: UIViewController {
             isPositive = true
             valueLabel.text?.removeFirst()
         }
+    }
+    
+    @IBAction func reset() {
+        BinaryCalculator.common.allClear()
+        valueLabel.text = Constants.zero
+        isPositive = true
     }
     
     @IBAction func dismissBinaryCalculator() {

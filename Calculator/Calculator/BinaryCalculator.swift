@@ -6,7 +6,9 @@
 //
 
 class BinaryCalculator: Calculator {
-    init() {
+    static let common = BinaryCalculator()
+    
+    private init() {
         super.init(calculatorMode: .binary)
     }
     

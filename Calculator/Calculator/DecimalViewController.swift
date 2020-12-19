@@ -17,7 +17,7 @@ class DecimalViewController: UIViewController {
     }
     
     @IBAction func togglePlusMinus() {
-        guard var labelText = valueLabel.text else { return }
+        guard let labelText = valueLabel.text else { return }
         
         if isPositive {
             isPositive = false

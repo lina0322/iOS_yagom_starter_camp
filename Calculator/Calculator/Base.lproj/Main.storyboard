@@ -32,6 +32,9 @@
                                                 <state key="normal" title="C" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="reset" destination="ieK-qB-91I" eventType="touchUpInside" id="UWD-HB-N44"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTV-UN-VJM">
                                                 <rect key="frame" x="101" y="0.5" width="101" height="100"/>
