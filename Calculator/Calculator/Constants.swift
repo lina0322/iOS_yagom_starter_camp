@@ -13,4 +13,7 @@ struct Constants {
     static let error = "오류"
     static let dotZero = ".0"
     static let minus = "-"
+    static let empty = ""
+    static let minusZero = "-0"
+    static let comma = "+"
 }

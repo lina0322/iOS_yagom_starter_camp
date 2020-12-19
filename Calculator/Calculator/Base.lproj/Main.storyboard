@@ -178,7 +178,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ccv-Nd-JJF">
                                         <rect key="frame" x="0.0" y="303" width="404" height="101"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VXX-Ln-HZV">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VXX-Ln-HZV">
                                                 <rect key="frame" x="0.0" y="0.5" width="303" height="99.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="VXX-Ln-HZV" secondAttribute="height" multiplier="3:1" id="Hdb-zF-R49"/>
@@ -188,6 +188,9 @@
                                                 <state key="normal" title="1" backgroundImage="capsule.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="touchUpNumber:" destination="ieK-qB-91I" eventType="touchUpInside" id="oGj-Uw-J23"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t5y-BP-dEb">
                                                 <rect key="frame" x="303" y="0.5" width="101" height="100"/>
@@ -215,6 +218,9 @@
                                                 <state key="normal" title="0" backgroundImage="capsule.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="touchUpNumber:" destination="ieK-qB-91I" eventType="touchUpInside" id="o94-DK-7A5"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tUu-0z-oz1">
                                                 <rect key="frame" x="303" y="0.5" width="101" height="100"/>
@@ -570,16 +576,6 @@
                     <navigationItem key="navigationItem" id="ZBy-bW-OQ2"/>
                     <connections>
                         <outlet property="valueLabel" destination="Kd3-sd-Cz2" id="Yc6-Fn-APC"/>
-                        <outletCollection property="numberButtons" destination="H0i-br-qqs" collectionClass="NSMutableArray" id="5nB-k8-5YL"/>
-                        <outletCollection property="numberButtons" destination="vrf-f9-BiY" collectionClass="NSMutableArray" id="NoN-9f-FGK"/>
-                        <outletCollection property="numberButtons" destination="TQa-Lh-Z8x" collectionClass="NSMutableArray" id="oFv-Fp-fs6"/>
-                        <outletCollection property="numberButtons" destination="lgz-fI-Wj5" collectionClass="NSMutableArray" id="ehv-Le-haj"/>
-                        <outletCollection property="numberButtons" destination="Yun-WE-pq8" collectionClass="NSMutableArray" id="Zzd-U9-a4h"/>
-                        <outletCollection property="numberButtons" destination="feq-wQ-HHj" collectionClass="NSMutableArray" id="Djd-k6-w1Z"/>
-                        <outletCollection property="numberButtons" destination="2ci-P5-NwI" collectionClass="NSMutableArray" id="wJR-eK-dD0"/>
-                        <outletCollection property="numberButtons" destination="5Yf-md-zfe" collectionClass="NSMutableArray" id="KbF-ro-6BI"/>
-                        <outletCollection property="numberButtons" destination="mWd-5F-VLa" collectionClass="NSMutableArray" id="G7e-Nr-95D"/>
-                        <outletCollection property="numberButtons" destination="O8P-hL-41S" collectionClass="NSMutableArray" id="Uev-mP-EUK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJV-n6-N6x" sceneMemberID="firstResponder"/>

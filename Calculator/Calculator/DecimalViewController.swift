@@ -9,7 +9,6 @@ import UIKit
 class DecimalViewController: UIViewController {
     
     @IBOutlet weak var valueLabel: UILabel!
-    @IBOutlet var numberButtons: [UIButton]!
     var isPositive: Bool = true
     
     override func viewDidLoad() {
@@ -30,15 +29,26 @@ class DecimalViewController: UIViewController {
     
     @IBAction func touchUpNumber(_ sender: UIButton) {
         guard var labelText = valueLabel.text else { return }
-        if isPositive && labelText.count >= 9 { return }
-        if isPositive == false && labelText.count >= 10 { return }
+        if isPositive && labelText.count >= 11 { return }
+        if isPositive == false && labelText.count >= 12 { return }
         
-        if labelText == "0" {
-            labelText = ""
-        } else if labelText == "-0" {
-            labelText = "-"
+        if labelText == Constants.zero {
+            labelText = Constants.empty
+        } else if labelText == Constants.minusZero {
+            labelText = Constants.minus
         }
+        labelText = addComma(labelText)
         valueLabel.text = labelText + String(sender.tag)
+    }
+    
+    private func addComma(_ labelText: String) -> String {
+        var changedText: String = labelText
+        
+        if (isPositive && labelText.count == 3) || (isPositive && labelText.count == 7) ||
+            (isPositive  == false && labelText.count == 4) || (isPositive == false && labelText.count == 8)   {
+            changedText = labelText + Constants.comma
+        }
+        return changedText
     }
     
     @IBAction func reset() {
