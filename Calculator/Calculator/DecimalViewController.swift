@@ -10,6 +10,7 @@ class DecimalViewController: UIViewController {
     
     @IBOutlet weak var valueLabel: UILabel!
     var isPositive: Bool = true
+    var isIntegerNumber: Bool = true
     
     override func viewDidLoad() {
         valueLabel.text = Constants.zero
@@ -27,34 +28,55 @@ class DecimalViewController: UIViewController {
         }
     }
     
+    @IBAction func addDot() {
+        if isIntegerNumber == true {
+            guard let labelText = valueLabel.text else { return }
+            valueLabel.text = labelText + Constants.dot
+            isIntegerNumber = false
+        }
+    }
+    
     @IBAction func touchUpNumber(_ sender: UIButton) {
         guard var labelText = valueLabel.text else { return }
-        if isPositive && labelText.count >= 11 { return }
-        if isPositive == false && labelText.count >= 12 { return }
+        let NotNumberCount = countNotNumber(labelText)
+        guard labelText.count < 9 + NotNumberCount else { return }
         
         if labelText == Constants.zero {
             labelText = Constants.empty
         } else if labelText == Constants.minusZero {
             labelText = Constants.minus
         }
-        labelText = addComma(labelText)
         valueLabel.text = labelText + String(sender.tag)
+        if isIntegerNumber { valueLabel.text = addComma(valueLabel.text!) }
     }
     
     private func addComma(_ labelText: String) -> String {
-        var changedText: String = labelText
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 8
         
-        if (isPositive && labelText.count == 3) || (isPositive && labelText.count == 7) ||
-            (isPositive  == false && labelText.count == 4) || (isPositive == false && labelText.count == 8)   {
-            changedText = labelText + Constants.comma
-        }
+        var changedText = labelText.components(separatedBy: ",").joined()
+        guard let number = Double(changedText) else { return Constants.zero }
+        changedText = numberFormatter.string(from: NSNumber(value: number))!
         return changedText
+    }
+    
+    private func countNotNumber(_ labelText: String) -> Int {
+        var count: Int = 0
+        for element in labelText {
+            let textElement = String(element)
+            if textElement == Constants.minus  || textElement ==  Constants.comma || textElement ==  Constants.dot {
+                count += 1
+            }
+        }
+        return count
     }
     
     @IBAction func reset() {
         DecimalCalculator.common.allClear()
         valueLabel.text = Constants.zero
         isPositive = true
+        isIntegerNumber = true
     }
 }
 
