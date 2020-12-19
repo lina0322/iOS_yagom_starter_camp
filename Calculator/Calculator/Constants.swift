@@ -15,5 +15,5 @@ struct Constants {
     static let minus = "-"
     static let empty = ""
     static let minusZero = "-0"
-    static let comma = "+"
+    static let comma = ","
 }
