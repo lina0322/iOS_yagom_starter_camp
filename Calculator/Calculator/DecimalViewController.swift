@@ -13,7 +13,7 @@ class DecimalViewController: UIViewController {
     var isPositive: Bool = true
     
     override func viewDidLoad() {
-        valueLabel.text = "0"
+        valueLabel.text = Constants.zero
     }
     
     @IBAction func togglePlusMinus() {
@@ -26,6 +26,12 @@ class DecimalViewController: UIViewController {
             isPositive = true
             valueLabel.text?.removeFirst()
         }
+    }
+    
+    @IBAction func reset() {
+        DecimalCalculator.common.allClear()
+        valueLabel.text = Constants.zero
+        isPositive = true
     }
 }
 

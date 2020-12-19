@@ -284,6 +284,9 @@
                                                 <state key="normal" title="C" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="reset" destination="qms-qp-KuJ" eventType="touchUpInside" id="cae-Uq-Xgd"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zAT-hE-BST">
                                                 <rect key="frame" x="103.5" y="0.5" width="103.5" height="102.5"/>

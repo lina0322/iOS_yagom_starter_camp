@@ -6,9 +6,10 @@
 //
 
 class DecimalCalculator : Calculator {
+    static let common = DecimalCalculator()
     var isDividingByZero: Bool = false
     
-    init() {
+    private init() {
         super.init(calculatorMode: .decimal)
     }
     
