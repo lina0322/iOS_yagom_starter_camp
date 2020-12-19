@@ -27,9 +27,10 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="XvG-yU-hI7" secondAttribute="height" multiplier="1:1" id="1C0-wM-ddl"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="C" backgroundImage="circle.fill" catalog="system">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTV-UN-VJM">
@@ -37,9 +38,10 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="vTV-UN-VJM" secondAttribute="height" multiplier="1:1" id="4Yc-Pf-cyb"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="+/-" backgroundImage="circle.fill" catalog="system">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wix-th-01c">
@@ -47,9 +49,10 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Wix-th-01c" secondAttribute="height" multiplier="1:1" id="ADC-wp-mpm"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="2/10" backgroundImage="circle.fill" catalog="system">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xcv-vc-L5q">
@@ -57,8 +60,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Xcv-vc-L5q" secondAttribute="height" multiplier="1:1" id="Fd0-cz-0mv"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" red="0.99740177389999995" green="0.60036921499999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="&lt;&lt;" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -72,8 +76,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Ptl-ND-13K" secondAttribute="height" id="2o7-oa-HAv"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="OR" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -82,8 +87,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="xZQ-XJ-4fT" secondAttribute="height" multiplier="1:1" id="b9z-tr-kLu"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="NOR" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -92,8 +98,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="01t-Lg-iBn" secondAttribute="height" multiplier="1:1" id="yok-e4-Yh7"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="NOT" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -102,8 +109,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="gaO-bg-qbO" secondAttribute="height" multiplier="1:1" id="Jij-Jd-2DS"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" red="0.99740177389999995" green="0.60036921499999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="&gt;&gt;" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -117,8 +125,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Nz5-aF-PT1" secondAttribute="height" multiplier="1:1" id="hse-CP-mJ6"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="AND" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -127,8 +136,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="fO3-2b-5dV" secondAttribute="height" multiplier="1:1" id="fo7-QQ-fdB"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="NAND" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -137,8 +147,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Vzt-9V-pad" secondAttribute="height" multiplier="1:1" id="3CS-wY-8LX"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="XOR" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -147,8 +158,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="yNq-E5-fwc" secondAttribute="height" multiplier="1:1" id="aWw-lt-G5C"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" red="0.99740177389999995" green="0.60036921499999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="-" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -162,8 +174,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="VXX-Ln-HZV" secondAttribute="height" multiplier="3:1" id="Hdb-zF-R49"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="capsule.fill" catalog="system">
+                                                <state key="normal" title="1" backgroundImage="capsule.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -172,8 +185,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="t5y-BP-dEb" secondAttribute="height" multiplier="1:1" id="E6s-Q5-sbu"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" red="0.99740177389999995" green="0.60036921499999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="+" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -187,8 +201,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="quI-AH-zjN" secondAttribute="height" multiplier="3:1" id="KJe-Zv-MLD"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="capsule.fill" catalog="system">
+                                                <state key="normal" title="0" backgroundImage="capsule.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -197,8 +212,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="tUu-0z-oz1" secondAttribute="height" multiplier="1:1" id="A3K-Ta-KKk"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" red="0.99740177389999995" green="0.60036921499999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="=" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -235,10 +251,10 @@
             </objects>
             <point key="canvasLocation" x="512" y="126"/>
         </scene>
-        <!--View Controller-->
+        <!--Decimal View Controller-->
         <scene sceneID="5MG-h8-uFZ">
             <objects>
-                <viewController id="qms-qp-KuJ" customClass="ViewController" customModule="Calculator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="qms-qp-KuJ" customClass="DecimalViewController" customModule="Calculator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y0E-xt-kAp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -254,29 +270,35 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="8Ve-MK-XIE" secondAttribute="height" multiplier="1:1" id="bUh-dx-T6K"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="C" backgroundImage="circle.fill" catalog="system">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zAT-hE-BST">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zAT-hE-BST">
                                                 <rect key="frame" x="103.5" y="0.5" width="103.5" height="102.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="zAT-hE-BST" secondAttribute="height" multiplier="1:1" id="v2Q-zV-b4f"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="+/-" backgroundImage="circle.fill" catalog="system">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="togglePlusMinus" destination="qms-qp-KuJ" eventType="touchUpInside" id="aBK-6B-7Km"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIq-7N-cGn">
                                                 <rect key="frame" x="207" y="0.5" width="103.5" height="102.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="ZIq-7N-cGn" secondAttribute="height" multiplier="1:1" id="m0h-gh-4HZ"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="2/10" backgroundImage="circle.fill" catalog="system">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <segue destination="ieK-qB-91I" kind="show" id="tsR-RP-1ey"/>
@@ -287,8 +309,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="srd-7K-7p6" secondAttribute="height" multiplier="1:1" id="Arg-Jw-Nff"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" red="0.99740177389999995" green="0.60036921499999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="÷" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -302,8 +325,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="5Yf-md-zfe" secondAttribute="height" id="a3R-wX-s1V"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="7" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -312,8 +336,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="mWd-5F-VLa" secondAttribute="height" multiplier="1:1" id="eiu-Eq-yJW"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="8" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -322,8 +347,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="O8P-hL-41S" secondAttribute="height" multiplier="1:1" id="K7s-BF-elc"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="9" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -332,8 +358,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="BxJ-Vo-wNs" secondAttribute="height" multiplier="1:1" id="uE8-KV-kGW"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" red="0.99740177389999995" green="0.60036921499999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="×" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -347,8 +374,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Yun-WE-pq8" secondAttribute="height" multiplier="1:1" id="fzy-Pb-Ia8"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="4" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -357,8 +385,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="feq-wQ-HHj" secondAttribute="height" multiplier="1:1" id="2iF-6x-hae"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="5" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -367,8 +396,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="2ci-P5-NwI" secondAttribute="height" multiplier="1:1" id="h0g-me-WVF"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="6" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -377,8 +407,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="BWx-fH-vUd" secondAttribute="height" multiplier="1:1" id="dPp-g2-0az"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" red="0.99740177389999995" green="0.60036921499999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="-" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -392,8 +423,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="vrf-f9-BiY" secondAttribute="height" multiplier="1:1" id="gFR-ki-WPu"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="1" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -402,8 +434,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="TQa-Lh-Z8x" secondAttribute="height" multiplier="1:1" id="fKg-jR-3at"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="2" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -412,8 +445,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="lgz-fI-Wj5" secondAttribute="height" multiplier="1:1" id="k9P-Up-b4a"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="3" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -422,8 +456,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="hcB-wj-bwW" secondAttribute="height" multiplier="1:1" id="lPS-k2-aye"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" red="0.99740177389999995" green="0.60036921499999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="+" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -437,8 +472,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="H0i-br-qqs" secondAttribute="height" multiplier="2:1" id="9Ye-UI-nsY"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="capsule.fill" catalog="system">
+                                                <state key="normal" title="0" backgroundImage="capsule.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -447,8 +483,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="SII-n0-hwA" secondAttribute="height" multiplier="1:1" id="Qtx-bp-obf"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="." backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -457,8 +494,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="r9m-sY-AGY" secondAttribute="height" multiplier="1:1" id="Z4d-5E-fvr"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" red="0.99740177389999995" green="0.60036921499999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <state key="normal" backgroundImage="circle.fill" catalog="system">
+                                                <state key="normal" title="=" backgroundImage="circle.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
@@ -485,6 +523,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZBy-bW-OQ2"/>
+                    <connections>
+                        <outlet property="valueLabel" destination="Kd3-sd-Cz2" id="Yc6-Fn-APC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJV-n6-N6x" sceneMemberID="firstResponder"/>
             </objects>
