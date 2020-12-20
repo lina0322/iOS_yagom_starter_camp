@@ -13,7 +13,7 @@ final class DecimalCalculatorTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        sut = DecimalCalculator()
+        sut = DecimalCalculator.common
     }
     
     override func tearDown() {

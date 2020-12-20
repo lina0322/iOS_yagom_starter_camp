@@ -14,7 +14,7 @@ final class BinaryCalculatorTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        sut = BinaryCalculator()
+        sut = BinaryCalculator.common
     }
     
     override func tearDown() {
