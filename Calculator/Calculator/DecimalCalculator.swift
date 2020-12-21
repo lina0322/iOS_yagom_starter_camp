@@ -6,10 +6,9 @@
 //
 
 class DecimalCalculator : Calculator {
-    static let common = DecimalCalculator()
     var isDividingByZero: Bool = false
     
-    private init() {
+    init() {
         super.init(calculatorMode: .decimal)
     }
     
@@ -54,6 +53,8 @@ class DecimalCalculator : Calculator {
             resultValue.removeLast()
             resultValue.removeLast()
         }
-        if fullNumber.hasPrefix(Constants.minus) { resultValue = Constants.minus + resultValue }
+        if fullNumber.hasPrefix(Constants.minus) && !resultValue.hasPrefix(Constants.minus) {
+            resultValue = Constants.minus + resultValue
+        }
     }
 }

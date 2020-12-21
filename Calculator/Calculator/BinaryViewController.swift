@@ -11,6 +11,7 @@ class BinaryViewController: UIViewController {
 
     @IBOutlet weak var valueLabel: UILabel!
 
+    let binaryCalculator = BinaryCalculator()
     var isPositive: Bool = true
     
     override func viewDidLoad() {
@@ -43,7 +44,7 @@ class BinaryViewController: UIViewController {
     }
     
     @IBAction func reset() {
-        BinaryCalculator.common.allClear()
+        binaryCalculator.allClear()
         valueLabel.text = Constants.zero
         isPositive = true
     }

@@ -9,8 +9,11 @@ import UIKit
 class DecimalViewController: UIViewController {
     
     @IBOutlet weak var valueLabel: UILabel!
+    
+    let decimalCalculator = DecimalCalculator()
     var isPositive: Bool = true
     var isIntegerNumber: Bool = true
+    var isReseted: Bool = false
     var `operator`: String = Constants.empty
     
     override func viewDidLoad() {
@@ -20,7 +23,11 @@ class DecimalViewController: UIViewController {
     @IBAction func togglePlusMinus() {
         guard let labelText = valueLabel.text else { return }
         
-        if isPositive {
+        if `operator` != Constants.empty {
+            valueLabel.text = Constants.minusZero
+            `operator` = Constants.empty
+            isPositive = false
+        } else if isPositive {
             isPositive = false
             valueLabel.text = Constants.minus + labelText
         } else {
@@ -47,19 +54,23 @@ class DecimalViewController: UIViewController {
     @IBAction func touchUpEqual() {
         guard var labelText = valueLabel.text else { return }
         labelText = labelText.components(separatedBy: Constants.comma).joined()
-        DecimalCalculator.common.handleInput(labelText)
+        decimalCalculator.handleInput(labelText)
         
-        DecimalCalculator.common.handleInput("=")
-        let text = addComma(DecimalCalculator.common.resultValue)
+        decimalCalculator.handleInput("=")
+        let text = addComma(decimalCalculator.resultValue)
         valueLabel.text = text
-//        reset()
+        reset()
+        isReseted = true
     }
     
-    @IBAction func touchUpNumber(_ sender: UIButton) {        if `operator` != Constants.empty {
+    @IBAction func touchUpNumber(_ sender: UIButton) {
+        if isReseted { isReseted = false }
+        
+        if `operator` != Constants.empty {
             guard var labelText = valueLabel.text else { return }
             labelText = labelText.components(separatedBy: Constants.comma).joined()
-            DecimalCalculator.common.handleInput(labelText)
-            DecimalCalculator.common.handleInput(`operator`)
+            decimalCalculator.handleInput(labelText)
+            decimalCalculator.handleInput(`operator`)
             `operator` = Constants.empty
             valueLabel.text = Constants.zero
         }
@@ -107,9 +118,13 @@ class DecimalViewController: UIViewController {
         }
     }
     
-    @IBAction func reset() {
-        DecimalCalculator.common.allClear()
+    @IBAction func touchUpCancel() {
+        reset()
         valueLabel.text = Constants.zero
+    }
+    
+    private func reset() {
+        decimalCalculator.allClear()
         isPositive = true
         isIntegerNumber = true
         `operator` = Constants.empty
