@@ -64,8 +64,6 @@ class DecimalViewController: UIViewController {
     }
     
     @IBAction func touchUpNumber(_ sender: UIButton) {
-        if isReseted { isReseted = false }
-        
         if `operator` != Constants.empty {
             guard var labelText = valueLabel.text else { return }
             labelText = labelText.components(separatedBy: Constants.comma).joined()
@@ -74,6 +72,9 @@ class DecimalViewController: UIViewController {
             `operator` = Constants.empty
             valueLabel.text = Constants.zero
         }
+        
+        if isReseted { isReseted = false; valueLabel.text = Constants.zero  }
+
 
         guard var labelText = valueLabel.text else { return }
         let NotNumberCount = countNotNumber(labelText)
