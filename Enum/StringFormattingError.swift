@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 enum StringFormattingError: Error, CustomStringConvertible {
     case wrongInput
     case unknown

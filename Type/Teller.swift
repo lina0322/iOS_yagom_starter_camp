@@ -40,7 +40,6 @@ final class Teller {
         Dashboard.printStatus(for: client, about: Message.tellerFinish)
     }
     
-    
     private func handleLoan(for client: Client) {
         reviewDocument(for: client)
         sendDocumentToHeadOffice(for: client)
