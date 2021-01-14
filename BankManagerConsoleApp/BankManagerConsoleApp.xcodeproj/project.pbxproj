@@ -46,7 +46,7 @@
 		4CDDB11D25A422EF00EDC9CE /* StringFormattingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFormattingError.swift; sourceTree = "<group>"; };
 		C7694E76259C3EC00053667F /* BankManagerConsoleApp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BankManagerConsoleApp; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7694E79259C3EC00053667F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		C7D65D1A259C8190005510E0 /* Bank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bank.swift; path = ../../Bank.swift; sourceTree = "<group>"; };
+		C7D65D1A259C8190005510E0 /* Bank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bank.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +68,22 @@
 				4C4D3B9E25ADE7BC0070DB26 /* BusinessType.swift */,
 				4CDDB11D25A422EF00EDC9CE /* StringFormattingError.swift */,
 			);
-			path = Enum;
+			name = Enum;
+			path = ../../Enum;
+			sourceTree = "<group>";
+		};
+		4CB9197F25B06D8B002D135B /* Type */ = {
+			isa = PBXGroup;
+			children = (
+				4CB8E9BA25A998E300C021F6 /* HeadOffice.swift */,
+				C7D65D1A259C8190005510E0 /* Bank.swift */,
+				4CDDB11725A422B700EDC9CE /* Teller.swift */,
+				4C529BA925ADF6FC00F287A8 /* Tellers.swift */,
+				4CDDB11A25A422CD00EDC9CE /* Client.swift */,
+				4C4D3B9225ADE7320070DB26 /* Clients.swift */,
+			);
+			name = Type;
+			path = ../../Type;
 			sourceTree = "<group>";
 		};
 		C7694E6D259C3EC00053667F = {
@@ -90,14 +105,9 @@
 		C7694E78259C3EC00053667F /* BankManagerConsoleApp */ = {
 			isa = PBXGroup;
 			children = (
+				4CB9197F25B06D8B002D135B /* Type */,
 				4C4D3BA325ADE7D70070DB26 /* Enum */,
-				4CB8E9BA25A998E300C021F6 /* HeadOffice.swift */,
 				4CB8E9C325A99CE000C021F6 /* Dashboard.swift */,
-				C7D65D1A259C8190005510E0 /* Bank.swift */,
-				4CDDB11725A422B700EDC9CE /* Teller.swift */,
-				4C529BA925ADF6FC00F287A8 /* Tellers.swift */,
-				4CDDB11A25A422CD00EDC9CE /* Client.swift */,
-				4C4D3B9225ADE7320070DB26 /* Clients.swift */,
 				C7694E79259C3EC00053667F /* main.swift */,
 			);
 			path = BankManagerConsoleApp;
