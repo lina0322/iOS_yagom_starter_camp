@@ -5,19 +5,25 @@
 //
 
 import UIKit
+import CoreLocation
 
 final class ViewController: UIViewController {
     private var currentWeater: Weather?
     private var forecast: ForecastList?
     private let celsiusFormat = "%.1f"
+    private var latitude: Double?
+    private var longitude: Double?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let lat: Double = 37
-        let lon: Double = 126
         
-        decodeCurrentWeaterFromAPI(lat, lon)
-        decodeForecastFromAPI(lat, lon)
+        searchCurrentLocation()
+        
+        guard let latitude = latitude, let longitude = longitude else {
+            return
+        }
+        decodeCurrentWeaterFromAPI(latitude, longitude)
+        decodeForecastFromAPI(latitude, longitude)
     }
     
     private func changeToCelsiusText(_ temperature: Double) -> String {
@@ -75,5 +81,20 @@ final class ViewController: UIViewController {
             }
         }
         dataTask.resume()
+    }
+}
+
+extension ViewController: CLLocationManagerDelegate {
+    func searchCurrentLocation() {
+        let locationManager = CLLocationManager()
+        locationManager.delegate = self        
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
+        
+        guard let coordinate = locationManager.location?.coordinate else {
+            return
+        }
+        latitude = coordinate.latitude
+        longitude = coordinate.longitude
     }
 }
