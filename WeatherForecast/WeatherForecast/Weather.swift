@@ -5,7 +5,7 @@
 //  Created by 리나 on 2021/01/18.
 //
 
-struct CurrentWeather: Codable {
+struct Weather: Codable {
     let icon: [WeatherIcon]
     let temperature: Temperature
 
