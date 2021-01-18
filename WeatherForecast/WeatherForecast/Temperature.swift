@@ -9,7 +9,7 @@ struct Temperature: Codable {
     let average: Double
     let min: Double
     let max: Double
-    
+
     enum CodingKeys: String, CodingKey {
         case average = "temp"
         case min = "temp_min"
