@@ -8,22 +8,17 @@ import UIKit
 import CoreLocation
 
 final class ViewController: UIViewController {
-    private var currentWeater: Weather?
+    private var currentWeather: Weather?
     private var forecast: ForecastList?
     private let celsiusFormat = "%.1f"
-    private var latitude: Double?
-    private var longitude: Double?
+    private let locationManager = CLLocationManager()
+    private var latitude: Double = Api.namsanLatitude
+    private var longitude: Double = Api.namsanLongitude
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchCurrentLocation()
-        
-        guard let latitude = latitude, let longitude = longitude else {
-            return
-        }
-        decodeCurrentWeaterFromAPI(latitude, longitude)
-        decodeForecastFromAPI(latitude, longitude)
+        setUpLocation()
     }
     
     private func changeToCelsiusText(_ temperature: Double) -> String {
@@ -33,9 +28,14 @@ final class ViewController: UIViewController {
         return celsiusText
     }
     
-    private func decodeCurrentWeaterFromAPI(_ lat: Double, _ lon: Double) {
+    private func setUpData() {
+        decodeCurrentWeaterFromAPI()
+        decodeForecastFromAPI()
+    }
+    
+    private func decodeCurrentWeaterFromAPI() {
         let session = URLSession(configuration: .default)
-        let currentWeatherURL = String(format: Api.url, Api.Kind.currentWeather.rawValue, lat, lon, Api.myKey)
+        let currentWeatherURL = String(format: Api.url, Api.Kind.currentWeather.rawValue, latitude, longitude, Api.myKey)
         guard let url:URL = URL(string: currentWeatherURL) else {
             return
         }
@@ -50,7 +50,7 @@ final class ViewController: UIViewController {
             }
             
             do {
-                self.currentWeater = try JSONDecoder().decode(Weather.self, from: data)
+                self.currentWeather = try JSONDecoder().decode(Weather.self, from: data)
             } catch {
                 print(error.localizedDescription)
             }
@@ -58,9 +58,9 @@ final class ViewController: UIViewController {
         dataTask.resume()
     }
     
-    private func decodeForecastFromAPI(_ lat: Double, _ lon: Double) {
+    private func decodeForecastFromAPI() {
         let session = URLSession(configuration: .default)
-        let forecastURL = String(format: Api.url, Api.Kind.forecast.rawValue, lat, lon, Api.myKey)
+        let forecastURL = String(format: Api.url, Api.Kind.forecast.rawValue, latitude, longitude, Api.myKey)
         guard let url:URL = URL(string: forecastURL) else {
             return
         }
@@ -85,16 +85,27 @@ final class ViewController: UIViewController {
 }
 
 extension ViewController: CLLocationManagerDelegate {
-    func searchCurrentLocation() {
-        let locationManager = CLLocationManager()
-        locationManager.delegate = self        
+    func setUpLocation() {
+        locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        searchCurrentLocation()
+    }
+    
+    func searchCurrentLocation() {
         locationManager.requestLocation()
-        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let coordinate = locationManager.location?.coordinate else {
             return
         }
         latitude = coordinate.latitude
         longitude = coordinate.longitude
+        setUpData()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        setUpData()
     }
 }
