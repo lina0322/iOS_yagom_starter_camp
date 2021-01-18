@@ -90,6 +90,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C527DDF25B5F9C100D4DDEC /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				4C527DB525B5A99100D4DDEC /* WeatherIcon.swift */,
+				4C527DBA25B5A9BE00D4DDEC /* Temperature.swift */,
+				4C527DAA25B572EF00D4DDEC /* Weather.swift */,
+				4C527DBF25B5A9FD00D4DDEC /* Forecast.swift */,
+				4C527DC425B5AA1C00D4DDEC /* ForecastList.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		4C527DE025B5FA0500D4DDEC /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				4C527DCF25B5CCC200D4DDEC /* Api.swift */,
+				4C527DD725B5E66500D4DDEC /* StringFormattingError.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		C79C8CE725ADDDF200EEE3F1 = {
 			isa = PBXGroup;
 			children = (
@@ -115,13 +136,8 @@
 			children = (
 				C79C8CF325ADDDF200EEE3F1 /* AppDelegate.swift */,
 				C79C8CF525ADDDF200EEE3F1 /* SceneDelegate.swift */,
-				4C527DB525B5A99100D4DDEC /* WeatherIcon.swift */,
-				4C527DBA25B5A9BE00D4DDEC /* Temperature.swift */,
-				4C527DAA25B572EF00D4DDEC /* Weather.swift */,
-				4C527DBF25B5A9FD00D4DDEC /* Forecast.swift */,
-				4C527DC425B5AA1C00D4DDEC /* ForecastList.swift */,
-				4C527DCF25B5CCC200D4DDEC /* Api.swift */,
-				4C527DD725B5E66500D4DDEC /* StringFormattingError.swift */,
+				4C527DE025B5FA0500D4DDEC /* Enum */,
+				4C527DDF25B5F9C100D4DDEC /* Data */,
 				C79C8CF725ADDDF200EEE3F1 /* ViewController.swift */,
 				C79C8CF925ADDDF200EEE3F1 /* Main.storyboard */,
 				C79C8CFC25ADDDF300EEE3F1 /* Assets.xcassets */,
