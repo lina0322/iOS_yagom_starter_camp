@@ -14,23 +14,18 @@ final class ViewController: UIViewController {
     private let locationManager = CLLocationManager()
     private var latitude: Double = Api.namsanLatitude
     private var longitude: Double = Api.namsanLongitude
+    private var currentLocation: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpLocation()
-    }
-    
-    private func changeToCelsiusText(_ temperature: Double) -> String {
-        let celsius = UnitTemperature.celsius.converter.value(fromBaseUnitValue: 268.15)
-        let celsiusText = String(format: celsiusFormat, celsius)
-        
-        return celsiusText
+        setUpLocationManager()
     }
     
     private func setUpData() {
         decodeCurrentWeaterFromAPI()
         decodeForecastFromAPI()
+        findCurrentLocation()
     }
     
     private func decodeCurrentWeaterFromAPI() {
@@ -40,11 +35,7 @@ final class ViewController: UIViewController {
             return
         }
         
-        let dataTask = session.dataTask(with: url) { (data: Data? , response: URLResponse?, error: Error?) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
+        let dataTask = session.dataTask(with: url) { data, _, _ in
             guard let data = data else {
                 return
             }
@@ -52,7 +43,7 @@ final class ViewController: UIViewController {
             do {
                 self.currentWeather = try JSONDecoder().decode(Weather.self, from: data)
             } catch {
-                print(error.localizedDescription)
+
             }
         }
         dataTask.resume()
@@ -65,11 +56,7 @@ final class ViewController: UIViewController {
             return
         }
         
-        let dataTask = session.dataTask(with: url) { (data: Data? , response: URLResponse?, error: Error?) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
+        let dataTask = session.dataTask(with: url) { data, _, _ in
             guard let data = data else {
                 return
             }
@@ -77,22 +64,44 @@ final class ViewController: UIViewController {
             do {
                 self.forecast = try JSONDecoder().decode(ForecastList.self, from: data)
             } catch {
-                print(error.localizedDescription)
+                self.showToast(message: StringFormattingError.unknown.description)
             }
         }
         dataTask.resume()
     }
+    
+    func findCurrentLocation() {
+        let geoCoder: CLGeocoder = CLGeocoder()
+        let local: Locale = Locale(identifier: "Ko-kr")
+        let location: CLLocation = CLLocation(latitude: latitude, longitude: longitude)
+        
+        geoCoder.reverseGeocodeLocation(location, preferredLocale: local) { place, _ in
+            if let address: [CLPlacemark] = place {
+                guard let city = address.last?.administrativeArea, let road = address.last?.thoroughfare else {
+                    return
+                }
+                self.currentLocation = "\(city) \(road)"
+            }
+        }
+    }
+    
+    private func changeToCelsiusText(_ temperature: Double) -> String {
+        let celsius = UnitTemperature.celsius.converter.value(fromBaseUnitValue: temperature)
+        let celsiusText = String(format: celsiusFormat, celsius)
+        
+        return celsiusText
+    }
 }
 
 extension ViewController: CLLocationManagerDelegate {
-    func setUpLocation() {
+    private func setUpLocationManager() {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         searchCurrentLocation()
     }
     
-    func searchCurrentLocation() {
+    private func searchCurrentLocation() {
         locationManager.requestLocation()
     }
     
