@@ -8,6 +8,7 @@ import UIKit
 
 final class ViewController: UIViewController {
     private var currentWeater: Weather?
+    private var forecast: ForecastList?
     private let myKey = "4119f1d1ea30af76104279475caf11c7"
     private let lat = 37
     private let lon = 126
@@ -15,11 +16,15 @@ final class ViewController: UIViewController {
     private var currentWeatherURL: String {
         return "https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(myKey)"
     }
+    private var forecastURL: String {
+        return "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=\(myKey)"
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         decodeCurrentWeaterFromAPI()
+        decodeForecastFromAPI()
     }
     
     private func changeToCelsiusText(_ temperature: Double) -> String {
@@ -46,6 +51,30 @@ final class ViewController: UIViewController {
             
             do {
                 self.currentWeater = try JSONDecoder().decode(Weather.self, from: data)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        dataTask.resume()
+    }
+    
+    private func decodeForecastFromAPI() {
+        let session = URLSession(configuration: .default)
+        guard let url:URL = URL(string: forecastURL) else {
+            return
+        }
+        
+        let dataTask = session.dataTask(with: url) { (data: Data? , response: URLResponse?, error: Error?) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            guard let data = data else {
+                return
+            }
+            
+            do {
+                self.forecast = try JSONDecoder().decode(ForecastList.self, from: data)
             } catch {
                 print(error.localizedDescription)
             }
