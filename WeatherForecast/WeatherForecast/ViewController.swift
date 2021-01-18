@@ -9,22 +9,15 @@ import UIKit
 final class ViewController: UIViewController {
     private var currentWeater: Weather?
     private var forecast: ForecastList?
-    private let myKey = "4119f1d1ea30af76104279475caf11c7"
-    private let lat = 37
-    private let lon = 126
     private let celsiusFormat = "%.1f"
-    private var currentWeatherURL: String {
-        return "https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(myKey)"
-    }
-    private var forecastURL: String {
-        return "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=\(myKey)"
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let lat: Double = 37
+        let lon: Double = 126
         
-        decodeCurrentWeaterFromAPI()
-        decodeForecastFromAPI()
+        decodeCurrentWeaterFromAPI(lat, lon)
+        decodeForecastFromAPI(lat, lon)
     }
     
     private func changeToCelsiusText(_ temperature: Double) -> String {
@@ -34,8 +27,9 @@ final class ViewController: UIViewController {
         return celsiusText
     }
     
-    private func decodeCurrentWeaterFromAPI() {
+    private func decodeCurrentWeaterFromAPI(_ lat: Double, _ lon: Double) {
         let session = URLSession(configuration: .default)
+        let currentWeatherURL = String(format: Api.url, Api.Kind.currentWeather.rawValue, lat, lon, Api.myKey)
         guard let url:URL = URL(string: currentWeatherURL) else {
             return
         }
@@ -58,8 +52,9 @@ final class ViewController: UIViewController {
         dataTask.resume()
     }
     
-    private func decodeForecastFromAPI() {
+    private func decodeForecastFromAPI(_ lat: Double, _ lon: Double) {
         let session = URLSession(configuration: .default)
+        let forecastURL = String(format: Api.url, Api.Kind.forecast.rawValue, lat, lon, Api.myKey)
         guard let url:URL = URL(string: forecastURL) else {
             return
         }
