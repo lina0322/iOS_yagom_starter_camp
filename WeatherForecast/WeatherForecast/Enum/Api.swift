@@ -10,6 +10,7 @@ enum Api {
         case currentWeather = "weather"
         case forecast = "forecast"
     }
+    
     static let myKey = "4119f1d1ea30af76104279475caf11c7"
     static let url = "https://api.openweathermap.org/data/2.5/%@?lat=%f&lon=%f&appid=%@"
     static let namsanLatitude = 37.55406295911284
