@@ -8,13 +8,13 @@ import UIKit
 import CoreLocation
 
 final class ViewController: UIViewController {
+    private let locationManager = CLLocationManager()
+    private var latitude: Double = InitialValue.namsanLatitude
+    private var longitude: Double = InitialValue.namsanLongitude
+    private var currentAddress: String = InitialValue.emptyString
+    
     private var currentWeather: Weather?
     private var forecast: ForecastList?
-    private let celsiusFormat = "%.1f"
-    private let locationManager = CLLocationManager()
-    private var latitude: Double = Api.namsanLatitude
-    private var longitude: Double = Api.namsanLongitude
-    private var currentLocation: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +22,11 @@ final class ViewController: UIViewController {
         setUpLocationManager()
     }
     
+    /// 현재 날씨, 일기 예보 데이터를 저장하고, 위치 정보를 한국어 주소로 변환
     private func setUpData() {
         decodeCurrentWeaterFromAPI()
         decodeForecastFromAPI()
-        findCurrentLocation()
+        findCurrentAddress()
     }
     
     private func decodeCurrentWeaterFromAPI() {
@@ -43,7 +44,7 @@ final class ViewController: UIViewController {
             do {
                 self.currentWeather = try JSONDecoder().decode(Weather.self, from: data)
             } catch {
-
+                self.showToast(message: StringFormattingError.unknown.description)
             }
         }
         dataTask.resume()
@@ -70,9 +71,9 @@ final class ViewController: UIViewController {
         dataTask.resume()
     }
     
-    func findCurrentLocation() {
+    private func findCurrentAddress() {
         let geoCoder: CLGeocoder = CLGeocoder()
-        let local: Locale = Locale(identifier: "Ko-kr")
+        let local: Locale = Locale(identifier: InitialValue.localIdentifier)
         let location: CLLocation = CLLocation(latitude: latitude, longitude: longitude)
         
         geoCoder.reverseGeocodeLocation(location, preferredLocale: local) { place, _ in
@@ -80,19 +81,20 @@ final class ViewController: UIViewController {
                 guard let city = address.last?.administrativeArea, let road = address.last?.thoroughfare else {
                     return
                 }
-                self.currentLocation = "\(city) \(road)"
+                self.currentAddress = "\(city) \(road)"
             }
         }
     }
     
     private func changeToCelsiusText(_ temperature: Double) -> String {
         let celsius = UnitTemperature.celsius.converter.value(fromBaseUnitValue: temperature)
-        let celsiusText = String(format: celsiusFormat, celsius)
+        let celsiusText = String(format: InitialValue.celsiusFormat, celsius)
         
         return celsiusText
     }
 }
 
+// MARK: - CLLocationManager
 extension ViewController: CLLocationManagerDelegate {
     private func setUpLocationManager() {
         locationManager.delegate = self
@@ -120,11 +122,12 @@ extension ViewController: CLLocationManagerDelegate {
     }
 }
 
+// MARK: - ToastMessage
 extension UIViewController {
     func showToast(message : String) {
         let labelWidth: CGFloat = 250
         let labelHeight: CGFloat = 35
-        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - labelWidth/2, y: self.view.frame.size.height-100, width: labelWidth, height: labelHeight))
+        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - labelWidth/2, y: self.view.frame.size.height-50, width: labelWidth, height: labelHeight))
         
         toastLabel.backgroundColor = .gray
         toastLabel.textColor = .white
