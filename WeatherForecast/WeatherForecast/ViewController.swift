@@ -21,7 +21,7 @@ final class ViewController: UIViewController {
         
         setUpLocationManager()
     }
-    
+        
     /// 현재 날씨, 일기 예보 데이터를 저장하고, 위치 정보를 한국어 주소로 변환
     private func setUpData() {
         decodeCurrentWeaterFromAPI()
@@ -29,6 +29,7 @@ final class ViewController: UIViewController {
         findCurrentAddress()
     }
     
+    // MARK: - decode
     private func decodeCurrentWeaterFromAPI() {
         let session = URLSession(configuration: .default)
         let currentWeatherURL = String(format: Api.url, Api.Kind.currentWeather.rawValue, latitude, longitude, Api.myKey)
@@ -71,6 +72,7 @@ final class ViewController: UIViewController {
         dataTask.resume()
     }
     
+    // MARK: - findCurrentAddress
     private func findCurrentAddress() {
         let geoCoder: CLGeocoder = CLGeocoder()
         let local: Locale = Locale(identifier: InitialValue.localIdentifier)
@@ -84,13 +86,6 @@ final class ViewController: UIViewController {
                 self.currentAddress = "\(city) \(road)"
             }
         }
-    }
-    
-    private func changeToCelsiusText(_ temperature: Double) -> String {
-        let celsius = UnitTemperature.celsius.converter.value(fromBaseUnitValue: temperature)
-        let celsiusText = String(format: InitialValue.celsiusFormat, celsius)
-        
-        return celsiusText
     }
 }
 

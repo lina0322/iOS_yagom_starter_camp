@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C3BC0FC25B66E5300F0856B /* InitialValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BC0FB25B66E5300F0856B /* InitialValue.swift */; };
 		4C527DAB25B572EF00D4DDEC /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C527DAA25B572EF00D4DDEC /* Weather.swift */; };
 		4C527DB625B5A99100D4DDEC /* WeatherIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C527DB525B5A99100D4DDEC /* WeatherIcon.swift */; };
 		4C527DBB25B5A9BE00D4DDEC /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C527DBA25B5A9BE00D4DDEC /* Temperature.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C3BC0FB25B66E5300F0856B /* InitialValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialValue.swift; sourceTree = "<group>"; };
 		4C527DAA25B572EF00D4DDEC /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		4C527DB525B5A99100D4DDEC /* WeatherIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherIcon.swift; sourceTree = "<group>"; };
 		4C527DBA25B5A9BE00D4DDEC /* Temperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			children = (
 				4C527DCF25B5CCC200D4DDEC /* Api.swift */,
 				4C527DD725B5E66500D4DDEC /* StringFormattingError.swift */,
+				4C3BC0FB25B66E5300F0856B /* InitialValue.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				4C527DD025B5CCC200D4DDEC /* Api.swift in Sources */,
 				4C527DD825B5E66500D4DDEC /* StringFormattingError.swift in Sources */,
 				4C527DBB25B5A9BE00D4DDEC /* Temperature.swift in Sources */,
+				4C3BC0FC25B66E5300F0856B /* InitialValue.swift in Sources */,
 				C79C8CF825ADDDF200EEE3F1 /* ViewController.swift in Sources */,
 				C79C8CF425ADDDF200EEE3F1 /* AppDelegate.swift in Sources */,
 				C79C8CF625ADDDF200EEE3F1 /* SceneDelegate.swift in Sources */,
