@@ -5,7 +5,7 @@
 //  Created by 리나 on 2021/01/18.
 //
 
-struct Forecast: Codable {
+struct Forecast: Decodable {
     let icon: [WeatherIcon]
     let temperature: Temperature
     let time: String

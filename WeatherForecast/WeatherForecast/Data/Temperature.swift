@@ -5,7 +5,7 @@
 //  Created by 리나 on 2021/01/18.
 //
 
-struct Temperature: Codable {
+struct Temperature: Decodable {
     let average: Double
     let min: Double
     let max: Double
