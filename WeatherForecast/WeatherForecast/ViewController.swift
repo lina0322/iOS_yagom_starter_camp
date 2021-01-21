@@ -85,11 +85,21 @@ extension ViewController: CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        searchCurrentLocation()
     }
     
-    private func searchCurrentLocation() {
-        locationManager.requestLocation()
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkLocationPermission()
+    }
+    
+    private func checkLocationPermission() {
+        switch CLLocationManager.authorizationStatus() {
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.requestLocation()
+        case .denied:
+            showToast(message: StringFormattingError.notAllowedLocationService.description)
+        default:
+            return
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
