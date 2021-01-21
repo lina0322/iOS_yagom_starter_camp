@@ -11,7 +11,7 @@ struct WeatherApiManager {
         case forecast = "forecast"
     }
     
-    let imageURL = "https://openweathermap.org/img/w/%@.png"
+    static let imageURL = "https://openweathermap.org/img/w/%@.png"
     
     static func makeApiURL(latitude: Double, longitude: Double, kind: Kind) -> String {
         let myKey = "4119f1d1ea30af76104279475caf11c7"

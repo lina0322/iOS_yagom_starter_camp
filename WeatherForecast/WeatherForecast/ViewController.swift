@@ -13,13 +13,13 @@ final class ViewController: UIViewController {
     private var currentWeather: Weather?
     private var forecast: ForecastList?
     private var currentAddress: String = InitialValue.emptyString
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpLocationManager()
     }
-        
+    
     /// 현재 날씨, 일기 예보 데이터를 저장하고, 위치 정보를 한국어 주소로 변환
     private func setUpData(latitude: Double, longitude: Double) {
         decodeCurrentWeaterFromAPI(latitude: latitude, longitude: longitude)
@@ -44,7 +44,7 @@ final class ViewController: UIViewController {
             do {
                 self.currentWeather = try JSONDecoder().decode(Weather.self, from: data)
             } catch {
-                self.showToast(message: StringFormattingError.unknown.description)
+                self.showToast(message: StringFormattingError.decodingFailure.description)
             }
         }.resume()
     }
@@ -65,7 +65,7 @@ final class ViewController: UIViewController {
             do {
                 self.forecast = try JSONDecoder().decode(ForecastList.self, from: data)
             } catch {
-                self.showToast(message: StringFormattingError.unknown.description)
+                self.showToast(message: StringFormattingError.decodingFailure.description)
             }
         }.resume()
     }
@@ -77,12 +77,10 @@ final class ViewController: UIViewController {
         let location: CLLocation = CLLocation(latitude: latitude, longitude: longitude)
         
         geoCoder.reverseGeocodeLocation(location, preferredLocale: local) { place, _ in
-            if let address: [CLPlacemark] = place {
-                guard let city = address.last?.administrativeArea, let road = address.last?.thoroughfare else {
-                    return
-                }
-                self.currentAddress = "\(city) \(road)"
+            guard let address: [CLPlacemark] = place, let city = address.last?.administrativeArea, let road = address.last?.thoroughfare else {
+                return
             }
+            self.currentAddress = "\(city) \(road)"
         }
     }
 }
