@@ -5,7 +5,7 @@
 //  Created by 리나 on 2021/01/18.
 //
 
-enum Api {
+enum WeatherApiManager {
     enum Kind: String {
         case currentWeather = "weather"
         case forecast = "forecast"

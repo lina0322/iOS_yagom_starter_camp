@@ -13,7 +13,7 @@
 		4C527DBB25B5A9BE00D4DDEC /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C527DBA25B5A9BE00D4DDEC /* Temperature.swift */; };
 		4C527DC025B5A9FD00D4DDEC /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C527DBF25B5A9FD00D4DDEC /* Forecast.swift */; };
 		4C527DC525B5AA1C00D4DDEC /* ForecastList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C527DC425B5AA1C00D4DDEC /* ForecastList.swift */; };
-		4C527DD025B5CCC200D4DDEC /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C527DCF25B5CCC200D4DDEC /* Api.swift */; };
+		4C527DD025B5CCC200D4DDEC /* WeatherApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C527DCF25B5CCC200D4DDEC /* WeatherApiManager.swift */; };
 		4C527DD825B5E66500D4DDEC /* StringFormattingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C527DD725B5E66500D4DDEC /* StringFormattingError.swift */; };
 		C79C8CF425ADDDF200EEE3F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C8CF325ADDDF200EEE3F1 /* AppDelegate.swift */; };
 		C79C8CF625ADDDF200EEE3F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C8CF525ADDDF200EEE3F1 /* SceneDelegate.swift */; };
@@ -49,7 +49,7 @@
 		4C527DBA25B5A9BE00D4DDEC /* Temperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
 		4C527DBF25B5A9FD00D4DDEC /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		4C527DC425B5AA1C00D4DDEC /* ForecastList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastList.swift; sourceTree = "<group>"; };
-		4C527DCF25B5CCC200D4DDEC /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		4C527DCF25B5CCC200D4DDEC /* WeatherApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApiManager.swift; sourceTree = "<group>"; };
 		4C527DD725B5E66500D4DDEC /* StringFormattingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFormattingError.swift; sourceTree = "<group>"; };
 		C79C8CF025ADDDF200EEE3F1 /* WeatherForecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherForecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C79C8CF325ADDDF200EEE3F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4C527DDF25B5F9C100D4DDEC /* Data */ = {
+		4C527DDF25B5F9C100D4DDEC /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				4C527DB525B5A99100D4DDEC /* WeatherIcon.swift */,
@@ -101,13 +101,13 @@
 				4C527DBF25B5A9FD00D4DDEC /* Forecast.swift */,
 				4C527DC425B5AA1C00D4DDEC /* ForecastList.swift */,
 			);
-			path = Data;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		4C527DE025B5FA0500D4DDEC /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				4C527DCF25B5CCC200D4DDEC /* Api.swift */,
+				4C527DCF25B5CCC200D4DDEC /* WeatherApiManager.swift */,
 				4C527DD725B5E66500D4DDEC /* StringFormattingError.swift */,
 				4C3BC0FB25B66E5300F0856B /* InitialValue.swift */,
 			);
@@ -140,7 +140,7 @@
 				C79C8CF325ADDDF200EEE3F1 /* AppDelegate.swift */,
 				C79C8CF525ADDDF200EEE3F1 /* SceneDelegate.swift */,
 				4C527DE025B5FA0500D4DDEC /* Enum */,
-				4C527DDF25B5F9C100D4DDEC /* Data */,
+				4C527DDF25B5F9C100D4DDEC /* Model */,
 				C79C8CF725ADDDF200EEE3F1 /* ViewController.swift */,
 				C79C8CF925ADDDF200EEE3F1 /* Main.storyboard */,
 				C79C8CFC25ADDDF300EEE3F1 /* Assets.xcassets */,
@@ -302,7 +302,7 @@
 				4C527DAB25B572EF00D4DDEC /* Weather.swift in Sources */,
 				4C527DB625B5A99100D4DDEC /* WeatherIcon.swift in Sources */,
 				4C527DC025B5A9FD00D4DDEC /* Forecast.swift in Sources */,
-				4C527DD025B5CCC200D4DDEC /* Api.swift in Sources */,
+				4C527DD025B5CCC200D4DDEC /* WeatherApiManager.swift in Sources */,
 				4C527DD825B5E66500D4DDEC /* StringFormattingError.swift in Sources */,
 				4C527DBB25B5A9BE00D4DDEC /* Temperature.swift in Sources */,
 				4C3BC0FC25B66E5300F0856B /* InitialValue.swift in Sources */,

@@ -32,7 +32,7 @@ final class ViewController: UIViewController {
     // MARK: - decode
     private func decodeCurrentWeaterFromAPI() {
         let session = URLSession(configuration: .default)
-        let currentWeatherURL = String(format: Api.dataURL, Api.Kind.currentWeather.rawValue, latitude, longitude, Api.myKey)
+        let currentWeatherURL = String(format: WeatherApiManager.dataURL, WeatherApiManager.Kind.currentWeather.rawValue, latitude, longitude, WeatherApiManager.myKey)
         guard let url:URL = URL(string: currentWeatherURL) else {
             return
         }
@@ -53,7 +53,7 @@ final class ViewController: UIViewController {
     
     private func decodeForecastFromAPI() {
         let session = URLSession(configuration: .default)
-        let forecastURL = String(format: Api.dataURL, Api.Kind.forecast.rawValue, latitude, longitude, Api.myKey)
+        let forecastURL = String(format: WeatherApiManager.dataURL, WeatherApiManager.Kind.forecast.rawValue, latitude, longitude, WeatherApiManager.myKey)
         guard let url:URL = URL(string: forecastURL) else {
             return
         }
