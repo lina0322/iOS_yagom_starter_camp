@@ -28,13 +28,14 @@ final class ViewController: UIViewController {
     
     // MARK: - decode
     private func decodeCurrentWeaterFromAPI(latitude: Double, longitude: Double) {
-        let session = URLSession(configuration: .default)
         let currentWeatherURL = String(format: WeatherApiManager.dataURL, WeatherApiManager.Kind.currentWeather.rawValue, latitude, longitude, WeatherApiManager.myKey)
         guard let url:URL = URL(string: currentWeatherURL) else {
             return
         }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
         
-        let dataTask = session.dataTask(with: url) { data, _, _ in
+        URLSession.shared.dataTask(with: url) { data, _, _ in
             guard let data = data else {
                 return
             }
@@ -44,18 +45,18 @@ final class ViewController: UIViewController {
             } catch {
                 self.showToast(message: StringFormattingError.unknown.description)
             }
-        }
-        dataTask.resume()
+        }.resume()
     }
     
     private func decodeForecastFromAPI(latitude: Double, longitude: Double) {
-        let session = URLSession(configuration: .default)
         let forecastURL = String(format: WeatherApiManager.dataURL, WeatherApiManager.Kind.forecast.rawValue, latitude, longitude, WeatherApiManager.myKey)
         guard let url:URL = URL(string: forecastURL) else {
             return
         }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
         
-        let dataTask = session.dataTask(with: url) { data, _, _ in
+        URLSession.shared.dataTask(with: url) { data, _, _ in
             guard let data = data else {
                 return
             }
@@ -65,8 +66,7 @@ final class ViewController: UIViewController {
             } catch {
                 self.showToast(message: StringFormattingError.unknown.description)
             }
-        }
-        dataTask.resume()
+        }.resume()
     }
     
     // MARK: - findCurrentAddress
