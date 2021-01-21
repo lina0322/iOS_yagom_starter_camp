@@ -1,7 +1,8 @@
 //
 //  WeatherForecast - ViewController.swift
-//  Created by yagom.
-//  Copyright © yagom. All rights reserved.
+//  WeatherForecast
+//
+//  Created by 리나 on 2021/01/18.
 //
 
 import UIKit
@@ -28,7 +29,7 @@ final class ViewController: UIViewController {
     
     // MARK: - decode
     private func decodeCurrentWeaterFromAPI(latitude: Double, longitude: Double) {
-        let currentWeatherURL = String(format: WeatherApiManager.dataURL, WeatherApiManager.Kind.currentWeather.rawValue, latitude, longitude, WeatherApiManager.myKey)
+        let currentWeatherURL = WeatherApiManager.makeApiURL(latitude: latitude, longitude: longitude, kind: .currentWeather)
         guard let url:URL = URL(string: currentWeatherURL) else {
             return
         }
@@ -49,7 +50,7 @@ final class ViewController: UIViewController {
     }
     
     private func decodeForecastFromAPI(latitude: Double, longitude: Double) {
-        let forecastURL = String(format: WeatherApiManager.dataURL, WeatherApiManager.Kind.forecast.rawValue, latitude, longitude, WeatherApiManager.myKey)
+        let forecastURL = WeatherApiManager.makeApiURL(latitude: latitude, longitude: longitude, kind: .forecast)
         guard let url:URL = URL(string: forecastURL) else {
             return
         }
