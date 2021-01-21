@@ -9,7 +9,7 @@ struct Forecast: Decodable {
     private let weather: [WeatherIcon]
     let temperature: Temperature
     let time: String
-    
+
     var icon: WeatherIcon? {
         return weather.first
     }

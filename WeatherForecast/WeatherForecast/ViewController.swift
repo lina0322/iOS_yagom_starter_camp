@@ -29,18 +29,15 @@ final class ViewController: UIViewController {
     
     // MARK: - decode
     private func decodeCurrentWeaterFromAPI(latitude: Double, longitude: Double) {
-        let currentWeatherURL = WeatherApiManager.makeApiURL(latitude: latitude, longitude: longitude, kind: .currentWeather)
-        guard let url:URL = URL(string: currentWeatherURL) else {
+        guard var urlRequest = WeatherAPIManager.shared.makeURLRequest(kind: .currentWeather, latitude: latitude, logitude: longitude) else {
             return
         }
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "GET"
         
-        URLSession.shared.dataTask(with: url) { data, _, _ in
+        urlRequest.httpMethod = "GET"
+        URLSession.shared.dataTask(with: urlRequest) { data, _, _ in
             guard let data = data else {
                 return
             }
-            
             do {
                 self.currentWeather = try JSONDecoder().decode(Weather.self, from: data)
             } catch {
@@ -50,18 +47,15 @@ final class ViewController: UIViewController {
     }
     
     private func decodeForecastFromAPI(latitude: Double, longitude: Double) {
-        let forecastURL = WeatherApiManager.makeApiURL(latitude: latitude, longitude: longitude, kind: .forecast)
-        guard let url:URL = URL(string: forecastURL) else {
+        guard var urlRequest = WeatherAPIManager.shared.makeURLRequest(kind: .forecast, latitude: latitude, logitude: longitude) else {
             return
         }
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "GET"
         
-        URLSession.shared.dataTask(with: url) { data, _, _ in
+        urlRequest.httpMethod = "GET"
+        URLSession.shared.dataTask(with: urlRequest) { data, _, _ in
             guard let data = data else {
                 return
             }
-            
             do {
                 self.forecast = try JSONDecoder().decode(ForecastList.self, from: data)
             } catch {

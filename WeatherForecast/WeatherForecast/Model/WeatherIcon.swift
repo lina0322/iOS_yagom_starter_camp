@@ -7,8 +7,9 @@
 
 struct WeatherIcon: Decodable {
     private let name: String
+    
     var url: String {
-        return String(format: WeatherApiManager.imageURL, name)
+        return String(format: WeatherAPIManager.imageURL, name)
     }
     
     enum CodingKeys: String, CodingKey {
