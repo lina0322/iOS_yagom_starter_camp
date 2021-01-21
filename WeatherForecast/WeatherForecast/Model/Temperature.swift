@@ -8,9 +8,9 @@
 import Foundation
 
 struct Temperature: Decodable {
-    let kelvinAverage: Double
-    let kelvinMinimum: Double
-    let kelvinMaximum: Double
+    private let kelvinAverage: Double
+    private let kelvinMinimum: Double
+    private let kelvinMaximum: Double
     
     var celsiusAverage: String {
         return changeToCelsiusText(kelvinAverage)

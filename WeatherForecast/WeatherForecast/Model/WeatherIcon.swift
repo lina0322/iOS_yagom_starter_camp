@@ -6,7 +6,7 @@
 //
 
 struct WeatherIcon: Decodable {
-    let name: String
+    private let name: String
     var url: String {
         return String(format: WeatherApiManager.imageURL, name)
     }
