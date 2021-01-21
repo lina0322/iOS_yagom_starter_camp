@@ -6,11 +6,15 @@
 //
 
 struct Weather: Decodable {
-    let icon: [WeatherIcon]
+    private let weather: [WeatherIcon]
     let temperature: Temperature
-
+    
+    var icon: WeatherIcon? {
+        return weather.first
+    }
+    
     enum CodingKeys: String, CodingKey {
-        case icon = "weather"
+        case weather
         case temperature = "main"
     }
 }
