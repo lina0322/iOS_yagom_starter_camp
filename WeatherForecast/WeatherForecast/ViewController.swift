@@ -9,13 +9,10 @@ import CoreLocation
 
 final class ViewController: UIViewController {
     private let locationManager = CLLocationManager()
-    private var latitude: Double = InitialValue.namsanLatitude
-    private var longitude: Double = InitialValue.namsanLongitude
-    private var currentAddress: String = InitialValue.emptyString
-    
     private var currentWeather: Weather?
     private var forecast: ForecastList?
-    
+    private var currentAddress: String = InitialValue.emptyString
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,14 +20,14 @@ final class ViewController: UIViewController {
     }
         
     /// 현재 날씨, 일기 예보 데이터를 저장하고, 위치 정보를 한국어 주소로 변환
-    private func setUpData() {
-        decodeCurrentWeaterFromAPI()
-        decodeForecastFromAPI()
-        findCurrentAddress()
+    private func setUpData(latitude: Double, longitude: Double) {
+        decodeCurrentWeaterFromAPI(latitude: latitude, longitude: longitude)
+        decodeForecastFromAPI(latitude: latitude, longitude: longitude)
+        findCurrentAddress(latitude: latitude, longitude: longitude)
     }
     
     // MARK: - decode
-    private func decodeCurrentWeaterFromAPI() {
+    private func decodeCurrentWeaterFromAPI(latitude: Double, longitude: Double) {
         let session = URLSession(configuration: .default)
         let currentWeatherURL = String(format: WeatherApiManager.dataURL, WeatherApiManager.Kind.currentWeather.rawValue, latitude, longitude, WeatherApiManager.myKey)
         guard let url:URL = URL(string: currentWeatherURL) else {
@@ -51,7 +48,7 @@ final class ViewController: UIViewController {
         dataTask.resume()
     }
     
-    private func decodeForecastFromAPI() {
+    private func decodeForecastFromAPI(latitude: Double, longitude: Double) {
         let session = URLSession(configuration: .default)
         let forecastURL = String(format: WeatherApiManager.dataURL, WeatherApiManager.Kind.forecast.rawValue, latitude, longitude, WeatherApiManager.myKey)
         guard let url:URL = URL(string: forecastURL) else {
@@ -73,7 +70,7 @@ final class ViewController: UIViewController {
     }
     
     // MARK: - findCurrentAddress
-    private func findCurrentAddress() {
+    private func findCurrentAddress(latitude: Double, longitude: Double) {
         let geoCoder: CLGeocoder = CLGeocoder()
         let local: Locale = Locale(identifier: InitialValue.localIdentifier)
         let location: CLLocation = CLLocation(latitude: latitude, longitude: longitude)
@@ -106,14 +103,16 @@ extension ViewController: CLLocationManagerDelegate {
         guard let coordinate = locationManager.location?.coordinate else {
             return
         }
-        latitude = coordinate.latitude
-        longitude = coordinate.longitude
-        setUpData()
+        let latitude = coordinate.latitude
+        let longitude = coordinate.longitude
+        setUpData(latitude: latitude, longitude: longitude)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         showToast(message: StringFormattingError.notAllowedLocationService.description)
-        setUpData()
+        let latitude: Double = InitialValue.namsanLatitude
+        let longitude: Double = InitialValue.namsanLongitude
+        setUpData(latitude: latitude, longitude: longitude)
     }
 }
 
