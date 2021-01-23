@@ -20,11 +20,22 @@ final class ViewController: UIViewController {
         configureLocationManager()
     }
     
-    /// 현재 날씨, 일기 예보 데이터를 저장하고, 위치 정보를 한국어 주소로 변환
+    // MARK: - Configure Data
     private func configureData(for location: CLLocation) {
         updateCurrentWeater(of: location)
         updateForecast(of: location)
-        findCurrentAddress(of: location)
+        updateCurrentAddress(of: location)
+    }
+    
+    private func updateCurrentAddress(of location: CLLocation) {
+        AddressConverter.findCurrentAddress(of: location) { result in
+            switch result {
+            case .success(let data):
+                self.currentAddress = data
+            case .failure(let error):
+                self.showToast(message: "\(error)")
+            }
+        }
     }
     
     private func updateCurrentWeater(of location: CLLocation) {
@@ -52,19 +63,6 @@ final class ViewController: UIViewController {
                     self.showToast(message: "\(error)")
                 }
             }
-        }
-    }
-    
-    // MARK: - findCurrentAddress
-    private func findCurrentAddress(of location: CLLocation) {
-        let geoCoder: CLGeocoder = CLGeocoder()
-        let local: Locale = Locale(identifier: InitialValue.localIdentifier)
-        
-        geoCoder.reverseGeocodeLocation(location, preferredLocale: local) { place, _ in
-            guard let address: [CLPlacemark] = place, let city = address.last?.administrativeArea, let road = address.last?.thoroughfare else {
-                return
-            }
-            self.currentAddress = "\(city) \(road)"
         }
     }
 }

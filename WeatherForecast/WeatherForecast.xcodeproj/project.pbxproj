@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4C3BC0FC25B66E5300F0856B /* InitialValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BC0FB25B66E5300F0856B /* InitialValue.swift */; };
+		4C50155725BC59F300762FCF /* AddressConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C50155625BC59F300762FCF /* AddressConverter.swift */; };
 		4C527DAB25B572EF00D4DDEC /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C527DAA25B572EF00D4DDEC /* Weather.swift */; };
 		4C527DB625B5A99100D4DDEC /* WeatherIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C527DB525B5A99100D4DDEC /* WeatherIcon.swift */; };
 		4C527DBB25B5A9BE00D4DDEC /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C527DBA25B5A9BE00D4DDEC /* Temperature.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		4C3BC0FB25B66E5300F0856B /* InitialValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialValue.swift; sourceTree = "<group>"; };
+		4C50155625BC59F300762FCF /* AddressConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressConverter.swift; sourceTree = "<group>"; };
 		4C527DAA25B572EF00D4DDEC /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		4C527DB525B5A99100D4DDEC /* WeatherIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherIcon.swift; sourceTree = "<group>"; };
 		4C527DBA25B5A9BE00D4DDEC /* Temperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			children = (
 				4C527DCF25B5CCC200D4DDEC /* WeatherAPIManager.swift */,
 				4CA6008F25BC02B6006847DF /* WeatherAPIJSONDecoder.swift */,
+				4C50155625BC59F300762FCF /* AddressConverter.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				4CA6009025BC02B6006847DF /* WeatherAPIJSONDecoder.swift in Sources */,
 				4C527DC025B5A9FD00D4DDEC /* Forecast.swift in Sources */,
 				4C527DD025B5CCC200D4DDEC /* WeatherAPIManager.swift in Sources */,
+				4C50155725BC59F300762FCF /* AddressConverter.swift in Sources */,
 				4C527DD825B5E66500D4DDEC /* StringFormattingError.swift in Sources */,
 				4CA600A525BC14E8006847DF /* StringExtension.swift in Sources */,
 				4C527DBB25B5A9BE00D4DDEC /* Temperature.swift in Sources */,
