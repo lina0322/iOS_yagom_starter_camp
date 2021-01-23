@@ -20,12 +20,6 @@ final class ViewController: UIViewController {
         setUpLocationManager()
     }
     
-    @IBAction func a() {
-        dump(forecast)
-        dump(currentWeather)
-        print(currentAddress)
-    }
-    
     /// 현재 날씨, 일기 예보 데이터를 저장하고, 위치 정보를 한국어 주소로 변환
     private func setUpData(latitude: Double, longitude: Double) {
         updateCurrentWeater(latitude: latitude, longitude: longitude)
@@ -123,34 +117,4 @@ extension ViewController: CLLocationManagerDelegate {
         let longitude: Double = InitialValue.namsanLongitude
         setUpData(latitude: latitude, longitude: longitude)
     }
-}
-
-// MARK: - ToastMessage
-extension UIViewController {
-    func showToast(message : String) {
-        let labelWidth: CGFloat = 250
-        let labelHeight: CGFloat = 35
-        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - labelWidth/2, y: self.view.frame.size.height-50, width: labelWidth, height: labelHeight))
-        
-        toastLabel.backgroundColor = .gray
-        toastLabel.textColor = .white
-        toastLabel.font = .systemFont(ofSize: 14.0)
-        toastLabel.textAlignment = .center
-        toastLabel.text = message
-        toastLabel.layer.cornerRadius = 10
-        toastLabel.clipsToBounds = true
-        toastLabel.numberOfLines = 0
-        
-        self.view.addSubview(toastLabel)
-        UIView.animate(withDuration: 10.0, delay: 0.1, options: .curveEaseOut, animations: {
-            toastLabel.alpha = 0.0
-        }, completion: {(isCompleted) in
-            toastLabel.removeFromSuperview()
-        })
-    }
-}
-
-// MARK: - Extension String
-extension String {
-    static var empty = ""
 }

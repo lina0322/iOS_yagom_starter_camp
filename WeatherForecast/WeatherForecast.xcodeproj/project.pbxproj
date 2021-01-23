@@ -16,6 +16,8 @@
 		4C527DD025B5CCC200D4DDEC /* WeatherAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C527DCF25B5CCC200D4DDEC /* WeatherAPIManager.swift */; };
 		4C527DD825B5E66500D4DDEC /* StringFormattingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C527DD725B5E66500D4DDEC /* StringFormattingError.swift */; };
 		4CA6009025BC02B6006847DF /* WeatherJSONDecoer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA6008F25BC02B6006847DF /* WeatherJSONDecoer.swift */; };
+		4CA600A525BC14E8006847DF /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA600A425BC14E8006847DF /* StringExtension.swift */; };
+		4CA600AD25BC1502006847DF /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA600AC25BC1502006847DF /* ToastMessage.swift */; };
 		C79C8CF425ADDDF200EEE3F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C8CF325ADDDF200EEE3F1 /* AppDelegate.swift */; };
 		C79C8CF625ADDDF200EEE3F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C8CF525ADDDF200EEE3F1 /* SceneDelegate.swift */; };
 		C79C8CF825ADDDF200EEE3F1 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C8CF725ADDDF200EEE3F1 /* WeatherViewController.swift */; };
@@ -53,6 +55,8 @@
 		4C527DCF25B5CCC200D4DDEC /* WeatherAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIManager.swift; sourceTree = "<group>"; };
 		4C527DD725B5E66500D4DDEC /* StringFormattingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFormattingError.swift; sourceTree = "<group>"; };
 		4CA6008F25BC02B6006847DF /* WeatherJSONDecoer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherJSONDecoer.swift; sourceTree = "<group>"; };
+		4CA600A425BC14E8006847DF /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		4CA600AC25BC1502006847DF /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
 		C79C8CF025ADDDF200EEE3F1 /* WeatherForecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherForecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C79C8CF325ADDDF200EEE3F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C79C8CF525ADDDF200EEE3F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +128,15 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		4CA600A325BC14D5006847DF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4CA600A425BC14E8006847DF /* StringExtension.swift */,
+				4CA600AC25BC1502006847DF /* ToastMessage.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		C79C8CE725ADDDF200EEE3F1 = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +165,7 @@
 				4C527DE025B5FA0500D4DDEC /* Enum */,
 				4C527DDF25B5F9C100D4DDEC /* Model */,
 				4CA6009A25BC04D1006847DF /* Networking */,
+				4CA600A325BC14D5006847DF /* Extension */,
 				C79C8CF725ADDDF200EEE3F1 /* WeatherViewController.swift */,
 				C79C8CF925ADDDF200EEE3F1 /* Main.storyboard */,
 				C79C8CFC25ADDDF300EEE3F1 /* Assets.xcassets */,
@@ -316,10 +330,12 @@
 				4C527DC025B5A9FD00D4DDEC /* Forecast.swift in Sources */,
 				4C527DD025B5CCC200D4DDEC /* WeatherAPIManager.swift in Sources */,
 				4C527DD825B5E66500D4DDEC /* StringFormattingError.swift in Sources */,
+				4CA600A525BC14E8006847DF /* StringExtension.swift in Sources */,
 				4C527DBB25B5A9BE00D4DDEC /* Temperature.swift in Sources */,
 				4C3BC0FC25B66E5300F0856B /* InitialValue.swift in Sources */,
 				C79C8CF825ADDDF200EEE3F1 /* WeatherViewController.swift in Sources */,
 				C79C8CF425ADDDF200EEE3F1 /* AppDelegate.swift in Sources */,
+				4CA600AD25BC1502006847DF /* ToastMessage.swift in Sources */,
 				C79C8CF625ADDDF200EEE3F1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
