@@ -17,47 +17,38 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpLocationManager()
+        configureLocationManager()
     }
     
     /// 현재 날씨, 일기 예보 데이터를 저장하고, 위치 정보를 한국어 주소로 변환
-    private func setUpData(latitude: Double, longitude: Double) {
-        updateCurrentWeater(latitude: latitude, longitude: longitude)
-        updateForecast(latitude: latitude, longitude: longitude)
-        findCurrentAddress(latitude: latitude, longitude: longitude)
+    private func configureData(for location: CLLocation) {
+        updateCurrentWeater(of: location)
+        updateForecast(of: location)
+        findCurrentAddress(of: location)
     }
     
-    // MARK: - Update Data
-    private func updateCurrentWeater(latitude: Double, longitude: Double) {
-        guard var urlRequest = WeatherAPIManager.makeURLRequest(apiType: .currentWeather, latitude: latitude, longitude: longitude) else {
-            return
-        }
-        urlRequest.httpMethod = "GET"
-        let apiJsonDecoder = APIJSONDecoder<Weather>()
-        apiJsonDecoder.decodeAPIData(url: urlRequest) { result in
+    private func updateCurrentWeater(of location: CLLocation) {
+        let jsonDecoder = WeatherAPIJSONDecoder<Weather>()
+        jsonDecoder.updateData(apiType: .currentWeather, location: location) { result in
             switch result {
             case .success(let data):
                 self.currentWeather = data
             case .failure(let error):
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     self.showToast(message: "\(error)")
                 }
             }
         }
     }
     
-    private func updateForecast(latitude: Double, longitude: Double) {
-        guard var urlRequest = WeatherAPIManager.makeURLRequest(apiType: .forecast, latitude: latitude, longitude: longitude) else {
-            return
-        }
-        urlRequest.httpMethod = "GET"
-        let apiJsonDecoder = APIJSONDecoder<ForecastList>()
-        apiJsonDecoder.decodeAPIData(url: urlRequest) { result in
+    private func updateForecast(of location: CLLocation) {
+        let jsonDecoder = WeatherAPIJSONDecoder<ForecastList>()
+        jsonDecoder.updateData(apiType: .forecast, location: location) { result in
             switch result {
             case .success(let data):
                 self.forecast = data
             case .failure(let error):
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     self.showToast(message: "\(error)")
                 }
             }
@@ -65,10 +56,9 @@ final class ViewController: UIViewController {
     }
     
     // MARK: - findCurrentAddress
-    private func findCurrentAddress(latitude: Double, longitude: Double) {
+    private func findCurrentAddress(of location: CLLocation) {
         let geoCoder: CLGeocoder = CLGeocoder()
         let local: Locale = Locale(identifier: InitialValue.localIdentifier)
-        let location: CLLocation = CLLocation(latitude: latitude, longitude: longitude)
         
         geoCoder.reverseGeocodeLocation(location, preferredLocale: local) { place, _ in
             guard let address: [CLPlacemark] = place, let city = address.last?.administrativeArea, let road = address.last?.thoroughfare else {
@@ -81,7 +71,7 @@ final class ViewController: UIViewController {
 
 // MARK: - CLLocationManager
 extension ViewController: CLLocationManagerDelegate {
-    private func setUpLocationManager() {
+    private func configureLocationManager() {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -103,18 +93,15 @@ extension ViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let coordinate = locationManager.location?.coordinate else {
+        guard let coordinate: CLLocation = locations.last else {
             return
         }
-        let latitude = coordinate.latitude
-        let longitude = coordinate.longitude
-        setUpData(latitude: latitude, longitude: longitude)
+        configureData(for: coordinate)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         showToast(message: StringFormattingError.notAllowedLocationService.description)
-        let latitude: Double = InitialValue.namsanLatitude
-        let longitude: Double = InitialValue.namsanLongitude
-        setUpData(latitude: latitude, longitude: longitude)
+        let coordinate = CLLocation(latitude: InitialValue.namsanLatitude, longitude: InitialValue.namsanLongitude)
+        configureData(for: coordinate)
     }
 }

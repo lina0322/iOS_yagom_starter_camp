@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct WeatherAPIManager {
     enum APIType: CustomStringConvertible {
@@ -25,12 +26,12 @@ struct WeatherAPIManager {
     static let imageURL = "https://openweathermap.org/img/w/%@.png"
     private static let baseURL = "https://api.openweathermap.org/data/2.5/"
     
-    static func makeURLRequest(apiType: APIType, latitude: Double, longitude: Double) -> URLRequest? {
+    static func makeURLRequest(apiType: APIType, location: CLLocation) -> URLRequest? {
         guard var absoluteURL = URLComponents(string: "\(baseURL)\(apiType)") else {
             return nil
         }
         
-        absoluteURL.queryItems = makeQueryItems(latitude: latitude, longitude: longitude)
+        absoluteURL.queryItems = makeQueryItems(location: location)
         guard let url = absoluteURL.url else {
             return nil
         }
@@ -38,13 +39,13 @@ struct WeatherAPIManager {
         return urlRequest
     }
     
-    private static func makeQueryItems(latitude: Double, longitude: Double) -> [URLQueryItem] {
+    private static func makeQueryItems(location: CLLocation) -> [URLQueryItem] {
         let myKey = "4119f1d1ea30af76104279475caf11c7"
         let units = "metric" // 섭씨
         
         let queryItems = [
-            URLQueryItem(name: "lat", value: String(latitude)),
-            URLQueryItem(name: "lon", value: String(longitude)),
+            URLQueryItem(name: "lat", value: String(location.coordinate.latitude)),
+            URLQueryItem(name: "lon", value: String(location.coordinate.longitude)),
             URLQueryItem(name: "appid", value: myKey),
             URLQueryItem(name: "units", value: units)
         ]
