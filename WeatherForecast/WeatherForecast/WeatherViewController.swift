@@ -20,48 +20,54 @@ final class ViewController: UIViewController {
         setUpLocationManager()
     }
     
+    @IBAction func a() {
+        dump(forecast)
+        dump(currentWeather)
+        print(currentAddress)
+    }
+    
     /// 현재 날씨, 일기 예보 데이터를 저장하고, 위치 정보를 한국어 주소로 변환
     private func setUpData(latitude: Double, longitude: Double) {
-        decodeCurrentWeaterFromAPI(latitude: latitude, longitude: longitude)
-        decodeForecastFromAPI(latitude: latitude, longitude: longitude)
+        updateCurrentWeater(latitude: latitude, longitude: longitude)
+        updateForecast(latitude: latitude, longitude: longitude)
         findCurrentAddress(latitude: latitude, longitude: longitude)
     }
     
-    // MARK: - decode
-    private func decodeCurrentWeaterFromAPI(latitude: Double, longitude: Double) {
-        guard var urlRequest = WeatherAPIManager.makeURLRequest(apiType: .currentWeather, latitude: latitude, logitude: longitude) else {
+    // MARK: - Update Data
+    private func updateCurrentWeater(latitude: Double, longitude: Double) {
+        guard var urlRequest = WeatherAPIManager.makeURLRequest(apiType: .currentWeather, latitude: latitude, longitude: longitude) else {
             return
         }
-        
         urlRequest.httpMethod = "GET"
-        URLSession.shared.dataTask(with: urlRequest) { data, _, _ in
-            guard let data = data else {
-                return
+        let apiJsonDecoder = APIJSONDecoder<Weather>()
+        apiJsonDecoder.decodeAPIData(url: urlRequest) { result in
+            switch result {
+            case .success(let data):
+                self.currentWeather = data
+            case .failure(let error):
+                DispatchQueue.main.sync {
+                    self.showToast(message: "\(error)")
+                }
             }
-            do {
-                self.currentWeather = try JSONDecoder().decode(Weather.self, from: data)
-            } catch {
-                self.showToast(message: StringFormattingError.decodingFailure.description)
-            }
-        }.resume()
+        }
     }
     
-    private func decodeForecastFromAPI(latitude: Double, longitude: Double) {
-        guard var urlRequest = WeatherAPIManager.makeURLRequest(apiType: .forecast, latitude: latitude, logitude: longitude) else {
+    private func updateForecast(latitude: Double, longitude: Double) {
+        guard var urlRequest = WeatherAPIManager.makeURLRequest(apiType: .forecast, latitude: latitude, longitude: longitude) else {
             return
         }
-        
         urlRequest.httpMethod = "GET"
-        URLSession.shared.dataTask(with: urlRequest) { data, _, _ in
-            guard let data = data else {
-                return
+        let apiJsonDecoder = APIJSONDecoder<ForecastList>()
+        apiJsonDecoder.decodeAPIData(url: urlRequest) { result in
+            switch result {
+            case .success(let data):
+                self.forecast = data
+            case .failure(let error):
+                DispatchQueue.main.sync {
+                    self.showToast(message: "\(error)")
+                }
             }
-            do {
-                self.forecast = try JSONDecoder().decode(ForecastList.self, from: data)
-            } catch {
-                self.showToast(message: StringFormattingError.decodingFailure.description)
-            }
-        }.resume()
+        }
     }
     
     // MARK: - findCurrentAddress

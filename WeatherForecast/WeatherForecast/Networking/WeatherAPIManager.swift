@@ -23,27 +23,28 @@ struct WeatherAPIManager {
     }
     
     static let imageURL = "https://openweathermap.org/img/w/%@.png"
-    private static let baseURL = "https://api.openweathermap.org/data/2.5"
+    private static let baseURL = "https://api.openweathermap.org/data/2.5/"
     
-    static func makeURLRequest(apiType: APIType, latitude: Double, logitude: Double) -> URLRequest? {
-        guard var absoluteURL = URLComponents(string: "\(baseURL) + \(apiType)") else {
+    static func makeURLRequest(apiType: APIType, latitude: Double, longitude: Double) -> URLRequest? {
+        guard var absoluteURL = URLComponents(string: "\(baseURL)\(apiType)") else {
             return nil
         }
         
-        absoluteURL.queryItems = makeQueryItems(latitude: latitude, logitude: logitude)
+        absoluteURL.queryItems = makeQueryItems(latitude: latitude, longitude: longitude)
         guard let url = absoluteURL.url else {
             return nil
         }
-        return URLRequest(url: url)
+        let urlRequest = URLRequest(url: url)
+        return urlRequest
     }
     
-    private static func makeQueryItems(latitude: Double, logitude: Double) -> [URLQueryItem] {
+    private static func makeQueryItems(latitude: Double, longitude: Double) -> [URLQueryItem] {
         let myKey = "4119f1d1ea30af76104279475caf11c7"
         let units = "metric" // 섭씨
         
         let queryItems = [
             URLQueryItem(name: "lat", value: String(latitude)),
-            URLQueryItem(name: "lon", value: String(logitude)),
+            URLQueryItem(name: "lon", value: String(longitude)),
             URLQueryItem(name: "appid", value: myKey),
             URLQueryItem(name: "units", value: units)
         ]
