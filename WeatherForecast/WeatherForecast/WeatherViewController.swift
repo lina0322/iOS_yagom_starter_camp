@@ -119,26 +119,6 @@ extension ViewController: CLLocationManagerDelegate {
     }
 }
 
-// MARK: - TableView
-
-extension ViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let forecast = forecast else {
-            return 0
-        }
-        return forecast.list.count + 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else {
-            return UITableViewCell()
-        }
-        
-    }
-    
-    
-}
-
 // MARK: - ToastMessage
 extension UIViewController {
     func showToast(message : String) {
