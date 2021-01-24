@@ -8,7 +8,7 @@
 import UIKit
 import CoreLocation
 
-final class ViewController: UIViewController {
+final class WeatherViewController: UIViewController {
     private let locationManager = CLLocationManager()
     private var currentWeather: Weather?
     private var forecast: ForecastList?
@@ -16,6 +16,14 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let button = UIButton()
+        button.setTitle("hi", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemGreen
+        view.addSubview(button)
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
         
         configureLocationManager()
     }
@@ -68,7 +76,7 @@ final class ViewController: UIViewController {
 }
 
 // MARK: - CLLocationManager
-extension ViewController: CLLocationManagerDelegate {
+extension WeatherViewController: CLLocationManagerDelegate {
     private func configureLocationManager() {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -103,3 +111,25 @@ extension ViewController: CLLocationManagerDelegate {
         configureData(for: coordinate)
     }
 }
+
+// MARK: - for canvas
+#if canImport(SwiftUI) && DEBUG
+import SwiftUI
+
+struct WeatherViewControllerRepresentable: UIViewControllerRepresentable {
+    typealias UIViewControllerType = WeatherViewController
+    
+    func makeUIViewController(context: Context) -> WeatherViewController {
+        return WeatherViewController()
+    }
+    
+    func updateUIViewController(_ uiViewController: WeatherViewController, context: Context) { }
+}
+
+@available(iOS 13.0.0, *)
+struct WeatherViewPreview: PreviewProvider {
+    static var previews: some View {
+        WeatherViewControllerRepresentable()
+    }
+}
+#endif
