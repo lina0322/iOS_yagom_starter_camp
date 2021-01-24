@@ -15,4 +15,9 @@
 |[2020_11_19](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_11/2020_11_19.md)|if vs guard|
 |[2020_11_23](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_11/2020_11_23.md)|init vs 프로퍼티 직접 초기화|
 |[2020_11_26](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_11/2020_11_26.md)|KVO, 노티피케이션 센터|
-|[2020_11_30](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_11/2020_11_30.md)|delegation|
+|[2020_11_30](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_11/2020_11_30.md)|UML|
+|__[2020_12](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_12)__|2020년 12월|
+|[2020_12_03](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_12/2020_12_03.md)|protocol, delegate|
+|[2020_12_07](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_12/2020_12_07.md)|singletone, 클래스의 상속, 솔리드 법칙|
+|[2020_12_10](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_12/2020_12_10.md)|알고리즘, 자료구조|
+|[2020_12_14](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_12/2020_12_14.md)|단위테스트, TDD|

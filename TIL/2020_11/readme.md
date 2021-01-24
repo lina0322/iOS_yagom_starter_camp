@@ -14,5 +14,5 @@
 |[2020_11_17](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_11/2020_11_17.md)|Access control|
 |[2020_11_19](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_11/2020_11_19.md)|if vs guard|
 |[2020_11_23](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_11/2020_11_23.md)|init vs 프로퍼티 직접 초기화|
-|[2020_11_26](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_11/2020_11_26.md)|KVO, 노티피케이션 센터, delegation|
-|[2020_11_30](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_11/2020_11_30.md)|view life cycle, UML|
+|[2020_11_26](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_11/2020_11_26.md)|KVO, 노티피케이션 센터|
+|[2020_11_30](https://github.com/lina0322/yagom_iOS_camp/blob/main/TIL/2020_11/2020_11_30.md)|UML|
