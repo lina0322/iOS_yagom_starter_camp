@@ -1,0 +1,100 @@
+<mxfile host="app.diagrams.net" modified="2020-12-21T15:36:03.381Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36" etag="48C4TbS0sd2z1R5R8qL-" version="13.10.4" type="github">
+  <diagram name="Page-1" id="c4acf3e9-155e-7222-9cf6-157b1a14988f">
+    <mxGraphModel dx="1042" dy="674" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-1" value="Calculator" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="400" y="80" width="280" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-2" value="+ var currentMode: CalculatorMode&#xa;+ var postfix: [String]&#xa;+ var stack: Stack&#xa;+ var resultValue: String&#xa;+ var operators: [String]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="1uYHcHl9cCSpgxpJl16l-1">
+          <mxGeometry y="26" width="280" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-3" value="" style="line;strokeWidth=1;fillColor=#dae8fc;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#6c8ebf;" vertex="1" parent="1uYHcHl9cCSpgxpJl16l-1">
+          <mxGeometry y="100" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-4" value="+ handleInput(_ input: String)&#xa;+ hadleOperator(_ input: String)&#xa;+ handlePostfix()&#xa;+ determineOperatorType(operator: String)&#xa;+ operate(calculatorOperator: OperatorType, &#xa;    firstValue: String, secondValue: String) -&gt; String&#xa;+ handleDigit(_ fullNumber: String)&#xa;+ isOperator(_ input: String) -&gt; Bool&#xa;+ isEqual(_ input: String) -&gt; Bool&#xa;+ popAllValuesToPostfix()&#xa;+ allClear()&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="1uYHcHl9cCSpgxpJl16l-1">
+          <mxGeometry y="130" width="280" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="1uYHcHl9cCSpgxpJl16l-21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="558" y="382" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="710" y="450" />
+              <mxPoint x="558" y="450" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-21" value="DecimalCalculator" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="560" y="490" width="300" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-22" value="+ var isDividingByZero: Bool &#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="1uYHcHl9cCSpgxpJl16l-21">
+          <mxGeometry y="26" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-23" value="" style="line;strokeWidth=1;fillColor=#dae8fc;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#6c8ebf;" vertex="1" parent="1uYHcHl9cCSpgxpJl16l-21">
+          <mxGeometry y="52" width="300" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-24" value="+ override operate(calculatorOperator: OperatorType, &#xa;    firstValue: String, secondValue: String) -&gt; String&#xa;+ override handleDigit(_ fullNumber: String)&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="1uYHcHl9cCSpgxpJl16l-21">
+          <mxGeometry y="60" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="1" source="1uYHcHl9cCSpgxpJl16l-29">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="523" y="383" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="340" y="450" />
+              <mxPoint x="523" y="450" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-29" value="BinaryCalculator" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="180" y="490" width="320" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-30" value="+ determineOperatorType(operator: String)&#xa;+ override operate(calculatorOperator: OperatorType, &#xa;    firstValue: String, secondValue: String) -&gt; String&#xa;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="1uYHcHl9cCSpgxpJl16l-29">
+          <mxGeometry y="26" width="320" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-35" value="Stack&#xa;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="150" y="80" width="170" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-36" value="+ var stack: [String]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="1uYHcHl9cCSpgxpJl16l-35">
+          <mxGeometry y="26" width="170" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-37" value="" style="line;strokeWidth=1;fillColor=#d5e8d4;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#82b366;" vertex="1" parent="1uYHcHl9cCSpgxpJl16l-35">
+          <mxGeometry y="52" width="170" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-38" value="+ push(_ value: String)&#xa;+ pop() -&gt; String?&#xa;+ peek() -&gt; String?&#xa;+ removeAll()&#xa;+ isEmpty() -&gt; Bool&#xa;+ isNotEmpty() -&gt; Bool" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="1uYHcHl9cCSpgxpJl16l-35">
+          <mxGeometry y="60" width="170" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-39" value="OperatorType" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="760" y="80" width="280" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-40" value="case add = &quot;+&quot;&#xa;case subtract = &quot;-&quot;&#xa;case multiple = &quot;*&quot;&#xa;case divide = &quot;/&quot;&#xa;case and = &quot;&amp;&quot;&#xa;case nand = &quot;~&amp;&quot;&#xa;case or = &quot;|&quot;&#xa;case nor = &quot;~|&quot;&#xa;case xor = &quot;^&quot;&#xa;case not = &quot;~&quot;&#xa;case leftShift = &quot;&lt;&lt;&quot;&#xa;case rightShift = &quot;&gt;&gt;&quot;&#xa;&#xa;+ var priority: Int&#xa;+ var mode: CalculaotrMode    " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="1uYHcHl9cCSpgxpJl16l-39">
+          <mxGeometry y="26" width="280" height="224" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-41" value="" style="line;strokeWidth=1;fillColor=#fff2cc;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#d6b656;" vertex="1" parent="1uYHcHl9cCSpgxpJl16l-39">
+          <mxGeometry y="250" width="280" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-42" value="+ isHighPriority(than input: OperatorType) -&gt; Bool&#xa;+ isLowPriority(than input: OperatorType) -&gt; Bool" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="1uYHcHl9cCSpgxpJl16l-39">
+          <mxGeometry y="258" width="280" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-47" value="CalculatorMode" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="900" y="440" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-48" value="case decimal&#xa;case binary&#xa;case common" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="1uYHcHl9cCSpgxpJl16l-47">
+          <mxGeometry y="26" width="140" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=block;endFill=0;" edge="1" parent="1" source="1uYHcHl9cCSpgxpJl16l-38" target="1uYHcHl9cCSpgxpJl16l-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1.004;entryY=0.911;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=block;endFill=0;" edge="1" parent="1" source="1uYHcHl9cCSpgxpJl16l-48" target="1uYHcHl9cCSpgxpJl16l-40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1.003;entryY=0.424;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=block;endFill=0;" edge="1" parent="1" source="1uYHcHl9cCSpgxpJl16l-40" target="1uYHcHl9cCSpgxpJl16l-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1uYHcHl9cCSpgxpJl16l-61" value="0. 시뮬레이터&lt;br&gt;1. 구조설명&lt;br&gt;2. 상속을 하게 된 계기&lt;br&gt;3. 후위표기법과 연산자 우선순위&lt;br&gt;4. stack 활용(1개? 2개?)&lt;br&gt;5. 자리수(소수점)" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="140" y="300" width="170" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
