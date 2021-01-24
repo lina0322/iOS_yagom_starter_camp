@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BankManagerUIApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="업무시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scV-n4-nAZ">
+                                <rect key="frame" x="335" y="5" width="59" height="20.333333333333332"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GdK-SK-hDt">
+                                <rect key="frame" x="0.0" y="25.333333333333329" width="103.66666666666667" height="220.66666666666669"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="심사중" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FwM-Ti-iUm">
+                                        <rect key="frame" x="29.666666666666668" y="100.33333333333334" width="44.333333333333329" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                <constraints>
+                                    <constraint firstItem="FwM-Ti-iUm" firstAttribute="centerX" secondItem="GdK-SK-hDt" secondAttribute="centerX" id="6Jt-Yq-cLM"/>
+                                    <constraint firstItem="FwM-Ti-iUm" firstAttribute="centerY" secondItem="GdK-SK-hDt" secondAttribute="centerY" id="ivU-zN-yY1"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sMy-en-Huc">
+                                <rect key="frame" x="0.0" y="246" width="103.66666666666667" height="221"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="업무중" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dy5-RW-eqC">
+                                        <rect key="frame" x="29.666666666666668" y="100.33333333333331" width="44.333333333333329" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <constraints>
+                                    <constraint firstItem="Dy5-RW-eqC" firstAttribute="centerX" secondItem="sMy-en-Huc" secondAttribute="centerX" id="m7U-Vp-Wvy"/>
+                                    <constraint firstItem="Dy5-RW-eqC" firstAttribute="centerY" secondItem="sMy-en-Huc" secondAttribute="centerY" id="xo5-VS-mhA"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rw0-rM-xIX">
+                                <rect key="frame" x="0.0" y="467.00000000000006" width="103.66666666666667" height="220.66666666666669"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="대기중" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPz-9u-2mP">
+                                        <rect key="frame" x="29.666666666666668" y="100.33333333333337" width="44.333333333333329" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                <constraints>
+                                    <constraint firstItem="vPz-9u-2mP" firstAttribute="centerY" secondItem="rw0-rM-xIX" secondAttribute="centerY" id="PYx-Rz-Ejd"/>
+                                    <constraint firstItem="vPz-9u-2mP" firstAttribute="centerX" secondItem="rw0-rM-xIX" secondAttribute="centerX" id="r58-IH-mDd"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dIO-AF-Hb6">
+                                <rect key="frame" x="0.0" y="687.66666666666663" width="414" height="48.333333333333371"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ysc-tT-d1a">
+                                        <rect key="frame" x="0.0" y="0.0" width="207" height="48.333333333333336"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <state key="normal" title="고객 10명 추가"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QdI-9a-4IL">
+                                        <rect key="frame" x="207" y="0.0" width="207" height="48.333333333333336"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <state key="normal" title="초기화">
+                                            <color key="titleColor" systemColor="systemRedColor"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="r5m-Tc-oDn">
+                                <rect key="frame" x="103.66666666666666" y="324.33333333333331" width="310.33333333333337" height="64.333333333333314"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rao-UY-2Az">
+                                        <rect key="frame" x="0.0" y="0.0" width="44.333333333333336" height="64.333333333333329"/>
+                                        <string key="text">0
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tct-GF-SF2">
+                                        <rect key="frame" x="44.333333333333329" y="0.0" width="44.333333333333329" height="64.333333333333329"/>
+                                        <string key="text">1
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nah-2W-kHP">
+                                        <rect key="frame" x="88.666666666666671" y="0.0" width="44.333333333333329" height="64.333333333333329"/>
+                                        <string key="text">2
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJV-fA-aIv">
+                                        <rect key="frame" x="133" y="0.0" width="44.333333333333343" height="64.333333333333329"/>
+                                        <string key="text">3
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTZ-qG-khV">
+                                        <rect key="frame" x="177.33333333333331" y="0.0" width="44.333333333333343" height="64.333333333333329"/>
+                                        <string key="text">4
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMN-hE-Rgx">
+                                        <rect key="frame" x="221.66666666666663" y="0.0" width="44.333333333333314" height="64.333333333333329"/>
+                                        <string key="text">5
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0G-sA-in0">
+                                        <rect key="frame" x="266" y="0.0" width="44.333333333333314" height="64.333333333333329"/>
+                                        <string key="text">6
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="PtA-Gp-rzO">
+                                <rect key="frame" x="103.66666666666666" y="545.33333333333337" width="310.33333333333337" height="64.333333333333371"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJc-zz-ia2">
+                                        <rect key="frame" x="0.0" y="0.0" width="44.333333333333336" height="64.333333333333329"/>
+                                        <string key="text">0
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CqL-xh-pkJ">
+                                        <rect key="frame" x="44.333333333333329" y="0.0" width="44.333333333333329" height="64.333333333333329"/>
+                                        <string key="text">1
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYQ-9o-vR3">
+                                        <rect key="frame" x="88.666666666666671" y="0.0" width="44.333333333333329" height="64.333333333333329"/>
+                                        <string key="text">2
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCk-aG-Jfr">
+                                        <rect key="frame" x="133" y="0.0" width="44.333333333333343" height="64.333333333333329"/>
+                                        <string key="text">3
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBm-Cf-BDT">
+                                        <rect key="frame" x="177.33333333333331" y="0.0" width="44.333333333333343" height="64.333333333333329"/>
+                                        <string key="text">4
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W23-3D-99w">
+                                        <rect key="frame" x="221.66666666666663" y="0.0" width="44.333333333333314" height="64.333333333333329"/>
+                                        <string key="text">5
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xZ-GU-1Iv">
+                                        <rect key="frame" x="266" y="0.0" width="44.333333333333314" height="64.333333333333329"/>
+                                        <string key="text">6
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Urv-CA-g5V">
+                                <rect key="frame" x="103.66666666666666" y="103.66666666666669" width="310.33333333333337" height="64.333333333333314"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hW-Qq-1Qi">
+                                        <rect key="frame" x="0.0" y="0.0" width="44.333333333333336" height="64.333333333333329"/>
+                                        <string key="text">0
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umc-dq-SWk">
+                                        <rect key="frame" x="44.333333333333329" y="0.0" width="44.333333333333329" height="64.333333333333329"/>
+                                        <string key="text">1
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hke-qh-10g">
+                                        <rect key="frame" x="88.666666666666671" y="0.0" width="44.333333333333329" height="64.333333333333329"/>
+                                        <string key="text">2
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spI-c3-geM">
+                                        <rect key="frame" x="133" y="0.0" width="44.333333333333343" height="64.333333333333329"/>
+                                        <string key="text">3
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BVu-YG-LzG">
+                                        <rect key="frame" x="177.33333333333331" y="0.0" width="44.333333333333343" height="64.333333333333329"/>
+                                        <string key="text">4
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXB-pc-daO">
+                                        <rect key="frame" x="221.66666666666663" y="0.0" width="44.333333333333314" height="64.333333333333329"/>
+                                        <string key="text">5
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4T-24-dtv">
+                                        <rect key="frame" x="266" y="0.0" width="44.333333333333314" height="64.333333333333329"/>
+                                        <string key="text">6
+VVIP
+대출</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="GdK-SK-hDt" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.25" id="2tj-cq-WyZ"/>
+                            <constraint firstItem="sMy-en-Huc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4zN-5a-pQn"/>
+                            <constraint firstItem="dIO-AF-Hb6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="AR3-MY-tcH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dIO-AF-Hb6" secondAttribute="bottom" id="Daz-Gu-fQn"/>
+                            <constraint firstItem="sMy-en-Huc" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.25" id="Equ-DE-OKG"/>
+                            <constraint firstItem="Urv-CA-g5V" firstAttribute="leading" secondItem="GdK-SK-hDt" secondAttribute="trailing" id="FAg-e2-BOX"/>
+                            <constraint firstItem="rw0-rM-xIX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="FsS-yS-Cpa"/>
+                            <constraint firstItem="r5m-Tc-oDn" firstAttribute="centerY" secondItem="sMy-en-Huc" secondAttribute="centerY" id="Ouw-Uf-1aq"/>
+                            <constraint firstItem="Urv-CA-g5V" firstAttribute="centerY" secondItem="GdK-SK-hDt" secondAttribute="centerY" id="PRN-8X-XO3"/>
+                            <constraint firstItem="sMy-en-Huc" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.3" id="RFz-HX-jrp"/>
+                            <constraint firstItem="GdK-SK-hDt" firstAttribute="top" secondItem="scV-n4-nAZ" secondAttribute="bottom" id="ULZ-my-3jR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="scV-n4-nAZ" secondAttribute="trailing" constant="20" id="W4G-aN-hpa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dIO-AF-Hb6" secondAttribute="trailing" id="X6i-3g-4ZY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PtA-Gp-rzO" secondAttribute="trailing" id="aII-qy-dcI"/>
+                            <constraint firstItem="GdK-SK-hDt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="arL-Js-Vey"/>
+                            <constraint firstItem="PtA-Gp-rzO" firstAttribute="leading" secondItem="rw0-rM-xIX" secondAttribute="trailing" id="cZ5-Hq-Or1"/>
+                            <constraint firstItem="r5m-Tc-oDn" firstAttribute="leading" secondItem="sMy-en-Huc" secondAttribute="trailing" id="dD1-yJ-ReI"/>
+                            <constraint firstItem="scV-n4-nAZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="f5T-yb-Ew2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Urv-CA-g5V" secondAttribute="trailing" id="fTx-F3-Bwj"/>
+                            <constraint firstItem="rw0-rM-xIX" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.25" id="gkE-lQ-JL8"/>
+                            <constraint firstItem="rw0-rM-xIX" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.3" id="ixH-je-xgw"/>
+                            <constraint firstItem="PtA-Gp-rzO" firstAttribute="centerY" secondItem="rw0-rM-xIX" secondAttribute="centerY" id="s45-HD-zy9"/>
+                            <constraint firstItem="dIO-AF-Hb6" firstAttribute="top" secondItem="rw0-rM-xIX" secondAttribute="bottom" id="spI-PE-n4V"/>
+                            <constraint firstItem="sMy-en-Huc" firstAttribute="top" secondItem="GdK-SK-hDt" secondAttribute="bottom" id="wAg-BX-Zdx"/>
+                            <constraint firstItem="rw0-rM-xIX" firstAttribute="top" secondItem="sMy-en-Huc" secondAttribute="bottom" id="wUH-cP-N37"/>
+                            <constraint firstItem="GdK-SK-hDt" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.3" id="zBY-Ia-ho7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="r5m-Tc-oDn" secondAttribute="trailing" id="zor-mn-HeQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addingClientsButton" destination="Ysc-tT-d1a" id="pIq-Pg-qdA"/>
+                        <outlet property="allClearButton" destination="QdI-9a-4IL" id="zWA-we-Ts9"/>
+                        <outletCollection property="currentClients" destination="rao-UY-2Az" collectionClass="NSMutableArray" id="3gT-D5-czJ"/>
+                        <outletCollection property="currentClients" destination="Tct-GF-SF2" collectionClass="NSMutableArray" id="vk5-UL-Uiz"/>
+                        <outletCollection property="currentClients" destination="Nah-2W-kHP" collectionClass="NSMutableArray" id="MvW-pi-HKG"/>
+                        <outletCollection property="currentClients" destination="LJV-fA-aIv" collectionClass="NSMutableArray" id="YM9-b4-gNq"/>
+                        <outletCollection property="currentClients" destination="cMN-hE-Rgx" collectionClass="NSMutableArray" id="yTB-4b-foX"/>
+                        <outletCollection property="currentClients" destination="C0G-sA-in0" collectionClass="NSMutableArray" id="osT-XY-W51"/>
+                        <outletCollection property="judgingClients" destination="4hW-Qq-1Qi" collectionClass="NSMutableArray" id="3n5-rV-H34"/>
+                        <outletCollection property="judgingClients" destination="umc-dq-SWk" collectionClass="NSMutableArray" id="fJs-T0-gug"/>
+                        <outletCollection property="judgingClients" destination="hke-qh-10g" collectionClass="NSMutableArray" id="Vjm-n1-PIn"/>
+                        <outletCollection property="judgingClients" destination="spI-c3-geM" collectionClass="NSMutableArray" id="JN9-uJ-a8V"/>
+                        <outletCollection property="judgingClients" destination="BVu-YG-LzG" collectionClass="NSMutableArray" id="JPy-al-deb"/>
+                        <outletCollection property="judgingClients" destination="YXB-pc-daO" collectionClass="NSMutableArray" id="sCw-8k-dRM"/>
+                        <outletCollection property="judgingClients" destination="j4T-24-dtv" collectionClass="NSMutableArray" id="4g7-9d-nCK"/>
+                        <outletCollection property="waitingClients" destination="tJc-zz-ia2" collectionClass="NSMutableArray" id="fG6-WM-jc1"/>
+                        <outletCollection property="waitingClients" destination="CqL-xh-pkJ" collectionClass="NSMutableArray" id="glz-ve-thV"/>
+                        <outletCollection property="waitingClients" destination="bYQ-9o-vR3" collectionClass="NSMutableArray" id="OUT-f8-0N5"/>
+                        <outletCollection property="waitingClients" destination="DCk-aG-Jfr" collectionClass="NSMutableArray" id="guF-Ke-3jE"/>
+                        <outletCollection property="waitingClients" destination="RBm-Cf-BDT" collectionClass="NSMutableArray" id="BsG-TO-gMd"/>
+                        <outletCollection property="waitingClients" destination="W23-3D-99w" collectionClass="NSMutableArray" id="sck-QA-oSm"/>
+                        <outletCollection property="waitingClients" destination="8xZ-GU-1Iv" collectionClass="NSMutableArray" id="HnI-9H-JSV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
