@@ -16,15 +16,7 @@ final class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let button = UIButton()
-        button.setTitle("hi", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemGreen
-        view.addSubview(button)
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
+
         configureLocationManager()
     }
     
@@ -113,16 +105,15 @@ extension WeatherViewController: CLLocationManagerDelegate {
 }
 
 // MARK: - for canvas
-#if canImport(SwiftUI) && DEBUG
 import SwiftUI
 
 struct WeatherViewControllerRepresentable: UIViewControllerRepresentable {
     typealias UIViewControllerType = WeatherViewController
-    
+
     func makeUIViewController(context: Context) -> WeatherViewController {
         return WeatherViewController()
     }
-    
+
     func updateUIViewController(_ uiViewController: WeatherViewController, context: Context) { }
 }
 
@@ -132,4 +123,3 @@ struct WeatherViewPreview: PreviewProvider {
         WeatherViewControllerRepresentable()
     }
 }
-#endif
