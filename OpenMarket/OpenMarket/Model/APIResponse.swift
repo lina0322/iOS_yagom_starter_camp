@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+class APIResponse {
+    static var data: [ProductList] = [ProductList]()
+    private init() {}
+}
