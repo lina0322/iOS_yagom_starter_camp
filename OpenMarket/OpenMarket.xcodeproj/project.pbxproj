@@ -16,6 +16,7 @@
 		E268E5BC25BF2B93009A3D7C /* OpenMarketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E5BB25BF2B93009A3D7C /* OpenMarketTests.swift */; };
 		E268E5C725BF3DD8009A3D7C /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E5C625BF3DD8009A3D7C /* Product.swift */; };
 		E268E5CD25BF3E80009A3D7C /* ProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E5CC25BF3E80009A3D7C /* ProductList.swift */; };
+		E268E5D325BF492C009A3D7C /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E5D225BF492C009A3D7C /* HTTPMethod.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		E268E5BD25BF2B93009A3D7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E268E5C625BF3DD8009A3D7C /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		E268E5CC25BF3E80009A3D7C /* ProductList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductList.swift; sourceTree = "<group>"; };
+		E268E5D225BF492C009A3D7C /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			children = (
 				E268E5C625BF3DD8009A3D7C /* Product.swift */,
 				E268E5CC25BF3E80009A3D7C /* ProductList.swift */,
+				E268E5D225BF492C009A3D7C /* HTTPMethod.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			files = (
 				C70FB0FF25BEF61C00C9924E /* ViewController.swift in Sources */,
 				E268E5C725BF3DD8009A3D7C /* Product.swift in Sources */,
+				E268E5D325BF492C009A3D7C /* HTTPMethod.swift in Sources */,
 				E268E5CD25BF3E80009A3D7C /* ProductList.swift in Sources */,
 				C70FB0FB25BEF61C00C9924E /* AppDelegate.swift in Sources */,
 				C70FB0FD25BEF61C00C9924E /* SceneDelegate.swift in Sources */,
