@@ -2,31 +2,32 @@
 //  OpenMarketTests.swift
 //  OpenMarketTests
 //
-//  Created by 임리나 on 2021/01/26.
+//  Created by 임리나 on 2021/01/25.
 //
 
 import XCTest
+@testable import OpenMarket
 
 class OpenMarketTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    func testProduct() {
+        let expectation = XCTestExpectation(description: "APIaskExpectation")
+        var productList: Products?
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
+        ProductJSONDecoder.decodeData() { result in
+            switch result {
+            case .success(let data):
+                productList = data
+            case .failure(let error):
+                print(error.description)
+            }
+            expectation.fulfill()
         }
+        
+        wait(for: [expectation], timeout: 10.0)
+   
+        dump(productList)
+        XCTAssertNotNil(productList)
+        XCTAssertEqual(productList?.list.count, 20)
     }
-
 }
