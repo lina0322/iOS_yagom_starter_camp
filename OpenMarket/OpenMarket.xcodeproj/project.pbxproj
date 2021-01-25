@@ -15,7 +15,7 @@
 		C70FB10725BEF61D00C9924E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C70FB10525BEF61D00C9924E /* LaunchScreen.storyboard */; };
 		E268E5BC25BF2B93009A3D7C /* OpenMarketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E5BB25BF2B93009A3D7C /* OpenMarketTests.swift */; };
 		E268E5C725BF3DD8009A3D7C /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E5C625BF3DD8009A3D7C /* Product.swift */; };
-		E268E5CD25BF3E80009A3D7C /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E5CC25BF3E80009A3D7C /* Products.swift */; };
+		E268E5CD25BF3E80009A3D7C /* ProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E5CC25BF3E80009A3D7C /* ProductList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +41,7 @@
 		E268E5BB25BF2B93009A3D7C /* OpenMarketTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMarketTests.swift; sourceTree = "<group>"; };
 		E268E5BD25BF2B93009A3D7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E268E5C625BF3DD8009A3D7C /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		E268E5CC25BF3E80009A3D7C /* Products.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
+		E268E5CC25BF3E80009A3D7C /* ProductList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				E268E5C625BF3DD8009A3D7C /* Product.swift */,
-				E268E5CC25BF3E80009A3D7C /* Products.swift */,
+				E268E5CC25BF3E80009A3D7C /* ProductList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -215,7 +215,7 @@
 			files = (
 				C70FB0FF25BEF61C00C9924E /* ViewController.swift in Sources */,
 				E268E5C725BF3DD8009A3D7C /* Product.swift in Sources */,
-				E268E5CD25BF3E80009A3D7C /* Products.swift in Sources */,
+				E268E5CD25BF3E80009A3D7C /* ProductList.swift in Sources */,
 				C70FB0FB25BEF61C00C9924E /* AppDelegate.swift in Sources */,
 				C70FB0FD25BEF61C00C9924E /* SceneDelegate.swift in Sources */,
 			);
