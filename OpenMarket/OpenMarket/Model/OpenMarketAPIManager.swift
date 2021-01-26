@@ -1,3 +1,10 @@
+//
+//  ProductAPIManager.swift
+//  OpenMarket
+//
+//  Created by 임리나 on 2021/01/25.
+//
+
 import Foundation
 
 struct OpenMarketAPIManager {
@@ -25,38 +32,35 @@ struct OpenMarketAPIManager {
     }
     
     enum APIType: CustomStringConvertible {
-            case page
-            case product
-            
-            var description: String {
-                switch self {
-                case .page:
-                    return "items/"
-                case .product:
-                    return "item/"
-                }
+        case page
+        case product
+        
+        var description: String {
+            switch self {
+            case .page:
+                return "items/"
+            case .product:
+                return "item/"
             }
         }
+    }
 
     private static let baseURL = "https://camp-open-market.herokuapp.com/"
-    
-    static func fetchData(about type: APIType, specificNumer number: Int,completionHandler: @escaping (Result<Data, StringFormattingError>) -> Void ) {
-        guard var urlRequest = OpenMarketAPIManager.makeURLRequest(about: type, specificNumer: number) else {
+        
+    static func startLoad(about type: APIType, specificNumer number: Int, completionHandler: @escaping (Result<Data, StringFormattingError>) -> ()) {
+        guard var urlRequest = makeURLRequest(about: type, specificNumer: number) else {
             completionHandler(.failure(.wrongURLRequest))
             return
         }
         
         urlRequest.httpMethod = "\(HTTPMethod.get)"
-        
-        let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
                 debugPrint(error.localizedDescription)
                 completionHandler(.failure(.severConnectionFailure))
                 return
             }
-            
-            guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
+            guard let httpRespons = response as? HTTPURLResponse, (200...299).contains(httpRespons.statusCode) else {
                 debugPrint(response.debugDescription)
                 completionHandler(.failure(.severConnectionFailure))
                 return
@@ -64,11 +68,9 @@ struct OpenMarketAPIManager {
             if let data = data {
                 completionHandler(.success(data))
                 return
-            } else {
-                completionHandler(.failure(.wrongData))
             }
-        }
-        task.resume()
+            completionHandler(.failure(.wrongData))
+        }.resume()
     }
     
     private static func makeURLRequest(about type: APIType, specificNumer number: Int) -> URLRequest? {
@@ -78,27 +80,5 @@ struct OpenMarketAPIManager {
             return nil
         }
         return URLRequest(url: url)
-    }
-}
-
-
-struct OpenMarketJSONDecoder<T: Decodable> {
-
-    static func decodeData(about type: OpenMarketAPIManager.APIType, specificNumer number: Int, completionHandler: @escaping (Result<T, StringFormattingError>) -> ()){
-        let decoder = JSONDecoder()
-
-        OpenMarketAPIManager.fetchData(about: type, specificNumer: number) { result in
-            switch result {
-            case .success(let data):
-                do { // decodedData
-                    let productList = try decoder.decode(T.self, from: data)
-                    completionHandler(.success(productList))
-                } catch {
-                    completionHandler(.failure(.decodingFailure))
-                }
-            case .failure(let error):
-                completionHandler(.failure(error))
-            }
-        }
     }
 }
