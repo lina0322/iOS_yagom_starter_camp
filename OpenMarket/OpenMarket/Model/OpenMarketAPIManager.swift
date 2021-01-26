@@ -1,6 +1,29 @@
 import Foundation
 
 struct OpenMarketAPIManager {
+    enum HTTPMethod: String, CustomStringConvertible {
+        case get
+        case post
+        case put
+        case patch
+        case delete
+        
+        var description: String {
+            switch self {
+            case .get:
+                return "GET"
+            case .post:
+                return "POST"
+            case .put:
+                return "PUT"
+            case .patch:
+                return "PATCH"
+            case .delete:
+                return "DELETE"
+            }
+        }
+    }
+    
     enum APIType: CustomStringConvertible {
             case page
             case product
@@ -17,13 +40,13 @@ struct OpenMarketAPIManager {
 
     private static let baseURL = "https://camp-open-market.herokuapp.com/"
     
-    static func fetchData(about type: APIType, page number: Int,completionHandler: @escaping (Result<Data, StringFormattingError>) -> Void ) {
-        guard var urlRequest = OpenMarketAPIManager.makeURLRequest(about: type, pageNumber: number) else {
+    static func fetchData(about type: APIType, specificNumer number: Int,completionHandler: @escaping (Result<Data, StringFormattingError>) -> Void ) {
+        guard var urlRequest = OpenMarketAPIManager.makeURLRequest(about: type, specificNumer: number) else {
             completionHandler(.failure(.wrongURLRequest))
             return
         }
         
-        urlRequest.httpMethod = HTTPMethod.GET.rawValue
+        urlRequest.httpMethod = "\(HTTPMethod.get)"
         
         let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
@@ -48,8 +71,8 @@ struct OpenMarketAPIManager {
         task.resume()
     }
     
-    private static func makeURLRequest(about type: APIType, pageNumber: Int) -> URLRequest? {
-        let absoluteURL = "\(baseURL)\(type)\(pageNumber)/"
+    private static func makeURLRequest(about type: APIType, specificNumer number: Int) -> URLRequest? {
+        let absoluteURL = "\(baseURL)\(type)\(number)/"
         guard let url = URL(string: absoluteURL) else {
             debugPrint(StringFormattingError.wrongURL)
             return nil
@@ -61,13 +84,13 @@ struct OpenMarketAPIManager {
 
 struct OpenMarketJSONDecoder<T: Decodable> {
 
-    static func decodeData(about type: OpenMarketAPIManager.APIType, pageNumber: Int, completionHandler: @escaping (Result<T, StringFormattingError>) -> ()){
+    static func decodeData(about type: OpenMarketAPIManager.APIType, specificNumer number: Int, completionHandler: @escaping (Result<T, StringFormattingError>) -> ()){
         let decoder = JSONDecoder()
 
-        OpenMarketAPIManager.fetchData(about: type, page: pageNumber) { result in
+        OpenMarketAPIManager.fetchData(about: type, specificNumer: number) { result in
             switch result {
             case .success(let data):
-                do {
+                do { // decodedData
                     let productList = try decoder.decode(T.self, from: data)
                     completionHandler(.success(productList))
                 } catch {
