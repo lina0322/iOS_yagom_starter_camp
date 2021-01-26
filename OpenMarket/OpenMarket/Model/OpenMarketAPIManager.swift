@@ -8,7 +8,7 @@ class OpenMarketAPIManager {
     
     private init() {}
     
-    func fetchData(completionHandler: @escaping (Result<Data, CustomError>) -> Void ) {
+    func fetchData(completionHandler: @escaping (Result<Data, StringFormattingError>) -> Void ) {
         guard let url = URL(string: "https://camp-open-market.herokuapp.com/items/1") else {
             // 에러핸들링
             return
@@ -32,7 +32,7 @@ class OpenMarketAPIManager {
                 completionHandler(.success(data))
                 return
             } else {
-                completionHandler(.failure(.zziroError))
+                completionHandler(.failure(.wrongData))
             }
         }
         task.resume()
@@ -69,3 +69,4 @@ struct OpenMarketJSONDecoder {
         }
     }
 }
+
