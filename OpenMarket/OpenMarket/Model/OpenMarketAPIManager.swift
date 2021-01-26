@@ -1,31 +1,41 @@
 import Foundation
 
-enum CustomError: Error {
-    case zziroError
-}
-class OpenMarketAPIManager {
-    static let shared = OpenMarketAPIManager()
+struct OpenMarketAPIManager {
+    enum APIType: CustomStringConvertible {
+            case page
+            case product
+            
+            var description: String {
+                switch self {
+                case .page:
+                    return "items/"
+                case .product:
+                    return "item/"
+                }
+            }
+        }
+
+    private static let baseURL = "https://camp-open-market.herokuapp.com/"
     
-    private init() {}
-    
-    func fetchData(completionHandler: @escaping (Result<Data, StringFormattingError>) -> Void ) {
-        guard let url = URL(string: "https://camp-open-market.herokuapp.com/items/1") else {
-            // 에러핸들링
+    static func fetchData(about type: APIType, page number: Int,completionHandler: @escaping (Result<Data, StringFormattingError>) -> Void ) {
+        guard var urlRequest = OpenMarketAPIManager.makeURLRequest(about: type, pageNumber: number) else {
+            completionHandler(.failure(.wrongURLRequest))
             return
         }
         
-        var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = HTTPMethod.GET.rawValue
         
         let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
-                //에러 핸들링
+                debugPrint(error.localizedDescription)
+                completionHandler(.failure(.severConnectionFailure))
                 return
             }
             
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode) else {
-                //에러 핸들링
+                debugPrint(response.debugDescription)
+                completionHandler(.failure(.severConnectionFailure))
                 return
             }
             if let data = data {
@@ -37,36 +47,35 @@ class OpenMarketAPIManager {
         }
         task.resume()
     }
+    
+    private static func makeURLRequest(about type: APIType, pageNumber: Int) -> URLRequest? {
+        let absoluteURL = "\(baseURL)\(type)\(pageNumber)/"
+        guard let url = URL(string: absoluteURL) else {
+            debugPrint(StringFormattingError.wrongURL)
+            return nil
+        }
+        return URLRequest(url: url)
+    }
 }
 
-struct OpenMarketJSONDecoder {
-    static let jsonDecoder = JSONDecoder()
 
-    static func decodeData() {
-        OpenMarketAPIManager.shared.fetchData { result in
+struct OpenMarketJSONDecoder<T: Decodable> {
+
+    static func decodeData(about type: OpenMarketAPIManager.APIType, pageNumber: Int, completionHandler: @escaping (Result<T, StringFormattingError>) -> ()){
+        let decoder = JSONDecoder()
+
+        OpenMarketAPIManager.fetchData(about: type, page: pageNumber) { result in
             switch result {
             case .success(let data):
                 do {
-                    APIResponse.data = try jsonDecoder.decode([ProductList].self, from: data)
-                } catch DecodingError.dataCorrupted(let context) {
-                    print("데이터가 손상되었거나 유효하지 않습니다.")
-                    print(context.codingPath, context.debugDescription, context.underlyingError ?? "" , separator: "\n")
-                } catch DecodingError.keyNotFound(let codingkey, let context) {
-                    print("주어진 키를 찾을수 없습니다.")
-                    print(codingkey.intValue ?? Optional(nil)! , codingkey.stringValue , context.codingPath, context.debugDescription, context.underlyingError ?? "" , separator: "\n")
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("주어진 타입과 일치하지 않습니다.")
-                    print(type.self , context.codingPath, context.debugDescription, context.underlyingError ?? "" , separator: "\n")
-                } catch DecodingError.valueNotFound(let type, let context) {
-                    print("예상하지 않은 null 값이 발견되었습니다.")
-                    print(type.self , context.codingPath, context.debugDescription, context.underlyingError ?? "" , separator: "\n")
+                    let productList = try decoder.decode(T.self, from: data)
+                    completionHandler(.success(productList))
                 } catch {
-                    print("그외 에러가 발생했습니다.")
+                    completionHandler(.failure(.decodingFailure))
                 }
             case .failure(let error):
-                print(error)
+                completionHandler(.failure(error))
             }
         }
     }
 }
-
