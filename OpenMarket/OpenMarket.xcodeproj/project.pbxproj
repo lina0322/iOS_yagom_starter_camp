@@ -17,7 +17,7 @@
 		E268E5C725BF3DD8009A3D7C /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E5C625BF3DD8009A3D7C /* Product.swift */; };
 		E268E5CD25BF3E80009A3D7C /* ProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E5CC25BF3E80009A3D7C /* ProductList.swift */; };
 		E268E5D325BF492C009A3D7C /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E5D225BF492C009A3D7C /* HTTPMethod.swift */; };
-		E268E5D725BF4BE0009A3D7C /* ProductsAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E5D625BF4BE0009A3D7C /* ProductsAPIManager.swift */; };
+		E268E5D725BF4BE0009A3D7C /* OpenMarketAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E5D625BF4BE0009A3D7C /* OpenMarketAPIManager.swift */; };
 		E268E5E025BF5346009A3D7C /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E5DF25BF5346009A3D7C /* APIResponse.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +46,7 @@
 		E268E5C625BF3DD8009A3D7C /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		E268E5CC25BF3E80009A3D7C /* ProductList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductList.swift; sourceTree = "<group>"; };
 		E268E5D225BF492C009A3D7C /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
-		E268E5D625BF4BE0009A3D7C /* ProductsAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsAPIManager.swift; sourceTree = "<group>"; };
+		E268E5D625BF4BE0009A3D7C /* OpenMarketAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMarketAPIManager.swift; sourceTree = "<group>"; };
 		E268E5DF25BF5346009A3D7C /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,7 +117,7 @@
 				E268E5DF25BF5346009A3D7C /* APIResponse.swift */,
 				E268E5CC25BF3E80009A3D7C /* ProductList.swift */,
 				E268E5D225BF492C009A3D7C /* HTTPMethod.swift */,
-				E268E5D625BF4BE0009A3D7C /* ProductsAPIManager.swift */,
+				E268E5D625BF4BE0009A3D7C /* OpenMarketAPIManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -223,7 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C70FB0FF25BEF61C00C9924E /* ViewController.swift in Sources */,
-				E268E5D725BF4BE0009A3D7C /* ProductsAPIManager.swift in Sources */,
+				E268E5D725BF4BE0009A3D7C /* OpenMarketAPIManager.swift in Sources */,
 				E268E5C725BF3DD8009A3D7C /* Product.swift in Sources */,
 				E268E5D325BF492C009A3D7C /* HTTPMethod.swift in Sources */,
 				E268E5CD25BF3E80009A3D7C /* ProductList.swift in Sources */,

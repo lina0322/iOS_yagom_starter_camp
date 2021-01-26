@@ -3,8 +3,8 @@ import Foundation
 enum CustomError: Error {
     case zziroError
 }
-class ProductsAPIManager {
-    static let shared = ProductsAPIManager()
+class OpenMarketAPIManager {
+    static let shared = OpenMarketAPIManager()
     
     private init() {}
     
@@ -39,14 +39,14 @@ class ProductsAPIManager {
     }
 }
 
-struct ProductsJSONDecoder {
+struct OpenMarketJSONDecoder {
     static let jsonDecoder = JSONDecoder()
 
     static func decodeData() {
-        ProductsAPIManager.shared.fetchData { result in
+        OpenMarketAPIManager.shared.fetchData { result in
             switch result {
             case .success(let data):
-                do { //let product: [Product]
+                do {
                     APIResponse.data = try jsonDecoder.decode([ProductList].self, from: data)
                 } catch DecodingError.dataCorrupted(let context) {
                     print("데이터가 손상되었거나 유효하지 않습니다.")
