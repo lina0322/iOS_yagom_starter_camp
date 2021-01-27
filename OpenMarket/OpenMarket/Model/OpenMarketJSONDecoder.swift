@@ -15,7 +15,7 @@ struct OpenMarketJSONDecoder<T: Decodable> {
             return
         }
         
-        OpenMarketAPIManager.startLoad(about: type, urlRequest: urlRequest, specificNumer: number) { result in
+        NetworkHandler.startLoad(about: type, urlRequest: urlRequest, specificNumer: number) { result in
             switch result {
             case .success(let data):
                 do {

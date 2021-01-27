@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct OpenMarketAPIManager {
+struct NetworkHandler {
     static func startLoad(about type: APIType = .product, urlRequest: URLRequest, specificNumer number: Int? = nil, completionHandler: @escaping (Result<Data, StringFormattingError>) -> ()) {
         URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             if let error = error {

@@ -23,7 +23,7 @@ struct Uploader {
             }
         }
         
-        OpenMarketAPIManager.startLoad(urlRequest: urlRequest, specificNumer: number) { result in
+        NetworkHandler.startLoad(urlRequest: urlRequest, specificNumer: number) { result in
             switch result {
             case .success(let data):
                 completionHandler(.success(data))
