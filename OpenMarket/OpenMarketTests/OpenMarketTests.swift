@@ -113,7 +113,7 @@ extension OpenMarketTests {
     func patchItem(_ id: Int) {
         let expectation = XCTestExpectation(description: "itemPatch")
         
-        let product = Product(forPost: "12345", title: "타이틀 수정해보기", descriptions: "password 1234567890", price: 20000, currency: "KRW", stock: 1, discountedPrice: nil, images: [""])
+        let product = Product(forPostPassword: "12345", title: "변해라 얍! 타이틀 수정해보기", descriptions: "password 1234567890", price: 20000, currency: "KRW", stock: 1, discountedPrice: nil, images: [""])
         
         Uploader.uploadData(by: .patch, product: product, specificNumer: id) { result in
             switch result {
@@ -131,7 +131,7 @@ extension OpenMarketTests {
     func postItem() {
         let expectation = XCTestExpectation(description: "itemPatch")
         
-        let product = Product(forPost: "12345", title: "업로드1", descriptions: "password 12345", price: 20000, currency: "KRW", stock: 1, discountedPrice: nil, images: [""])
+        let product = Product(forPostPassword: "12345", title: "업로드1", descriptions: "password 12345", price: 20000, currency: "KRW", stock: 1, discountedPrice: nil, images: [""])
         
         Uploader.uploadData(by: .post, product: product) { result in
             switch result {

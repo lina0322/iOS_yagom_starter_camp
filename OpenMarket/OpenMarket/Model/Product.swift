@@ -20,8 +20,8 @@ struct Product: Codable {
     let timeStampDate: Double?
     let password: String?
     
-    init(forPost password: String, title: String, descriptions: String, price: Int, currency: String, stock: Int, discountedPrice: Int? = nil, images: [String]) {
-        self.password = password
+    init(forPostPassword: String, title: String, descriptions: String, price: Int, currency: String, stock: Int, discountedPrice: Int? = nil, images: [String]) {
+        self.password = forPostPassword
         self.title = title
         self.descriptions = descriptions
         self.price = price
@@ -35,8 +35,8 @@ struct Product: Codable {
         self.timeStampDate = nil
     }
     
-    init(forPatch password: String, title: String? = nil, descriptions: String? = nil, price: Int? = nil, currency: String? = nil, stock: Int? = nil, discountedPrice: Int? = nil, images: [String]? = nil) {
-        self.password = password
+    init(forPatchPassword: String, title: String? = nil, descriptions: String? = nil, price: Int? = nil, currency: String? = nil, stock: Int? = nil, discountedPrice: Int? = nil, images: [String]? = nil) {
+        self.password = forPatchPassword
         
         self.id = nil
         self.title = title
