@@ -45,17 +45,37 @@ class OpenMarketTests: XCTestCase {
         XCTAssertEqual(item?.id, 32)
     }
     
-    func testLoadItem2(){
+    func testLoadItem2() {
         let item = loadItem(42)
         dump(item)
         XCTAssertNotNil(item)
         XCTAssertEqual(item?.id, 42)
     }
+    
+    func testPatchItem1() {
+        patchItem(148)
+    }
+    
+    func testPatchItem2() {
+        patchItem(141)
+    }
+    
+    func testPostItem1() {
+        postItem()
+    }
+    
+    func testPostItem2() {
+        postItem()
+    }
+    
+    func testPatchItem() {
+        patchItem(158)
+    }
 }
 
 extension OpenMarketTests {
     func loadPage(_ number: Int) -> ProductList? {
-        let expectation = XCTestExpectation(description: "APIaskExpectation")
+        let expectation = XCTestExpectation(description: "pageLoad")
         var productList: ProductList?
         
         OpenMarketJSONDecoder<ProductList>.decodeData(about: .page, specificNumer: number) { result in
@@ -73,7 +93,7 @@ extension OpenMarketTests {
     }
     
     func loadItem(_ id: Int) -> Product? {
-        let expectation = XCTestExpectation(description: "APIaskExpectation")
+        let expectation = XCTestExpectation(description: "itemLoad")
         var product: Product?
         
         OpenMarketJSONDecoder<Product>.decodeData(about: .product, specificNumer: id) { result in
@@ -88,5 +108,41 @@ extension OpenMarketTests {
         
         wait(for: [expectation], timeout: 5.0)
         return product
+    }
+    
+    func patchItem(_ id: Int) {
+        let expectation = XCTestExpectation(description: "itemPatch")
+        
+        let product = Product(forPost: "12345", title: "타이틀 수정해보기", descriptions: "password 1234567890", price: 20000, currency: "KRW", stock: 1, discountedPrice: nil, images: [""])
+        
+        Uploader.uploadData(by: .patch, product: product, specificNumer: id) { result in
+            switch result {
+            case .success(let data):
+                dump(data)
+            case .failure(let error):
+                print("error: \(error.description)")
+            }
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 5.0)
+    }
+    
+    func postItem() {
+        let expectation = XCTestExpectation(description: "itemPatch")
+        
+        let product = Product(forPost: "12345", title: "업로드1", descriptions: "password 12345", price: 20000, currency: "KRW", stock: 1, discountedPrice: nil, images: [""])
+        
+        Uploader.uploadData(by: .post, product: product) { result in
+            switch result {
+            case .success(let data):
+                dump(data)
+            case .failure(let error):
+                print("error: \(error.description)")
+            }
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 5.0)
     }
 }
