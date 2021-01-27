@@ -21,6 +21,7 @@
 		C70FB10725BEF61D00C9924E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C70FB10525BEF61D00C9924E /* LaunchScreen.storyboard */; };
 		E268E60E25C13FE1009A3D7C /* APIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E60D25C13FE1009A3D7C /* APIType.swift */; };
 		E268E61225C13FFE009A3D7C /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E61125C13FFE009A3D7C /* HTTPMethod.swift */; };
+		E268E61825C140EF009A3D7C /* URLRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E61725C140EF009A3D7C /* URLRequestManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		C70FB10825BEF61D00C9924E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E268E60D25C13FE1009A3D7C /* APIType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIType.swift; sourceTree = "<group>"; };
 		E268E61125C13FFE009A3D7C /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		E268E61725C140EF009A3D7C /* URLRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +81,9 @@
 				4C5016E625BF274B00762FCF /* Product.swift */,
 				4C5016EC25BF275A00762FCF /* OpenMarketJSONDecoder.swift */,
 				4C5016E925BF275200762FCF /* OpenMarketAPIManager.swift */,
-				E268E61125C13FFE009A3D7C /* HTTPMethod.swift */,
 				4C5016F225BF276700762FCF /* StringFormattingError.swift */,
+				E268E61725C140EF009A3D7C /* URLRequestManager.swift */,
+				E268E61125C13FFE009A3D7C /* HTTPMethod.swift */,
 				E268E60D25C13FE1009A3D7C /* APIType.swift */,
 			);
 			path = Model;
@@ -239,6 +242,7 @@
 				C70FB0FF25BEF61C00C9924E /* ViewController.swift in Sources */,
 				4C5016E725BF274B00762FCF /* Product.swift in Sources */,
 				4C5016F325BF276700762FCF /* StringFormattingError.swift in Sources */,
+				E268E61825C140EF009A3D7C /* URLRequestManager.swift in Sources */,
 				4C5016EA25BF275200762FCF /* OpenMarketAPIManager.swift in Sources */,
 				4C5016F025BF276000762FCF /* ProductList.swift in Sources */,
 				C70FB0FB25BEF61C00C9924E /* AppDelegate.swift in Sources */,

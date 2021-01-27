@@ -9,7 +9,7 @@ import Foundation
 
 struct OpenMarketJSONDecoder<T: Decodable> {
 
-    static func decodeData(about type: OpenMarketAPIManager.APIType, specificNumer number: Int, completionHandler: @escaping (Result<T, StringFormattingError>) -> ()){
+    static func decodeData(about type: APIType, specificNumer number: Int, completionHandler: @escaping (Result<T, StringFormattingError>) -> ()){
         let decoder = JSONDecoder()
 
         OpenMarketAPIManager.startLoad(about: type, specificNumer: number) { result in
