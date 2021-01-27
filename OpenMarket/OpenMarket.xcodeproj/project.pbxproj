@@ -81,13 +81,8 @@
 			children = (
 				4C5016EF25BF276000762FCF /* ProductList.swift */,
 				4C5016E625BF274B00762FCF /* Product.swift */,
-				4C5016EC25BF275A00762FCF /* OpenMarketJSONDecoder.swift */,
-				4C5016E925BF275200762FCF /* NetworkHandler.swift */,
-				E268E61B25C142DA009A3D7C /* Uploader.swift */,
 				4C5016F225BF276700762FCF /* StringFormattingError.swift */,
-				E268E61725C140EF009A3D7C /* URLRequestManager.swift */,
-				E268E61125C13FFE009A3D7C /* HTTPMethod.swift */,
-				E268E60D25C13FE1009A3D7C /* APIType.swift */,
+				E268E62125C1487E009A3D7C /* Network */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -132,6 +127,19 @@
 				C70FB10825BEF61D00C9924E /* Info.plist */,
 			);
 			path = OpenMarket;
+			sourceTree = "<group>";
+		};
+		E268E62125C1487E009A3D7C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				4C5016EC25BF275A00762FCF /* OpenMarketJSONDecoder.swift */,
+				4C5016E925BF275200762FCF /* NetworkHandler.swift */,
+				E268E61B25C142DA009A3D7C /* Uploader.swift */,
+				E268E61725C140EF009A3D7C /* URLRequestManager.swift */,
+				E268E61125C13FFE009A3D7C /* HTTPMethod.swift */,
+				E268E60D25C13FE1009A3D7C /* APIType.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
