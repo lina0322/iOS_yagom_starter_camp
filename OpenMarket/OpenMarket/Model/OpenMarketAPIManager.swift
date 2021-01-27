@@ -8,43 +8,6 @@
 import Foundation
 
 struct OpenMarketAPIManager {
-    enum HTTPMethod: String, CustomStringConvertible {
-        case get
-        case post
-        case put
-        case patch
-        case delete
-        
-        var description: String {
-            switch self {
-            case .get:
-                return "GET"
-            case .post:
-                return "POST"
-            case .put:
-                return "PUT"
-            case .patch:
-                return "PATCH"
-            case .delete:
-                return "DELETE"
-            }
-        }
-    }
-    
-    enum APIType: CustomStringConvertible {
-        case page
-        case product
-        
-        var description: String {
-            switch self {
-            case .page:
-                return "items/"
-            case .product:
-                return "item/"
-            }
-        }
-    }
-
     private static let baseURL = "https://camp-open-market.herokuapp.com/"
         
     static func startLoad(about type: APIType, specificNumer number: Int, completionHandler: @escaping (Result<Data, StringFormattingError>) -> ()) {
