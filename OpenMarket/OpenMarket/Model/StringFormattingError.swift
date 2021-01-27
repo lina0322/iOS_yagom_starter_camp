@@ -11,6 +11,7 @@ enum StringFormattingError: Error, CustomStringConvertible {
     case severConnectionFailure
     case wrongData
     case decodingFailure
+    case encodingFailure
     case unknown
 
     var description: String {
@@ -25,6 +26,8 @@ enum StringFormattingError: Error, CustomStringConvertible {
             return "잘못된 데이터입니다."
         case .decodingFailure:
             return "디코딩에 실패했습니다."
+        case .encodingFailure:
+            return "인코딩에 실패했습니다."
         case .unknown:
             return "알 수 없는 에러가 발생했습니다."
         }
