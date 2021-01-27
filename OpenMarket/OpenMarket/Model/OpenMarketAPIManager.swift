@@ -8,15 +8,7 @@
 import Foundation
 
 struct OpenMarketAPIManager {
-    private static let baseURL = "https://camp-open-market.herokuapp.com/"
-        
-    static func startLoad(about type: APIType, specificNumer number: Int, completionHandler: @escaping (Result<Data, StringFormattingError>) -> ()) {
-        guard var urlRequest = makeURLRequest(about: type, specificNumer: number) else {
-            completionHandler(.failure(.wrongURLRequest))
-            return
-        }
-        
-        urlRequest.httpMethod = "\(HTTPMethod.get)"
+    static func startLoad(about type: APIType = .product, urlRequest: URLRequest, specificNumer number: Int? = nil, completionHandler: @escaping (Result<Data, StringFormattingError>) -> ()) {
         URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
                 debugPrint(error.localizedDescription)
@@ -34,14 +26,5 @@ struct OpenMarketAPIManager {
             }
             completionHandler(.failure(.wrongData))
         }.resume()
-    }
-    
-    private static func makeURLRequest(about type: APIType, specificNumer number: Int) -> URLRequest? {
-        let absoluteURL = "\(baseURL)\(type)\(number)/"
-        guard let url = URL(string: absoluteURL) else {
-            debugPrint(StringFormattingError.wrongURL)
-            return nil
-        }
-        return URLRequest(url: url)
     }
 }

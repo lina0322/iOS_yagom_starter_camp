@@ -10,13 +10,16 @@ import Foundation
 struct OpenMarketJSONDecoder<T: Decodable> {
 
     static func decodeData(about type: APIType, specificNumer number: Int, completionHandler: @escaping (Result<T, StringFormattingError>) -> ()){
-        let decoder = JSONDecoder()
-
-        OpenMarketAPIManager.startLoad(about: type, specificNumer: number) { result in
+        guard let urlRequest = URLRequestManager.makeURLRequest(for: .get, about: type, specificNumer: number) else {
+            completionHandler(.failure(.wrongURLRequest))
+            return
+        }
+        
+        OpenMarketAPIManager.startLoad(about: type, urlRequest: urlRequest, specificNumer: number) { result in
             switch result {
             case .success(let data):
                 do {
-                    let decodedData = try decoder.decode(T.self, from: data)
+                    let decodedData = try JSONDecoder().decode(T.self, from: data)
                     completionHandler(.success(decodedData))
                 } catch {
                     completionHandler(.failure(.decodingFailure))
