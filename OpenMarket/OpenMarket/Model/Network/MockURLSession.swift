@@ -32,8 +32,19 @@ class MockURLSession: URLSessionProtocol {
     }
     
     var makeRequestSuccess = true
-    init(makeRequestSuccess: Bool = true) {
+    var apiType = APIType.page
+    var data: Data {
+        switch apiType {
+        case .page:
+            return MockAPI.test.sampleItems.data
+        case .product:
+            return MockAPI.test.sampleItem.data
+        }
+    }
+    
+    init(makeRequestSuccess: Bool = true, apiType: APIType = APIType.page) {
         self.makeRequestSuccess = makeRequestSuccess
+        self.apiType = apiType
     }
     
     var sessionDataTask: McokURLSessionDataTask?
@@ -53,7 +64,7 @@ class MockURLSession: URLSessionProtocol {
         
         sessionDataTask.resumeDidCall = {
             if self.makeRequestSuccess {
-                completionHandler(MockAPI.test.sampleItems.data, successResponse, nil)
+                completionHandler(self.data, successResponse, nil)
             } else {
                 completionHandler(nil, failureResponse, nil)
             }

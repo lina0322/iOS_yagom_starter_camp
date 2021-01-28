@@ -23,6 +23,19 @@ class OpenMarketTests: XCTestCase {
         XCTAssertNil(productList)
     }
     
+    func testLoadProductFromMockSuccessCase() {
+        let product = loadProductFromMock(1, success: true)
+        dump(product)
+        XCTAssertNotNil(product)
+        XCTAssertEqual(product?.id, 1)
+    }
+
+    func testLoadProductFromMockFailureCase() {
+        let product = loadProductFromMock(1, success: false)
+        dump(product)
+        XCTAssertNil(product)
+    }
+    
     func testLoadFirstPage() {
         let productList = loadPage(1)
         dump(productList)
@@ -91,8 +104,9 @@ extension OpenMarketTests {
     func loadPageFromMock(_ number: Int, success: Bool) -> ProductList? {
         let expectation = XCTestExpectation(description: "pageLoad")
         var productList: ProductList?
+        let networkHandler = NetworkHandler(session: MockURLSession(makeRequestSuccess: success))
         
-        OpenMarketJSONDecoder<ProductList>.decodeData(about: .page, specificNumer: number, networkHandler: NetworkHandler(session: MockURLSession(makeRequestSuccess: success))) { result in
+        OpenMarketJSONDecoder<ProductList>.decodeData(about: .page, specificNumer: number, networkHandler: networkHandler) { result in
             switch result {
             case .success(let data):
                 productList = data
@@ -104,6 +118,25 @@ extension OpenMarketTests {
         
         wait(for: [expectation], timeout: 5.0)
         return productList
+    }
+    
+    func loadProductFromMock(_ number: Int, success: Bool) -> Product? {
+        let expectation = XCTestExpectation(description: "pageLoad")
+        var Product: Product?
+        let networkHandler = NetworkHandler(session: MockURLSession(makeRequestSuccess: success, apiType: .product))
+        
+        OpenMarketJSONDecoder<Product>.decodeData(about: .product, specificNumer: number, networkHandler: networkHandler) { result in
+            switch result {
+            case .success(let data):
+                Product = data
+            case .failure(let error):
+                print("error: \(error.localizedDescription)")
+            }
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 5.0)
+        return Product
     }
     
     func loadPage(_ number: Int) -> ProductList? {
