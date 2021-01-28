@@ -7,9 +7,19 @@
 
 import Foundation
 
+protocol URLSessionProtocol {
+    func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
+}
+extension URLSession: URLSessionProtocol { }
+
 struct NetworkHandler {
-    static func startLoad(about type: APIType = .product, urlRequest: URLRequest, specificNumer number: Int? = nil, completionHandler: @escaping (Result<Data, OpenMarketError>) -> ()) {
-        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+    let session: URLSessionProtocol
+    init(session: URLSessionProtocol = URLSession.shared) {
+        self.session = session
+    }
+    
+    func startLoad(about type: APIType = .product, urlRequest: URLRequest, specificNumer number: Int? = nil, completionHandler: @escaping (Result<Data, OpenMarketError>) -> ()) {
+        session.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
                 debugPrint(error.localizedDescription)
                 completionHandler(.failure(.severConnectionFailure))

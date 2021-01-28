@@ -23,6 +23,7 @@
 		E268E61225C13FFE009A3D7C /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E61125C13FFE009A3D7C /* HTTPMethod.swift */; };
 		E268E61825C140EF009A3D7C /* URLRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E61725C140EF009A3D7C /* URLRequestManager.swift */; };
 		E268E61C25C142DA009A3D7C /* Uploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E61B25C142DA009A3D7C /* Uploader.swift */; };
+		E268E62825C2579F009A3D7C /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E62725C2579F009A3D7C /* MockURLSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		E268E61125C13FFE009A3D7C /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		E268E61725C140EF009A3D7C /* URLRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestManager.swift; sourceTree = "<group>"; };
 		E268E61B25C142DA009A3D7C /* Uploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uploader.swift; sourceTree = "<group>"; };
+		E268E62725C2579F009A3D7C /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 		4C5016FB25BF278500762FCF /* OpenMarketTests */ = {
 			isa = PBXGroup;
 			children = (
+				E268E62625C25771009A3D7C /* MockTestModel */,
 				4C5016FC25BF278500762FCF /* OpenMarketTests.swift */,
 				4C5016FE25BF278500762FCF /* Info.plist */,
 			);
@@ -140,6 +143,14 @@
 				E268E60D25C13FE1009A3D7C /* APIType.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		E268E62625C25771009A3D7C /* MockTestModel */ = {
+			isa = PBXGroup;
+			children = (
+				E268E62725C2579F009A3D7C /* MockURLSession.swift */,
+			);
+			path = MockTestModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E268E62825C2579F009A3D7C /* MockURLSession.swift in Sources */,
 				4C5016FD25BF278500762FCF /* OpenMarketTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

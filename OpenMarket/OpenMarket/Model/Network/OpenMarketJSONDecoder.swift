@@ -8,7 +8,7 @@
 import Foundation
 
 struct OpenMarketJSONDecoder<T: Decodable> {
-
+    
     static func decodeData(about type: APIType, specificNumer number: Int, completionHandler: @escaping (Result<T, OpenMarketError>) -> ()){
         guard let urlRequest = URLRequestManager.makeURLRequest(for: .get, about: type, specificNumer: number) else {
             completionHandler(.failure(.wrongURLRequest))
