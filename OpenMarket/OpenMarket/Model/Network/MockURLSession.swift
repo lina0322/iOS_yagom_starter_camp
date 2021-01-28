@@ -7,8 +7,6 @@
 
 import Foundation
 import UIKit
-@testable import OpenMarket
-
 
 class McokURLSessionDataTask: URLSessionDataTask {
     override init() { }
@@ -19,21 +17,19 @@ class McokURLSessionDataTask: URLSessionDataTask {
     }
 }
 
-// MARK: -MockAPI
-enum MockAPI {
-    case test
-    
-    static let baseURL = URL(string: "https://camp-open-market.herokuapp.com/")!
-    
-    var sampleItems: NSDataAsset {
-        NSDataAsset.init(name: "items")!
-    }
-    var sampleItem: NSDataAsset {
-        NSDataAsset.init(name: "item")!
-    }
-}
-
 class MockURLSession: URLSessionProtocol {
+    enum MockAPI {
+        case test
+        
+        static let baseURL = URL(string: "https://camp-open-market.herokuapp.com/")!
+        
+        var sampleItems: NSDataAsset {
+            NSDataAsset.init(name: "items")!
+        }
+        var sampleItem: NSDataAsset {
+            NSDataAsset.init(name: "item")!
+        }
+    }
     
     var makeRequestSuccess = true
     init(makeRequestSuccess: Bool = true) {

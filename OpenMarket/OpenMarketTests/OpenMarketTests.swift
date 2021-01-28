@@ -9,6 +9,14 @@ import XCTest
 @testable import OpenMarket
 
 class OpenMarketTests: XCTestCase {
+    func testLoadFirstPageFromMock() {
+        let productList = loadPageFromMock(1)
+        dump(productList)
+        XCTAssertNotNil(productList)
+        XCTAssertEqual(productList?.page, 1)
+        XCTAssertEqual(productList?.items.count, 20)
+    }
+    
     func testLoadFirstPage() {
         let productList = loadPage(1)
         dump(productList)
@@ -74,6 +82,24 @@ class OpenMarketTests: XCTestCase {
 }
 
 extension OpenMarketTests {
+    func loadPageFromMock(_ number: Int) -> ProductList? {
+        let expectation = XCTestExpectation(description: "pageLoad")
+        var productList: ProductList?
+        
+        OpenMarketJSONDecoder<ProductList>.decodeData(about: .page, specificNumer: number, test: true) { result in
+            switch result {
+            case .success(let data):
+                productList = data
+            case .failure(let error):
+                print("error: \(error.localizedDescription)")
+            }
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 5.0)
+        return productList
+    }
+    
     func loadPage(_ number: Int) -> ProductList? {
         let expectation = XCTestExpectation(description: "pageLoad")
         var productList: ProductList?
