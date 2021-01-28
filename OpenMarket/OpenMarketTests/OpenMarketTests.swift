@@ -9,12 +9,18 @@ import XCTest
 @testable import OpenMarket
 
 class OpenMarketTests: XCTestCase {
-    func testLoadFirstPageFromMock() {
-        let productList = loadPageFromMock(1)
+    func testLoadFirstPageFromMockSuccessCase() {
+        let productList = loadPageFromMock(1, success: true)
         dump(productList)
         XCTAssertNotNil(productList)
         XCTAssertEqual(productList?.page, 1)
         XCTAssertEqual(productList?.items.count, 20)
+    }
+
+    func testLoadFirstPageFromMockFailureCase() {
+        let productList = loadPageFromMock(1, success: false)
+        dump(productList)
+        XCTAssertNil(productList)
     }
     
     func testLoadFirstPage() {
@@ -82,11 +88,11 @@ class OpenMarketTests: XCTestCase {
 }
 
 extension OpenMarketTests {
-    func loadPageFromMock(_ number: Int) -> ProductList? {
+    func loadPageFromMock(_ number: Int, success: Bool) -> ProductList? {
         let expectation = XCTestExpectation(description: "pageLoad")
         var productList: ProductList?
         
-        OpenMarketJSONDecoder<ProductList>.decodeData(about: .page, specificNumer: number, test: true) { result in
+        OpenMarketJSONDecoder<ProductList>.decodeData(about: .page, specificNumer: number, networkHandler: NetworkHandler(session: MockURLSession(makeRequestSuccess: success))) { result in
             switch result {
             case .success(let data):
                 productList = data
