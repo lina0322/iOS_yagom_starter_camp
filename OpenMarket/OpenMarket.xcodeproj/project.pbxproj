@@ -24,6 +24,8 @@
 		E268E61225C13FFE009A3D7C /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E61125C13FFE009A3D7C /* HTTPMethod.swift */; };
 		E268E61825C140EF009A3D7C /* URLRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E61725C140EF009A3D7C /* URLRequestManager.swift */; };
 		E268E61C25C142DA009A3D7C /* Uploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E61B25C142DA009A3D7C /* Uploader.swift */; };
+		E268E64525C3165F009A3D7C /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E64425C3165F009A3D7C /* ListViewController.swift */; };
+		E268E64B25C31676009A3D7C /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E64A25C31676009A3D7C /* GridViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		E268E61725C140EF009A3D7C /* URLRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestManager.swift; sourceTree = "<group>"; };
 		E268E61B25C142DA009A3D7C /* Uploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uploader.swift; sourceTree = "<group>"; };
 		E268E62725C2579F009A3D7C /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		E268E64425C3165F009A3D7C /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		E268E64A25C31676009A3D7C /* GridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,9 +124,9 @@
 			isa = PBXGroup;
 			children = (
 				4C5016F525BF276A00762FCF /* Model */,
+				E268E64325C31635009A3D7C /* ViewController */,
 				C70FB0FA25BEF61C00C9924E /* AppDelegate.swift */,
 				C70FB0FC25BEF61C00C9924E /* SceneDelegate.swift */,
-				C70FB0FE25BEF61C00C9924E /* OpenMarketViewController.swift */,
 				C70FB10025BEF61C00C9924E /* Main.storyboard */,
 				C70FB10325BEF61D00C9924E /* Assets.xcassets */,
 				C70FB10525BEF61D00C9924E /* LaunchScreen.storyboard */,
@@ -143,6 +147,16 @@
 				E268E60D25C13FE1009A3D7C /* APIRequestType.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		E268E64325C31635009A3D7C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C70FB0FE25BEF61C00C9924E /* OpenMarketViewController.swift */,
+				E268E64425C3165F009A3D7C /* ListViewController.swift */,
+				E268E64A25C31676009A3D7C /* GridViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,10 +273,12 @@
 				E268E61825C140EF009A3D7C /* URLRequestManager.swift in Sources */,
 				4C5016EA25BF275200762FCF /* NetworkHandler.swift in Sources */,
 				4C5016F025BF276000762FCF /* ProductList.swift in Sources */,
+				E268E64525C3165F009A3D7C /* ListViewController.swift in Sources */,
 				C70FB0FB25BEF61C00C9924E /* AppDelegate.swift in Sources */,
 				4C5016ED25BF275A00762FCF /* OpenMarketJSONDecoder.swift in Sources */,
 				E268E60E25C13FE1009A3D7C /* APIRequestType.swift in Sources */,
 				E268E61C25C142DA009A3D7C /* Uploader.swift in Sources */,
+				E268E64B25C31676009A3D7C /* GridViewController.swift in Sources */,
 				E268E61225C13FFE009A3D7C /* HTTPMethod.swift in Sources */,
 				C70FB0FD25BEF61C00C9924E /* SceneDelegate.swift in Sources */,
 				4C44EA9B25C26D8B00DA7406 /* MockURLSession.swift in Sources */,
