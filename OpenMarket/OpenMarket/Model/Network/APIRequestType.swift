@@ -5,7 +5,7 @@
 //  Created by Jinho Choi on 2021/01/27.
 //
 
-enum APIType {
+enum APIRequestType {
     case loadPage(page: UInt)
     case loadProduct(id: UInt)
     case postProduct

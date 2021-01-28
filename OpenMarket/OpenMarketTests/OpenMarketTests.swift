@@ -104,7 +104,7 @@ extension OpenMarketTests {
     func loadPageFromMock(_ number: UInt, success: Bool) -> ProductList? {
         let expectation = XCTestExpectation(description: "pageLoad")
         var productList: ProductList?
-        let networkHandler = NetworkHandler(session: MockURLSession(makeRequestSuccess: success, apiType: .loadPage(page: number)))
+        let networkHandler = NetworkHandler(session: MockURLSession(makeRequestSuccess: success, apiRequestType: .loadPage(page: number)))
         
         OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: number), networkHandler: networkHandler) { result in
             switch result {
@@ -123,7 +123,7 @@ extension OpenMarketTests {
     func loadProductFromMock(_ number: UInt, success: Bool) -> Product? {
         let expectation = XCTestExpectation(description: "pageLoad")
         var Product: Product?
-        let networkHandler = NetworkHandler(session: MockURLSession(makeRequestSuccess: success, apiType: .loadProduct(id: number)))
+        let networkHandler = NetworkHandler(session: MockURLSession(makeRequestSuccess: success, apiRequestType: .loadProduct(id: number)))
         
         OpenMarketJSONDecoder<Product>.decodeData(about: .loadProduct(id: number), networkHandler: networkHandler) { result in
             switch result {
@@ -180,7 +180,7 @@ extension OpenMarketTests {
         
         let product = Product(forPostPassword: "12345", title: "변해라 얍! 타이틀 수정해보기", descriptions: "password 1234567890", price: 20000, currency: "KRW", stock: 1, discountedPrice: nil, images: [""])
         
-        Uploader.uploadData(by: .patch, product: product, apiType: .patchProduct(id: id)) { result in
+        Uploader.uploadData(by: .patch, product: product, apiRequestType: .patchProduct(id: id)) { result in
             switch result {
             case .success(let data):
                 dump(data)
@@ -198,7 +198,7 @@ extension OpenMarketTests {
         
         let product = Product(forPostPassword: "12345", title: "또 올려봅니다.", descriptions: "password 12345", price: 20000, currency: "KRW", stock: 1, discountedPrice: nil, images: [""])
         
-        Uploader.uploadData(by: .post, product: product, apiType: .postProduct) { result in
+        Uploader.uploadData(by: .post, product: product, apiRequestType: .postProduct) { result in
             switch result {
             case .success(let data):
                 dump(data)

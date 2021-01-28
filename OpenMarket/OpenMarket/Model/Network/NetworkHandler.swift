@@ -18,7 +18,7 @@ struct NetworkHandler {
         self.session = session
     }
     
-    func startLoad(about type: APIType, urlRequest: URLRequest, completionHandler: @escaping (Result<Data, OpenMarketError>) -> ()) {
+    func startLoad(about apiRequestType: APIRequestType, urlRequest: URLRequest, completionHandler: @escaping (Result<Data, OpenMarketError>) -> ()) {
         session.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
                 debugPrint(error.localizedDescription)

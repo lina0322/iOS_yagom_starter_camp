@@ -8,7 +8,7 @@
 import Foundation
 
 struct Uploader {
-    static func uploadData(by httpMethod: HTTPMethod, product: Product, apiType: APIType, completionHandler: @escaping (Result<Any, OpenMarketError>) -> ()){
+    static func uploadData(by httpMethod: HTTPMethod, product: Product, apiRequestType: APIRequestType, completionHandler: @escaping (Result<Any, OpenMarketError>) -> ()){
         guard var urlRequest = URLRequestManager.makeURLRequest(for: httpMethod) else {
             completionHandler(.failure(.wrongURLRequest))
             return
@@ -23,7 +23,7 @@ struct Uploader {
             }
         }
         
-        NetworkHandler().startLoad(about: apiType, urlRequest: urlRequest) { result in
+        NetworkHandler().startLoad(about: apiRequestType, urlRequest: urlRequest) { result in
             switch result {
             case .success(let data):
                 completionHandler(.success(data))
