@@ -83,7 +83,7 @@ extension OpenMarketTests {
             case .success(let data):
                 productList = data
             case .failure(let error):
-                print("error: \(error.description)")
+                print("error: \(error.localizedDescription)")
             }
             expectation.fulfill()
         }
@@ -101,7 +101,7 @@ extension OpenMarketTests {
             case .success(let data):
                 product = data
             case .failure(let error):
-                print("error: \(error.description)")
+                print("error: \(error.localizedDescription)")
             }
             expectation.fulfill()
         }
@@ -120,7 +120,7 @@ extension OpenMarketTests {
             case .success(let data):
                 dump(data)
             case .failure(let error):
-                print("error: \(error.description)")
+                print("error: \(error.localizedDescription)")
             }
             expectation.fulfill()
         }
@@ -138,7 +138,7 @@ extension OpenMarketTests {
             case .success(let data):
                 dump(data)
             case .failure(let error):
-                print("error: \(error.description)")
+                print("error: \(error.localizedDescription)")
             }
             expectation.fulfill()
         }

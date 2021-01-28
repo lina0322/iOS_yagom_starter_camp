@@ -19,7 +19,7 @@ struct URLRequestManager {
         }
         
         guard let url = URL(string: absoluteURL) else {
-            debugPrint(StringFormattingError.wrongURL)
+            debugPrint(OpenMarketError.wrongURL)
             return nil
         }
         var urlRequest = URLRequest(url: url)

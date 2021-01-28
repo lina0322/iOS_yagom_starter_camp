@@ -8,7 +8,7 @@
 import Foundation
 
 struct NetworkHandler {
-    static func startLoad(about type: APIType = .product, urlRequest: URLRequest, specificNumer number: Int? = nil, completionHandler: @escaping (Result<Data, StringFormattingError>) -> ()) {
+    static func startLoad(about type: APIType = .product, urlRequest: URLRequest, specificNumer number: Int? = nil, completionHandler: @escaping (Result<Data, OpenMarketError>) -> ()) {
         URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
                 debugPrint(error.localizedDescription)

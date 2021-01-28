@@ -8,7 +8,7 @@
 import Foundation
 
 struct Uploader {
-    static func uploadData(by httpMethod: HTTPMethod, product: Product, specificNumer number: Int? = nil, completionHandler: @escaping (Result<Any, StringFormattingError>) -> ()){
+    static func uploadData(by httpMethod: HTTPMethod, product: Product, specificNumer number: Int? = nil, completionHandler: @escaping (Result<Any, OpenMarketError>) -> ()){
         guard var urlRequest = URLRequestManager.makeURLRequest(for: httpMethod, specificNumer: number) else {
             completionHandler(.failure(.wrongURLRequest))
             return
@@ -33,7 +33,7 @@ struct Uploader {
         }
     }
     
-    private static func encoder(data: Product,  completionHandler: @escaping (Result<Data, StringFormattingError>) -> ()){
+    private static func encoder(data: Product,  completionHandler: @escaping (Result<Data, OpenMarketError>) -> ()){
         let encoder = JSONEncoder()
         
         do {

@@ -4,8 +4,9 @@
 //
 //  Created by 임리나 on 2021/01/25.
 //
+import Foundation
 
-enum StringFormattingError: Error, CustomStringConvertible {
+enum OpenMarketError: Error {
     case wrongURL
     case wrongURLRequest
     case severConnectionFailure
@@ -13,8 +14,10 @@ enum StringFormattingError: Error, CustomStringConvertible {
     case decodingFailure
     case encodingFailure
     case unknown
+}
 
-    var description: String {
+extension OpenMarketError: LocalizedError {
+    var errorDescription: String? {
         switch self {
         case .wrongURL:
             return "잘못된 URL입니다."
