@@ -8,11 +8,32 @@ import UIKit
 
 class OpenMarketViewController: UIViewController {
     let listViewController = ListViewController()
-    let gridViewController = GRIDViewController()
+    let gridViewController = GridViewController()
+    
+    let segmentedControlTitle = ["LIST", "GRID"]
+    let segmentedControl = UISegmentedControl(items: ["LIST", "GRID"])
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
+        setSegmentedControl()
+    }
+    
+    private func setSegmentedControl() {
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.addTarget(self, action: #selector(didTapSegmentedControl), for: .valueChanged)
+    }
+    
+    @objc private func didTapSegmentedControl(segmentedControl: UISegmentedControl) {
+        listViewController.view.isHidden = true
+        gridViewController.view.isHidden = true
+        
+        if segmentedControl.selectedSegmentIndex == 0 {
+            listViewController.view.isHidden = false
+        }
+        else {
+            gridViewController.view.isHidden = false
+        }
     }
     
     private func setUpView() {
