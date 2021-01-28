@@ -1,0 +1,54 @@
+[
+	{
+		"name":"General",
+		"image_name":"general"
+	},
+    {
+        "name":"Accessibility",
+        "image_name":"accessibility"
+    },
+    {
+        "name":"Privacy",
+        "image_name":"privacy"
+    },
+    {
+        "name":"Passwords",
+        "image_name":"passwords"
+    },
+    {
+        "name":"Safari",
+        "image_name":"safari"
+    },
+    {
+        "name":"News",
+        "image_name":"news"
+    },
+    {
+        "name":"Maps",
+        "image_name":"maps"
+    },
+    {
+        "name":"Shortcuts",
+        "image_name":"shortcuts"
+    },
+    {
+        "name":"Health",
+        "image_name":"health"
+    },
+    {
+        "name":"Siri & Search",
+        "image_name":"sirisearch"
+    },
+    {
+        "name":"Photos",
+        "image_name":"photos"
+    },
+    {
+        "name":"Game Center",
+        "image_name":"gamecenter"
+    },
+    {
+        "name":"Developer",
+        "image_name":"developer"
+    }
+]

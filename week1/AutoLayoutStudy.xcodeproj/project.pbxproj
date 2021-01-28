@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		26F6C46F2593029E00F7F27A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6C46E2593029E00F7F27A /* AppDelegate.swift */; };
 		26F6C4712593029E00F7F27A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6C4702593029E00F7F27A /* SceneDelegate.swift */; };
-		26F6C4732593029E00F7F27A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6C4722593029E00F7F27A /* ViewController.swift */; };
 		26F6C4762593029E00F7F27A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26F6C4742593029E00F7F27A /* Main.storyboard */; };
 		26F6C478259302A000F7F27A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26F6C477259302A000F7F27A /* Assets.xcassets */; };
 		26F6C47B259302A000F7F27A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26F6C479259302A000F7F27A /* LaunchScreen.storyboard */; };
@@ -19,7 +18,6 @@
 		26F6C46B2593029E00F7F27A /* AutoLayoutStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoLayoutStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26F6C46E2593029E00F7F27A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26F6C4702593029E00F7F27A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		26F6C4722593029E00F7F27A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		26F6C4752593029E00F7F27A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		26F6C477259302A000F7F27A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26F6C47A259302A000F7F27A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,7 +56,6 @@
 			children = (
 				26F6C46E2593029E00F7F27A /* AppDelegate.swift */,
 				26F6C4702593029E00F7F27A /* SceneDelegate.swift */,
-				26F6C4722593029E00F7F27A /* ViewController.swift */,
 				26F6C4742593029E00F7F27A /* Main.storyboard */,
 				26F6C477259302A000F7F27A /* Assets.xcassets */,
 				26F6C479259302A000F7F27A /* LaunchScreen.storyboard */,
@@ -137,7 +134,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26F6C4732593029E00F7F27A /* ViewController.swift in Sources */,
 				26F6C46F2593029E00F7F27A /* AppDelegate.swift in Sources */,
 				26F6C4712593029E00F7F27A /* SceneDelegate.swift in Sources */,
 			);
@@ -288,6 +284,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AutoLayoutStudy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,6 +303,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AutoLayoutStudy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
