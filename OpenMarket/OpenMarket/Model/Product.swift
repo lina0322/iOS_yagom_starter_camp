@@ -15,8 +15,8 @@ struct Product: Codable {
     let currency: String?
     let stock: Int?
     let discountedPrice: Int?
-    let thumbnails: [String]?
-    let images: [String]?
+    let thumbnailURLs: [String]?
+    let imageURLs: [String]?
     let timeStampDate: Double?
     let password: String?
     
@@ -28,10 +28,10 @@ struct Product: Codable {
         self.currency = currency
         self.stock = stock
         self.discountedPrice = discountedPrice
-        self.images = images
+        self.imageURLs = images
         
         self.id = nil
-        self.thumbnails = nil
+        self.thumbnailURLs = nil
         self.timeStampDate = nil
     }
     
@@ -45,13 +45,15 @@ struct Product: Codable {
         self.currency = currency
         self.stock = stock
         self.discountedPrice = discountedPrice
-        self.thumbnails = nil
-        self.images = images
+        self.thumbnailURLs = nil
+        self.imageURLs = images
         self.timeStampDate = nil
     }
     
     enum CodingKeys: String, CodingKey {
-        case id, title, descriptions, price, currency, stock, thumbnails, images, password
+        case id, title, descriptions, price, currency, stock,  password
+        case thumbnailURLs = "thumbnails"
+        case imageURLs = "images"
         case discountedPrice = "discounted_price"
         case timeStampDate = "registration_date"
     }
