@@ -32,17 +32,17 @@ class MockURLSession: URLSessionProtocol {
     }
     
     var makeRequestSuccess = true
-    var apiType = APIType.page
+    var apiType = APIType.loadPage(page: 1)
     var data: Data {
         switch apiType {
-        case .page:
+        case .loadPage(page: 1):
             return MockAPI.test.sampleItems.data
-        case .product:
+        default:
             return MockAPI.test.sampleItem.data
         }
     }
     
-    init(makeRequestSuccess: Bool = true, apiType: APIType = APIType.page) {
+    init(makeRequestSuccess: Bool = true, apiType: APIType) {
         self.makeRequestSuccess = makeRequestSuccess
         self.apiType = apiType
     }

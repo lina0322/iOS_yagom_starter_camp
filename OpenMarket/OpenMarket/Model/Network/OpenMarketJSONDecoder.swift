@@ -9,13 +9,13 @@ import Foundation
 
 struct OpenMarketJSONDecoder<T: Decodable> {
     
-    static func decodeData(about type: APIType, specificNumer number: Int, networkHandler: NetworkHandler = NetworkHandler(), completionHandler: @escaping (Result<T, OpenMarketError>) -> ()){
-        guard let urlRequest = URLRequestManager.makeURLRequest(for: .get, about: type, specificNumer: number) else {
+    static func decodeData(about type: APIType, networkHandler: NetworkHandler = NetworkHandler(), completionHandler: @escaping (Result<T, OpenMarketError>) -> ()){
+        guard let urlRequest = URLRequestManager.makeURLRequest(for: .get, about: type) else {
             completionHandler(.failure(.wrongURLRequest))
             return
         }
         
-        networkHandler.startLoad(about: type, urlRequest: urlRequest, specificNumer: number) { result in
+        networkHandler.startLoad(about: type, urlRequest: urlRequest) { result in
             switch result {
             case .success(let data):
                 do {

@@ -66,47 +66,47 @@ class OpenMarketTests: XCTestCase {
     }
     
     func testLoadItem1() {
-        let item = loadItem(32)
+        let item = loadProduct(32)
         dump(item)
         XCTAssertNotNil(item)
         XCTAssertEqual(item?.id, 32)
     }
     
     func testLoadItem2() {
-        let item = loadItem(42)
+        let item = loadProduct(42)
         dump(item)
         XCTAssertNotNil(item)
         XCTAssertEqual(item?.id, 42)
     }
     
     func testPatchItem1() {
-        patchItem(148)
+        patchProduct(148)
     }
     
     func testPatchItem2() {
-        patchItem(141)
+        patchProduct(141)
     }
     
     func testPostItem1() {
-        postItem()
+        postProdcut()
     }
     
     func testPostItem2() {
-        postItem()
+        postProdcut()
     }
     
     func testPatchItem() {
-        patchItem(158)
+        patchProduct(158)
     }
 }
 
 extension OpenMarketTests {
-    func loadPageFromMock(_ number: Int, success: Bool) -> ProductList? {
+    func loadPageFromMock(_ number: UInt, success: Bool) -> ProductList? {
         let expectation = XCTestExpectation(description: "pageLoad")
         var productList: ProductList?
-        let networkHandler = NetworkHandler(session: MockURLSession(makeRequestSuccess: success))
+        let networkHandler = NetworkHandler(session: MockURLSession(makeRequestSuccess: success, apiType: .loadPage(page: number)))
         
-        OpenMarketJSONDecoder<ProductList>.decodeData(about: .page, specificNumer: number, networkHandler: networkHandler) { result in
+        OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: number), networkHandler: networkHandler) { result in
             switch result {
             case .success(let data):
                 productList = data
@@ -120,12 +120,12 @@ extension OpenMarketTests {
         return productList
     }
     
-    func loadProductFromMock(_ number: Int, success: Bool) -> Product? {
+    func loadProductFromMock(_ number: UInt, success: Bool) -> Product? {
         let expectation = XCTestExpectation(description: "pageLoad")
         var Product: Product?
-        let networkHandler = NetworkHandler(session: MockURLSession(makeRequestSuccess: success, apiType: .product))
+        let networkHandler = NetworkHandler(session: MockURLSession(makeRequestSuccess: success, apiType: .loadProduct(id: number)))
         
-        OpenMarketJSONDecoder<Product>.decodeData(about: .product, specificNumer: number, networkHandler: networkHandler) { result in
+        OpenMarketJSONDecoder<Product>.decodeData(about: .loadProduct(id: number), networkHandler: networkHandler) { result in
             switch result {
             case .success(let data):
                 Product = data
@@ -139,11 +139,11 @@ extension OpenMarketTests {
         return Product
     }
     
-    func loadPage(_ number: Int) -> ProductList? {
+    func loadPage(_ number: UInt) -> ProductList? {
         let expectation = XCTestExpectation(description: "pageLoad")
         var productList: ProductList?
         
-        OpenMarketJSONDecoder<ProductList>.decodeData(about: .page, specificNumer: number) { result in
+        OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: number)) { result in
             switch result {
             case .success(let data):
                 productList = data
@@ -157,11 +157,11 @@ extension OpenMarketTests {
         return productList
     }
     
-    func loadItem(_ id: Int) -> Product? {
+    func loadProduct(_ id: UInt) -> Product? {
         let expectation = XCTestExpectation(description: "itemLoad")
         var product: Product?
         
-        OpenMarketJSONDecoder<Product>.decodeData(about: .product, specificNumer: id) { result in
+        OpenMarketJSONDecoder<Product>.decodeData(about: .loadProduct(id: id)) { result in
             switch result {
             case .success(let data):
                 product = data
@@ -175,12 +175,12 @@ extension OpenMarketTests {
         return product
     }
     
-    func patchItem(_ id: Int) {
+    func patchProduct(_ id: UInt) {
         let expectation = XCTestExpectation(description: "itemPatch")
         
         let product = Product(forPostPassword: "12345", title: "변해라 얍! 타이틀 수정해보기", descriptions: "password 1234567890", price: 20000, currency: "KRW", stock: 1, discountedPrice: nil, images: [""])
         
-        Uploader.uploadData(by: .patch, product: product, specificNumer: id) { result in
+        Uploader.uploadData(by: .patch, product: product, apiType: .patchProduct(id: id)) { result in
             switch result {
             case .success(let data):
                 dump(data)
@@ -193,12 +193,12 @@ extension OpenMarketTests {
         wait(for: [expectation], timeout: 5.0)
     }
     
-    func postItem() {
+    func postProdcut() {
         let expectation = XCTestExpectation(description: "itemPatch")
         
         let product = Product(forPostPassword: "12345", title: "업로드1", descriptions: "password 12345", price: 20000, currency: "KRW", stock: 1, discountedPrice: nil, images: [""])
         
-        Uploader.uploadData(by: .post, product: product) { result in
+        Uploader.uploadData(by: .post, product: product, apiType: .postProduct) { result in
             switch result {
             case .success(let data):
                 dump(data)

@@ -10,13 +10,8 @@ import Foundation
 struct URLRequestManager {
     private static let baseURL = "https://camp-open-market.herokuapp.com/"
 
-    static func makeURLRequest(for httpMethod: HTTPMethod, about type: APIType = .product, specificNumer number: Int?) -> URLRequest? {
-        var absoluteURL: String
-        if let number = number {
-            absoluteURL = "\(baseURL)\(type)\(number)/"
-        } else {
-            absoluteURL = "\(baseURL)\(type)/"
-        }
+    static func makeURLRequest(for httpMethod: HTTPMethod, about type: APIType = .loadPage(page: 1)) -> URLRequest? {
+        let absoluteURL: String = "\(baseURL)\(type.urlPath)"
         
         guard let url = URL(string: absoluteURL) else {
             debugPrint(OpenMarketError.wrongURL)

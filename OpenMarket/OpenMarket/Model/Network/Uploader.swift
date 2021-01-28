@@ -8,8 +8,8 @@
 import Foundation
 
 struct Uploader {
-    static func uploadData(by httpMethod: HTTPMethod, product: Product, specificNumer number: Int? = nil, completionHandler: @escaping (Result<Any, OpenMarketError>) -> ()){
-        guard var urlRequest = URLRequestManager.makeURLRequest(for: httpMethod, specificNumer: number) else {
+    static func uploadData(by httpMethod: HTTPMethod, product: Product, apiType: APIType, completionHandler: @escaping (Result<Any, OpenMarketError>) -> ()){
+        guard var urlRequest = URLRequestManager.makeURLRequest(for: httpMethod) else {
             completionHandler(.failure(.wrongURLRequest))
             return
         }
@@ -23,7 +23,7 @@ struct Uploader {
             }
         }
         
-        NetworkHandler().startLoad(urlRequest: urlRequest, specificNumer: number) { result in
+        NetworkHandler().startLoad(about: apiType, urlRequest: urlRequest) { result in
             switch result {
             case .success(let data):
                 completionHandler(.success(data))
