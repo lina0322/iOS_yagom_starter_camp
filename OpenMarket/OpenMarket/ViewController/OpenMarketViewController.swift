@@ -9,13 +9,11 @@ import UIKit
 class OpenMarketViewController: UIViewController {
     let listViewController = ListViewController()
     let gridViewController = GridViewController()
-    
     let segmentedControl = UISegmentedControl()
     let productRegistrationButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpView()
         setSegmentedControl()
         setUpNavigationBar()
     }
