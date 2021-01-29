@@ -6,53 +6,80 @@
 
 import UIKit
 
-class OpenMarketViewController: UIViewController {
+final class OpenMarketViewController: UIViewController {
     let listViewController = ListViewController()
     let gridViewController = GridViewController()
-    let segmentedControl = UISegmentedControl()
-    let productRegistrationButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+    let segmentedControl: UISegmentedControl = {
+        let segmentedControl = UISegmentedControl()
+        segmentedControl.insertSegment(withTitle: "LIST", at: 0, animated: true)
+        segmentedControl.insertSegment(withTitle: "GRID", at: 1, animated: true)
+        segmentedControl.selectedSegmentTintColor = .white
+        segmentedControl.backgroundColor = .systemBlue
+        segmentedControl.selectedSegmentIndex = 0
+        return segmentedControl
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpView()
-        setSegmentedControl()
-        setUpNavigationBar()
+        configureView()
+        configureSegmentedControl()
+        configureNavigationBar()
     }
     
-    private func setUpView() {
+    private func configureView() {
         addChild(listViewController)
         addChild(gridViewController)
         
-        self.view.addSubview(listViewController.view)
-        self.view.addSubview(gridViewController.view)
-        
-        listViewController.view.frame = self.view.bounds
-        gridViewController.view.frame = self.view.bounds
+        configureConstraintToSafeArea(for: listViewController.view)
+        configureConstraintToSafeArea(for: gridViewController.view)
         gridViewController.view.isHidden = true
     }
     
-    private func setSegmentedControl() {
-        segmentedControl.insertSegment(withTitle: "LIST", at: 0, animated: false)
-        segmentedControl.insertSegment(withTitle: "GRID", at: 1, animated: false)
-        segmentedControl.selectedSegmentIndex = 0
+    private func configureSegmentedControl() {
         segmentedControl.addTarget(self, action: #selector(didTapSegmentedControl), for: .valueChanged)
     }
     
-    @objc private func didTapSegmentedControl(segmentedControl: UISegmentedControl) {
-        listViewController.view.isHidden = true
-        gridViewController.view.isHidden = true
-        
+    @objc private func didTapSegmentedControl(_ segmentedControl: UISegmentedControl) {
         if segmentedControl.selectedSegmentIndex == 0 {
             listViewController.view.isHidden = false
+            gridViewController.view.isHidden = true
         }
         else {
             gridViewController.view.isHidden = false
+            listViewController.view.isHidden = true
         }
     }
     
-    private func setUpNavigationBar() {
+    private func configureNavigationBar() {
         self.navigationItem.titleView = segmentedControl
-        self.navigationItem.rightBarButtonItem = productRegistrationButton
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
     }
+    
+    
 }
 
+extension UIViewController {
+    func configureConstraintToSafeArea(for object: UIView) {
+        object.translatesAutoresizingMaskIntoConstraints = false
+        let safeArea = view.safeAreaLayoutGuide
+        view.addSubview(object)
+        
+        NSLayoutConstraint.activate([
+            object.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            object.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            object.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            object.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
+        ])
+    }
+    
+    func loadPage(number: UInt, completionHandler: @escaping ((Result<ProductList, OpenMarketError>) -> ())) {
+        OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: number)) { result in
+            switch result {
+            case .success(let data):
+                completionHandler(.success(data))
+            case .failure(let error):
+                completionHandler(.failure(error))
+            }
+        }
+    }
+}
