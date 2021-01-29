@@ -11,7 +11,7 @@ class ProductTableViewCell: UITableViewCell {
     static let identifier = "ProductTableViewCell"
     let thumbnailImageView = UIImageView()
     let titleLabel = UILabel()
-    let discountedPriceLabel = UILabel()
+    let priceBeforeSaleLabel = UILabel()
     let priceLabel = UILabel()
     let stockLabel = UILabel()
     
@@ -21,7 +21,7 @@ class ProductTableViewCell: UITableViewCell {
         
         self.contentView.addSubview(thumbnailImageView)
         self.contentView.addSubview(titleLabel)
-        self.contentView.addSubview(discountedPriceLabel)
+        self.contentView.addSubview(priceBeforeSaleLabel)
         self.contentView.addSubview(priceLabel)
         self.contentView.addSubview(stockLabel)
         
@@ -35,23 +35,23 @@ class ProductTableViewCell: UITableViewCell {
     private func setUpUI() {
         thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        discountedPriceLabel.translatesAutoresizingMaskIntoConstraints = false
+        priceBeforeSaleLabel.translatesAutoresizingMaskIntoConstraints = false
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         stockLabel.translatesAutoresizingMaskIntoConstraints = false
         
         titleLabel.adjustsFontSizeToFitWidth = true
-        discountedPriceLabel.adjustsFontSizeToFitWidth = true
+        priceBeforeSaleLabel.adjustsFontSizeToFitWidth = true
         priceLabel.adjustsFontSizeToFitWidth = true
         stockLabel.adjustsFontSizeToFitWidth = true
         
         titleLabel.font = .preferredFont(forTextStyle: .headline)
-        discountedPriceLabel.font = .preferredFont(forTextStyle: .body)
+        priceBeforeSaleLabel.font = .preferredFont(forTextStyle: .body)
         priceLabel.font = .preferredFont(forTextStyle: .body)
         stockLabel.font = .preferredFont(forTextStyle: .body)
         
         stockLabel.textAlignment = .right
         
-        discountedPriceLabel.textColor = .red
+        priceBeforeSaleLabel.textColor = .red
         priceLabel.textColor = .gray
         stockLabel.textColor = .gray
         
@@ -72,14 +72,14 @@ class ProductTableViewCell: UITableViewCell {
             stockLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
         ])
         NSLayoutConstraint.activate([
-            discountedPriceLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            discountedPriceLabel.leadingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor, constant: 10),
-            discountedPriceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5)
+            priceBeforeSaleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            priceBeforeSaleLabel.leadingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor, constant: 10),
+            priceBeforeSaleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5)
         ])
         NSLayoutConstraint.activate([
-            priceLabel.topAnchor.constraint(equalTo: discountedPriceLabel.topAnchor),
-            priceLabel.leadingAnchor.constraint(equalTo: discountedPriceLabel.trailingAnchor, constant: 10),
-            priceLabel.bottomAnchor.constraint(equalTo: discountedPriceLabel.bottomAnchor)
+            priceLabel.topAnchor.constraint(equalTo: priceBeforeSaleLabel.topAnchor),
+            priceLabel.leadingAnchor.constraint(equalTo: priceBeforeSaleLabel.trailingAnchor, constant: 10),
+            priceLabel.bottomAnchor.constraint(equalTo: priceBeforeSaleLabel.bottomAnchor)
         ])
     }
 

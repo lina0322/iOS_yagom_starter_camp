@@ -7,62 +7,70 @@
 
 import UIKit
 
-class ListViewController: UIViewController {
+final class ListViewController: UIViewController {
     let tableView = UITableView()
-    var product: Product?
+    var productList: ProductList? = nil
+    let currentPage = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpTableView()
-        loadProduct(158)
+        setUpdata()
+        configureTableView()
     }
     
-    private func setUpTableView() {
+    private func setUpdata() {
+        loadPage(number: 1) { result in
+            switch result {
+            case .success(let data):
+                self.productList = data
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    private func configureTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        self.view.addSubview(tableView)
         self.tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.identifier)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-
-        let safeLayoutGuide = view.safeAreaLayoutGuide
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: safeLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: safeLayoutGuide.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: safeLayoutGuide.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: safeLayoutGuide.bottomAnchor)
-        ])
+        configureConstraintToSafeArea(for: tableView)
     }
 }
 
 extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        guard let productList = productList else {
+            return 0
+        }
+        return productList.items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.identifier, for: indexPath) as? ProductTableViewCell else {
-            print("return default cell")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.identifier, for: indexPath) as? ProductTableViewCell, let product = productList?.items[indexPath.row], let price = product.price, let currency = product.currency, let stock = product.stock else {
+            debugPrint("return default cell")
             return UITableViewCell()
         }
-//        cell.thumbnailImageView.backgroundColor = .red
-//        cell.titleLabel.text = "isEnable????"
-//        cell.stockLabel.text = "stock is 10"
-//        cell.discountedPriceLabel.text = "usd 100000"
-//        cell.priceLabel.text = "usd 10000000"
-//"https://camp-open-market.s3.ap-northeast-2.amazonaws.com/thumbnails/1-1.png"
-//        cell.thumbnailImageView.image = nil
+        
+        cell.titleLabel.text = product.title
+        cell.stockLabel.text = "잔여수량 : \(stock)"
+        cell.accessoryType = .disclosureIndicator
+        
+        if let salePrice = product.discountedPrice {
+            cell.priceBeforeSaleLabel.text = "\(currency) \(price)"
+            cell.priceLabel.text = "\(currency) \(salePrice)"
+        } else {
+            cell.priceLabel.text = "\(currency) \(price)"
+        }
         
         DispatchQueue.global().async {
-            guard let thumbnailURL = URL(string: "https://camp-open-market.s3.ap-northeast-2.amazonaws.com/thumbnails/1-1.png") else {
+            guard let imageURLText = product.thumbnailURLs?.first, let thumbnailURL = URL(string: imageURLText), let imageData: Data = try? Data(contentsOf: thumbnailURL) else {
                 return
             }
-            //Data(contentsOf) << 동기메서드
-            guard let imageData: Data = try? Data(contentsOf: thumbnailURL) else {
-                return
-            }
+            
             DispatchQueue.main.async {
-                
-
                 if let index: IndexPath = tableView.indexPath(for: cell) {
                     if index.row == indexPath.row {
                         cell.thumbnailImageView.image = UIImage(data: imageData)
@@ -72,14 +80,6 @@ extension ListViewController: UITableViewDataSource {
                 }
             }
         }
-        cell.titleLabel.text = product?.title
-        cell.stockLabel.text = "\(String(describing: product?.stock))"
-        cell.discountedPriceLabel.text = "\(product?.discountedPrice)"
-        cell.priceLabel.text = "\(product?.price!)"
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
         return cell
     }
 }
@@ -87,19 +87,5 @@ extension ListViewController: UITableViewDataSource {
 extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
-
-extension ListViewController {
-    func loadProduct(_ id: UInt) -> Product? {
-        OpenMarketJSONDecoder<Product>.decodeData(about: .loadProduct(id: id)) { result in
-            switch result {
-            case .success(let data):
-                self.product = data
-            case .failure(let error):
-                print("error: \(error.localizedDescription)")
-            }
-        }
-        return product
     }
 }
