@@ -14,6 +14,7 @@ class OpenMarketViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpView()
         setSegmentedControl()
         setUpNavigationBar()
     }

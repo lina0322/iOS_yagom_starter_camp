@@ -18,6 +18,7 @@ class ListViewController: UIViewController {
     private func setUpTableView() {
         tableView.dataSource = self
         tableView.delegate = self
+        self.view.addSubview(tableView)
         self.tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
