@@ -56,7 +56,6 @@ extension ListViewController: UITableViewDataSource {
         
         cell.titleLabel.text = product.title
         cell.stockLabel.text = "잔여수량 : \(stock)"
-        cell.accessoryType = .disclosureIndicator
         
         if let salePrice = product.discountedPrice {
             cell.priceBeforeSaleLabel.text = "\(currency) \(price)"

@@ -7,8 +7,10 @@
 
 import UIKit
 
-class ProductTableViewCell: UITableViewCell {
-    static let identifier = "ProductTableViewCell"
+final class ProductTableViewCell: UITableViewCell {
+    static var identifier: String {
+        return "\(self)"
+    }
     let thumbnailImageView = UIImageView()
     let titleLabel = UILabel()
     let priceBeforeSaleLabel = UILabel()
@@ -19,17 +21,8 @@ class ProductTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.accessoryType = .disclosureIndicator
         
-        self.contentView.addSubview(thumbnailImageView)
-        self.contentView.addSubview(titleLabel)
-        self.contentView.addSubview(priceBeforeSaleLabel)
-        self.contentView.addSubview(priceLabel)
-        self.contentView.addSubview(stockLabel)
-        
         setUpUI()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        configureConstraint()
     }
     
     private func setUpUI() {
@@ -54,6 +47,14 @@ class ProductTableViewCell: UITableViewCell {
         priceBeforeSaleLabel.textColor = .red
         priceLabel.textColor = .gray
         stockLabel.textColor = .gray
+    }
+    
+    private func configureConstraint() {
+        self.contentView.addSubview(thumbnailImageView)
+        self.contentView.addSubview(titleLabel)
+        self.contentView.addSubview(priceBeforeSaleLabel)
+        self.contentView.addSubview(priceLabel)
+        self.contentView.addSubview(stockLabel)
         
         NSLayoutConstraint.activate([
             thumbnailImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.17),
@@ -83,8 +84,7 @@ class ProductTableViewCell: UITableViewCell {
         ])
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-
 }
