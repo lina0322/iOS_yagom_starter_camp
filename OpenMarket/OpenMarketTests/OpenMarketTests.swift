@@ -88,11 +88,11 @@ class OpenMarketTests: XCTestCase {
     }
     
     func testPostItem1() {
-        postProdcut()
+        postProduct()
     }
     
     func testPostItem2() {
-        postProdcut()
+        postProduct()
     }
     
     func testPatchItem() {
@@ -122,13 +122,13 @@ extension OpenMarketTests {
     
     func loadProductFromMock(_ number: UInt, success: Bool) -> Product? {
         let expectation = XCTestExpectation(description: "pageLoad")
-        var Product: Product?
+        var product: Product?
         let networkHandler = NetworkHandler(session: MockURLSession(makeRequestSuccess: success, apiRequestType: .loadProduct(id: number)))
         
         OpenMarketJSONDecoder<Product>.decodeData(about: .loadProduct(id: number), networkHandler: networkHandler) { result in
             switch result {
             case .success(let data):
-                Product = data
+                product = data
             case .failure(let error):
                 print("error: \(error.localizedDescription)")
             }
@@ -136,7 +136,7 @@ extension OpenMarketTests {
         }
         
         wait(for: [expectation], timeout: 5.0)
-        return Product
+        return product
     }
     
     func loadPage(_ number: UInt) -> ProductList? {
@@ -193,7 +193,7 @@ extension OpenMarketTests {
         wait(for: [expectation], timeout: 5.0)
     }
     
-    func postProdcut() {
+    func postProduct() {
         let expectation = XCTestExpectation(description: "itemPatch")
         
         let product = Product(forPostPassword: "12345", title: "또 올려봅니다.", descriptions: "password 12345", price: 20000, currency: "KRW", stock: 1, discountedPrice: nil, images: [""])
