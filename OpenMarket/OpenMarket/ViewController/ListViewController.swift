@@ -38,7 +38,17 @@ extension ListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.identifier, for: indexPath) as? ProductTableViewCell else {
+            print("return default cell")
+            return UITableViewCell()
+        }
+        cell.thumbnailImageView.backgroundColor = .red
+        cell.titleLabel.text = "isEnable????"
+        cell.stockLabel.text = "stock is 10"
+        cell.discountedPriceLabel.text = "usd 100000"
+        cell.priceLabel.text = "usd 10000000"
+        
+        return cell
     }
 }
 
