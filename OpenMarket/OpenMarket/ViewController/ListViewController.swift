@@ -52,6 +52,8 @@ extension ListViewController: UITableViewDataSource {
             cell.priceBeforeSaleLabel.attributedText = priceBeforeSaleLabelText
             cell.priceLabel.text = priceLabelText
         } else {
+            cell.priceLabelLeadingAnchorConstraint = cell.priceLabel.leadingAnchor.constraint(equalTo: cell.priceBeforeSaleLabel.trailingAnchor, constant: 0)
+            cell.priceLabelLeadingAnchorConstraint.isActive = true
             cell.priceLabel.text = "\(currency) \(price)"
         }
         
