@@ -7,6 +7,6 @@
 
 import UIKit
 
-class ProductRegistrationViewController: UIViewController {
+final class ProductRegistrationViewController: UIViewController {
 
 }

@@ -18,15 +18,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="f07-CH-Zpi">
-                                <rect key="frame" x="41.5" y="162" width="331" height="572"/>
+                                <rect key="frame" x="41.5" y="287.5" width="331" height="331"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="f07-CH-Zpi" secondAttribute="height" multiplier="1:1" id="kfw-3H-eAY"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="f07-CH-Zpi" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="9BO-mF-wcj"/>
-                            <constraint firstItem="f07-CH-Zpi" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="MCS-KN-DGI"/>
-                            <constraint firstItem="f07-CH-Zpi" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.8" id="wZy-YH-RLa"/>
+                            <constraint firstItem="f07-CH-Zpi" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="9BO-mF-wcj"/>
+                            <constraint firstItem="f07-CH-Zpi" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="MCS-KN-DGI"/>
+                            <constraint firstItem="f07-CH-Zpi" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.8" id="wZy-YH-RLa"/>
                         </constraints>
                     </view>
                 </viewController>

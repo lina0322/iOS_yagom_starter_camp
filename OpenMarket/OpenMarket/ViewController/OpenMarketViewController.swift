@@ -1,8 +1,9 @@
 //
-//  OpenMarket - ViewController.swift
-//  Created by yagom. 
-//  Copyright © yagom. All rights reserved.
-// 
+//  OpenMarketViewController.swift
+//  OpenMarket
+//
+//  Created by Jinho Choi on 2021/01/29.
+//
 
 import UIKit
 
@@ -24,6 +25,7 @@ final class OpenMarketViewController: UIViewController {
         configureView()
         configureSegmentedControl()
         configureNavigationBar()
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     private func configureView() {
