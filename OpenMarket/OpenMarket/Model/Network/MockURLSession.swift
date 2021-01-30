@@ -21,8 +21,7 @@ class MockURLSession: URLSessionProtocol {
     enum MockAPI {
         case test
         
-        static let baseURL = URL(string: "https://camp-open-market.herokuapp.com/")!
-        
+        static let baseURL = URL(string: "https://camp-open-market.herokuapp.com")!
         var sampleItems: NSDataAsset {
             NSDataAsset.init(name: "items")!
         }
@@ -31,7 +30,8 @@ class MockURLSession: URLSessionProtocol {
         }
     }
     
-    var makeRequestSuccess = true
+    var isSuccess = true
+    var sessionDataTask: MockURLSessionDataTask?
     var apiRequestType = APIRequestType.loadPage(page: 1)
     var data: Data {
         switch apiRequestType {
@@ -42,16 +42,12 @@ class MockURLSession: URLSessionProtocol {
         }
     }
     
-    init(makeRequestSuccess: Bool = true, apiRequestType: APIRequestType) {
-        self.makeRequestSuccess = makeRequestSuccess
+    init(isSuccess: Bool = true, apiRequestType: APIRequestType) {
+        self.isSuccess = isSuccess
         self.apiRequestType = apiRequestType
     }
     
-    var sessionDataTask: MockURLSessionDataTask?
-    
     func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        
-        
         let successResponse = HTTPURLResponse(url: MockAPI.baseURL,
                                               statusCode: 200,
                                               httpVersion: "2",
@@ -63,7 +59,7 @@ class MockURLSession: URLSessionProtocol {
         let sessionDataTask = MockURLSessionDataTask()
         
         sessionDataTask.resumeDidCall = {
-            if self.makeRequestSuccess {
+            if self.isSuccess {
                 completionHandler(self.data, successResponse, nil)
             } else {
                 completionHandler(nil, failureResponse, nil)

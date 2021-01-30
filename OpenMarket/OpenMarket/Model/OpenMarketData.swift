@@ -7,8 +7,8 @@
 
 class OpenMarketData {
     static var shared = OpenMarketData()
-    var currentPage: UInt = 1
     var productList: [Product] = []
-    
+    var currentPage: UInt = 1
+
     private init() { }
 }

@@ -9,7 +9,7 @@ import Foundation
 
 struct OpenMarketJSONDecoder<T: Decodable> {
     
-    static func decodeData(about apiRequestType: APIRequestType, networkHandler: NetworkHandler = NetworkHandler(), completionHandler: @escaping (Result<T, OpenMarketError>) -> ()){
+    static func decodeData(about apiRequestType: APIRequestType, networkHandler: NetworkHandler = NetworkHandler(), completionHandler: @escaping (Result<T, OpenMarketError>) -> ()) {
         guard let urlRequest = URLRequestManager.makeURLRequest(for: .get, about: apiRequestType) else {
             completionHandler(.failure(.wrongURLRequest))
             return

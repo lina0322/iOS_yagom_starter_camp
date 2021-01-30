@@ -97,9 +97,9 @@
 		4C5016F525BF276A00762FCF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4CDBB92A25C503AE00AB29C9 /* OpenMarketData.swift */,
 				4C5016EF25BF276000762FCF /* ProductList.swift */,
 				4C5016E625BF274B00762FCF /* Product.swift */,
+				4CDBB92A25C503AE00AB29C9 /* OpenMarketData.swift */,
 				4C5016F225BF276700762FCF /* OpenMarketError.swift */,
 				E268E62125C1487E009A3D7C /* Network */,
 			);
@@ -161,13 +161,13 @@
 		E268E62125C1487E009A3D7C /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				4C5016EC25BF275A00762FCF /* OpenMarketJSONDecoder.swift */,
-				E268E62725C2579F009A3D7C /* MockURLSession.swift */,
-				4C5016E925BF275200762FCF /* NetworkHandler.swift */,
-				E268E61B25C142DA009A3D7C /* Uploader.swift */,
 				E268E61725C140EF009A3D7C /* URLRequestManager.swift */,
+				4C5016E925BF275200762FCF /* NetworkHandler.swift */,
+				4C5016EC25BF275A00762FCF /* OpenMarketJSONDecoder.swift */,
+				E268E61B25C142DA009A3D7C /* Uploader.swift */,
 				E268E61125C13FFE009A3D7C /* HTTPMethod.swift */,
 				E268E60D25C13FE1009A3D7C /* APIRequestType.swift */,
+				E268E62725C2579F009A3D7C /* MockURLSession.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";

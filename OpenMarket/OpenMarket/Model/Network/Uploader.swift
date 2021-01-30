@@ -8,13 +8,14 @@
 import Foundation
 
 struct Uploader {
-    static func uploadData(by httpMethod: HTTPMethod, product: Product, apiRequestType: APIRequestType, completionHandler: @escaping (Result<Any, OpenMarketError>) -> ()){
+    
+    static func uploadData(by httpMethod: HTTPMethod, product: Product, apiRequestType: APIRequestType, completionHandler: @escaping (Result<Any, OpenMarketError>) -> ()) {
         guard var urlRequest = URLRequestManager.makeURLRequest(for: httpMethod, about: apiRequestType) else {
             completionHandler(.failure(.wrongURLRequest))
             return
         }
         
-        encoder(data: product) { result in
+        encode(data: product) { result in
             switch result {
             case .success(let data):
                 urlRequest.httpBody = data
@@ -33,9 +34,8 @@ struct Uploader {
         }
     }
     
-    private static func encoder(data: Product,  completionHandler: @escaping (Result<Data, OpenMarketError>) -> ()){
+    private static func encode(data: Product,  completionHandler: @escaping (Result<Data, OpenMarketError>) -> ()) {
         let encoder = JSONEncoder()
-        
         do {
             let encodedData = try encoder.encode(data)
             completionHandler(.success(encodedData))

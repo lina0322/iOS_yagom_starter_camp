@@ -9,22 +9,20 @@ import UIKit
 
 final class ListViewController: UIViewController {
     let tableView = UITableView()
-    var productList: [Product] = []
     var isPaging: Bool = false
     var hasPaging: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        productList = OpenMarketData.shared.productList
     }
     
     private func configureTableView() {
+        configureConstraintToSafeArea(for: tableView)
         tableView.dataSource = self
         tableView.delegate = self
         self.tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.identifier)
         self.tableView.register(LoadingTableViewCell.self, forCellReuseIdentifier: LoadingTableViewCell.identifier)
-        configureConstraintToSafeArea(for: tableView)
     }
 }
 
@@ -36,13 +34,14 @@ extension ListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return productList.count
+            return OpenMarketData.shared.productList.count
         }
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
+            let productList = OpenMarketData.shared.productList
             let product = productList[indexPath.row]
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.identifier, for: indexPath) as? ProductTableViewCell, let price = product.price, let currency = product.currency, let stock = product.stock else {
                 return UITableViewCell()
@@ -50,6 +49,7 @@ extension ListViewController: UITableViewDataSource {
             
             cell.titleLabel.text = product.title
             cell.stockLabel.text = "잔여수량 : \(stock.addComma())"
+            cell.priceLabel.text = "\(currency) \(price.addComma())"
             
             if stock == 0 {
                 cell.stockLabel.text = "품절"
@@ -66,9 +66,7 @@ extension ListViewController: UITableViewDataSource {
                 
                 cell.priceBeforeSaleLabel.attributedText = priceBeforeSaleLabelText
                 cell.priceLabel.text = priceLabelText
-            } else {
-                cell.priceLabel.text = "\(currency) \(price.addComma())"
-            }
+            } 
             
             DispatchQueue.global().async {
                 guard let imageURLText = product.thumbnailURLs?.first, let thumbnailURL = URL(string: imageURLText), let imageData: Data = try? Data(contentsOf: thumbnailURL) else {
@@ -90,9 +88,9 @@ extension ListViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             if hasPaging {
-                cell.start()
+                cell.startIndicator()
             } else {
-                cell.stop()
+                cell.showLabel()
             }
             return cell
         }
@@ -106,6 +104,7 @@ extension ListViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - Scroll
 extension ListViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
@@ -115,17 +114,19 @@ extension ListViewController {
         if offsetY > (contentHeight - height) {
             if isPaging == false {
                 isPaging = true
-                loadPage() { result in
+                let page = OpenMarketData.shared.currentPage
+                OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: page)) { result in
                     switch result {
                     case .success(let data):
-                        OpenMarketData.shared.productList.append(contentsOf: data.items)
                         if data.items.count == 0 {
                             self.hasPaging = false
-                        }
-                        self.productList = OpenMarketData.shared.productList
-                        self.isPaging = false
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
+                        } else {
+                            OpenMarketData.shared.productList.append(contentsOf: data.items)
+                            OpenMarketData.shared.currentPage += 1
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                            self.isPaging = false
                         }
                     case .failure(let error):
                         debugPrint(error.localizedDescription)
@@ -133,16 +134,5 @@ extension ListViewController {
                 }
             }
         }
-    }
-}
-
-extension Int {
-    func addComma() -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        guard let changedText = numberFormatter.string(from: NSNumber(value: self)) else {
-            return ""
-        }
-        return changedText
     }
 }

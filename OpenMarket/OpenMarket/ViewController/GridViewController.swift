@@ -8,5 +8,11 @@
 import UIKit
 
 final class GridViewController: UIViewController {
-
+    var productList: [Product] = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        productList = OpenMarketData.shared.productList
+        self.view.backgroundColor = .brown
+    }
 }
