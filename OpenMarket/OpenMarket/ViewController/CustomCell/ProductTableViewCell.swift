@@ -16,6 +16,7 @@ final class ProductTableViewCell: UITableViewCell {
     let priceBeforeSaleLabel = UILabel()
     let priceLabel = UILabel()
     let stockLabel = UILabel()
+    var priceLabelLeadingAnchorConstraint: NSLayoutConstraint!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -79,9 +80,10 @@ final class ProductTableViewCell: UITableViewCell {
         ])
         NSLayoutConstraint.activate([
             priceLabel.topAnchor.constraint(equalTo: priceBeforeSaleLabel.topAnchor),
-            priceLabel.leadingAnchor.constraint(equalTo: priceBeforeSaleLabel.trailingAnchor, constant: 10),
             priceLabel.bottomAnchor.constraint(equalTo: priceBeforeSaleLabel.bottomAnchor)
         ])
+        priceLabelLeadingAnchorConstraint = priceLabel.leadingAnchor.constraint(equalTo: priceBeforeSaleLabel.trailingAnchor, constant: 10)
+        priceLabelLeadingAnchorConstraint.isActive = true
     }
 
     required init?(coder: NSCoder) {
