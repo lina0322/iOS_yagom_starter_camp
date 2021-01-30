@@ -9,7 +9,7 @@ import Foundation
 
 struct Uploader {
     static func uploadData(by httpMethod: HTTPMethod, product: Product, apiRequestType: APIRequestType, completionHandler: @escaping (Result<Any, OpenMarketError>) -> ()){
-        guard var urlRequest = URLRequestManager.makeURLRequest(for: httpMethod) else {
+        guard var urlRequest = URLRequestManager.makeURLRequest(for: httpMethod, about: apiRequestType) else {
             completionHandler(.failure(.wrongURLRequest))
             return
         }

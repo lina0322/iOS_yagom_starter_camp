@@ -196,7 +196,7 @@ extension OpenMarketTests {
     func postProduct() {
         let expectation = XCTestExpectation(description: "itemPatch")
         
-        let product = Product(forPostPassword: "12345", title: "또 올려봅니다.", descriptions: "password 12345", price: 20000, currency: "KRW", stock: 1, discountedPrice: nil, images: [""])
+        let product = Product(forPostPassword: "12345", title: "Mac Mini", descriptions: "password 12345", price: 20000, currency: "KRW", stock: 1, discountedPrice: nil, images: [""])
         
         Uploader.uploadData(by: .post, product: product, apiRequestType: .postProduct) { result in
             switch result {
