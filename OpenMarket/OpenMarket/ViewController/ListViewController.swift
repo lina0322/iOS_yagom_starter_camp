@@ -43,8 +43,14 @@ extension ListViewController: UITableViewDataSource {
         cell.stockLabel.text = "잔여수량 : \(stock)"
         
         if let salePrice = product.discountedPrice {
-            cell.priceBeforeSaleLabel.text = "\(currency) \(price)"
-            cell.priceLabel.text = "\(currency) \(salePrice)"
+            let originalPrice = "\(currency) \(price)"
+            let priceLabelText = "\(currency) \(salePrice)"
+            let priceBeforeSaleLabelText = NSMutableAttributedString(string: originalPrice)
+            let range = priceBeforeSaleLabelText.mutableString.range(of: originalPrice)
+            priceBeforeSaleLabelText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: range)
+
+            cell.priceBeforeSaleLabel.attributedText = priceBeforeSaleLabelText
+            cell.priceLabel.text = priceLabelText
         } else {
             cell.priceLabel.text = "\(currency) \(price)"
         }
