@@ -54,8 +54,6 @@ final class OpenMarketViewController: UIViewController {
         self.navigationItem.titleView = segmentedControl
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
     }
-    
-    
 }
 
 extension UIViewController {
