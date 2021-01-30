@@ -6,9 +6,9 @@
 //
 
 class OpenMarketData {
-    static var shared = OpenMarketData()
-    var currentPage: UInt = 1
+    static let shared = OpenMarketData()
     var productList: [Product] = []
-    
+    var currentPage: UInt = 1
+
     private init() { }
 }

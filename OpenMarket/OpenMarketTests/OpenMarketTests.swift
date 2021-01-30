@@ -94,17 +94,13 @@ class OpenMarketTests: XCTestCase {
     func testPostItem2() {
         postProduct()
     }
-    
-    func testPatchItem() {
-        patchProduct(158)
-    }
 }
 
 extension OpenMarketTests {
     func loadPageFromMock(_ number: UInt, success: Bool) -> ProductList? {
         let expectation = XCTestExpectation(description: "pageLoad")
         var productList: ProductList?
-        let networkHandler = NetworkHandler(session: MockURLSession(makeRequestSuccess: success, apiRequestType: .loadPage(page: number)))
+        let networkHandler = NetworkHandler(session: MockURLSession(isSuccess: success, apiRequestType: .loadPage(page: number)))
         
         OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: number), networkHandler: networkHandler) { result in
             switch result {
@@ -123,7 +119,7 @@ extension OpenMarketTests {
     func loadProductFromMock(_ number: UInt, success: Bool) -> Product? {
         let expectation = XCTestExpectation(description: "pageLoad")
         var product: Product?
-        let networkHandler = NetworkHandler(session: MockURLSession(makeRequestSuccess: success, apiRequestType: .loadProduct(id: number)))
+        let networkHandler = NetworkHandler(session: MockURLSession(isSuccess: success, apiRequestType: .loadProduct(id: number)))
         
         OpenMarketJSONDecoder<Product>.decodeData(about: .loadProduct(id: number), networkHandler: networkHandler) { result in
             switch result {

@@ -8,26 +8,38 @@
 import UIKit
 
 final class LaunchViewController: UIViewController {
-    let launchImage: UIImageView = {
-       let imageView = UIImageView()
-        imageView.image = UIImage(named: "launchScreen")
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLaunchImage()
-        setUpdata()
+        setUpData()
     }
-
-    private func setUpdata() {
-        loadPage() { result in
+    
+    private func configureLaunchImage() {
+        let launchImage = UIImageView()
+        let safeArea = view.safeAreaLayoutGuide
+        launchImage.translatesAutoresizingMaskIntoConstraints = false
+        launchImage.image = UIImage(named: "launchScreen")
+        launchImage.contentMode = .scaleAspectFit
+        view.addSubview(launchImage)
+        
+        NSLayoutConstraint.activate([
+            launchImage.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor),
+            launchImage.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
+            launchImage.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 0.8),
+            launchImage.heightAnchor.constraint(equalTo: launchImage.widthAnchor)
+        ])
+    }
+    
+    private func setUpData() {
+        let page = OpenMarketData.shared.currentPage
+        OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: page)) { result in
             switch result {
             case .success(let data):
                 OpenMarketData.shared.productList.append(contentsOf: data.items)
+                OpenMarketData.shared.currentPage += 1
             case .failure(let error):
-                debugPrint(error.localizedDescription)
+                print(error.localizedDescription)
             }
             DispatchQueue.main.async {
                 self.goOpenMarketView()
@@ -40,18 +52,5 @@ final class LaunchViewController: UIViewController {
             openMarketViewController.modalPresentationStyle = .overFullScreen
             present(openMarketViewController, animated: false, completion: nil)
         }
-    }
-    
-    private func configureLaunchImage() {
-        let safeArea = view.safeAreaLayoutGuide
-        launchImage.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(launchImage)
-        
-        NSLayoutConstraint.activate([
-            launchImage.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor),
-            launchImage.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            launchImage.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 0.8),
-            launchImage.heightAnchor.constraint(equalTo: launchImage.widthAnchor)
-        ])
     }
 }

@@ -8,5 +8,7 @@
 import UIKit
 
 final class ProductCollectionViewCell: UICollectionViewCell {
-    
+    static var identifier: String {
+        return "\(self)"
+    }
 }

@@ -11,37 +11,29 @@ class LoadingTableViewCell: UITableViewCell {
     static var identifier: String {
         return "\(self)"
     }
-    let activityIndicatorView: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        return indicator
-    }()
-    let label: UILabel = {
-       let label = UILabel()
-        label.text = "마지막 페이지입니다:)"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.adjustsFontSizeToFitWidth = true
-        label.font = .preferredFont(forTextStyle: .body)
-        return label
-    }()
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
-
-    func start() {
-        addSubview(activityIndicatorView)
-        
+    
+    func startIndicator() {
         let safeArea = self.safeAreaLayoutGuide
-        activityIndicatorView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor).isActive = true
-        activityIndicatorView.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor).isActive = true
-        activityIndicatorView.startAnimating()
+        let indicator = UIActivityIndicatorView()
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.startAnimating()
+        addSubview(indicator)
+        indicator.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor).isActive = true
+        indicator.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor).isActive = true
     }
     
-    func stop() {
-        addSubview(label)
-        
+    func showLabel() {
         let safeArea = self.safeAreaLayoutGuide
+        let label = UILabel()
+        label.text = "마지막 페이지입니다:)"
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontSizeToFitWidth = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(label)
         label.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor).isActive = true
     }

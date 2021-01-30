@@ -13,9 +13,9 @@ final class ProductTableViewCell: UITableViewCell {
     }
     let thumbnailImageView = UIImageView()
     let titleLabel = UILabel()
-    let priceBeforeSaleLabel = UILabel()
     let priceLabel = UILabel()
     let stockLabel = UILabel()
+    let priceBeforeSaleLabel = UILabel()
     var priceLabelLeadingAnchorConstraint: NSLayoutConstraint!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -23,39 +23,40 @@ final class ProductTableViewCell: UITableViewCell {
         self.accessoryType = .disclosureIndicator
         
         setUpUI()
-        configureConstraint()
+        configureConstraints()
     }
     
     private func setUpUI() {
-        thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        priceBeforeSaleLabel.translatesAutoresizingMaskIntoConstraints = false
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         stockLabel.translatesAutoresizingMaskIntoConstraints = false
+        priceBeforeSaleLabel.translatesAutoresizingMaskIntoConstraints = false
+        thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
         
         titleLabel.adjustsFontSizeToFitWidth = true
-        priceBeforeSaleLabel.adjustsFontSizeToFitWidth = true
         priceLabel.adjustsFontSizeToFitWidth = true
         stockLabel.adjustsFontSizeToFitWidth = true
-        
+        priceBeforeSaleLabel.adjustsFontSizeToFitWidth = true
+
         titleLabel.font = .preferredFont(forTextStyle: .headline)
-        priceBeforeSaleLabel.font = .preferredFont(forTextStyle: .body)
         priceLabel.font = .preferredFont(forTextStyle: .body)
         stockLabel.font = .preferredFont(forTextStyle: .body)
+        priceBeforeSaleLabel.font = .preferredFont(forTextStyle: .body)
         
         stockLabel.textAlignment = .right
         
-        priceBeforeSaleLabel.textColor = .red
         priceLabel.textColor = .gray
         stockLabel.textColor = .gray
+        priceBeforeSaleLabel.textColor = .red
     }
     
-    private func configureConstraint() {
-        self.contentView.addSubview(thumbnailImageView)
+    private func configureConstraints() {
         self.contentView.addSubview(titleLabel)
-        self.contentView.addSubview(priceBeforeSaleLabel)
         self.contentView.addSubview(priceLabel)
         self.contentView.addSubview(stockLabel)
+        self.contentView.addSubview(priceBeforeSaleLabel)
+        self.contentView.addSubview(thumbnailImageView)
+
         
         NSLayoutConstraint.activate([
             thumbnailImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.17),
@@ -82,20 +83,7 @@ final class ProductTableViewCell: UITableViewCell {
             priceLabel.topAnchor.constraint(equalTo: priceBeforeSaleLabel.topAnchor),
             priceLabel.bottomAnchor.constraint(equalTo: priceBeforeSaleLabel.bottomAnchor)
         ])
-        priceLabelLeadingAnchorConstraint = priceLabel.leadingAnchor.constraint(equalTo: priceBeforeSaleLabel.trailingAnchor, constant: 0)
-        priceLabelLeadingAnchorConstraint.isActive = true
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        thumbnailImageView.image = nil
-        titleLabel.text = ""
-        priceBeforeSaleLabel.text = ""
-        priceBeforeSaleLabel.attributedText = NSMutableAttributedString(string: "")
-        priceLabel.text = ""
-        stockLabel.text = ""
-        stockLabel.textColor = .gray
-        priceLabelLeadingAnchorConstraint.isActive = false
+        
         priceLabelLeadingAnchorConstraint = priceLabel.leadingAnchor.constraint(equalTo: priceBeforeSaleLabel.trailingAnchor, constant: 0)
         priceLabelLeadingAnchorConstraint.isActive = true
     }
@@ -105,7 +93,21 @@ final class ProductTableViewCell: UITableViewCell {
         priceLabelLeadingAnchorConstraint = priceLabel.leadingAnchor.constraint(equalTo: priceBeforeSaleLabel.trailingAnchor, constant: 10)
         priceLabelLeadingAnchorConstraint.isActive = true
     }
-
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        thumbnailImageView.image = nil
+        titleLabel.text = String.empty
+        priceLabel.text = String.empty
+        priceBeforeSaleLabel.text = String.empty
+        stockLabel.text = String.empty
+        stockLabel.textColor = .gray
+        priceBeforeSaleLabel.attributedText = NSMutableAttributedString(string: String.empty)
+        priceLabelLeadingAnchorConstraint.isActive = false
+        priceLabelLeadingAnchorConstraint = priceLabel.leadingAnchor.constraint(equalTo: priceBeforeSaleLabel.trailingAnchor, constant: 0)
+        priceLabelLeadingAnchorConstraint.isActive = true
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
