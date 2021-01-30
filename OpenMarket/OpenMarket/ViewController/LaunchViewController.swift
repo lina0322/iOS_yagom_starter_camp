@@ -22,10 +22,10 @@ final class LaunchViewController: UIViewController {
     }
 
     private func setUpdata() {
-        loadPage(number: 1) { result in
+        loadPage() { result in
             switch result {
             case .success(let data):
-                OpenMarketData.shared.productList = data
+                OpenMarketData.shared.productList.append(contentsOf: data.items)
             case .failure(let error):
                 debugPrint(error.localizedDescription)
             }

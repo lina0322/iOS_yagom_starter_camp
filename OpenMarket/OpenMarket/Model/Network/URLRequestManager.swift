@@ -8,7 +8,7 @@
 import Foundation
 
 struct URLRequestManager {
-    private static let baseURL = "https://camp-open-market.herokuapp.com/"
+    private static let baseURL = "https://camp-open-market.herokuapp.com"
 
     static func makeURLRequest(for httpMethod: HTTPMethod, about apiRequestType: APIRequestType = .loadPage(page: 1)) -> URLRequest? {
         let absoluteURL: String = "\(baseURL)\(apiRequestType.urlPath)"

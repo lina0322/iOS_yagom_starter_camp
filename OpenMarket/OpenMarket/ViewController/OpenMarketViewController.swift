@@ -25,7 +25,6 @@ final class OpenMarketViewController: UIViewController {
         configureView()
         configureSegmentedControl()
         configureNavigationBar()
-        self.navigationController?.navigationBar.isHidden = false
     }
     
     private func configureView() {
@@ -58,6 +57,7 @@ final class OpenMarketViewController: UIViewController {
     }
 }
 
+// MARK: - Extension
 extension UIViewController {
     func configureConstraintToSafeArea(for object: UIView) {
         object.translatesAutoresizingMaskIntoConstraints = false
@@ -72,11 +72,13 @@ extension UIViewController {
         ])
     }
     
-    func loadPage(number: UInt, completionHandler: @escaping ((Result<ProductList, OpenMarketError>) -> ())) {
-        OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: number)) { result in
+    func loadPage(completionHandler: @escaping ((Result<ProductList, OpenMarketError>) -> ())) {
+        let page = OpenMarketData.shared.currentPage
+        OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: page)) { result in
             switch result {
             case .success(let data):
                 completionHandler(.success(data))
+                OpenMarketData.shared.currentPage += 1
             case .failure(let error):
                 completionHandler(.failure(error))
             }
