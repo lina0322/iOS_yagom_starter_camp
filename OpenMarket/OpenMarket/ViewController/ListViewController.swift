@@ -10,28 +10,13 @@ import UIKit
 final class ListViewController: UIViewController {
     let tableView = UITableView()
     var productList: ProductList? = nil
-    let currentPage = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpdata()
         configureTableView()
+        productList = OpenMarketData.shared.productList
     }
-    
-    private func setUpdata() {
-        loadPage(number: 1) { result in
-            switch result {
-            case .success(let data):
-                self.productList = data
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
+
     private func configureTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -68,7 +53,6 @@ extension ListViewController: UITableViewDataSource {
             guard let imageURLText = product.thumbnailURLs?.first, let thumbnailURL = URL(string: imageURLText), let imageData: Data = try? Data(contentsOf: thumbnailURL) else {
                 return
             }
-            
             DispatchQueue.main.async {
                 if let index: IndexPath = tableView.indexPath(for: cell) {
                     if index.row == indexPath.row {
