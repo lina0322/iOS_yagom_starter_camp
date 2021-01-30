@@ -20,6 +20,7 @@ final class OpenMarketViewController: UIViewController {
         return segmentedControl
     }()
     let productRegistrationButton = UIButton()
+    let image = UIImage(systemName: "plus")!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,9 +62,8 @@ final class OpenMarketViewController: UIViewController {
     
     func setButton() {
         productRegistrationButton.translatesAutoresizingMaskIntoConstraints = false
-//        productRegistrationButton.imageView?.image = UIImage(systemName: "house")
+        productRegistrationButton.setImage(image, for: .normal)
         productRegistrationButton.contentMode = .scaleAspectFit
-        productRegistrationButton.backgroundColor = .red
         NSLayoutConstraint.activate([
             productRegistrationButton.widthAnchor.constraint(equalToConstant: 30),
             productRegistrationButton.heightAnchor.constraint(equalToConstant: 30)
