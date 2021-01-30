@@ -22,11 +22,11 @@ final class ProductTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.accessoryType = .disclosureIndicator
         
-        setUpUI()
+        configureUI()
         configureConstraints()
     }
     
-    private func setUpUI() {
+    private func configureUI() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         stockLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -25,8 +25,7 @@ final class GridViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
-        
-        collectionView.backgroundColor = .darkGray
+        collectionView.backgroundColor = .white
     }
 }
 
@@ -51,7 +50,13 @@ extension GridViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.backgroundColor = .black
+        // default value for simulating
+        cell.backgroundColor = .orange
+        cell.titleImageView.backgroundColor = .green
+        cell.titleLabel.text = "레이아웃 잘 잡혔나"
+        cell.priceBeforeSaleLabel.text = "할인전 가격 취소선 들어가야해요"
+        cell.priceLabel.text = "판매되는 가격"
+        cell.stockLabel.text = "재고 없으면 품절로 바꾸기!"
         return cell
     }
 }
