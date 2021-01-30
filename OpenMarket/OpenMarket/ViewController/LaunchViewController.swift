@@ -7,23 +7,51 @@
 
 import UIKit
 
-class LaunchViewController: UIViewController {
-
+final class LaunchViewController: UIViewController {
+    let launchImage: UIImageView = {
+       let imageView = UIImageView()
+        imageView.image = UIImage(named: "launchScreen")
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureLaunchImage()
+        setUpdata()
+    }
 
-        // Do any additional setup after loading the view.
+    private func setUpdata() {
+        loadPage(number: 1) { result in
+            switch result {
+            case .success(let data):
+                OpenMarketData.shared.productList = data
+            case .failure(let error):
+                debugPrint(error.localizedDescription)
+            }
+            DispatchQueue.main.async {
+                self.goOpenMarketView()
+            }
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func goOpenMarketView() {
+        if let openMarketViewController = storyboard?.instantiateViewController(identifier: "OpenMarketNavigation") {
+            openMarketViewController.modalPresentationStyle = .overFullScreen
+            present(openMarketViewController, animated: false, completion: nil)
+        }
     }
-    */
-
+    
+    private func configureLaunchImage() {
+        let safeArea = view.safeAreaLayoutGuide
+        launchImage.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(launchImage)
+        
+        NSLayoutConstraint.activate([
+            launchImage.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor),
+            launchImage.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
+            launchImage.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: 0.8),
+            launchImage.heightAnchor.constraint(equalTo: launchImage.widthAnchor)
+        ])
+    }
 }
