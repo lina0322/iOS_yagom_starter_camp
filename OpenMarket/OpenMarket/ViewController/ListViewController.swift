@@ -49,18 +49,17 @@ extension ListViewController: UITableViewDataSource {
             }
             
             cell.titleLabel.text = product.title
+            cell.stockLabel.text = "잔여수량 : \(stock.addComma())"
             
             if stock == 0 {
-                cell.stockLabel.textColor = .orange
                 cell.stockLabel.text = "품절"
-            } else {
-                cell.stockLabel.text = "잔여수량 : \(stock)"
+                cell.stockLabel.textColor = .systemOrange
             }
             
             if let salePrice = product.discountedPrice {
                 cell.changeConstraint()
-                let originalPrice = "\(currency) \(price)"
-                let priceLabelText = "\(currency) \(salePrice)"
+                let originalPrice = "\(currency) \(price.addComma())"
+                let priceLabelText = "\(currency) \(salePrice.addComma())"
                 let priceBeforeSaleLabelText = NSMutableAttributedString(string: originalPrice)
                 let range = priceBeforeSaleLabelText.mutableString.range(of: originalPrice)
                 priceBeforeSaleLabelText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: range)
@@ -68,7 +67,7 @@ extension ListViewController: UITableViewDataSource {
                 cell.priceBeforeSaleLabel.attributedText = priceBeforeSaleLabelText
                 cell.priceLabel.text = priceLabelText
             } else {
-                cell.priceLabel.text = "\(currency) \(price)"
+                cell.priceLabel.text = "\(currency) \(price.addComma())"
             }
             
             DispatchQueue.global().async {
@@ -84,6 +83,8 @@ extension ListViewController: UITableViewDataSource {
                 }
             }
             return cell
+            
+            
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: LoadingTableViewCell.identifier, for: indexPath) as? LoadingTableViewCell else {
                 return UITableViewCell()
@@ -101,8 +102,6 @@ extension ListViewController: UITableViewDataSource {
 // MARK: - TableView Delegate
 extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.reloadData()
-        
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
@@ -131,10 +130,19 @@ extension ListViewController {
                     case .failure(let error):
                         debugPrint(error.localizedDescription)
                     }
-                    
                 }
             }
         }
     }
 }
 
+extension Int {
+    func addComma() -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        guard let changedText = numberFormatter.string(from: NSNumber(value: self)) else {
+            return ""
+        }
+        return changedText
+    }
+}
