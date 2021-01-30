@@ -43,6 +43,7 @@ extension ListViewController: UITableViewDataSource {
         cell.stockLabel.text = "잔여수량 : \(stock)"
         
         if let salePrice = product.discountedPrice {
+            cell.changeConstraint()
             let originalPrice = "\(currency) \(price)"
             let priceLabelText = "\(currency) \(salePrice)"
             let priceBeforeSaleLabelText = NSMutableAttributedString(string: originalPrice)
@@ -52,8 +53,6 @@ extension ListViewController: UITableViewDataSource {
             cell.priceBeforeSaleLabel.attributedText = priceBeforeSaleLabelText
             cell.priceLabel.text = priceLabelText
         } else {
-            cell.priceLabelLeadingAnchorConstraint = cell.priceLabel.leadingAnchor.constraint(equalTo: cell.priceBeforeSaleLabel.trailingAnchor, constant: 0)
-            cell.priceLabelLeadingAnchorConstraint.isActive = true
             cell.priceLabel.text = "\(currency) \(price)"
         }
         
@@ -64,10 +63,7 @@ extension ListViewController: UITableViewDataSource {
             DispatchQueue.main.async {
                 if let index: IndexPath = tableView.indexPath(for: cell) {
                     if index.row == indexPath.row {
-                        cell.thumbnailImageView.image = UIImage(data: imageData)
-                        cell.setNeedsLayout()
-                        cell.layoutIfNeeded()
-                    }
+                        cell.thumbnailImageView.image = UIImage(data: imageData)                    }
                 }
             }
         }

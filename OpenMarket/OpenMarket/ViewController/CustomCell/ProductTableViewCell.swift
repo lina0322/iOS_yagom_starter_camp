@@ -82,6 +82,25 @@ final class ProductTableViewCell: UITableViewCell {
             priceLabel.topAnchor.constraint(equalTo: priceBeforeSaleLabel.topAnchor),
             priceLabel.bottomAnchor.constraint(equalTo: priceBeforeSaleLabel.bottomAnchor)
         ])
+        priceLabelLeadingAnchorConstraint = priceLabel.leadingAnchor.constraint(equalTo: priceBeforeSaleLabel.trailingAnchor, constant: 0)
+        priceLabelLeadingAnchorConstraint.isActive = true
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        thumbnailImageView.image = nil
+        titleLabel.text = ""
+        priceBeforeSaleLabel.text = ""
+        priceBeforeSaleLabel.attributedText = NSMutableAttributedString(string: "")
+        priceLabel.text = ""
+        stockLabel.text = ""
+        priceLabelLeadingAnchorConstraint.isActive = false
+        priceLabelLeadingAnchorConstraint = priceLabel.leadingAnchor.constraint(equalTo: priceBeforeSaleLabel.trailingAnchor, constant: 0)
+        priceLabelLeadingAnchorConstraint.isActive = true
+    }
+    
+    func changeConstraint() {
+        priceLabelLeadingAnchorConstraint.isActive = false
         priceLabelLeadingAnchorConstraint = priceLabel.leadingAnchor.constraint(equalTo: priceBeforeSaleLabel.trailingAnchor, constant: 10)
         priceLabelLeadingAnchorConstraint.isActive = true
     }
