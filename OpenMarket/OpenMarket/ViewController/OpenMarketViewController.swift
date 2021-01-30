@@ -45,13 +45,12 @@ final class OpenMarketViewController: UIViewController {
     
     func configureRegistrationButton() {
         registrationButton.translatesAutoresizingMaskIntoConstraints = false
-        registrationButton.backgroundColor = .blue
-//        registrationButton.imageView?.image = UIImage(systemName: "house")
+        registrationButton.addTarget(self, action: #selector(touchUpProductRegistrationButton), for: .touchUpInside)
+//        registrationButton.imageView?.image = UIImage(systemName: "Plus")
 //        NSLayoutConstraint.activate([
 //            registrationButton.widthAnchor.constraint(equalToConstant: 30),
 //            registrationButton.heightAnchor.constraint(equalToConstant: 30)
 //        ])
-        registrationButton.addTarget(self, action: #selector(touchUpProductRegistrationButton), for: .touchUpInside)
     }
     
     @objc private func didTapSegmentedControl(_ segmentedControl: UISegmentedControl) {
@@ -70,35 +69,4 @@ final class OpenMarketViewController: UIViewController {
         productRegistrationViewController.modalPresentationStyle = .fullScreen
         present(productRegistrationViewController, animated: true, completion: nil)
     }
-}
-
-// MARK: - Extension
-extension UIViewController {
-    func configureConstraintToSafeArea(for object: UIView) {
-        object.translatesAutoresizingMaskIntoConstraints = false
-        let safeArea = view.safeAreaLayoutGuide
-        view.addSubview(object)
-        
-        NSLayoutConstraint.activate([
-            object.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            object.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-            object.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            object.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
-        ])
-    }
-}
-
-extension Int {
-    func addComma() -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        guard let changedText = numberFormatter.string(from: NSNumber(value: self)) else {
-            return String.empty
-        }
-        return changedText
-    }
-}
-
-extension String {
-    static let empty = ""
 }

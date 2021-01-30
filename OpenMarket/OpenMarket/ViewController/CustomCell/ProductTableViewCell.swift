@@ -88,6 +88,12 @@ final class ProductTableViewCell: UITableViewCell {
         priceLabelLeadingAnchorConstraint.isActive = true
     }
     
+    func changeConstraint() {
+        priceLabelLeadingAnchorConstraint.isActive = false
+        priceLabelLeadingAnchorConstraint = priceLabel.leadingAnchor.constraint(equalTo: priceBeforeSaleLabel.trailingAnchor, constant: 10)
+        priceLabelLeadingAnchorConstraint.isActive = true
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         thumbnailImageView.image = nil
@@ -102,12 +108,6 @@ final class ProductTableViewCell: UITableViewCell {
         priceLabelLeadingAnchorConstraint.isActive = true
     }
     
-    func changeConstraint() {
-        priceLabelLeadingAnchorConstraint.isActive = false
-        priceLabelLeadingAnchorConstraint = priceLabel.leadingAnchor.constraint(equalTo: priceBeforeSaleLabel.trailingAnchor, constant: 10)
-        priceLabelLeadingAnchorConstraint.isActive = true
-    }
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
