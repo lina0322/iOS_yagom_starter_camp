@@ -19,12 +19,15 @@ final class OpenMarketViewController: UIViewController {
         segmentedControl.selectedSegmentIndex = 0
         return segmentedControl
     }()
+    let productRegistrationButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
         configureSegmentedControl()
         configureNavigationBar()
+        setButton()
+        productRegistrationButton.addTarget(self, action: #selector(touchUpProductRegistrationButton), for: .touchUpInside)
     }
     
     private func configureView() {
@@ -53,7 +56,24 @@ final class OpenMarketViewController: UIViewController {
     
     private func configureNavigationBar() {
         self.navigationItem.titleView = segmentedControl
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: productRegistrationButton)
+    }
+    
+    func setButton() {
+        productRegistrationButton.translatesAutoresizingMaskIntoConstraints = false
+//        productRegistrationButton.imageView?.image = UIImage(systemName: "house")
+        productRegistrationButton.contentMode = .scaleAspectFit
+        productRegistrationButton.backgroundColor = .red
+        NSLayoutConstraint.activate([
+            productRegistrationButton.widthAnchor.constraint(equalToConstant: 30),
+            productRegistrationButton.heightAnchor.constraint(equalToConstant: 30)
+        ])
+    }
+    
+    @objc private func touchUpProductRegistrationButton(_ sender: Any) {
+        let productRegistrationViewController = ProductRegistrationViewController()
+        productRegistrationViewController.modalPresentationStyle = .fullScreen
+        self.present(productRegistrationViewController, animated: true, completion: nil)
     }
 }
 
