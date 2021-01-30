@@ -110,7 +110,7 @@ extension ListViewController {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.height
-        
+
         if offsetY > (contentHeight - height) {
             if isPaging == false {
                 isPaging = true
@@ -123,13 +123,13 @@ extension ListViewController {
                         } else {
                             OpenMarketData.shared.productList.append(contentsOf: data.items)
                             OpenMarketData.shared.currentPage += 1
-                            DispatchQueue.main.async {
-                                self.tableView.reloadData()
-                            }
-                            self.isPaging = false
                         }
                     case .failure(let error):
                         debugPrint(error.localizedDescription)
+                    }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                        self.isPaging = false
                     }
                 }
             }
