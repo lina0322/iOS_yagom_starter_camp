@@ -8,11 +8,28 @@
 import UIKit
 
 final class GridViewController: UIViewController {
-    var productList: [Product] = []
+    let collectionView = UICollectionView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        productList = OpenMarketData.shared.productList
-        self.view.backgroundColor = .brown
+        configureTableView()
     }
+    
+    private func configureTableView() {
+        configureConstraintToSafeArea(for: collectionView)
+        collectionView.dataSource = self
+        self.collectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
+    }
+}
+
+extension GridViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
+    }
+    
+    
 }
