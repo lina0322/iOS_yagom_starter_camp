@@ -94,6 +94,7 @@ final class ProductTableViewCell: UITableViewCell {
         priceBeforeSaleLabel.attributedText = NSMutableAttributedString(string: "")
         priceLabel.text = ""
         stockLabel.text = ""
+        stockLabel.textColor = .gray
         priceLabelLeadingAnchorConstraint.isActive = false
         priceLabelLeadingAnchorConstraint = priceLabel.leadingAnchor.constraint(equalTo: priceBeforeSaleLabel.trailingAnchor, constant: 0)
         priceLabelLeadingAnchorConstraint.isActive = true

@@ -49,7 +49,13 @@ extension ListViewController: UITableViewDataSource {
             }
             
             cell.titleLabel.text = product.title
-            cell.stockLabel.text = "잔여수량 : \(stock)"
+            
+            if stock == 0 {
+                cell.stockLabel.textColor = .orange
+                cell.stockLabel.text = "품절"
+            } else {
+                cell.stockLabel.text = "잔여수량 : \(stock)"
+            }
             
             if let salePrice = product.discountedPrice {
                 cell.changeConstraint()
