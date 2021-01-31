@@ -11,12 +11,11 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     static var identifier: String {
         return "\(self)"
     }
-
-    let titleImageView = UIImageView()
+    let thumbnailImageView = UIImageView()
     let titleLabel = UILabel()
-    let priceBeforeSaleLabel = UILabel()
     let priceLabel = UILabel()
     let stockLabel = UILabel()
+    let priceBeforeSaleLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,7 +24,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureUI() {
-        titleImageView.translatesAutoresizingMaskIntoConstraints = false
+        thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         priceBeforeSaleLabel.translatesAutoresizingMaskIntoConstraints = false
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -52,20 +51,20 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureConstraints() {
-        self.contentView.addSubview(titleImageView)
+        self.contentView.addSubview(thumbnailImageView)
         self.contentView.addSubview(titleLabel)
         self.contentView.addSubview(priceBeforeSaleLabel)
         self.contentView.addSubview(priceLabel)
         self.contentView.addSubview(stockLabel)
         
         NSLayoutConstraint.activate([
-            titleImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8),
-            titleImageView.heightAnchor.constraint(equalTo: titleImageView.widthAnchor, multiplier: 1),
-            titleImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            titleImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
+            thumbnailImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8),
+            thumbnailImageView.heightAnchor.constraint(equalTo: thumbnailImageView.widthAnchor, multiplier: 1),
+            thumbnailImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            thumbnailImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: titleImageView.bottomAnchor, constant: 10),
+            titleLabel.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 5),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
             titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
@@ -92,7 +91,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-        titleImageView.image = nil
+        thumbnailImageView.image = nil
         titleLabel.text = String.empty
         priceBeforeSaleLabel.text = String.empty
         priceBeforeSaleLabel.attributedText = NSMutableAttributedString(string: String.empty)
