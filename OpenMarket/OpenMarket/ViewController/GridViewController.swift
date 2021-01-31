@@ -22,7 +22,7 @@ final class GridViewController: UIViewController {
         super.viewDidLoad()
         configureCollectionView()
     }
-
+    
     private func configureCollectionView() {
         configureConstraintToSafeArea(for: collectionView)
         collectionView.dataSource = self
@@ -39,39 +39,37 @@ extension GridViewController: UICollectionViewDelegateFlowLayout {
         let height: CGFloat = width * 1.4 //collectionView.frame.height / 2.5
         return CGSize(width: width, height: height)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: itemSpacing, left: itemSpacing, bottom: itemSpacing, right: itemSpacing)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return itemSpacing
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return itemSpacing
     }
-
-
-    
 }
 
 // MARK: - CollectionView DataSource
 extension GridViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return OpenMarketData.shared.productList.count
+        return OpenMarketData.shared.collectionViewProductList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let productList = OpenMarketData.shared.productList
+        let productList = OpenMarketData.shared.collectionViewProductList
         let product = productList[indexPath.row]
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell, let price = product.price, let currency = product.currency, let stock = product.stock  else {
             return UICollectionViewCell()
         }
-                
+        
         cell.titleLabel.text = product.title
         cell.stockLabel.text = "잔여수량 : \(stock.addComma())"
         cell.priceLabel.text = "\(currency) \(price.addComma())"
+        cell.priceBeforeSaleLabel.text = " "
         
         if stock == 0 {
             cell.stockLabel.text = "품절"
@@ -94,11 +92,7 @@ extension GridViewController: UICollectionViewDataSource {
                 return
             }
             DispatchQueue.main.async {
-//                if let index: IndexPath = collectionView.indexPath(for: cell) {
-//                    if index.item == indexPath.item {
-                        cell.thumbnailImageView.image = UIImage(data: imageData)
-//                    }
-//                }
+                cell.thumbnailImageView.image = UIImage(data: imageData)
             }
         }
         return cell
@@ -110,25 +104,25 @@ extension GridViewController: UICollectionViewDelegate {
     
 }
 
-// MARK: - Scroll
+// MARK: - Extension Scroll
 extension GridViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.height
-
+        
         if offsetY > (contentHeight - height) {
             if isPaging == false {
                 isPaging = true
-                let page = OpenMarketData.shared.currentPage
+                let page = OpenMarketData.shared.collectionViewCurrentPage
                 OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: page)) { result in
                     switch result {
                     case .success(let data):
                         if data.items.count == 0 {
                             self.hasPaging = false
                         } else {
-                            OpenMarketData.shared.productList.append(contentsOf: data.items)
-                            OpenMarketData.shared.currentPage += 1
+                            OpenMarketData.shared.collectionViewProductList.append(contentsOf: data.items)
+                            OpenMarketData.shared.collectionViewCurrentPage += 1
                         }
                     case .failure(let error):
                         debugPrint(error.localizedDescription)

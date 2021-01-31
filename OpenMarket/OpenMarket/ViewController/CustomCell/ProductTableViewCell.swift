@@ -56,29 +56,24 @@ final class ProductTableViewCell: UITableViewCell {
         self.contentView.addSubview(priceBeforeSaleLabel)
         self.contentView.addSubview(thumbnailImageView)
 
-        
         NSLayoutConstraint.activate([
             thumbnailImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.17),
             thumbnailImageView.heightAnchor.constraint(equalTo: thumbnailImageView.widthAnchor, multiplier: 1),
             thumbnailImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             thumbnailImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            thumbnailImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-        ])
-        NSLayoutConstraint.activate([
+            thumbnailImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+      
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            titleLabel.leadingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor, constant: 10)
-        ])
-        NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor, constant: 10),
+       
             stockLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor),
             stockLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
-            stockLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
-        ])
-        NSLayoutConstraint.activate([
-            priceBeforeSaleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            stockLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+       
+            priceBeforeSaleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
             priceBeforeSaleLabel.leadingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor, constant: 10),
-            priceBeforeSaleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5)
-        ])
-        NSLayoutConstraint.activate([
+            priceBeforeSaleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+       
             priceLabel.topAnchor.constraint(equalTo: priceBeforeSaleLabel.topAnchor),
             priceLabel.bottomAnchor.constraint(equalTo: priceBeforeSaleLabel.bottomAnchor)
         ])
@@ -102,9 +97,9 @@ final class ProductTableViewCell: UITableViewCell {
         stockLabel.text = String.empty
         stockLabel.textColor = .gray
         priceBeforeSaleLabel.attributedText = NSMutableAttributedString(string: String.empty)
-        priceLabelLeadingAnchorConstraint.isActive = false
-        priceLabelLeadingAnchorConstraint = priceLabel.leadingAnchor.constraint(equalTo: priceBeforeSaleLabel.trailingAnchor, constant: 0)
-        priceLabelLeadingAnchorConstraint.isActive = true
+//        priceLabelLeadingAnchorConstraint.isActive = false
+//        priceLabelLeadingAnchorConstraint = priceLabel.leadingAnchor.constraint(equalTo: priceBeforeSaleLabel.trailingAnchor, constant: 0)
+//        priceLabelLeadingAnchorConstraint.isActive = true
     }
     
     required init?(coder: NSCoder) {

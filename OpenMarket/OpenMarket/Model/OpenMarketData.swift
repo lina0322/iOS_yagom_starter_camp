@@ -7,8 +7,10 @@
 
 class OpenMarketData {
     static let shared = OpenMarketData()
-    var productList: [Product] = []
-    var currentPage: UInt = 1
+    var tableViewProductList: [Product] = []
+    var tableViewCurrentPage: UInt = 1
+    var collectionViewProductList: [Product] = []
+    var collectionViewCurrentPage: UInt = 1
 
     private init() { }
 }

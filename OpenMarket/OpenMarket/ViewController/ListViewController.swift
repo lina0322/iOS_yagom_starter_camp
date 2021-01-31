@@ -34,14 +34,14 @@ extension ListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return OpenMarketData.shared.productList.count
+            return OpenMarketData.shared.tableViewProductList.count
         }
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let productList = OpenMarketData.shared.productList
+            let productList = OpenMarketData.shared.tableViewProductList
             let product = productList[indexPath.row]
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.identifier, for: indexPath) as? ProductTableViewCell, let price = product.price, let currency = product.currency, let stock = product.stock else {
                 return UITableViewCell()
@@ -57,8 +57,8 @@ extension ListViewController: UITableViewDataSource {
             }
             
             if let salePrice = product.discountedPrice {
-                cell.changeConstraint()
-                let originalPrice = "\(currency) \(price.addComma())"
+//                cell.changeConstraint()
+                let originalPrice = "\(currency) \(price.addComma())  "
                 let priceLabelText = "\(currency) \(salePrice.addComma())"
                 let priceBeforeSaleLabelText = NSMutableAttributedString(string: originalPrice)
                 let range = priceBeforeSaleLabelText.mutableString.range(of: originalPrice)
@@ -104,7 +104,7 @@ extension ListViewController: UITableViewDelegate {
     }
 }
 
-// MARK: - Scroll
+// MARK: - Extension Scroll
 extension ListViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
@@ -114,15 +114,15 @@ extension ListViewController {
         if offsetY > (contentHeight - height) {
             if isPaging == false {
                 isPaging = true
-                let page = OpenMarketData.shared.currentPage
+                let page = OpenMarketData.shared.tableViewCurrentPage
                 OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: page)) { result in
                     switch result {
                     case .success(let data):
                         if data.items.count == 0 {
                             self.hasPaging = false
                         } else {
-                            OpenMarketData.shared.productList.append(contentsOf: data.items)
-                            OpenMarketData.shared.currentPage += 1
+                            OpenMarketData.shared.tableViewProductList.append(contentsOf: data.items)
+                            OpenMarketData.shared.tableViewCurrentPage += 1
                         }
                     case .failure(let error):
                         debugPrint(error.localizedDescription)

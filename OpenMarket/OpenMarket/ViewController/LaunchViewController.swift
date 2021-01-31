@@ -32,12 +32,14 @@ final class LaunchViewController: UIViewController {
     }
     
     private func setUpData() {
-        let page = OpenMarketData.shared.currentPage
+        let page = OpenMarketData.shared.tableViewCurrentPage
         OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: page)) { result in
             switch result {
             case .success(let data):
-                OpenMarketData.shared.productList.append(contentsOf: data.items)
-                OpenMarketData.shared.currentPage += 1
+                OpenMarketData.shared.tableViewProductList.append(contentsOf: data.items)
+                OpenMarketData.shared.tableViewCurrentPage += 1
+                OpenMarketData.shared.collectionViewProductList.append(contentsOf: data.items)
+                OpenMarketData.shared.collectionViewCurrentPage += 1
             case .failure(let error):
                 print(error.localizedDescription)
             }
