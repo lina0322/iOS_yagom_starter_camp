@@ -29,15 +29,19 @@ final class GridViewController: UIViewController {
         collectionView.delegate = self
         collectionView.backgroundColor = .white
         collectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
+        collectionView.register(LoadingCollectionViewCell.self, forCellWithReuseIdentifier: LoadingCollectionViewCell.identifier)
     }
 }
 
 // MARK: - CollectionView Delegate FlowLayout
 extension GridViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width: CGFloat = (collectionView.frame.width - itemSpacing * 4) / 2
-        let height: CGFloat = width * 1.4 //collectionView.frame.height / 2.5
-        return CGSize(width: width, height: height)
+        if indexPath.section == 0 {
+            let width: CGFloat = (collectionView.frame.width - itemSpacing * 4) / 2
+            let height: CGFloat = width * 1.4 //collectionView.frame.height / 2.5
+            return CGSize(width: width, height: height)
+        }
+        return CGSize(width: collectionView.frame.width, height: 50)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -55,47 +59,67 @@ extension GridViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - CollectionView DataSource
 extension GridViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return OpenMarketData.shared.collectionViewProductList.count
+        if section == 0 {
+            return OpenMarketData.shared.collectionViewProductList.count
+        }
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let productList = OpenMarketData.shared.collectionViewProductList
-        let product = productList[indexPath.row]
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell, let price = product.price, let currency = product.currency, let stock = product.stock  else {
-            return UICollectionViewCell()
-        }
-        
-        cell.titleLabel.text = product.title
-        cell.stockLabel.text = "잔여수량 : \(stock.addComma())"
-        cell.priceLabel.text = "\(currency) \(price.addComma())"
-        cell.priceBeforeSaleLabel.text = " "
-        
-        if stock == 0 {
-            cell.stockLabel.text = "품절"
-            cell.stockLabel.textColor = .systemOrange
-        }
-        
-        if let salePrice = product.discountedPrice {
-            let originalPrice = "\(currency) \(price.addComma())"
-            let priceLabelText = "\(currency) \(salePrice.addComma())"
-            let priceBeforeSaleLabelText = NSMutableAttributedString(string: originalPrice)
-            let range = priceBeforeSaleLabelText.mutableString.range(of: originalPrice)
-            priceBeforeSaleLabelText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: range)
+        if indexPath.section == 0 {
+            let productList = OpenMarketData.shared.collectionViewProductList
+            let product = productList[indexPath.row]
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell, let price = product.price, let currency = product.currency, let stock = product.stock  else {
+                return UICollectionViewCell()
+            }
             
-            cell.priceBeforeSaleLabel.attributedText = priceBeforeSaleLabelText
-            cell.priceLabel.text = priceLabelText
-        }
-        
-        DispatchQueue.global().async {
-            guard let imageURLText = product.thumbnailURLs?.first, let thumbnailURL = URL(string: imageURLText), let imageData: Data = try? Data(contentsOf: thumbnailURL) else {
-                return
+            cell.titleLabel.text = product.title
+            cell.stockLabel.text = "잔여수량 : \(stock.addComma())"
+            cell.priceLabel.text = "\(currency) \(price.addComma())"
+            cell.priceBeforeSaleLabel.text = " "
+            
+            if stock == 0 {
+                cell.stockLabel.text = "품절"
+                cell.stockLabel.textColor = .systemOrange
             }
-            DispatchQueue.main.async {
-                cell.thumbnailImageView.image = UIImage(data: imageData)
+            
+            if let salePrice = product.discountedPrice {
+                let originalPrice = "\(currency) \(price.addComma())"
+                let priceLabelText = "\(currency) \(salePrice.addComma())"
+                let priceBeforeSaleLabelText = NSMutableAttributedString(string: originalPrice)
+                let range = priceBeforeSaleLabelText.mutableString.range(of: originalPrice)
+                priceBeforeSaleLabelText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: range)
+                
+                cell.priceBeforeSaleLabel.attributedText = priceBeforeSaleLabelText
+                cell.priceLabel.text = priceLabelText
             }
+            
+            DispatchQueue.global().async {
+                guard let imageURLText = product.thumbnailURLs?.first, let thumbnailURL = URL(string: imageURLText), let imageData: Data = try? Data(contentsOf: thumbnailURL) else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    cell.thumbnailImageView.image = UIImage(data: imageData)
+                }
+            }
+            return cell
+            
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LoadingCollectionViewCell.identifier, for: indexPath) as? LoadingCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            if hasPaging {
+                cell.startIndicator()
+            } else {
+                cell.showLabel()
+            }
+            return cell
         }
-        return cell
     }
 }
 

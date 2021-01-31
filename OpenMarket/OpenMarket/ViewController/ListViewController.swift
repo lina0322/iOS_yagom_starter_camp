@@ -58,14 +58,14 @@ extension ListViewController: UITableViewDataSource {
             
             if let salePrice = product.discountedPrice {
 //                cell.changeConstraint()
+                let currentPrice = "\(currency) \(salePrice.addComma())"
                 let originalPrice = "\(currency) \(price.addComma())  "
-                let priceLabelText = "\(currency) \(salePrice.addComma())"
                 let priceBeforeSaleLabelText = NSMutableAttributedString(string: originalPrice)
                 let range = priceBeforeSaleLabelText.mutableString.range(of: originalPrice)
                 priceBeforeSaleLabelText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: range)
                 
                 cell.priceBeforeSaleLabel.attributedText = priceBeforeSaleLabelText
-                cell.priceLabel.text = priceLabelText
+                cell.priceLabel.text = currentPrice
             } 
             
             DispatchQueue.global().async {
