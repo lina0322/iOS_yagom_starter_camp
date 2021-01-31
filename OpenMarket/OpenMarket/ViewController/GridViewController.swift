@@ -10,6 +10,7 @@ import UIKit
 final class GridViewController: UIViewController {
     var isPaging: Bool = false
     var hasPaging: Bool = true
+    let itemSpacing: CGFloat = 8
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +32,24 @@ final class GridViewController: UIViewController {
 // MARK: - CollectionView Delegate FlowLayout
 extension GridViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemSpacing: CGFloat = 10
-        let width: CGFloat = (collectionView.frame.width - itemSpacing) / 2
+        let width: CGFloat = (collectionView.frame.width - itemSpacing * 4) / 2
         let height: CGFloat = width * 1.4 //collectionView.frame.height / 2.5
         return CGSize(width: width, height: height)
     }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: itemSpacing, left: itemSpacing, bottom: itemSpacing, right: itemSpacing)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return itemSpacing
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return itemSpacing
+    }
+
+
     
 }
 

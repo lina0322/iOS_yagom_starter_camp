@@ -19,6 +19,10 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.layer.borderWidth = 1.5
+        self.layer.cornerRadius = 8.0
+        self.layer.borderColor = UIColor.systemGray4.cgColor
         configureUI()
         configureConstraints()
     }
@@ -64,26 +68,26 @@ final class ProductCollectionViewCell: UICollectionViewCell {
             thumbnailImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 5),
+            titleLabel.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 0),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
             titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
         NSLayoutConstraint.activate([
-            priceBeforeSaleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            priceBeforeSaleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),
             priceBeforeSaleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             priceBeforeSaleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
             priceBeforeSaleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
         NSLayoutConstraint.activate([
-            priceLabel.topAnchor.constraint(equalTo: priceBeforeSaleLabel.bottomAnchor, constant: 10),
+            priceLabel.topAnchor.constraint(equalTo: priceBeforeSaleLabel.bottomAnchor, constant: 0),
             priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             priceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
             priceLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
         NSLayoutConstraint.activate([
             stockLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 10),
-            stockLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            stockLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -3),
             stockLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             stockLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
             stockLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
