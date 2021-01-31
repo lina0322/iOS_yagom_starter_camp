@@ -11,6 +11,12 @@ final class GridViewController: UIViewController {
     var isPaging: Bool = false
     var hasPaging: Bool = true
     let itemSpacing: CGFloat = 8
+    let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        return collectionView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,9 +24,6 @@ final class GridViewController: UIViewController {
     }
 
     private func configureCollectionView() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         configureConstraintToSafeArea(for: collectionView)
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -105,4 +108,37 @@ extension GridViewController: UICollectionViewDataSource {
 // MARK: - CollectionView Delegate
 extension GridViewController: UICollectionViewDelegate {
     
+}
+
+// MARK: - Scroll
+extension GridViewController {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.height
+
+        if offsetY > (contentHeight - height) {
+            if isPaging == false {
+                isPaging = true
+                let page = OpenMarketData.shared.currentPage
+                OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: page)) { result in
+                    switch result {
+                    case .success(let data):
+                        if data.items.count == 0 {
+                            self.hasPaging = false
+                        } else {
+                            OpenMarketData.shared.productList.append(contentsOf: data.items)
+                            OpenMarketData.shared.currentPage += 1
+                        }
+                    case .failure(let error):
+                        debugPrint(error.localizedDescription)
+                    }
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                        self.isPaging = false
+                    }
+                }
+            }
+        }
+    }
 }
