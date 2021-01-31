@@ -97,6 +97,8 @@ extension GridViewController: UICollectionViewDataSource {
                 
                 cell.priceBeforeSaleLabel.attributedText = priceBeforeSaleLabelText
                 cell.priceLabel.text = priceLabelText
+            } else {
+                cell.removePriceBeforeSaleLabel()
             }
             
             DispatchQueue.global().async {
@@ -125,7 +127,6 @@ extension GridViewController: UICollectionViewDataSource {
 
 // MARK: - CollectionView Delegate
 extension GridViewController: UICollectionViewDelegate {
-    
 }
 
 // MARK: - Extension Scroll
