@@ -32,7 +32,6 @@ final class ProductTableViewCell: UITableViewCell {
         priceBeforeSaleLabel.translatesAutoresizingMaskIntoConstraints = false
         thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        titleLabel.adjustsFontSizeToFitWidth = true
         priceLabel.adjustsFontSizeToFitWidth = true
         stockLabel.adjustsFontSizeToFitWidth = true
         priceBeforeSaleLabel.adjustsFontSizeToFitWidth = true
@@ -65,6 +64,7 @@ final class ProductTableViewCell: UITableViewCell {
       
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             titleLabel.leadingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor, constant: 10),
+            titleLabel.widthAnchor.constraint(greaterThanOrEqualTo: contentView.widthAnchor, multiplier: 0.5),
        
             stockLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor),
             stockLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
@@ -80,6 +80,12 @@ final class ProductTableViewCell: UITableViewCell {
         
         priceLabelLeadingAnchorConstraint = priceLabel.leadingAnchor.constraint(equalTo: priceBeforeSaleLabel.trailingAnchor, constant: 0)
         priceLabelLeadingAnchorConstraint.isActive = true
+        
+        stockLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        titleLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        
+        stockLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        titleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }
     
     func changeConstraint() {
@@ -97,9 +103,9 @@ final class ProductTableViewCell: UITableViewCell {
         stockLabel.text = String.empty
         stockLabel.textColor = .gray
         priceBeforeSaleLabel.attributedText = NSMutableAttributedString(string: String.empty)
-//        priceLabelLeadingAnchorConstraint.isActive = false
-//        priceLabelLeadingAnchorConstraint = priceLabel.leadingAnchor.constraint(equalTo: priceBeforeSaleLabel.trailingAnchor, constant: 0)
-//        priceLabelLeadingAnchorConstraint.isActive = true
+        priceLabelLeadingAnchorConstraint.isActive = false
+        priceLabelLeadingAnchorConstraint = priceLabel.leadingAnchor.constraint(equalTo: priceBeforeSaleLabel.trailingAnchor, constant: 0)
+        priceLabelLeadingAnchorConstraint.isActive = true
     }
     
     required init?(coder: NSCoder) {
