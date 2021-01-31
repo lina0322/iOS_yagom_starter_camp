@@ -64,7 +64,7 @@ final class ProductTableViewCell: UITableViewCell {
       
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             titleLabel.leadingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor, constant: 10),
-            titleLabel.widthAnchor.constraint(greaterThanOrEqualTo: contentView.widthAnchor, multiplier: 0.5),
+            titleLabel.widthAnchor.constraint(greaterThanOrEqualTo: contentView.widthAnchor, multiplier: 0.3),
        
             stockLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor),
             stockLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
