@@ -65,27 +65,23 @@ final class ProductCollectionViewCell: UICollectionViewCell {
             thumbnailImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8),
             thumbnailImageView.heightAnchor.constraint(equalTo: thumbnailImageView.widthAnchor, multiplier: 1),
             thumbnailImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            thumbnailImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
-        ])
-        NSLayoutConstraint.activate([
+            thumbnailImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+       
             titleLabel.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 0),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
-            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
-        ])
-        NSLayoutConstraint.activate([
+            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+        
             priceBeforeSaleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),
             priceBeforeSaleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             priceBeforeSaleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
-            priceBeforeSaleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
-        ])
-        NSLayoutConstraint.activate([
+            priceBeforeSaleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+     
             priceLabel.topAnchor.constraint(equalTo: priceBeforeSaleLabel.bottomAnchor, constant: 0),
             priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             priceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
-            priceLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
-        ])
-        NSLayoutConstraint.activate([
+            priceLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+       
             stockLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 10),
             stockLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -3),
             stockLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),

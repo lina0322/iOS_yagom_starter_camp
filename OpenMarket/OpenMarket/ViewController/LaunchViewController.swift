@@ -41,7 +41,7 @@ final class LaunchViewController: UIViewController {
                 OpenMarketData.shared.collectionViewProductList.append(contentsOf: data.items)
                 OpenMarketData.shared.collectionViewCurrentPage += 1
             case .failure(let error):
-                print(error.localizedDescription)
+                debugPrint(error.localizedDescription)
             }
             DispatchQueue.main.async {
                 self.goOpenMarketView()

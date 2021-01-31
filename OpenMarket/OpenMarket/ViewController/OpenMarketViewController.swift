@@ -11,9 +11,7 @@ final class OpenMarketViewController: UIViewController {
     let listViewController = ListViewController()
     let gridViewController = GridViewController()
     let registrationButton = UIButton()
-    let image = UIImage(systemName: "plus")!
     let segmentedControl = UISegmentedControl()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()

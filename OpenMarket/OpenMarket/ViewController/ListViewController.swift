@@ -21,8 +21,8 @@ final class ListViewController: UIViewController {
         configureConstraintToSafeArea(for: tableView)
         tableView.dataSource = self
         tableView.delegate = self
-        self.tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.identifier)
-        self.tableView.register(LoadingTableViewCell.self, forCellReuseIdentifier: LoadingTableViewCell.identifier)
+        tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.identifier)
+        tableView.register(LoadingTableViewCell.self, forCellReuseIdentifier: LoadingTableViewCell.identifier)
     }
 }
 
