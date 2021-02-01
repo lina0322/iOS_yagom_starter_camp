@@ -47,8 +47,6 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         stockLabel.translatesAutoresizingMaskIntoConstraints = false
         priceBeforeSaleLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        
         spacingView1.translatesAutoresizingMaskIntoConstraints = false
         spacingView2.translatesAutoresizingMaskIntoConstraints = false
 

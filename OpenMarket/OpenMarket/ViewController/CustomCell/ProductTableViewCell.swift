@@ -16,6 +16,7 @@ final class ProductTableViewCell: UITableViewCell {
     let priceLabel = UILabel()
     let stockLabel = UILabel()
     let priceBeforeSaleLabel = UILabel()
+    let spacingView = UIView()
     var priceLabelLeadingAnchorConstraint: NSLayoutConstraint!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -31,6 +32,7 @@ final class ProductTableViewCell: UITableViewCell {
         stockLabel.translatesAutoresizingMaskIntoConstraints = false
         priceBeforeSaleLabel.translatesAutoresizingMaskIntoConstraints = false
         thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
+        spacingView.translatesAutoresizingMaskIntoConstraints = false
         
         priceLabel.adjustsFontSizeToFitWidth = true
         stockLabel.adjustsFontSizeToFitWidth = true
@@ -54,6 +56,7 @@ final class ProductTableViewCell: UITableViewCell {
         self.contentView.addSubview(stockLabel)
         self.contentView.addSubview(priceBeforeSaleLabel)
         self.contentView.addSubview(thumbnailImageView)
+        self.contentView.addSubview(spacingView)
 
         NSLayoutConstraint.activate([
             thumbnailImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.17),
@@ -65,12 +68,17 @@ final class ProductTableViewCell: UITableViewCell {
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             titleLabel.leadingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor, constant: 10),
             titleLabel.widthAnchor.constraint(greaterThanOrEqualTo: contentView.widthAnchor, multiplier: 0.3),
-       
+            
+            spacingView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            spacingView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            spacingView.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+            spacingView.heightAnchor.constraint(greaterThanOrEqualToConstant: 5),
+            
             stockLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor),
             stockLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             stockLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
        
-            priceBeforeSaleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+            priceBeforeSaleLabel.topAnchor.constraint(equalTo: spacingView.bottomAnchor, constant: 5),
             priceBeforeSaleLabel.leadingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor, constant: 10),
             priceBeforeSaleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
        
@@ -86,9 +94,6 @@ final class ProductTableViewCell: UITableViewCell {
         
         stockLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         titleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        
-        priceLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
-        titleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
     }
     
     func changeConstraint() {
