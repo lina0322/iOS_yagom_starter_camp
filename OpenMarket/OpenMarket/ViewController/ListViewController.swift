@@ -41,34 +41,12 @@ extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let productList = OpenMarketData.shared.tableViewProductList
-            let product = productList[indexPath.row]
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.identifier, for: indexPath) as? ProductTableViewCell, let price = product.price, let currency = product.currency, let stock = product.stock else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.identifier, for: indexPath) as? ProductTableViewCell else {
                 return UITableViewCell()
             }
-            
-            cell.titleLabel.text = product.title
-            cell.stockLabel.text = "잔여수량 : \(stock.addComma())"
-            cell.priceLabel.text = "\(currency) \(price.addComma())"
-            
-            if stock == 0 {
-                cell.stockLabel.text = "품절"
-                cell.stockLabel.textColor = .systemOrange
-            }
-            
-            if let salePrice = product.discountedPrice {
-                cell.changeConstraint()
-                let currentPrice = "\(currency) \(salePrice.addComma())"
-                let originalPrice = "\(currency) \(price.addComma())"
-                let priceBeforeSaleLabelText = NSMutableAttributedString(string: originalPrice)
-                let range = priceBeforeSaleLabelText.mutableString.range(of: originalPrice)
-                priceBeforeSaleLabelText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: range)
-                
-                cell.priceBeforeSaleLabel.attributedText = priceBeforeSaleLabelText
-                cell.priceLabel.text = currentPrice
-            } 
-            
+            cell.fillLabels(about: productList[indexPath.row])
             DispatchQueue.global().async {
-                guard let imageURLText = product.thumbnailURLs?.first, let thumbnailURL = URL(string: imageURLText), let imageData: Data = try? Data(contentsOf: thumbnailURL) else {
+                guard let imageURLText = productList.first?.thumbnailURLs?.first, let thumbnailURL = URL(string: imageURLText), let imageData: Data = try? Data(contentsOf: thumbnailURL) else {
                     return
                 }
                 DispatchQueue.main.async {
@@ -80,8 +58,6 @@ extension ListViewController: UITableViewDataSource {
                 }
             }
             return cell
-            
-            
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: LoadingTableViewCell.identifier, for: indexPath) as? LoadingTableViewCell else {
                 return UITableViewCell()
