@@ -8,10 +8,10 @@
 import UIKit
 
 final class OpenMarketViewController: UIViewController {
-    let listViewController = ListViewController()
-    let gridViewController = GridViewController()
-    let registrationButton = UIButton()
-    let segmentedControl = UISegmentedControl()
+    private let listViewController = ListViewController()
+    private let gridViewController = GridViewController()
+    private let registrationButton = UIButton()
+    private let segmentedControl = UISegmentedControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,7 @@ final class OpenMarketViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: registrationButton)
     }
 
-    func configureSegmentedControl() {
+    private func configureSegmentedControl() {
         segmentedControl.insertSegment(withTitle: "LIST", at: 0, animated: true)
         segmentedControl.insertSegment(withTitle: "GRID", at: 1, animated: true)
         segmentedControl.selectedSegmentTintColor = .white
@@ -43,7 +43,7 @@ final class OpenMarketViewController: UIViewController {
         segmentedControl.addTarget(self, action: #selector(didTapSegmentedControl), for: .valueChanged)
     }
     
-    func configureRegistrationButton() {
+    private func configureRegistrationButton() {
         registrationButton.translatesAutoresizingMaskIntoConstraints = false
         registrationButton.addTarget(self, action: #selector(touchUpProductRegistrationButton), for: .touchUpInside)
         registrationButton.setImage(UIImage(systemName: "plus"), for: .normal)

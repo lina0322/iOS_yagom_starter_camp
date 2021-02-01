@@ -8,10 +8,10 @@
 import UIKit
 
 final class GridViewController: UIViewController {
-    var isPaging: Bool = false
-    var hasPaging: Bool = true
-    let itemSpacing: CGFloat = 8
-    let collectionView: UICollectionView = {
+    private var isPaging: Bool = false
+    private var hasPaging: Bool = true
+    private let itemSpacing: CGFloat = 8
+    private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)

@@ -8,9 +8,9 @@
 import UIKit
 
 final class ListViewController: UIViewController {
-    let tableView = UITableView()
-    var isPaging: Bool = false
-    var hasPaging: Bool = true
+    private let tableView = UITableView()
+    private var isPaging: Bool = false
+    private var hasPaging: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()

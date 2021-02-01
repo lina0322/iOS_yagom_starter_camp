@@ -15,10 +15,10 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     let titleLabel = UILabel()
     let priceLabel = UILabel()
     let stockLabel = UILabel()
-    let spacingView1 = UIView()
-    let spacingView2 = UIView()
     let priceBeforeSaleLabel = UILabel()
-    lazy var labelsStackView: UIStackView = {
+    private let spacingView1 = UIView()
+    private let spacingView2 = UIView()
+    lazy private var labelsStackView: UIStackView = {
         let labelsStackView = UIStackView(arrangedSubviews: [titleLabel, spacingView1, priceBeforeSaleLabel, priceLabel, spacingView2, stockLabel])
         labelsStackView.axis = .vertical
         labelsStackView.spacing = 3

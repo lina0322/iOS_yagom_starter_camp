@@ -16,8 +16,8 @@ final class ProductTableViewCell: UITableViewCell {
     let priceLabel = UILabel()
     let stockLabel = UILabel()
     let priceBeforeSaleLabel = UILabel()
-    let spacingView = UIView()
-    var priceLabelLeadingAnchorConstraint: NSLayoutConstraint!
+    private let spacingView = UIView()
+    private var priceLabelLeadingAnchorConstraint: NSLayoutConstraint!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
