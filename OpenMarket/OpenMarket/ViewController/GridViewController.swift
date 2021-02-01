@@ -73,36 +73,12 @@ extension GridViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             let productList = OpenMarketData.shared.collectionViewProductList
-            let product = productList[indexPath.row]
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell, let price = product.price, let currency = product.currency, let stock = product.stock  else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            
-            cell.titleLabel.text = product.title
-            cell.stockLabel.text = "잔여수량 : \(stock.addComma())"
-            cell.priceLabel.text = "\(currency) \(price.addComma())"
-            cell.priceBeforeSaleLabel.text = " "
-            
-            if stock == 0 {
-                cell.stockLabel.text = "품절"
-                cell.stockLabel.textColor = .systemOrange
-            }
-            
-            if let salePrice = product.discountedPrice {
-                let originalPrice = "\(currency) \(price.addComma())"
-                let priceLabelText = "\(currency) \(salePrice.addComma())"
-                let priceBeforeSaleLabelText = NSMutableAttributedString(string: originalPrice)
-                let range = priceBeforeSaleLabelText.mutableString.range(of: originalPrice)
-                priceBeforeSaleLabelText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: range)
-                
-                cell.priceBeforeSaleLabel.attributedText = priceBeforeSaleLabelText
-                cell.priceLabel.text = priceLabelText
-            } else {
-                cell.removePriceBeforeSaleLabel()
-            }
-            
+            cell.fillLabels(about: productList[indexPath.row])
             DispatchQueue.global().async {
-                guard let imageURLText = product.thumbnailURLs?.first, let thumbnailURL = URL(string: imageURLText), let imageData: Data = try? Data(contentsOf: thumbnailURL) else {
+                guard let imageURLText = productList[indexPath.row].thumbnailURLs?.first, let thumbnailURL = URL(string: imageURLText), let imageData: Data = try? Data(contentsOf: thumbnailURL) else {
                     return
                 }
                 DispatchQueue.main.async {
@@ -110,7 +86,6 @@ extension GridViewController: UICollectionViewDataSource {
                 }
             }
             return cell
-            
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LoadingCollectionViewCell.identifier, for: indexPath) as? LoadingCollectionViewCell else {
                 return UICollectionViewCell()

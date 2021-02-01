@@ -46,7 +46,7 @@ extension ListViewController: UITableViewDataSource {
             }
             cell.fillLabels(about: productList[indexPath.row])
             DispatchQueue.global().async {
-                guard let imageURLText = productList.first?.thumbnailURLs?.first, let thumbnailURL = URL(string: imageURLText), let imageData: Data = try? Data(contentsOf: thumbnailURL) else {
+                guard let imageURLText = productList[indexPath.row].thumbnailURLs?.first, let thumbnailURL = URL(string: imageURLText), let imageData: Data = try? Data(contentsOf: thumbnailURL) else {
                     return
                 }
                 DispatchQueue.main.async {

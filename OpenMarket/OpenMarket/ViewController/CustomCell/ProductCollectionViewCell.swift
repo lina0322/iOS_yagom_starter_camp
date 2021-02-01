@@ -34,6 +34,30 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         configureConstraints()
     }
     
+    func fillLabels(about product: Product) {
+        guard let title = product.title, let price = product.price, let stock = product.stock, let currency = product.currency else {
+            return
+        }
+        titleLabel.text = title
+        stockLabel.text = "잔여수량 : \(stock.addComma())"
+        priceLabel.text = "\(currency) \(price.addComma())"
+        if stock == 0 {
+            stockLabel.text = "품절"
+            stockLabel.textColor = .systemOrange
+        }
+        if let salePrice = product.discountedPrice {
+            let originalPrice = "\(currency) \(price.addComma())"
+            let priceLabelText = "\(currency) \(salePrice.addComma())"
+            let priceBeforeSaleLabelText = NSMutableAttributedString(string: originalPrice)
+            let range = priceBeforeSaleLabelText.mutableString.range(of: originalPrice)
+            priceBeforeSaleLabelText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: range)
+            priceBeforeSaleLabel.attributedText = priceBeforeSaleLabelText
+            priceLabel.text = priceLabelText
+        } else {
+            removePriceBeforeSaleLabel()
+        }
+    }
+    
     private func configureCellBorder() {
         self.layer.borderWidth = 1.5
         self.layer.cornerRadius = 8.0
