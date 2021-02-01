@@ -8,15 +8,29 @@
 import UIKit
 
 final class LaunchViewController: UIViewController {
+    private let indicator = UIActivityIndicatorView()
+    private let launchImage = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLaunchImage()
+        configureIndicatorConstraint()
+        indicator.startAnimating()
         setUpData()
     }
     
+    private func configureIndicatorConstraint() {
+        let safeArea = view.safeAreaLayoutGuide
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(indicator)
+
+        NSLayoutConstraint.activate([
+            indicator.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
+            indicator.topAnchor.constraint(equalTo: launchImage.bottomAnchor)
+        ])
+    }
+    
     private func configureLaunchImage() {
-        let launchImage = UIImageView()
         let safeArea = view.safeAreaLayoutGuide
         launchImage.translatesAutoresizingMaskIntoConstraints = false
         launchImage.image = UIImage(named: "launchScreen")
@@ -33,7 +47,7 @@ final class LaunchViewController: UIViewController {
     
     private func setUpData() {
         let page = OpenMarketData.shared.tableViewCurrentPage
-        OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: page), networkHandler: NetworkHandler(session: MockURLSession(apiRequestType: .loadPage(page: 1)))) { result in
+        OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: page)) { result in
             switch result {
             case .success(let data):
                 OpenMarketData.shared.tableViewProductList.append(contentsOf: data.items)
@@ -44,6 +58,7 @@ final class LaunchViewController: UIViewController {
                 debugPrint(error.localizedDescription)
             }
             DispatchQueue.main.async {
+                self.indicator.stopAnimating()
                 self.goOpenMarketView()
             }
         }
