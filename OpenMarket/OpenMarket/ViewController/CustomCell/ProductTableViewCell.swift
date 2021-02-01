@@ -86,6 +86,9 @@ final class ProductTableViewCell: UITableViewCell {
         
         stockLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         titleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        
+        priceLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
+        titleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
     }
     
     func changeConstraint() {

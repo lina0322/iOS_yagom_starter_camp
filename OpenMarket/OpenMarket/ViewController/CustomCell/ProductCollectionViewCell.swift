@@ -15,11 +15,13 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     let titleLabel = UILabel()
     let priceLabel = UILabel()
     let stockLabel = UILabel()
+    let spacingView1 = UIView()
+    let spacingView2 = UIView()
     let priceBeforeSaleLabel = UILabel()
     lazy var labelsStackView: UIStackView = {
-        let labelsStackView = UIStackView(arrangedSubviews: [titleLabel, priceBeforeSaleLabel, priceLabel, stockLabel])
+        let labelsStackView = UIStackView(arrangedSubviews: [titleLabel, spacingView1, priceBeforeSaleLabel, priceLabel, spacingView2, stockLabel])
         labelsStackView.axis = .vertical
-        labelsStackView.spacing = 10
+        labelsStackView.spacing = 3
         labelsStackView.distribution = .fillEqually
         labelsStackView.alignment = .center
         return labelsStackView
@@ -27,40 +29,48 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        configureCellBorder()
+        configureUI()
+        configureConstraints()
+    }
+    
+    private func configureCellBorder() {
         self.layer.borderWidth = 1.5
         self.layer.cornerRadius = 8.0
         self.layer.borderColor = UIColor.systemGray4.cgColor
-        configureUI()
-        configureConstraints()
     }
     
     private func configureUI() {
         thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
         labelsStackView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        priceBeforeSaleLabel.translatesAutoresizingMaskIntoConstraints = false
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         stockLabel.translatesAutoresizingMaskIntoConstraints = false
+        priceBeforeSaleLabel.translatesAutoresizingMaskIntoConstraints = false
+
         
+        spacingView1.translatesAutoresizingMaskIntoConstraints = false
+        spacingView2.translatesAutoresizingMaskIntoConstraints = false
+
         titleLabel.adjustsFontSizeToFitWidth = true
-        priceBeforeSaleLabel.adjustsFontSizeToFitWidth = true
         priceLabel.adjustsFontSizeToFitWidth = true
         stockLabel.adjustsFontSizeToFitWidth = true
+        priceBeforeSaleLabel.adjustsFontSizeToFitWidth = true
         
         titleLabel.font = .preferredFont(forTextStyle: .headline)
-        priceBeforeSaleLabel.font = .preferredFont(forTextStyle: .body)
         priceLabel.font = .preferredFont(forTextStyle: .body)
         stockLabel.font = .preferredFont(forTextStyle: .body)
+        priceBeforeSaleLabel.font = .preferredFont(forTextStyle: .body)
+
         
         titleLabel.textAlignment = .center
-        priceBeforeSaleLabel.textAlignment = .center
         priceLabel.textAlignment = .center
         stockLabel.textAlignment = .center
+        priceBeforeSaleLabel.textAlignment = .center
         
-        priceBeforeSaleLabel.textColor = .red
         priceLabel.textColor = .gray
         stockLabel.textColor = .gray
+        priceBeforeSaleLabel.textColor = .red
     }
     
     private func configureConstraints() {
@@ -72,6 +82,9 @@ final class ProductCollectionViewCell: UICollectionViewCell {
             thumbnailImageView.heightAnchor.constraint(equalTo: thumbnailImageView.widthAnchor, multiplier: 1),
             thumbnailImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             thumbnailImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            
+            spacingView1.heightAnchor.constraint(greaterThanOrEqualToConstant: 5),
+            spacingView2.heightAnchor.constraint(equalTo: spacingView1.heightAnchor),
             
             labelsStackView.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 5),
             labelsStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
@@ -87,11 +100,11 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         thumbnailImageView.image = nil
         titleLabel.text = String.empty
-        priceBeforeSaleLabel.text = String.empty
-        priceBeforeSaleLabel.attributedText = NSMutableAttributedString(string: String.empty)
         priceLabel.text = String.empty
         stockLabel.text = String.empty
         stockLabel.textColor = .gray
+        priceBeforeSaleLabel.text = String.empty
+        priceBeforeSaleLabel.attributedText = NSMutableAttributedString(string: String.empty)
     }
     
     required init?(coder: NSCoder) {
