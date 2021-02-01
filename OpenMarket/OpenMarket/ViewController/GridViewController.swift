@@ -125,10 +125,6 @@ extension GridViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: - CollectionView Delegate
-extension GridViewController: UICollectionViewDelegate {
-}
-
 // MARK: - Extension Scroll
 extension GridViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

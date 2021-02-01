@@ -20,7 +20,6 @@ final class ListViewController: UIViewController {
     private func configureTableView() {
         configureConstraintToSafeArea(for: tableView)
         tableView.dataSource = self
-        tableView.delegate = self
         tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.identifier)
         tableView.register(LoadingTableViewCell.self, forCellReuseIdentifier: LoadingTableViewCell.identifier)
     }
@@ -94,13 +93,6 @@ extension ListViewController: UITableViewDataSource {
             }
             return cell
         }
-    }
-}
-
-// MARK: - TableView Delegate
-extension ListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
