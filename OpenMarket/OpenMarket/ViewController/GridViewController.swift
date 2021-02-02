@@ -100,6 +100,12 @@ extension GridViewController: UICollectionViewDataSource {
     }
 }
 
+extension GridViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        dump(indexPath)
+    }
+}
+
 // MARK: - Extension Scroll
 extension GridViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

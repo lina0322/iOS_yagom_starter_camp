@@ -13,14 +13,11 @@ protocol Reloadable {
     
     func reloadData()
     
-    func reloadSections(_ sections: IndexSet, with animation: UITableView.RowAnimation)
     func beginUpdates()
     func endUpdates()
     func insertRows(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation)
-    func reloadRows(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation)
-
+    func numberOfRows(inSection section: Int) -> Int
     
-    func reloadSections(_ sections: IndexSet)
     func insertItems(at indexPaths: [IndexPath])
 }
 
@@ -32,7 +29,6 @@ extension UITableView: Reloadable {
         return false
     }
     
-    func reloadSections(_ sections: IndexSet) {}
     func insertItems(at indexPaths: [IndexPath]) {}
 }
 
@@ -44,11 +40,10 @@ extension UICollectionView: Reloadable {
         return true
     }
     
-    func reloadSections(_ sections: IndexSet, with animation: UITableView.RowAnimation) {}
     func beginUpdates() {}
     func endUpdates() {}
     func insertRows(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation) {}
-    func reloadRows(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation) {}
+    func numberOfRows(inSection section: Int) -> Int { return 0 }
 }
 
 extension UIViewController {
@@ -57,18 +52,15 @@ extension UIViewController {
             switch result {
             case .success(let data):
                 if data.items.count == 0 {
-                    if let view = view {
-                        self.reloadSection(view: view)
-                    }
+                    self.reloadAllSection(view: view)
                     completionHandler(.success(false))
                 } else {
-                    OpenMarketData.shared.lastItemCount = OpenMarketData.shared.productList.count
                     OpenMarketData.shared.productList.append(contentsOf: data.items)
                     OpenMarketData.shared.currentPage += 1
+                    completionHandler(.success(true))
                     if let view = view {
                         self.reloadNewCell(view: view)
                     }
-                    completionHandler(.success(true))
                 }
             case .failure(let error):
                 completionHandler(.failure(error))
@@ -76,29 +68,28 @@ extension UIViewController {
         }
     }
     
-    private func reloadSection(view: Reloadable) {
+    private func reloadAllSection(view: Reloadable?) {
+        guard let view = view else {
+            return
+        }
         DispatchQueue.main.async {
-            if view.isTableView {
-                view.reloadSections(IndexSet(1...1), with: .automatic)
-            } else if view.isCollectionView {
-                view.reloadSections(IndexSet(1...1))
-            }
+            view.reloadData()
         }
     }
     
     private func reloadNewCell(view: Reloadable) {
         DispatchQueue.main.async {
             let count = OpenMarketData.shared.productList.count
-            let lastCount = OpenMarketData.shared.lastItemCount
+            print(count)
+            let lastCount = view.numberOfRows(inSection: 0)
+            print(lastCount)
             if view.isTableView {
                 view.beginUpdates()
                 for row in (lastCount)...(count - 1) {
                     let indexPath = IndexPath(row: row, section: 0)
-                    view.insertRows(at: [indexPath], with: .automatic)
+                    view.insertRows(at: [indexPath], with: .none)
                 }
                 view.endUpdates()
-            } else if view.isCollectionView {
-        
             }
         }
     }
