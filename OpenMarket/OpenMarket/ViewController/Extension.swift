@@ -8,6 +8,24 @@
 import UIKit
 
 extension UIViewController {
+    func loadNextPage(completionHandler: @escaping (Result<Bool, OpenMarketError>) -> ()) {
+        let page = OpenMarketData.shared.tableViewCurrentPage
+        OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: page)) { result in
+            switch result {
+            case .success(let data):
+                if data.items.count == 0 {
+                    completionHandler(.success(false))
+                } else {
+                    OpenMarketData.shared.tableViewProductList.append(contentsOf: data.items)
+                    OpenMarketData.shared.tableViewCurrentPage += 1
+                    completionHandler(.success(true))
+                }
+            case .failure(let error):
+                completionHandler(.failure(error))
+            }
+        }
+    }
+    
     func configureConstraintToSafeArea(for object: UIView) {
         object.translatesAutoresizingMaskIntoConstraints = false
         let safeArea = view.safeAreaLayoutGuide

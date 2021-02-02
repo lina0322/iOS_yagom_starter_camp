@@ -47,7 +47,7 @@ final class LaunchViewController: UIViewController {
     
     private func setUpData() {
         let page = OpenMarketData.shared.tableViewCurrentPage
-        OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: page), networkHandler: NetworkHandler(session: MockURLSession(apiRequestType: .loadPage(page: 1)))) { result in
+        OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: page)) { result in
             switch result {
             case .success(let data):
                 OpenMarketData.shared.tableViewProductList.append(contentsOf: data.items)
