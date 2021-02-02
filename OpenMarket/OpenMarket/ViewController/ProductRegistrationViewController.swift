@@ -8,26 +8,28 @@
 import UIKit
 
 final class ProductRegistrationViewController: UIViewController {
- 
+    
+    let cancelButton = UIButton()
+    var navigationTitle = String.empty
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         configureCancelButton()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelButton)
+        navigationItem.title = navigationTitle
     }
     
-    private func configureCancelButton() {
-        let cancelButton = UIButton()
-        let safeArea = view.safeAreaLayoutGuide
-        view.addSubview(cancelButton)
-        cancelButton.setTitle("close", for: .normal)
-        cancelButton.backgroundColor = .blue
-        cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        cancelButton.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor).isActive = true
-        cancelButton.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor).isActive = true
-        cancelButton.addTarget(self, action: #selector(cancelRegistration), for: .touchUpInside)
+    override func viewWillAppear(_ animated: Bool) {
     }
-
-    @objc private func cancelRegistration() {
-        self.dismiss(animated: true, completion: nil)
+    
+    func configureCancelButton() {
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        cancelButton.addTarget(self, action: #selector(popView), for: .touchUpInside)
+        cancelButton.setTitle("취소", for: .normal)
+        cancelButton.setTitleColor(.systemBlue, for: .normal)
+    }
+    
+    @objc func popView() {
+       self.navigationController?.popViewController(animated: true)
     }
 }

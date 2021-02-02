@@ -120,16 +120,20 @@ extension ListViewController {
                     case .success(let data):
                         if data.items.count == 0 {
                             self.hasPaging = false
+                            DispatchQueue.main.async {
+                                self.tableView.reloadSections(IndexSet(1...1), with: .automatic)
+                                self.isPaging = false
+                            }
                         } else {
                             OpenMarketData.shared.tableViewProductList.append(contentsOf: data.items)
                             OpenMarketData.shared.tableViewCurrentPage += 1
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                                self.isPaging = false
+                            }
                         }
                     case .failure(let error):
                         debugPrint(error.localizedDescription)
-                    }
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                        self.isPaging = false
                     }
                 }
             }

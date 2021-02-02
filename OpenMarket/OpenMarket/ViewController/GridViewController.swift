@@ -145,16 +145,20 @@ extension GridViewController {
                     case .success(let data):
                         if data.items.count == 0 {
                             self.hasPaging = false
+                            DispatchQueue.main.async {
+                                self.collectionView.reloadSections(IndexSet(1...1))
+                                self.isPaging = false
+                            }
                         } else {
                             OpenMarketData.shared.collectionViewProductList.append(contentsOf: data.items)
                             OpenMarketData.shared.collectionViewCurrentPage += 1
+                            DispatchQueue.main.async {
+                                self.collectionView.reloadData()
+                                self.isPaging = false
+                            }
                         }
                     case .failure(let error):
                         debugPrint(error.localizedDescription)
-                    }
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                        self.isPaging = false
                     }
                 }
             }

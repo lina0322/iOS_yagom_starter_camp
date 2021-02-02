@@ -10,7 +10,6 @@ import UIKit
 final class OpenMarketViewController: UIViewController {
     let listViewController = ListViewController()
     let gridViewController = GridViewController()
-    let registrationButton = UIButton()
     let segmentedControl = UISegmentedControl()
     
     override func viewDidLoad() {
@@ -28,10 +27,8 @@ final class OpenMarketViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        configureRegistrationButton()
         configureSegmentedControl()
         navigationItem.titleView = segmentedControl
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: registrationButton)
     }
 
     func configureSegmentedControl() {
@@ -41,12 +38,6 @@ final class OpenMarketViewController: UIViewController {
         segmentedControl.backgroundColor = .systemBlue
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(didTapSegmentedControl), for: .valueChanged)
-    }
-    
-    func configureRegistrationButton() {
-        registrationButton.translatesAutoresizingMaskIntoConstraints = false
-        registrationButton.addTarget(self, action: #selector(touchUpProductRegistrationButton), for: .touchUpInside)
-        registrationButton.setImage(UIImage(systemName: "plus"), for: .normal)
     }
     
     @objc private func didTapSegmentedControl(_ segmentedControl: UISegmentedControl) {
@@ -60,9 +51,12 @@ final class OpenMarketViewController: UIViewController {
         }
     }
     
-    @objc private func touchUpProductRegistrationButton(_ sender: Any) {
-        let productRegistrationViewController = ProductRegistrationViewController()
-        productRegistrationViewController.modalPresentationStyle = .fullScreen
-        present(productRegistrationViewController, animated: true, completion: nil)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "RegistrationView" {
+            guard let registrationViewController = segue.destination as? ProductRegistrationViewController else {
+                return
+            }
+            registrationViewController.navigationTitle = "상품등록"
+        }
     }
 }
