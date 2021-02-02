@@ -7,7 +7,44 @@
 
 import UIKit
 
+protocol Reloadable {
+    func reloadData()
+}
+
+extension UITableView: Reloadable {}
+extension UICollectionView: Reloadable {}
+
 extension UIViewController {
+    func loadNextPage(for view: Reloadable?, completionHandler: @escaping (Result<Bool, OpenMarketError>) -> ()) {
+        OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: OpenMarketData.shared.currentPage)) { result in
+            switch result {
+            case .success(let data):
+                if data.items.count == 0 {
+                    completionHandler(.success(false))
+                } else {
+                    OpenMarketData.shared.productList.append(contentsOf: data.items)
+                    OpenMarketData.shared.currentPage += 1
+                    completionHandler(.success(true))
+                }
+                if let view = view {
+                    DispatchQueue.main.async {
+                        view.reloadData()
+                    }
+                }
+            case .failure(let error):
+                completionHandler(.failure(error))
+            }
+        }
+    }
+    
+    func showAlert(about message: String) {
+        let alret = UIAlertController(title: message, message: "어플을 다시 실행시켜주세요.\n오류가 반복된다면 관리자에에게 문의해주세요.", preferredStyle: .alert)
+        let cancelButton = UIAlertAction(title: "확인", style: .cancel, handler: .none)
+        
+        alret.addAction(cancelButton)
+        present(alret, animated: true, completion: nil)
+    }
+    
     func configureConstraintToSafeArea(for object: UIView) {
         object.translatesAutoresizingMaskIntoConstraints = false
         let safeArea = view.safeAreaLayoutGuide

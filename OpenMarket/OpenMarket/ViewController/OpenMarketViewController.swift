@@ -8,9 +8,9 @@
 import UIKit
 
 final class OpenMarketViewController: UIViewController {
-    let listViewController = ListViewController()
-    let gridViewController = GridViewController()
-    let segmentedControl = UISegmentedControl()
+    private let listViewController = ListViewController()
+    private let gridViewController = GridViewController()
+    private let segmentedControl = UISegmentedControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,7 @@ final class OpenMarketViewController: UIViewController {
         navigationItem.titleView = segmentedControl
     }
 
-    func configureSegmentedControl() {
+    private func configureSegmentedControl() {
         segmentedControl.insertSegment(withTitle: "LIST", at: 0, animated: true)
         segmentedControl.insertSegment(withTitle: "GRID", at: 1, animated: true)
         segmentedControl.selectedSegmentTintColor = .white

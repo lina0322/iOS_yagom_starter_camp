@@ -8,15 +8,29 @@
 import UIKit
 
 final class LaunchViewController: UIViewController {
+    private let indicator = UIActivityIndicatorView()
+    private let launchImage = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLaunchImage()
+        configureIndicatorConstraint()
+        indicator.startAnimating()
         setUpData()
     }
     
+    private func configureIndicatorConstraint() {
+        let safeArea = view.safeAreaLayoutGuide
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(indicator)
+        
+        NSLayoutConstraint.activate([
+            indicator.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
+            indicator.topAnchor.constraint(equalTo: launchImage.bottomAnchor)
+        ])
+    }
+    
     private func configureLaunchImage() {
-        let launchImage = UIImageView()
         let safeArea = view.safeAreaLayoutGuide
         launchImage.translatesAutoresizingMaskIntoConstraints = false
         launchImage.image = UIImage(named: "launchScreen")
@@ -32,19 +46,16 @@ final class LaunchViewController: UIViewController {
     }
     
     private func setUpData() {
-        let page = OpenMarketData.shared.tableViewCurrentPage
-        OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: page)) { result in
+        loadNextPage(for: nil) { result in
             switch result {
-            case .success(let data):
-                OpenMarketData.shared.tableViewProductList.append(contentsOf: data.items)
-                OpenMarketData.shared.tableViewCurrentPage += 1
-                OpenMarketData.shared.collectionViewProductList.append(contentsOf: data.items)
-                OpenMarketData.shared.collectionViewCurrentPage += 1
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.goOpenMarketView()
+                }
             case .failure(let error):
-                debugPrint(error.localizedDescription)
-            }
-            DispatchQueue.main.async {
-                self.goOpenMarketView()
+                DispatchQueue.main.async {
+                    self.showAlert(about: error.localizedDescription)
+                }
             }
         }
     }

@@ -8,9 +8,9 @@
 import UIKit
 
 final class ListViewController: UIViewController {
-    let tableView = UITableView()
-    var isPaging: Bool = false
-    var hasPaging: Bool = true
+    private let tableView = UITableView()
+    private var isPaging: Bool = false
+    private var hasPage: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,42 +34,20 @@ extension ListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return OpenMarketData.shared.tableViewProductList.count
+            return OpenMarketData.shared.productList.count
         }
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let productList = OpenMarketData.shared.tableViewProductList
-            let product = productList[indexPath.row]
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.identifier, for: indexPath) as? ProductTableViewCell, let price = product.price, let currency = product.currency, let stock = product.stock else {
+            let productList = OpenMarketData.shared.productList
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.identifier, for: indexPath) as? ProductTableViewCell else {
                 return UITableViewCell()
             }
-            
-            cell.titleLabel.text = product.title
-            cell.stockLabel.text = "잔여수량 : \(stock.addComma())"
-            cell.priceLabel.text = "\(currency) \(price.addComma())"
-            
-            if stock == 0 {
-                cell.stockLabel.text = "품절"
-                cell.stockLabel.textColor = .systemOrange
-            }
-            
-            if let salePrice = product.discountedPrice {
-                cell.changeConstraint()
-                let currentPrice = "\(currency) \(salePrice.addComma())"
-                let originalPrice = "\(currency) \(price.addComma())"
-                let priceBeforeSaleLabelText = NSMutableAttributedString(string: originalPrice)
-                let range = priceBeforeSaleLabelText.mutableString.range(of: originalPrice)
-                priceBeforeSaleLabelText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: range)
-                
-                cell.priceBeforeSaleLabel.attributedText = priceBeforeSaleLabelText
-                cell.priceLabel.text = currentPrice
-            } 
-            
+            cell.fillLabels(about: productList[indexPath.row])
             DispatchQueue.global().async {
-                guard let imageURLText = product.thumbnailURLs?.first, let thumbnailURL = URL(string: imageURLText), let imageData: Data = try? Data(contentsOf: thumbnailURL) else {
+                guard let imageURLText = productList[indexPath.row].thumbnailURLs?.first, let thumbnailURL = URL(string: imageURLText), let imageData: Data = try? Data(contentsOf: thumbnailURL) else {
                     return
                 }
                 DispatchQueue.main.async {
@@ -81,13 +59,11 @@ extension ListViewController: UITableViewDataSource {
                 }
             }
             return cell
-            
-            
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: LoadingTableViewCell.identifier, for: indexPath) as? LoadingTableViewCell else {
                 return UITableViewCell()
             }
-            if hasPaging {
+            if hasPage {
                 cell.startIndicator()
             } else {
                 cell.showLabel()
@@ -97,43 +73,23 @@ extension ListViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - TableView Delegate
-extension ListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
-
 // MARK: - Extension Scroll
-extension ListViewController {
+extension ListViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.height
 
-        if offsetY > (contentHeight - height) {
+        if offsetY > (contentHeight - height), hasPage {
             if isPaging == false {
                 isPaging = true
-                let page = OpenMarketData.shared.tableViewCurrentPage
-                OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: page)) { result in
+                loadNextPage(for: tableView) { result in
                     switch result {
-                    case .success(let data):
-                        if data.items.count == 0 {
-                            self.hasPaging = false
-                            DispatchQueue.main.async {
-                                self.tableView.reloadSections(IndexSet(1...1), with: .automatic)
-                                self.isPaging = false
-                            }
-                        } else {
-                            OpenMarketData.shared.tableViewProductList.append(contentsOf: data.items)
-                            OpenMarketData.shared.tableViewCurrentPage += 1
-                            DispatchQueue.main.async {
-                                self.tableView.reloadData()
-                                self.isPaging = false
-                            }
-                        }
+                    case .success(let hasPage):
+                        self.hasPage = hasPage
+                        self.isPaging = false
                     case .failure(let error):
-                        debugPrint(error.localizedDescription)
+                        self.showAlert(about: error.localizedDescription)
                     }
                 }
             }

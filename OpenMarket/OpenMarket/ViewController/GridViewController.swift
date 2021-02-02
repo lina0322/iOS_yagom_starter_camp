@@ -8,10 +8,10 @@
 import UIKit
 
 final class GridViewController: UIViewController {
-    var isPaging: Bool = false
-    var hasPaging: Bool = true
-    let itemSpacing: CGFloat = 8
-    let collectionView: UICollectionView = {
+    private var isPaging: Bool = false
+    private var hasPage: Bool = true
+    private let itemSpacing: CGFloat = 8
+    private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -65,44 +65,20 @@ extension GridViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
-            return OpenMarketData.shared.collectionViewProductList.count
+            return OpenMarketData.shared.productList.count
         }
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
-            let productList = OpenMarketData.shared.collectionViewProductList
-            let product = productList[indexPath.row]
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell, let price = product.price, let currency = product.currency, let stock = product.stock  else {
+            let productList = OpenMarketData.shared.productList
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            
-            cell.titleLabel.text = product.title
-            cell.stockLabel.text = "잔여수량 : \(stock.addComma())"
-            cell.priceLabel.text = "\(currency) \(price.addComma())"
-            cell.priceBeforeSaleLabel.text = " "
-            
-            if stock == 0 {
-                cell.stockLabel.text = "품절"
-                cell.stockLabel.textColor = .systemOrange
-            }
-            
-            if let salePrice = product.discountedPrice {
-                let originalPrice = "\(currency) \(price.addComma())"
-                let priceLabelText = "\(currency) \(salePrice.addComma())"
-                let priceBeforeSaleLabelText = NSMutableAttributedString(string: originalPrice)
-                let range = priceBeforeSaleLabelText.mutableString.range(of: originalPrice)
-                priceBeforeSaleLabelText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: range)
-                
-                cell.priceBeforeSaleLabel.attributedText = priceBeforeSaleLabelText
-                cell.priceLabel.text = priceLabelText
-            } else {
-                cell.removePriceBeforeSaleLabel()
-            }
-            
+            cell.fillLabels(about: productList[indexPath.row])
             DispatchQueue.global().async {
-                guard let imageURLText = product.thumbnailURLs?.first, let thumbnailURL = URL(string: imageURLText), let imageData: Data = try? Data(contentsOf: thumbnailURL) else {
+                guard let imageURLText = productList[indexPath.row].thumbnailURLs?.first, let thumbnailURL = URL(string: imageURLText), let imageData: Data = try? Data(contentsOf: thumbnailURL) else {
                     return
                 }
                 DispatchQueue.main.async {
@@ -110,12 +86,11 @@ extension GridViewController: UICollectionViewDataSource {
                 }
             }
             return cell
-            
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LoadingCollectionViewCell.identifier, for: indexPath) as? LoadingCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            if hasPaging {
+            if hasPage {
                 cell.startIndicator()
             } else {
                 cell.showLabel()
@@ -125,10 +100,6 @@ extension GridViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: - CollectionView Delegate
-extension GridViewController: UICollectionViewDelegate {
-}
-
 // MARK: - Extension Scroll
 extension GridViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -136,29 +107,16 @@ extension GridViewController {
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.height
         
-        if offsetY > (contentHeight - height) {
+        if offsetY > (contentHeight - height), hasPage {
             if isPaging == false {
                 isPaging = true
-                let page = OpenMarketData.shared.collectionViewCurrentPage
-                OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: page)) { result in
+                loadNextPage(for: collectionView) { result in
                     switch result {
-                    case .success(let data):
-                        if data.items.count == 0 {
-                            self.hasPaging = false
-                            DispatchQueue.main.async {
-                                self.collectionView.reloadSections(IndexSet(1...1))
-                                self.isPaging = false
-                            }
-                        } else {
-                            OpenMarketData.shared.collectionViewProductList.append(contentsOf: data.items)
-                            OpenMarketData.shared.collectionViewCurrentPage += 1
-                            DispatchQueue.main.async {
-                                self.collectionView.reloadData()
-                                self.isPaging = false
-                            }
-                        }
+                    case .success(let hasPage):
+                        self.hasPage = hasPage
+                        self.isPaging = false
                     case .failure(let error):
-                        debugPrint(error.localizedDescription)
+                        self.showAlert(about: error.localizedDescription)
                     }
                 }
             }

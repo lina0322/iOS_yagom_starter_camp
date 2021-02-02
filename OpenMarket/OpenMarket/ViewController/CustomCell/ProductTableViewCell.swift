@@ -16,14 +16,37 @@ final class ProductTableViewCell: UITableViewCell {
     let priceLabel = UILabel()
     let stockLabel = UILabel()
     let priceBeforeSaleLabel = UILabel()
-    let spacingView = UIView()
-    var priceLabelLeadingAnchorConstraint: NSLayoutConstraint!
+    private let spacingView = UIView()
+    private var priceLabelLeadingAnchorConstraint: NSLayoutConstraint!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.accessoryType = .disclosureIndicator
         configureUI()
         configureConstraints()
+    }
+    
+    func fillLabels(about product: Product) {
+        guard let title = product.title, let price = product.price, let stock = product.stock, let currency = product.currency else {
+            return
+        }
+        titleLabel.text = title
+        stockLabel.text = "잔여수량 : \(stock.addComma())"
+        priceLabel.text = "\(currency) \(price.addComma())"
+        if stock == 0 {
+            stockLabel.text = "품절"
+            stockLabel.textColor = .systemOrange
+        }
+        if let discountedPrice = product.discountedPrice {
+            changeConstraint()
+            let currentPrice = "\(currency) \(discountedPrice.addComma())"
+            let originalPrice = "\(currency) \(price.addComma())"
+            let priceBeforeSaleLabelText = NSMutableAttributedString(string: originalPrice)
+            let range = priceBeforeSaleLabelText.mutableString.range(of: originalPrice)
+            priceBeforeSaleLabelText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: range)
+            priceBeforeSaleLabel.attributedText = priceBeforeSaleLabelText
+            priceLabel.text = currentPrice
+        }
     }
     
     private func configureUI() {
@@ -63,7 +86,6 @@ final class ProductTableViewCell: UITableViewCell {
             thumbnailImageView.heightAnchor.constraint(equalTo: thumbnailImageView.widthAnchor, multiplier: 1),
             thumbnailImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             thumbnailImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            thumbnailImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
       
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             titleLabel.leadingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor, constant: 10),

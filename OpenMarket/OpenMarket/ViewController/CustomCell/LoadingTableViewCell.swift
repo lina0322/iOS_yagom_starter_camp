@@ -37,7 +37,7 @@ class LoadingTableViewCell: UITableViewCell {
         label.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor).isActive = true
     }
-    
+        
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
