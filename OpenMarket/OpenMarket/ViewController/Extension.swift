@@ -8,31 +8,78 @@
 import UIKit
 
 protocol Reloadable {
+    var isTableView: Bool { get }
+    var isCollectionView: Bool { get }
+    
     func reloadData()
+    
+    func reloadSections(_ sections: IndexSet, with animation: UITableView.RowAnimation)
+    func beginUpdates()
+    func endUpdates()
+    func insertRows(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation)
+    
+    func reloadSections(_ sections: IndexSet)
+    func insertItems(at indexPaths: [IndexPath])
 }
 
-extension UITableView: Reloadable {}
-extension UICollectionView: Reloadable {}
+extension UITableView: Reloadable {
+    var isTableView: Bool {
+        return true
+    }
+    var isCollectionView: Bool {
+        return false
+    }
+    
+    func reloadSections(_ sections: IndexSet) {}
+    func insertItems(at indexPaths: [IndexPath]) {}
+}
+
+extension UICollectionView: Reloadable {
+    var isTableView: Bool {
+        return false
+    }
+    var isCollectionView: Bool {
+        return true
+    }
+    
+    func reloadSections(_ sections: IndexSet, with animation: UITableView.RowAnimation) {}
+    func beginUpdates() {}
+    func endUpdates() {}
+    func insertRows(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation) {}
+}
 
 extension UIViewController {
     func loadNextPage(for view: Reloadable?, completionHandler: @escaping (Result<Bool, OpenMarketError>) -> ()) {
-        OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: OpenMarketData.shared.currentPage), networkHandler: NetworkHandler(session: MockURLSession(isSuccess: false, apiRequestType: .loadPage(page: 1)))) { result in
+        OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: OpenMarketData.shared.currentPage)) { result in
             switch result {
             case .success(let data):
                 if data.items.count == 0 {
+                    if let view = view {
+                        self.reloadSection(view: view)
+                    }
                     completionHandler(.success(false))
                 } else {
                     OpenMarketData.shared.productList.append(contentsOf: data.items)
                     OpenMarketData.shared.currentPage += 1
-                    completionHandler(.success(true))
-                }
-                if let view = view {
-                    DispatchQueue.main.async {
-                        view.reloadData()
+                    if let view = view {
+                        DispatchQueue.main.async {
+                            view.reloadData()
+                        }
                     }
+                    completionHandler(.success(true))
                 }
             case .failure(let error):
                 completionHandler(.failure(error))
+            }
+        }
+    }
+    
+    private func reloadSection(view: Reloadable) {
+        DispatchQueue.main.async {
+            if view.isTableView {
+                view.reloadSections(IndexSet(1...1), with: .automatic)
+            } else if view.isCollectionView {
+                view.reloadSections(IndexSet(1...1))
             }
         }
     }
