@@ -19,9 +19,6 @@ final class ProductRegistrationViewController: UIViewController {
         navigationItem.title = navigationTitle
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-    }
-    
     func configureCancelButton() {
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.addTarget(self, action: #selector(popView), for: .touchUpInside)
