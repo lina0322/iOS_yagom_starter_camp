@@ -7,23 +7,50 @@
 
 import UIKit
 
+protocol Reloadble {
+    func reloadData()
+}
+
+extension UITableView: Reloadble {}
+extension UICollectionView: Reloadble {}
+
 extension UIViewController {
-    func loadNextPage(completionHandler: @escaping (Result<Bool, OpenMarketError>) -> ()) {
-        let page = OpenMarketData.shared.tableViewCurrentPage
+    func loadNextPage(forGridView isGridView: Bool = false, view: Reloadble, completionHandler: @escaping (Result<Bool, OpenMarketError>) -> ()) {
+        var page = OpenMarketData.shared.tableViewCurrentPage
+        if isGridView {
+            page = OpenMarketData.shared.collectionViewCurrentPage
+        }
+
         OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: page)) { result in
             switch result {
             case .success(let data):
                 if data.items.count == 0 {
                     completionHandler(.success(false))
                 } else {
-                    OpenMarketData.shared.tableViewProductList.append(contentsOf: data.items)
-                    OpenMarketData.shared.tableViewCurrentPage += 1
+                    if isGridView {
+                        OpenMarketData.shared.collectionViewProductList.append(contentsOf: data.items)
+                        OpenMarketData.shared.collectionViewCurrentPage += 1
+                    } else {
+                        OpenMarketData.shared.tableViewProductList.append(contentsOf: data.items)
+                        OpenMarketData.shared.tableViewCurrentPage += 1
+                    }
                     completionHandler(.success(true))
+                }
+                DispatchQueue.main.async {
+                    view.reloadData()
                 }
             case .failure(let error):
                 completionHandler(.failure(error))
             }
         }
+    }
+    
+    func showAlert(about message: String) {
+        let alret = UIAlertController(title: message, message: "어플을 다시 실행시켜주세요.\n오류가 반복된다면 관리자에에게 문의해주세요.", preferredStyle: .alert)
+        let cancelButton = UIAlertAction(title: "확인", style: .cancel, handler: .none)
+        
+        alret.addAction(cancelButton)
+        present(alret, animated: true, completion: nil)
     }
     
     func configureConstraintToSafeArea(for object: UIView) {

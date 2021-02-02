@@ -9,8 +9,8 @@ import UIKit
 
 final class ListViewController: UIViewController {
     private let tableView = UITableView()
-    var isPaging: Bool = false
-    var hasPage: Bool = true
+    private var isPaging: Bool = false
+    private var hasPage: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,17 +83,14 @@ extension ListViewController: UITableViewDelegate {
         if offsetY > (contentHeight - height), hasPage {
             if isPaging == false {
                 isPaging = true
-                loadNextPage() { result in
+                loadNextPage(view: tableView) { result in
                     switch result {
                     case .success(let hasPage):
                         self.hasPage = hasPage
+                        self.isPaging = false
                     case .failure(let error):
-                        debugPrint(error.localizedDescription)
+                        self.showAlert(about: error.localizedDescription)
                     }
-                }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.isPaging = false
                 }
             }
         }

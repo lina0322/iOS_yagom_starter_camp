@@ -8,8 +8,8 @@
 import UIKit
 
 final class GridViewController: UIViewController {
-    var isPaging: Bool = false
-    var hasPage: Bool = true
+    private var isPaging: Bool = false
+    private var hasPage: Bool = true
     private let itemSpacing: CGFloat = 8
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -107,29 +107,20 @@ extension GridViewController {
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.height
         
-        print("ㅎ?")
-        if offsetY > (contentHeight - height) {
+        if offsetY > (contentHeight - height), hasPage {
             if isPaging == false {
                 isPaging = true
-                let page = OpenMarketData.shared.collectionViewCurrentPage
-                OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: page)) { result in
+                loadNextPage(forGridView: true, view: collectionView) { result in
                     switch result {
-                    case .success(let data):
-                        if data.items.count == 0 {
-                            self.hasPage = false
-                        } else {
-                            OpenMarketData.shared.collectionViewProductList.append(contentsOf: data.items)
-                            OpenMarketData.shared.collectionViewCurrentPage += 1
-                        }
-                    case .failure(let error):
-                        debugPrint(error.localizedDescription)
-                    }
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
+                    case .success(let hasPage):
+                        self.hasPage = hasPage
                         self.isPaging = false
+                    case .failure(let error):
+                        self.showAlert(about: error.localizedDescription)
                     }
                 }
             }
         }
     }
 }
+
