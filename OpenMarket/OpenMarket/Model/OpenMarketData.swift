@@ -11,6 +11,7 @@ class OpenMarketData {
     var currentPage: UInt = 1
     var isPaging = false
     var hasPage = true
+    var lastItemCount = 0
 
     private init() { }
 }

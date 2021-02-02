@@ -17,6 +17,8 @@ protocol Reloadable {
     func beginUpdates()
     func endUpdates()
     func insertRows(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation)
+    func reloadRows(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation)
+
     
     func reloadSections(_ sections: IndexSet)
     func insertItems(at indexPaths: [IndexPath])
@@ -46,6 +48,7 @@ extension UICollectionView: Reloadable {
     func beginUpdates() {}
     func endUpdates() {}
     func insertRows(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation) {}
+    func reloadRows(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation) {}
 }
 
 extension UIViewController {
@@ -59,12 +62,11 @@ extension UIViewController {
                     }
                     completionHandler(.success(false))
                 } else {
+                    OpenMarketData.shared.lastItemCount = OpenMarketData.shared.productList.count
                     OpenMarketData.shared.productList.append(contentsOf: data.items)
                     OpenMarketData.shared.currentPage += 1
                     if let view = view {
-                        DispatchQueue.main.async {
-                            view.reloadData()
-                        }
+                        self.reloadNewCell(view: view)
                     }
                     completionHandler(.success(true))
                 }
@@ -80,6 +82,23 @@ extension UIViewController {
                 view.reloadSections(IndexSet(1...1), with: .automatic)
             } else if view.isCollectionView {
                 view.reloadSections(IndexSet(1...1))
+            }
+        }
+    }
+    
+    private func reloadNewCell(view: Reloadable) {
+        DispatchQueue.main.async {
+            let count = OpenMarketData.shared.productList.count
+            let lastCount = OpenMarketData.shared.lastItemCount
+            if view.isTableView {
+                view.beginUpdates()
+                for row in (lastCount)...(count - 1) {
+                    let indexPath = IndexPath(row: row, section: 0)
+                    view.insertRows(at: [indexPath], with: .automatic)
+                }
+                view.endUpdates()
+            } else if view.isCollectionView {
+        
             }
         }
     }
