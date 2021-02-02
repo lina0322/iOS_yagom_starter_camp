@@ -1,7 +1,0 @@
-version: "Apple Swift version 5.3.1 (swiftlang-1200.0.41 clang-1200.0.32.8)"
-options: "25a91cee1d679c600d10effc32bdb687"
-build_time: [1611833463, 640304000]
-inputs:
-  "/Users/llim/yagom/iOS_yagom_starter_camp/week4/AutoLayoutStudy/ViewController.swift": [1611833344, 800710454]
-  "/Users/llim/yagom/iOS_yagom_starter_camp/week4/AutoLayoutStudy/AppDelegate.swift": [1611833344, 798820708]
-  "/Users/llim/yagom/iOS_yagom_starter_camp/week4/AutoLayoutStudy/SceneDelegate.swift": [1611833344, 800469723]
