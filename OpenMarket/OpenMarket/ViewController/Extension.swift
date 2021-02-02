@@ -7,37 +7,29 @@
 
 import UIKit
 
-protocol Reloadble {
+protocol Reloadable {
     func reloadData()
 }
 
-extension UITableView: Reloadble {}
-extension UICollectionView: Reloadble {}
+extension UITableView: Reloadable {}
+extension UICollectionView: Reloadable {}
 
 extension UIViewController {
-    func loadNextPage(forGridView isGridView: Bool = false, view: Reloadble, completionHandler: @escaping (Result<Bool, OpenMarketError>) -> ()) {
-        var page = OpenMarketData.shared.tableViewCurrentPage
-        if isGridView {
-            page = OpenMarketData.shared.collectionViewCurrentPage
-        }
-
-        OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: page)) { result in
+    func loadNextPage(for view: Reloadable?, completionHandler: @escaping (Result<Bool, OpenMarketError>) -> ()) {
+        OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: OpenMarketData.shared.currentPage), networkHandler: NetworkHandler(session: MockURLSession(isSuccess: false, apiRequestType: .loadPage(page: 1)))) { result in
             switch result {
             case .success(let data):
                 if data.items.count == 0 {
                     completionHandler(.success(false))
                 } else {
-                    if isGridView {
-                        OpenMarketData.shared.collectionViewProductList.append(contentsOf: data.items)
-                        OpenMarketData.shared.collectionViewCurrentPage += 1
-                    } else {
-                        OpenMarketData.shared.tableViewProductList.append(contentsOf: data.items)
-                        OpenMarketData.shared.tableViewCurrentPage += 1
-                    }
+                    OpenMarketData.shared.productList.append(contentsOf: data.items)
+                    OpenMarketData.shared.currentPage += 1
                     completionHandler(.success(true))
                 }
-                DispatchQueue.main.async {
-                    view.reloadData()
+                if let view = view {
+                    DispatchQueue.main.async {
+                        view.reloadData()
+                    }
                 }
             case .failure(let error):
                 completionHandler(.failure(error))

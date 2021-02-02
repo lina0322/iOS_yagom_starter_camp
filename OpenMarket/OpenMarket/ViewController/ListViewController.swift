@@ -34,14 +34,14 @@ extension ListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return OpenMarketData.shared.tableViewProductList.count
+            return OpenMarketData.shared.productList.count
         }
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let productList = OpenMarketData.shared.tableViewProductList
+            let productList = OpenMarketData.shared.productList
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.identifier, for: indexPath) as? ProductTableViewCell else {
                 return UITableViewCell()
             }
@@ -83,7 +83,7 @@ extension ListViewController: UITableViewDelegate {
         if offsetY > (contentHeight - height), hasPage {
             if isPaging == false {
                 isPaging = true
-                loadNextPage(view: tableView) { result in
+                loadNextPage(for: tableView) { result in
                     switch result {
                     case .success(let hasPage):
                         self.hasPage = hasPage

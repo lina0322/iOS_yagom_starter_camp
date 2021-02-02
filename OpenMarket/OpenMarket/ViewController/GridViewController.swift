@@ -65,14 +65,14 @@ extension GridViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
-            return OpenMarketData.shared.collectionViewProductList.count
+            return OpenMarketData.shared.productList.count
         }
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
-            let productList = OpenMarketData.shared.collectionViewProductList
+            let productList = OpenMarketData.shared.productList
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else {
                 return UICollectionViewCell()
             }
@@ -110,7 +110,7 @@ extension GridViewController {
         if offsetY > (contentHeight - height), hasPage {
             if isPaging == false {
                 isPaging = true
-                loadNextPage(forGridView: true, view: collectionView) { result in
+                loadNextPage(for: collectionView) { result in
                     switch result {
                     case .success(let hasPage):
                         self.hasPage = hasPage
