@@ -107,7 +107,7 @@ extension GridViewController: UICollectionViewDelegate {
 }
 
 // MARK: - Extension Scroll
-extension GridViewController {
+extension GridViewController: Insertable {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
