@@ -94,6 +94,23 @@ class OpenMarketTests: XCTestCase {
     func testPostItem2() {
         postProduct()
     }
+    
+    func testDelete() {
+        let expectation = XCTestExpectation(description: "itemPatch")
+        let product = Product(forDeletePassword: "12345", id: 106)
+        
+        Uploader.deleteData(product: product, apiRequestType: .deleteProduct(id: 106)) { result in
+            switch result {
+            case .success(let data):
+                dump(data)
+            case .failure(let error):
+                print("error: \(error.localizedDescription)")
+            }
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 5.0)
+    }
 }
 
 extension OpenMarketTests {

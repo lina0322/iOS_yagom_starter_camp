@@ -10,14 +10,14 @@ import Foundation
 struct Uploader {
     static let boundary = URLRequestManager.boundary
     
-    static func uploadData(by httpMethod: HTTPMethod, product: Product, apiRequestType: APIRequestType, completionHandler: @escaping (Result<Any, OpenMarketError>) -> ()) {
+    static func uploadData(by httpMethod: HTTPMethod = .post, product: Product, apiRequestType: APIRequestType, completionHandler: @escaping (Result<Any, OpenMarketError>) -> ()) {
         guard var urlRequest = URLRequestManager.makeURLRequest(for: httpMethod, about: apiRequestType) else {
             completionHandler(.failure(.wrongURLRequest))
             return
         }
         
         urlRequest.httpBody = makeHTTPBody(for: product)
-
+        
         NetworkHandler().startLoad(about: apiRequestType, urlRequest: urlRequest) { result in
             switch result {
             case .success(let data):
@@ -27,6 +27,32 @@ struct Uploader {
             }
         }
     }
+    
+    static func deleteData(product: Product, apiRequestType: APIRequestType, completionHandler: @escaping (Result<Any, OpenMarketError>) -> ()) {
+        guard var urlRequest = URLRequestManager.makeURLRequest(for: .delete, about: apiRequestType) else {
+            completionHandler(.failure(.wrongURLRequest))
+            return
+        }
+        
+        encode(data: product) { result in
+            switch result {
+            case .success(let data):
+                urlRequest.httpBody = data
+            case .failure(let error):
+                completionHandler(.failure(error))
+            }
+        }
+        
+        NetworkHandler().startLoad(about: apiRequestType, urlRequest: urlRequest) { result in
+            switch result {
+            case .success(let data):
+                completionHandler(.success(data))
+            case .failure(let error):
+                completionHandler(.failure(error))
+            }
+        }
+    }
+    
     
     private static func makeHTTPBody(for product: Product) -> Data {
         var data = Data()
@@ -69,5 +95,15 @@ struct Uploader {
             imageIndex += 1
         }
         return data
+    }
+    
+    private static func encode(data: Product,  completionHandler: @escaping (Result<Data, OpenMarketError>) -> ()) {
+        let encoder = JSONEncoder()
+        do {
+            let encodedData = try encoder.encode(data)
+            completionHandler(.success(encodedData))
+        } catch {
+            completionHandler(.failure(.encodingFailure))
+        }
     }
 }
