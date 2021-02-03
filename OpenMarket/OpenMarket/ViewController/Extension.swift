@@ -59,6 +59,14 @@ extension UIViewController {
     }
 }
 
+extension Data {
+    mutating func appendString(_ string: String) {
+        if let data = string.data(using: .utf8) {
+            append(data)
+        }
+    }
+}
+
 extension Int {
     func addComma() -> String {
         let numberFormatter = NumberFormatter()
@@ -74,10 +82,9 @@ extension String {
     static let empty = ""
 }
 
-extension Data {
-    mutating func appendString(_ string: String) {
-        if let data = string.data(using: .utf8) {
-            append(data)
-        }
+extension UITextView {
+    func isFilled() -> Bool {
+        guard let text = self.text, text.isEmpty == false else { return false }
+        return true
     }
 }
