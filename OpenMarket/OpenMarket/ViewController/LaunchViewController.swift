@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class LaunchViewController: UIViewController {
+final class LaunchViewController: UIViewController, Insertable {
     private let indicator = UIActivityIndicatorView()
     private let launchImage = UIImageView()
     
@@ -53,6 +53,7 @@ final class LaunchViewController: UIViewController {
                     self.goOpenMarketView()
                 }
             case .failure(let error):
+                self.indicator.stopAnimating()
                 DispatchQueue.main.async {
                     self.showAlert(about: error.localizedDescription)
                 }

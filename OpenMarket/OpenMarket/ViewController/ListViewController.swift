@@ -74,7 +74,7 @@ extension ListViewController: UITableViewDataSource {
 }
 
 // MARK: - Extension Scroll
-extension ListViewController: UITableViewDelegate {
+extension ListViewController: UITableViewDelegate, Insertable {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
