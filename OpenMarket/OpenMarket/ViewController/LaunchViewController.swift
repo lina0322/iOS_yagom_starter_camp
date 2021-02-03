@@ -53,6 +53,7 @@ final class LaunchViewController: UIViewController {
                     self.goOpenMarketView()
                 }
             case .failure(let error):
+                self.indicator.stopAnimating()
                 DispatchQueue.main.async {
                     self.showAlert(about: error.localizedDescription)
                 }
