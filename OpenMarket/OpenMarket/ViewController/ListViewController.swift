@@ -20,7 +20,6 @@ final class ListViewController: UIViewController {
     private func configureTableView() {
         configureConstraintToSafeArea(for: tableView)
         tableView.dataSource = self
-        tableView.delegate = self
         tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.identifier)
         tableView.register(LoadingTableViewCell.self, forCellReuseIdentifier: LoadingTableViewCell.identifier)
     }
@@ -74,7 +73,7 @@ extension ListViewController: UITableViewDataSource {
 }
 
 // MARK: - Extension Scroll
-extension ListViewController: UITableViewDelegate {
+extension ListViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
