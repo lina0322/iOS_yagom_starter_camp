@@ -80,7 +80,7 @@ class OpenMarketTests: XCTestCase {
     }
     
     func testPatchItem1() {
-        patchProduct(148)
+        patchProduct(101)
     }
     
     func testPatchItem2() {
@@ -97,7 +97,7 @@ class OpenMarketTests: XCTestCase {
 }
 
 extension OpenMarketTests {
-    func loadPageFromMock(_ number: UInt, success: Bool) -> ProductList? {
+    func loadPageFromMock(_ number: Int, success: Bool) -> ProductList? {
         let expectation = XCTestExpectation(description: "pageLoad")
         var productList: ProductList?
         let networkHandler = NetworkHandler(session: MockURLSession(isSuccess: success, apiRequestType: .loadPage(page: number)))
@@ -116,7 +116,7 @@ extension OpenMarketTests {
         return productList
     }
     
-    func loadProductFromMock(_ number: UInt, success: Bool) -> Product? {
+    func loadProductFromMock(_ number: Int, success: Bool) -> Product? {
         let expectation = XCTestExpectation(description: "pageLoad")
         var product: Product?
         let networkHandler = NetworkHandler(session: MockURLSession(isSuccess: success, apiRequestType: .loadProduct(id: number)))
@@ -135,7 +135,7 @@ extension OpenMarketTests {
         return product
     }
     
-    func loadPage(_ number: UInt) -> ProductList? {
+    func loadPage(_ number: Int) -> ProductList? {
         let expectation = XCTestExpectation(description: "pageLoad")
         var productList: ProductList?
         
@@ -153,7 +153,7 @@ extension OpenMarketTests {
         return productList
     }
     
-    func loadProduct(_ id: UInt) -> Product? {
+    func loadProduct(_ id: Int) -> Product? {
         let expectation = XCTestExpectation(description: "itemLoad")
         var product: Product?
         
@@ -171,10 +171,10 @@ extension OpenMarketTests {
         return product
     }
     
-    func patchProduct(_ id: UInt) {
+    func patchProduct(_ id: Int) {
         let expectation = XCTestExpectation(description: "itemPatch")
-        
-        let product = Product(forPostPassword: "12345", title: "변해라 얍! 타이틀 수정해보기", descriptions: "password 1234567890", price: 20000, currency: "KRW", stock: 1, discountedPrice: nil, images: [""])
+        let imageData = UIImage(systemName: "house")!.pngData()!
+        let product = Product(forPatchPassword: "12345", id: id, discountedPrice: 100000000)
         
         Uploader.uploadData(by: .patch, product: product, apiRequestType: .patchProduct(id: id)) { result in
             switch result {
@@ -191,8 +191,8 @@ extension OpenMarketTests {
     
     func postProduct() {
         let expectation = XCTestExpectation(description: "itemPatch")
-        
-        let product = Product(forPostPassword: "12345", title: "Mac Mini", descriptions: "password 12345", price: 20000, currency: "KRW", stock: 1, discountedPrice: nil, images: [""])
+        let imageData = UIImage(systemName: "house")!.pngData()!
+        let product = Product(forPostPassword: "12345", title: "Mac House air", descriptions: "password 12345\n This is my Mac House air. I wanna sell this, cuz I need money~ yeah!", price: 200000000, currency: "KRW", stock: 1, discountedPrice: 100000000, imageFiles: [imageData])
         
         Uploader.uploadData(by: .post, product: product, apiRequestType: .postProduct) { result in
             switch result {

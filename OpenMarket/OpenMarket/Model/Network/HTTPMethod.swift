@@ -26,4 +26,13 @@ enum HTTPMethod: String, CustomStringConvertible {
             return "DELETE"
         }
     }
+    
+    func makeContentType(boundary: String) -> String {
+        switch self {
+        case .get, .delete, .put:
+            return "application/json"
+        case .patch, .post:
+            return "multipart/form-data; boundary=\(boundary)"
+        }
+    }
 }

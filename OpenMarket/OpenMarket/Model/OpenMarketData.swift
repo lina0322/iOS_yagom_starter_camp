@@ -8,7 +8,7 @@
 class OpenMarketData {
     static let shared = OpenMarketData()
     var productList: [Product] = []
-    var currentPage: UInt = 1
+    var currentPage: Int = 1
     var isPaging = false
     var hasPage = true
 
