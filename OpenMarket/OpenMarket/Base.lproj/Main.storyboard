@@ -50,7 +50,10 @@
                                                 <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="rlX-3Q-46u" id="xEO-Uk-zUj"/>
+                                                </connections>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="상품명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQ3-uC-IM0">
                                                 <rect key="frame" x="30" y="30" width="45" height="21"/>
@@ -100,20 +103,29 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="KRW / USD" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZmB-1u-A6u">
+                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="KRW / USD" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZmB-1u-A6u">
                                                 <rect key="frame" x="111.5" y="115" width="272.5" height="34"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="rlX-3Q-46u" id="rZp-Rs-QWx"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="20글자 이내로 작성하시면 더 좋습니다." textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fIY-3u-kgF">
                                                 <rect key="frame" x="30" y="61" width="354" height="34"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="rlX-3Q-46u" id="bt6-4n-iDV"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="판매 가격을 입력해주세요." textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BDX-7V-6iu">
+                                            <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="판매 가격을 입력해주세요." textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BDX-7V-6iu">
                                                 <rect key="frame" x="111.5" y="169" width="272.5" height="34"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="rlX-3Q-46u" id="CIK-KU-dlW"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdP-WB-7RO">
                                                 <rect key="frame" x="93.5" y="121.5" width="8" height="21"/>
@@ -121,10 +133,13 @@
                                                 <color key="textColor" systemColor="systemPinkColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="(선택사항)구매 시 가격을 입력해주세요." textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F02-8C-v2p">
+                                            <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="(선택사항)구매 시 가격을 입력해주세요." textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F02-8C-v2p">
                                                 <rect key="frame" x="111.5" y="223" width="272.5" height="34"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="rlX-3Q-46u" id="WJm-z7-19n"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="판매 수량" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yDG-D1-kTL">
                                                 <rect key="frame" x="30" y="283.5" width="63.5" height="21"/>
@@ -132,10 +147,13 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="판매 제품의 수량을 입력하세요." textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FKt-VL-2hT">
+                                            <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="판매 제품의 수량을 입력하세요." textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FKt-VL-2hT">
                                                 <rect key="frame" x="111.5" y="277" width="272.5" height="34"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="rlX-3Q-46u" id="ZOg-RU-Zuo"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWI-do-dg1">
                                                 <rect key="frame" x="89" y="530.5" width="8" height="21"/>
@@ -149,10 +167,13 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="영문자와 숫자로 구성된 비밀번호를 입력해주세요." textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dPX-tb-fFL">
+                                            <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="영문자와 숫자로 구성된 비밀번호를 입력해주세요." textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dPX-tb-fFL">
                                                 <rect key="frame" x="111.5" y="524" width="272.5" height="34"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="rlX-3Q-46u" id="YEB-Mp-tQr"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QLK-U1-fU7">
                                                 <rect key="frame" x="93.5" y="339.5" width="8" height="21"/>
@@ -183,6 +204,7 @@
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="F02-8C-v2p" secondAttribute="trailing" constant="30" id="1DP-ic-z3v"/>
                                             <constraint firstItem="hxW-zz-ij5" firstAttribute="leading" secondItem="5DU-gh-6qd" secondAttribute="leading" constant="30" id="2Uz-N8-HtX"/>
@@ -269,12 +291,12 @@
                     <connections>
                         <outlet property="descriptionView" destination="Wyk-EE-jal" id="QMy-I3-6w4"/>
                         <outlet property="imageCountLabel" destination="KAr-SO-fPM" id="Lba-AT-bKg"/>
-                        <outletCollection property="textFileds" destination="fIY-3u-kgF" collectionClass="NSMutableArray" id="kPy-Fd-Abd"/>
-                        <outletCollection property="textFileds" destination="ZmB-1u-A6u" collectionClass="NSMutableArray" id="xSu-FJ-Vjv"/>
-                        <outletCollection property="textFileds" destination="BDX-7V-6iu" collectionClass="NSMutableArray" id="zyZ-rg-XFn"/>
-                        <outletCollection property="textFileds" destination="F02-8C-v2p" collectionClass="NSMutableArray" id="CvN-Bb-NI3"/>
-                        <outletCollection property="textFileds" destination="FKt-VL-2hT" collectionClass="NSMutableArray" id="p9l-jO-8rk"/>
-                        <outletCollection property="textFileds" destination="dPX-tb-fFL" collectionClass="NSMutableArray" id="FJM-1x-y8h"/>
+                        <outletCollection property="textFields" destination="fIY-3u-kgF" collectionClass="NSMutableArray" id="kPy-Fd-Abd"/>
+                        <outletCollection property="textFields" destination="ZmB-1u-A6u" collectionClass="NSMutableArray" id="xSu-FJ-Vjv"/>
+                        <outletCollection property="textFields" destination="BDX-7V-6iu" collectionClass="NSMutableArray" id="zyZ-rg-XFn"/>
+                        <outletCollection property="textFields" destination="F02-8C-v2p" collectionClass="NSMutableArray" id="CvN-Bb-NI3"/>
+                        <outletCollection property="textFields" destination="FKt-VL-2hT" collectionClass="NSMutableArray" id="p9l-jO-8rk"/>
+                        <outletCollection property="textFields" destination="dPX-tb-fFL" collectionClass="NSMutableArray" id="FJM-1x-y8h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lWN-YK-CWC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
