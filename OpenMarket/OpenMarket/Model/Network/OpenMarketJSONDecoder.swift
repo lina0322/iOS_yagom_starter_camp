@@ -15,7 +15,7 @@ struct OpenMarketJSONDecoder<T: Decodable> {
             return
         }
         
-        networkHandler.startLoad(about: apiRequestType, urlRequest: urlRequest) { result in
+        networkHandler.startLoad(urlRequest: urlRequest) { result in
             switch result {
             case .success(let data):
                 do {

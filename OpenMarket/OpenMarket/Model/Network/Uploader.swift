@@ -18,7 +18,7 @@ struct Uploader {
         
         urlRequest.httpBody = makeHTTPBody(for: product)
         
-        NetworkHandler().startLoad(about: apiRequestType, urlRequest: urlRequest) { result in
+        NetworkHandler().startLoad(urlRequest: urlRequest) { result in
             switch result {
             case .success(let data):
                 completionHandler(.success(data))
@@ -43,7 +43,7 @@ struct Uploader {
             }
         }
         
-        NetworkHandler().startLoad(about: apiRequestType, urlRequest: urlRequest) { result in
+        NetworkHandler().startLoad(urlRequest: urlRequest) { result in
             switch result {
             case .success(let data):
                 completionHandler(.success(data))

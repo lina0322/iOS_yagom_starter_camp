@@ -157,7 +157,7 @@ extension ProductRegistrationViewController {
             discountedPrice = price
             price = originalPrice
         }
-
+        
         let product = Product(forPostPassword: password,
                               title: title,
                               descriptions: description,
@@ -185,7 +185,7 @@ extension ProductRegistrationViewController {
 
 // MARK: - ImagePicker
 extension ProductRegistrationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
-    func showImagePickerActionSheet() {
+    private func showImagePickerActionSheet() {
         view.endEditing(true)
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let albumButton = UIAlertAction(title: OpenMarketString.album, style: .default) { _ in
@@ -213,7 +213,7 @@ extension ProductRegistrationViewController: UIImagePickerControllerDelegate, UI
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let uiImage = info[.editedImage] as? UIImage, let image = uiImage.jpegData(compressionQuality: .zero) {
+        if let originalImage = info[.editedImage] as? UIImage, let image = originalImage.jpegData(compressionQuality: .zero) {
             if image.count > 30000 {
                 DispatchQueue.main.async {
                     self.showErrorAlert(about: OpenMarketString.bigImage, message: String.empty)

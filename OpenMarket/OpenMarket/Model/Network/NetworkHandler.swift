@@ -20,7 +20,7 @@ struct NetworkHandler {
         self.session = session
     }
     
-    func startLoad(about apiRequestType: APIRequestType, urlRequest: URLRequest, completionHandler: @escaping (Result<Data, OpenMarketError>) -> ()) {
+    func startLoad(urlRequest: URLRequest, completionHandler: @escaping (Result<Data, OpenMarketError>) -> ()) {
         session.dataTask(with: urlRequest) { data, response, error in
             if error != nil {
                 completionHandler(.failure(.severConnectionFailure))

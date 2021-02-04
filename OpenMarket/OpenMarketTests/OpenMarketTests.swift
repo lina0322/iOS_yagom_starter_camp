@@ -97,16 +97,16 @@ class OpenMarketTests: XCTestCase {
     
     func testDelete() {
         let expectation = XCTestExpectation(description: "itemPatch")
-        let product = Product(forDeletePassword: "12345", id: 106)
+        let product = Product(forDeletePassword: "12345", id: 122)
         
-        Uploader.deleteData(product: product, apiRequestType: .deleteProduct(id: 106)) { result in
+        Uploader.deleteData(product: product, apiRequestType: .deleteProduct(id: 122)) { result in
             switch result {
             case .success(let data):
                 dump(data)
+                expectation.fulfill()
             case .failure(let error):
                 print("error: \(error.localizedDescription)")
             }
-            expectation.fulfill()
         }
         
         wait(for: [expectation], timeout: 5.0)
