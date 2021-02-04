@@ -9,7 +9,13 @@ import UIKit
 
 final class ProductRegistrationViewController: UIViewController {
     @IBOutlet private var textFields: [UITextField]!
+    @IBOutlet private var titleField: UITextField!
+    @IBOutlet private var currencyField: UITextField!
+    @IBOutlet private var priceField: UITextField!
+    @IBOutlet private var originalPriceField: UITextField!
+    @IBOutlet private var stockField: UITextField!
     @IBOutlet private var descriptionView: UITextView!
+    @IBOutlet private var passwordField: UITextField!
     @IBOutlet private var imageCountLabel: UILabel!
     @IBOutlet private var scrollView: UIScrollView!
     private let cancelButton = UIButton()
@@ -48,7 +54,7 @@ final class ProductRegistrationViewController: UIViewController {
     }
     
     private func setUpPasswordSecure() {
-        textFields[5].isSecureTextEntry = true
+        passwordField.isSecureTextEntry = true
     }
     
     // MARK: - Keyboard 관련
@@ -112,8 +118,25 @@ final class ProductRegistrationViewController: UIViewController {
 // MARK: - UPload to server
 extension ProductRegistrationViewController {
     func postProduct() {
-        let imageData = UIImage(systemName: "house")!.withTintColor(.yellow).pngData()!
-        let product = Product(forPostPassword: "12345", title: "Mac House(yellow)", descriptions: "password 12345\n This is my Mac House air. I wanna sell this, cuz I need money~ yeah! Orange is yellow.", price: 300000000, currency: "KRW", stock: 1, discountedPrice: 150000000, imageFiles: [imageData])
+        guard let title = titleField.text, let currency = currencyField.text, let priceText = priceField.text, var price = Int(priceText), let stockText = stockField.text, let stock = Int(stockText), let description = descriptionView.text, let password = passwordField.text else {
+            return
+        }
+        var discountedPrice: Int? = nil
+        if let originalPriceText = originalPriceField.text, let originalPrice = Int(originalPriceText) {
+            discountedPrice = price
+            price = originalPrice
+        }
+
+        let imageData = UIImage(systemName: "house")!.withTintColor(.lightGray).pngData()!
+        let product = Product(forPostPassword: password,
+                              title: title,
+                              descriptions: description,
+                              price: price,
+                              currency: currency,
+                              stock: stock,
+                              discountedPrice: discountedPrice,
+                              imageFiles: [imageData]
+        )
         
         Uploader.uploadData(by: .post, product: product, apiRequestType: .postProduct) { result in
             switch result {
@@ -190,6 +213,6 @@ extension ProductRegistrationViewController: UITextViewDelegate, UITextFieldDele
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        textFields[5].becomeFirstResponder()
+        passwordField.becomeFirstResponder()
     }
 }

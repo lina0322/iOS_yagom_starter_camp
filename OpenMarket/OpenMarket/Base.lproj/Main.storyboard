@@ -293,9 +293,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="currencyField" destination="ZmB-1u-A6u" id="qzh-2n-F9p"/>
                         <outlet property="descriptionView" destination="Wyk-EE-jal" id="QMy-I3-6w4"/>
                         <outlet property="imageCountLabel" destination="KAr-SO-fPM" id="Lba-AT-bKg"/>
+                        <outlet property="originalPriceField" destination="F02-8C-v2p" id="uVz-gP-Zug"/>
+                        <outlet property="passwordField" destination="dPX-tb-fFL" id="ZO9-kN-Zp1"/>
+                        <outlet property="priceField" destination="BDX-7V-6iu" id="tEY-W6-4n6"/>
                         <outlet property="scrollView" destination="grF-aX-XCQ" id="kc6-Jh-nQJ"/>
+                        <outlet property="stockField" destination="FKt-VL-2hT" id="IQN-M2-GWZ"/>
+                        <outlet property="titleField" destination="fIY-3u-kgF" id="mj2-bJ-Lng"/>
                         <outletCollection property="textFields" destination="fIY-3u-kgF" collectionClass="NSMutableArray" id="kPy-Fd-Abd"/>
                         <outletCollection property="textFields" destination="ZmB-1u-A6u" collectionClass="NSMutableArray" id="xSu-FJ-Vjv"/>
                         <outletCollection property="textFields" destination="BDX-7V-6iu" collectionClass="NSMutableArray" id="zyZ-rg-XFn"/>
