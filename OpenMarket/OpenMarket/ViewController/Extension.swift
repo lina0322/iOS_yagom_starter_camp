@@ -61,9 +61,7 @@ extension Insertable {
     func reloadNewCell(view: Reloadable) {
         DispatchQueue.main.async {
             let count = OpenMarketData.shared.productList.count
-            print(count)
             let lastCount = view.numberOfRows(inSection: 0)
-            print(lastCount)
             if view.isTableView {
                 view.beginUpdates()
                 for row in (lastCount)...(count - 1) {

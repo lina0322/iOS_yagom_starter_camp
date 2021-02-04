@@ -3,7 +3,7 @@
 //  OpenMarket
 //
 //  Created by Jinho Choi on 2021/01/30.
-// TODO: 등록완료 후 데이터 리로드...
+// TODO: 등록완료 후 데이터 리로드... info.plist
 
 import UIKit
 
