@@ -21,7 +21,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     lazy private var labelsStackView: UIStackView = {
         let labelsStackView = UIStackView(arrangedSubviews: [titleLabel, spacingView1, priceBeforeSaleLabel, priceLabel, spacingView2, stockLabel])
         labelsStackView.axis = .vertical
-        labelsStackView.spacing = 3
+        labelsStackView.spacing = 2
         labelsStackView.distribution = .fillEqually
         labelsStackView.alignment = .center
         return labelsStackView
