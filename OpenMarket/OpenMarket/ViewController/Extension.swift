@@ -100,8 +100,8 @@ extension UICollectionView: Reloadable {
 }
 
 extension UIViewController {
-    func showErrorAlert(about message: String) {
-        let alert = UIAlertController(title: message, message: OpenMarketString.warning, preferredStyle: .alert)
+    func showErrorAlert(about title: String, message: String = OpenMarketString.warning) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let cancelButton = UIAlertAction(title: OpenMarketString.confirm, style: .cancel, handler: .none)
         
         alert.addAction(cancelButton)

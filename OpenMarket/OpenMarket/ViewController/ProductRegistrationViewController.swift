@@ -21,6 +21,12 @@ final class ProductRegistrationViewController: UIViewController {
     @IBOutlet weak var registrationButton: UIBarButtonItem!
     private let cancelButton = UIButton()
     var navigationTitle = String.empty
+    var images: [Data] = [] {
+        didSet {
+            imageCountLabel.text = "현재 첨부된 이미지 개수 : \(images.count)개"
+            imageCountLabel.textColor = .black
+        }
+    }
     lazy var imagePicker: UIImagePickerController = {
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -59,7 +65,6 @@ final class ProductRegistrationViewController: UIViewController {
     
     @IBAction func touchUpRegistrationButton() {
         postProduct()
-        showSuccessAlert(about: OpenMarketString.registrationSuccess)
     }
     
     func showSuccessAlert(about message: String) {
@@ -72,7 +77,11 @@ final class ProductRegistrationViewController: UIViewController {
     }
     
     @IBAction func touchUpAddImageButton() {
-        showImagePickerActionSheet()
+        if images.count < 5 {
+            showImagePickerActionSheet()
+        } else {
+            showErrorAlert(about: OpenMarketString.tooManyImage, message: String.empty)
+        }
     }
     
     private func setUpPasswordSecure() {
@@ -140,7 +149,7 @@ final class ProductRegistrationViewController: UIViewController {
 // MARK: - UPload to server
 extension ProductRegistrationViewController {
     func postProduct() {
-        guard let title = titleField.text, let currency = currencyField.text, let priceText = priceField.text, var price = Int(priceText), let stockText = stockField.text, let stock = Int(stockText), let description = descriptionView.text, let password = passwordField.text else {
+        guard let title = titleField.text, let currency = currencyField.text, let priceText = priceField.text, var price = Int(priceText), let stockText = stockField.text, let stock = Int(stockText), let description = descriptionView.text, let password = passwordField.text, images.count > 0 else {
             return
         }
         var discountedPrice: Int? = nil
@@ -149,7 +158,6 @@ extension ProductRegistrationViewController {
             price = originalPrice
         }
 
-        let imageData = UIImage(systemName: "house")!.withTintColor(.lightGray).pngData()!
         let product = Product(forPostPassword: password,
                               title: title,
                               descriptions: description,
@@ -157,19 +165,22 @@ extension ProductRegistrationViewController {
                               currency: currency,
                               stock: stock,
                               discountedPrice: discountedPrice,
-                              imageFiles: [imageData]
+                              imageFiles: images
         )
         
         Uploader.uploadData(by: .post, product: product, apiRequestType: .postProduct) { result in
             switch result {
-            case .success(let data):
-                debugPrint(data)
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.showSuccessAlert(about: OpenMarketString.registrationSuccess)
+                }
             case .failure(let error):
-                self.showErrorAlert(about: error.localizedDescription)
+                DispatchQueue.main.async {
+                    self.showErrorAlert(about: error.localizedDescription)
+                }
             }
         }
     }
-
 }
 
 // MARK: - ImagePicker
@@ -202,8 +213,14 @@ extension ProductRegistrationViewController: UIImagePickerControllerDelegate, UI
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[.editedImage] as? UIImage {
-            //
+        if let uiImage = info[.editedImage] as? UIImage, let image = uiImage.jpegData(compressionQuality: .zero) {
+            if image.count > 30000 {
+                DispatchQueue.main.async {
+                    self.showErrorAlert(about: OpenMarketString.bigImage, message: String.empty)
+                }
+            } else {
+                images.append(image)
+            }
         }
         dismiss(animated: true, completion: nil)
     }

@@ -22,4 +22,6 @@ enum OpenMarketString {
     static let outOfStock = "품절"
     static let lastPage = "마지막 페이지입니다:)"
     static let leftStock = "잔여수량 : "
+    static let bigImage = "이미지 사이즈가 너무 큽니다!"
+    static let tooManyImage = "이미 5개의 이미지를 첨부하였어요."
 }
