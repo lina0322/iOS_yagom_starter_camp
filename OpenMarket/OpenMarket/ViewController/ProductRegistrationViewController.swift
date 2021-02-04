@@ -18,6 +18,7 @@ final class ProductRegistrationViewController: UIViewController {
     @IBOutlet private var passwordField: UITextField!
     @IBOutlet private var imageCountLabel: UILabel!
     @IBOutlet private var scrollView: UIScrollView!
+    @IBOutlet weak var registrationButton: UIBarButtonItem!
     private let cancelButton = UIButton()
     var navigationTitle = String.empty
     lazy var imagePicker: UIImagePickerController = {
@@ -33,6 +34,28 @@ final class ProductRegistrationViewController: UIViewController {
         configureNavigatinbar()
         configureKeyboardDoneButton()
         setUpPasswordSecure()
+        registrationButton.isEnabled = false
+        descriptionView.delegate = self
+        checkTextFields()
+    }
+    
+    private func checkTextFields() {
+        [titleField, currencyField, priceField, stockField, passwordField].forEach {
+            $0.addTarget(self, action: #selector(checkAllRequirementsAreFilled), for: .editingChanged)
+        }
+    }
+    
+    @objc private func checkAllRequirementsAreFilled() {
+        guard let title = titleField.text, !title.isEmpty,
+              let currency = currencyField.text, !currency.isEmpty,
+              let price = priceField.text, !price.isEmpty,
+              let stock = stockField.text, !stock.isEmpty,
+              let description = descriptionView.text, !description.isEmpty,
+              let password = passwordField.text, !password.isEmpty else {
+            registrationButton.isEnabled = false
+            return
+        }
+        registrationButton.isEnabled = true
     }
     
     @IBAction func touchUpRegistrationButton() {
@@ -214,5 +237,9 @@ extension ProductRegistrationViewController: UITextViewDelegate, UITextFieldDele
     
     func textViewDidEndEditing(_ textView: UITextView) {
         passwordField.becomeFirstResponder()
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        checkAllRequirementsAreFilled()
     }
 }

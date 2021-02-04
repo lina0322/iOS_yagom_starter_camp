@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OaR-f2-IDh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OaR-f2-IDh">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -299,6 +299,7 @@
                         <outlet property="originalPriceField" destination="F02-8C-v2p" id="uVz-gP-Zug"/>
                         <outlet property="passwordField" destination="dPX-tb-fFL" id="ZO9-kN-Zp1"/>
                         <outlet property="priceField" destination="BDX-7V-6iu" id="tEY-W6-4n6"/>
+                        <outlet property="registrationButton" destination="B1B-lU-fA1" id="h41-p9-gLa"/>
                         <outlet property="scrollView" destination="grF-aX-XCQ" id="kc6-Jh-nQJ"/>
                         <outlet property="stockField" destination="FKt-VL-2hT" id="IQN-M2-GWZ"/>
                         <outlet property="titleField" destination="fIY-3u-kgF" id="mj2-bJ-Lng"/>
