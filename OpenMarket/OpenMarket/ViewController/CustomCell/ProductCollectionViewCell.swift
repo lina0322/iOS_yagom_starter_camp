@@ -127,6 +127,8 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         stockLabel.textColor = .gray
         priceBeforeSaleLabel.text = String.empty
         priceBeforeSaleLabel.attributedText = NSMutableAttributedString(string: String.empty)
+        removePriceBeforeSaleLabel()
+        labelsStackView.insertArrangedSubview(priceBeforeSaleLabel, at: 2)
     }
     
     required init?(coder: NSCoder) {
