@@ -6,11 +6,11 @@
 //
 
 enum APIRequestType {
-    case loadPage(page: UInt)
-    case loadProduct(id: UInt)
+    case loadPage(page: Int)
+    case loadProduct(id: Int)
     case postProduct
-    case patchProduct(id: UInt)
-    case deleteProduct(id: UInt)
+    case patchProduct(id: Int)
+    case deleteProduct(id: Int)
     
     var urlPath: String {
         switch self {

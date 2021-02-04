@@ -10,7 +10,6 @@ import UIKit
 final class OpenMarketViewController: UIViewController {
     private let listViewController = ListViewController()
     private let gridViewController = GridViewController()
-    private let registrationButton = UIButton()
     private let segmentedControl = UISegmentedControl()
     
     override func viewDidLoad() {
@@ -28,25 +27,17 @@ final class OpenMarketViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        configureRegistrationButton()
         configureSegmentedControl()
         navigationItem.titleView = segmentedControl
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: registrationButton)
     }
 
     private func configureSegmentedControl() {
-        segmentedControl.insertSegment(withTitle: "LIST", at: 0, animated: true)
-        segmentedControl.insertSegment(withTitle: "GRID", at: 1, animated: true)
+        segmentedControl.insertSegment(withTitle: OpenMarketString.list, at: 0, animated: true)
+        segmentedControl.insertSegment(withTitle: OpenMarketString.grid, at: 1, animated: true)
         segmentedControl.selectedSegmentTintColor = .white
         segmentedControl.backgroundColor = .systemBlue
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(didTapSegmentedControl), for: .valueChanged)
-    }
-    
-    private func configureRegistrationButton() {
-        registrationButton.translatesAutoresizingMaskIntoConstraints = false
-        registrationButton.addTarget(self, action: #selector(touchUpProductRegistrationButton), for: .touchUpInside)
-        registrationButton.setImage(UIImage(systemName: "plus"), for: .normal)
     }
     
     @objc private func didTapSegmentedControl(_ segmentedControl: UISegmentedControl) {
@@ -60,9 +51,12 @@ final class OpenMarketViewController: UIViewController {
         }
     }
     
-    @objc private func touchUpProductRegistrationButton(_ sender: Any) {
-        let productRegistrationViewController = ProductRegistrationViewController()
-        productRegistrationViewController.modalPresentationStyle = .fullScreen
-        present(productRegistrationViewController, animated: true, completion: nil)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == OpenMarketString.registrationViewIdentifier {
+            guard let registrationViewController = segue.destination as? ProductRegistrationViewController else {
+                return
+            }
+            registrationViewController.navigationTitle = OpenMarketString.registration
+        }
     }
 }

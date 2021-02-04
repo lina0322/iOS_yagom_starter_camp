@@ -21,7 +21,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     lazy private var labelsStackView: UIStackView = {
         let labelsStackView = UIStackView(arrangedSubviews: [titleLabel, spacingView1, priceBeforeSaleLabel, priceLabel, spacingView2, stockLabel])
         labelsStackView.axis = .vertical
-        labelsStackView.spacing = 3
+        labelsStackView.spacing = 2
         labelsStackView.distribution = .fillEqually
         labelsStackView.alignment = .center
         return labelsStackView
@@ -39,10 +39,10 @@ final class ProductCollectionViewCell: UICollectionViewCell {
             return
         }
         titleLabel.text = title
-        stockLabel.text = "잔여수량 : \(stock.addComma())"
+        stockLabel.text = OpenMarketString.leftStock + "\(stock.addComma())"
         priceLabel.text = "\(currency) \(price.addComma())"
         if stock == 0 {
-            stockLabel.text = "품절"
+            stockLabel.text = OpenMarketString.outOfStock
             stockLabel.textColor = .systemOrange
         }
         if let salePrice = product.discountedPrice {
@@ -127,6 +127,8 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         stockLabel.textColor = .gray
         priceBeforeSaleLabel.text = String.empty
         priceBeforeSaleLabel.attributedText = NSMutableAttributedString(string: String.empty)
+        removePriceBeforeSaleLabel()
+        labelsStackView.insertArrangedSubview(priceBeforeSaleLabel, at: 2)
     }
     
     required init?(coder: NSCoder) {

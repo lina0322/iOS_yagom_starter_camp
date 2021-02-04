@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class LaunchViewController: UIViewController {
+final class LaunchViewController: UIViewController, Insertable {
     private let indicator = UIActivityIndicatorView()
     private let launchImage = UIImageView()
     
@@ -23,7 +23,7 @@ final class LaunchViewController: UIViewController {
         let safeArea = view.safeAreaLayoutGuide
         indicator.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(indicator)
-
+        
         NSLayoutConstraint.activate([
             indicator.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             indicator.topAnchor.constraint(equalTo: launchImage.bottomAnchor)
@@ -46,26 +46,23 @@ final class LaunchViewController: UIViewController {
     }
     
     private func setUpData() {
-        let page = OpenMarketData.shared.tableViewCurrentPage
-        OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: page), networkHandler: NetworkHandler(session: MockURLSession(apiRequestType: .loadPage(page: 1)))) { result in
+        loadNextPage(for: nil) { result in
             switch result {
-            case .success(let data):
-                OpenMarketData.shared.tableViewProductList.append(contentsOf: data.items)
-                OpenMarketData.shared.tableViewCurrentPage += 1
-                OpenMarketData.shared.collectionViewProductList.append(contentsOf: data.items)
-                OpenMarketData.shared.collectionViewCurrentPage += 1
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.goOpenMarketView()
+                }
             case .failure(let error):
-                debugPrint(error.localizedDescription)
-            }
-            DispatchQueue.main.async {
                 self.indicator.stopAnimating()
-                self.goOpenMarketView()
+                DispatchQueue.main.async {
+                    self.showErrorAlert(about: error.localizedDescription)
+                }
             }
         }
     }
     
     private func goOpenMarketView() {
-        if let openMarketViewController = storyboard?.instantiateViewController(identifier: "OpenMarketNavigation") {
+        if let openMarketViewController = storyboard?.instantiateViewController(identifier: OpenMarketString.navigationControllerIdentifier) {
             openMarketViewController.modalPresentationStyle = .overFullScreen
             present(openMarketViewController, animated: false, completion: nil)
         }

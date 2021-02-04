@@ -7,7 +7,107 @@
 
 import UIKit
 
+protocol Reloadable {
+    var isTableView: Bool { get }
+    var isCollectionView: Bool { get }
+    
+    func reloadData()
+    
+    func beginUpdates()
+    func endUpdates()
+    func insertRows(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation)
+    func numberOfRows(inSection section: Int) -> Int
+    
+    func insertItems(at indexPaths: [IndexPath])
+}
+
+protocol Insertable {
+    func loadNextPage(for view: Reloadable?, completionHandler: @escaping (Result<Bool, OpenMarketError>) -> ())
+    func reloadAllSection(view: Reloadable?)
+    func reloadNewCell(view: Reloadable)
+}
+
+extension Insertable {
+    func loadNextPage(for view: Reloadable?, completionHandler: @escaping (Result<Bool, OpenMarketError>) -> ()) {
+        OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: OpenMarketData.shared.currentPage)) { result in
+            switch result {
+            case .success(let data):
+                if data.items.count == 0 {
+                    self.reloadAllSection(view: view)
+                    completionHandler(.success(false))
+                } else {
+                    OpenMarketData.shared.productList.append(contentsOf: data.items)
+                    OpenMarketData.shared.currentPage += 1
+                    completionHandler(.success(true))
+                    if let view = view {
+                        self.reloadNewCell(view: view)
+                    }
+                }
+            case .failure(let error):
+                completionHandler(.failure(error))
+            }
+        }
+    }
+    
+    func reloadAllSection(view: Reloadable?) {
+        guard let view = view else {
+            return
+        }
+        DispatchQueue.main.async {
+            view.reloadData()
+        }
+    }
+    
+    func reloadNewCell(view: Reloadable) {
+        DispatchQueue.main.async {
+            let count = OpenMarketData.shared.productList.count
+            let lastCount = view.numberOfRows(inSection: 0)
+            if view.isTableView {
+                view.beginUpdates()
+                for row in (lastCount)...(count - 1) {
+                    let indexPath = IndexPath(row: row, section: 0)
+                    view.insertRows(at: [indexPath], with: .none)
+                }
+                view.endUpdates()
+            }
+        }
+    }
+}
+
+extension UITableView: Reloadable {
+    var isTableView: Bool {
+        return true
+    }
+    var isCollectionView: Bool {
+        return false
+    }
+    
+    func insertItems(at indexPaths: [IndexPath]) {}
+}
+
+extension UICollectionView: Reloadable {
+    var isTableView: Bool {
+        return false
+    }
+    var isCollectionView: Bool {
+        return true
+    }
+    
+    func beginUpdates() {}
+    func endUpdates() {}
+    func insertRows(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation) {}
+    func numberOfRows(inSection section: Int) -> Int { return 0 }
+}
+
 extension UIViewController {
+    func showErrorAlert(about title: String, message: String = OpenMarketString.warning) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancelButton = UIAlertAction(title: OpenMarketString.confirm, style: .cancel, handler: .none)
+        
+        alert.addAction(cancelButton)
+        present(alert, animated: true, completion: nil)
+    }
+    
     func configureConstraintToSafeArea(for object: UIView) {
         object.translatesAutoresizingMaskIntoConstraints = false
         let safeArea = view.safeAreaLayoutGuide
@@ -19,6 +119,14 @@ extension UIViewController {
             object.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             object.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
         ])
+    }
+}
+
+extension Data {
+    mutating func appendString(_ string: String) {
+        if let data = string.data(using: .utf8) {
+            append(data)
+        }
     }
 }
 
@@ -35,4 +143,11 @@ extension Int {
 
 extension String {
     static let empty = ""
+}
+
+extension UITextView {
+    func isFilled() -> Bool {
+        guard let text = self.text, text.isEmpty == false else { return false }
+        return true
+    }
 }

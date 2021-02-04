@@ -29,7 +29,7 @@ class LoadingTableViewCell: UITableViewCell {
     func showLabel() {
         let safeArea = self.safeAreaLayoutGuide
         let label = UILabel()
-        label.text = "마지막 페이지입니다:)"
+        label.text = OpenMarketString.lastPage
         label.font = .preferredFont(forTextStyle: .body)
         label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +37,7 @@ class LoadingTableViewCell: UITableViewCell {
         label.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor).isActive = true
     }
-    
+        
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
