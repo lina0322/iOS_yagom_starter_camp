@@ -3,7 +3,7 @@
 //  OpenMarket
 //
 //  Created by Jinho Choi on 2021/01/30.
-// TODO! password란에 secure설정! 지금 키체인 때문에 꺼놓음, 키보드때문에 가려지는것
+//
 
 import UIKit
 
@@ -14,23 +14,39 @@ final class ProductRegistrationViewController: UIViewController {
     @IBOutlet private var scrollView: UIScrollView!
     private let cancelButton = UIButton()
     var navigationTitle = String.empty
+    lazy var imagePicker: UIImagePickerController = {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        return picker
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         registerNotification()
         configureNavigatinbar()
         configureKeyboardDoneButton()
+        setUpPasswordSecure()
     }
     
+    @IBAction func touchUpAddImageButton() {
+        showImagePickerActionSheet()
+    }
+    
+    private func setUpPasswordSecure() {
+        textFields[5].isSecureTextEntry = true
+    }
+    
+    // MARK: - Keyboard 관련
     func registerNotification(){
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-       }
-       
+    }
+    
     @objc private func keyboardWillShow(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
-            let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
-                return
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
+            return
         }
         let contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardFrame.size.height + 150, right: 0.0)
         scrollView.contentInset = contentInset
@@ -41,10 +57,6 @@ final class ProductRegistrationViewController: UIViewController {
         let contentInset = UIEdgeInsets.zero
         scrollView.contentInset = contentInset
         scrollView.scrollIndicatorInsets = contentInset
-    }
-    
-    @IBAction func touchUpAddImageButton() {
-        
     }
     
     private func configureKeyboardDoneButton() {
@@ -64,6 +76,7 @@ final class ProductRegistrationViewController: UIViewController {
         view.endEditing(true)
     }
     
+    // MARK: - NavigationBar
     private func configureNavigatinbar() {
         configureCancelButton()
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelButton)
@@ -82,6 +95,44 @@ final class ProductRegistrationViewController: UIViewController {
     }
 }
 
+// MARK: - ImagePicker
+extension ProductRegistrationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+    func showImagePickerActionSheet() {
+        view.endEditing(true)
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let albumButton = UIAlertAction(title: "앨범에서 선택하기", style: .default) { _ in
+            self.openAlbum()
+        }
+        let cameraButton = UIAlertAction(title: "카메라로 촬영하기", style: .default) { _ in
+            self.openCamera()
+        }
+        let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        actionSheet.addAction(albumButton)
+        actionSheet.addAction(cameraButton)
+        actionSheet.addAction(cancelButton)
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    private func openAlbum() {
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    private func openCamera() {
+        imagePicker.sourceType = .camera
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[.editedImage] as? UIImage {
+           //
+        }
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - TextView와 TextField
 extension ProductRegistrationViewController: UITextViewDelegate, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let currentTextFieldTage = textField.tag
