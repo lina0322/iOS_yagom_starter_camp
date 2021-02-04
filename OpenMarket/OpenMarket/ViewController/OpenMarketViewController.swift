@@ -32,8 +32,8 @@ final class OpenMarketViewController: UIViewController {
     }
 
     private func configureSegmentedControl() {
-        segmentedControl.insertSegment(withTitle: "LIST", at: 0, animated: true)
-        segmentedControl.insertSegment(withTitle: "GRID", at: 1, animated: true)
+        segmentedControl.insertSegment(withTitle: OpenMarketString.list, at: 0, animated: true)
+        segmentedControl.insertSegment(withTitle: OpenMarketString.grid, at: 1, animated: true)
         segmentedControl.selectedSegmentTintColor = .white
         segmentedControl.backgroundColor = .systemBlue
         segmentedControl.selectedSegmentIndex = 0
@@ -52,11 +52,11 @@ final class OpenMarketViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "RegistrationView" {
+        if segue.identifier == OpenMarketString.registrationViewIdentifier {
             guard let registrationViewController = segue.destination as? ProductRegistrationViewController else {
                 return
             }
-            registrationViewController.navigationTitle = "상품등록"
+            registrationViewController.navigationTitle = OpenMarketString.registration
         }
     }
 }

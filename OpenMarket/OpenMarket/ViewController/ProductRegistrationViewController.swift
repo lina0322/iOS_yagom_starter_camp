@@ -34,12 +34,11 @@ final class ProductRegistrationViewController: UIViewController {
         configureNavigatinbar()
         configureKeyboardDoneButton()
         setUpPasswordSecure()
-        registrationButton.isEnabled = false
-        descriptionView.delegate = self
-        checkTextFields()
+        registorActionToTextFields()
     }
     
-    private func checkTextFields() {
+    private func registorActionToTextFields() {
+        registrationButton.isEnabled = false
         [titleField, currencyField, priceField, stockField, passwordField].forEach {
             $0.addTarget(self, action: #selector(checkAllRequirementsAreFilled), for: .editingChanged)
         }
@@ -60,12 +59,12 @@ final class ProductRegistrationViewController: UIViewController {
     
     @IBAction func touchUpRegistrationButton() {
         postProduct()
-        showSuccessAlert(about: "게시글 등록 성공")
+        showSuccessAlert(about: OpenMarketString.registrationSuccess)
     }
     
     func showSuccessAlert(about message: String) {
         let alert = UIAlertController(title: message, message: String.empty, preferredStyle: .alert)
-        let cancelButton = UIAlertAction(title: "확인", style: .cancel) { _ in
+        let cancelButton = UIAlertAction(title: OpenMarketString.confirm, style: .cancel) { _ in
             self.navigationController?.popViewController(animated: true)
         }
         alert.addAction(cancelButton)
@@ -129,7 +128,7 @@ final class ProductRegistrationViewController: UIViewController {
     private func configureCancelButton() {
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.addTarget(self, action: #selector(popView), for: .touchUpInside)
-        cancelButton.setTitle("취소", for: .normal)
+        cancelButton.setTitle(OpenMarketString.cancel, for: .normal)
         cancelButton.setTitleColor(.systemBlue, for: .normal)
     }
     
@@ -178,13 +177,13 @@ extension ProductRegistrationViewController: UIImagePickerControllerDelegate, UI
     func showImagePickerActionSheet() {
         view.endEditing(true)
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let albumButton = UIAlertAction(title: "앨범에서 선택하기", style: .default) { _ in
+        let albumButton = UIAlertAction(title: OpenMarketString.album, style: .default) { _ in
             self.openAlbum()
         }
-        let cameraButton = UIAlertAction(title: "카메라로 촬영하기", style: .default) { _ in
+        let cameraButton = UIAlertAction(title: OpenMarketString.camera, style: .default) { _ in
             self.openCamera()
         }
-        let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        let cancelButton = UIAlertAction(title: OpenMarketString.cancel, style: .cancel, handler: nil)
         
         actionSheet.addAction(albumButton)
         actionSheet.addAction(cameraButton)

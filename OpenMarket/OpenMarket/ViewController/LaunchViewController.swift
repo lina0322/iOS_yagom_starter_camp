@@ -62,7 +62,7 @@ final class LaunchViewController: UIViewController, Insertable {
     }
     
     private func goOpenMarketView() {
-        if let openMarketViewController = storyboard?.instantiateViewController(identifier: "OpenMarketNavigation") {
+        if let openMarketViewController = storyboard?.instantiateViewController(identifier: OpenMarketString.navigationControllerIdentifier) {
             openMarketViewController.modalPresentationStyle = .overFullScreen
             present(openMarketViewController, animated: false, completion: nil)
         }

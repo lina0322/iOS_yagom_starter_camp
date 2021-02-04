@@ -101,8 +101,8 @@ extension UICollectionView: Reloadable {
 
 extension UIViewController {
     func showErrorAlert(about message: String) {
-        let alert = UIAlertController(title: message, message: "어플을 다시 실행시켜주세요.\n오류가 반복된다면 관리자에에게 문의해주세요.", preferredStyle: .alert)
-        let cancelButton = UIAlertAction(title: "확인", style: .cancel, handler: .none)
+        let alert = UIAlertController(title: message, message: OpenMarketString.warning, preferredStyle: .alert)
+        let cancelButton = UIAlertAction(title: OpenMarketString.confirm, style: .cancel, handler: .none)
         
         alert.addAction(cancelButton)
         present(alert, animated: true, completion: nil)

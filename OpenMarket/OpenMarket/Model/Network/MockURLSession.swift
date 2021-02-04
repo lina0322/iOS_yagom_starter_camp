@@ -21,7 +21,7 @@ class MockURLSession: URLSessionProtocol {
     enum MockAPI {
         case test
         
-        static let baseURL = URL(string: "https://camp-open-market.herokuapp.com")!
+        static let baseURL = URL(string: OpenMarketString.apiBaseURL)!
         var sampleItems: NSDataAsset {
             NSDataAsset.init(name: "items")!
         }
