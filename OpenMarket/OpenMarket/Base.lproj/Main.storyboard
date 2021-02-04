@@ -286,7 +286,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2sf-ic-MxK">
-                        <barButtonItem key="rightBarButtonItem" title="등록" id="B1B-lU-fA1"/>
+                        <barButtonItem key="rightBarButtonItem" title="등록" id="B1B-lU-fA1">
+                            <connections>
+                                <action selector="touchUpRegistrationButton" destination="rlX-3Q-46u" id="a9T-eg-7QZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="descriptionView" destination="Wyk-EE-jal" id="QMy-I3-6w4"/>

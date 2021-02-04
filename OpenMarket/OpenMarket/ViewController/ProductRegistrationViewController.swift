@@ -29,6 +29,20 @@ final class ProductRegistrationViewController: UIViewController {
         setUpPasswordSecure()
     }
     
+    @IBAction func touchUpRegistrationButton() {
+        postProduct()
+        showSuccessAlert(about: "게시글 등록 성공")
+    }
+    
+    func showSuccessAlert(about message: String) {
+        let alert = UIAlertController(title: message, message: String.empty, preferredStyle: .alert)
+        let cancelButton = UIAlertAction(title: "확인", style: .cancel) { _ in
+            self.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction(cancelButton)
+        present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func touchUpAddImageButton() {
         showImagePickerActionSheet()
     }
@@ -95,6 +109,24 @@ final class ProductRegistrationViewController: UIViewController {
     }
 }
 
+// MARK: - UPload to server
+extension ProductRegistrationViewController {
+    func postProduct() {
+        let imageData = UIImage(systemName: "house")!.withTintColor(.yellow).pngData()!
+        let product = Product(forPostPassword: "12345", title: "Mac House(yellow)", descriptions: "password 12345\n This is my Mac House air. I wanna sell this, cuz I need money~ yeah! Orange is yellow.", price: 300000000, currency: "KRW", stock: 1, discountedPrice: 150000000, imageFiles: [imageData])
+        
+        Uploader.uploadData(by: .post, product: product, apiRequestType: .postProduct) { result in
+            switch result {
+            case .success(let data):
+                debugPrint(data)
+            case .failure(let error):
+                self.showErrorAlert(about: error.localizedDescription)
+            }
+        }
+    }
+
+}
+
 // MARK: - ImagePicker
 extension ProductRegistrationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     func showImagePickerActionSheet() {
@@ -126,7 +158,7 @@ extension ProductRegistrationViewController: UIImagePickerControllerDelegate, UI
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.editedImage] as? UIImage {
-           //
+            //
         }
         dismiss(animated: true, completion: nil)
     }

@@ -122,7 +122,7 @@ extension GridViewController: Insertable {
                         self.hasPage = hasPage
                         self.isPaging = false
                     case .failure(let error):
-                        self.showAlert(about: error.localizedDescription)
+                        self.showErrorAlert(about: error.localizedDescription)
                     }
                 }
             }

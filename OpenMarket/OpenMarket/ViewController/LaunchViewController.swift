@@ -55,7 +55,7 @@ final class LaunchViewController: UIViewController, Insertable {
             case .failure(let error):
                 self.indicator.stopAnimating()
                 DispatchQueue.main.async {
-                    self.showAlert(about: error.localizedDescription)
+                    self.showErrorAlert(about: error.localizedDescription)
                 }
             }
         }
