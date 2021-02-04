@@ -49,11 +49,11 @@ final class LaunchViewController: UIViewController, Insertable {
         loadNextPage(for: nil) { result in
             switch result {
             case .success(_):
+                self.indicator.stopAnimating()
                 DispatchQueue.main.async {
                     self.goOpenMarketView()
                 }
             case .failure(let error):
-                self.indicator.stopAnimating()
                 DispatchQueue.main.async {
                     self.showErrorAlert(about: error.localizedDescription)
                 }

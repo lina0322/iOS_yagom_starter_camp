@@ -100,14 +100,8 @@ extension GridViewController: UICollectionViewDataSource {
     }
 }
 
-extension GridViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        dump(indexPath)
-    }
-}
-
 // MARK: - Extension Scroll
-extension GridViewController: Insertable {
+extension GridViewController: UICollectionViewDelegate, Insertable {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
