@@ -118,8 +118,8 @@ final class ProductRegistrationViewController: UIViewController {
         
         toolBarKeyboard.items = [flexibleSpace, doneButton]
         descriptionView.inputAccessoryView = toolBarKeyboard
-        for textField in textFields {
-            textField.inputAccessoryView = toolBarKeyboard
+        [titleField, currencyField, priceField, stockField, passwordField].forEach {
+            $0.inputAccessoryView = toolBarKeyboard
         }
     }
     

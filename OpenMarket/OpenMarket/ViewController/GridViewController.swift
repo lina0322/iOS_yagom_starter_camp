@@ -114,6 +114,16 @@ extension GridViewController: UICollectionViewDataSource {
 
 // MARK: - Extension Scroll
 extension GridViewController: UICollectionViewDelegate, Insertable {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        goDetailView(id: indexPath.row)
+    }
+    
+    private func goDetailView(id: Int) {
+        let detailView = DetailViewController()
+        detailView.id = id
+        navigationController?.pushViewController(detailView, animated: true)
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height

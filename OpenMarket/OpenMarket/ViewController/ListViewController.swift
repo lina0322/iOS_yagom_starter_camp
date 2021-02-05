@@ -86,6 +86,17 @@ extension ListViewController: UITableViewDataSource {
 
 // MARK: - Extension Scroll
 extension ListViewController: UITableViewDelegate, Insertable {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        goDetailView(id: indexPath.row)
+    }
+    
+    private func goDetailView(id: Int) {
+        let detailView = DetailViewController()
+        detailView.id = id
+        navigationController?.pushViewController(detailView, animated: true)
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
