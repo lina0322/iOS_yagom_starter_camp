@@ -49,8 +49,8 @@ final class LaunchViewController: UIViewController, Insertable {
         loadNextPage(for: nil) { result in
             switch result {
             case .success(_):
-                self.indicator.stopAnimating()
                 DispatchQueue.main.async {
+                    self.indicator.stopAnimating()
                     self.goOpenMarketView()
                 }
             case .failure(let error):

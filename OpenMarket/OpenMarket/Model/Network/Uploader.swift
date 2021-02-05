@@ -10,7 +10,7 @@ import Foundation
 struct Uploader {
     static let boundary = URLRequestManager.boundary
     
-    static func uploadData(by httpMethod: HTTPMethod = .post, product: Product, apiRequestType: APIRequestType, completionHandler: @escaping (Result<Any, OpenMarketError>) -> ()) {
+    static func uploadData(by httpMethod: HTTPMethod = .post, product: Product, apiRequestType: APIRequestType, completionHandler: @escaping (Result<Data, OpenMarketError>) -> ()) {
         guard var urlRequest = URLRequestManager.makeURLRequest(for: httpMethod, about: apiRequestType) else {
             completionHandler(.failure(.wrongURLRequest))
             return
@@ -18,17 +18,10 @@ struct Uploader {
         
         urlRequest.httpBody = makeHTTPBody(for: product)
         
-        NetworkHandler().startLoad(urlRequest: urlRequest) { result in
-            switch result {
-            case .success(let data):
-                completionHandler(.success(data))
-            case .failure(let error):
-                completionHandler(.failure(error))
-            }
-        }
+        NetworkHandler().startLoad(urlRequest: urlRequest, completionHandler: completionHandler)
     }
     
-    static func deleteData(product: Product, apiRequestType: APIRequestType, completionHandler: @escaping (Result<Any, OpenMarketError>) -> ()) {
+    static func deleteData(product: Product, apiRequestType: APIRequestType, completionHandler: @escaping (Result<Data, OpenMarketError>) -> ()) {
         guard var urlRequest = URLRequestManager.makeURLRequest(for: .delete, about: apiRequestType) else {
             completionHandler(.failure(.wrongURLRequest))
             return
@@ -43,14 +36,7 @@ struct Uploader {
             }
         }
         
-        NetworkHandler().startLoad(urlRequest: urlRequest) { result in
-            switch result {
-            case .success(let data):
-                completionHandler(.success(data))
-            case .failure(let error):
-                completionHandler(.failure(error))
-            }
-        }
+        NetworkHandler().startLoad(urlRequest: urlRequest, completionHandler: completionHandler)
     }
     
     

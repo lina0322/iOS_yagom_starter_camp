@@ -77,12 +77,16 @@ extension GridViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             cell.fillLabels(about: productList[indexPath.row])
-            DispatchQueue.global().async {
-                guard let imageURLText = productList[indexPath.row].thumbnailURLs?.first, let thumbnailURL = URL(string: imageURLText), let imageData: Data = try? Data(contentsOf: thumbnailURL) else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    cell.thumbnailImageView.image = UIImage(data: imageData)
+            if let thumbnailURL = productList[indexPath.row].thumbnailURLs?.first {
+                OpenMarketData.shared.loadImage(imageURL: thumbnailURL) { result in
+                    switch result {
+                    case .success(let image):
+                        DispatchQueue.main.async {
+                            cell.thumbnailImageView.image = image
+                        }
+                    case .failure(let error):
+                        debugPrint(error.localizedDescription)
+                    }
                 }
             }
             return cell
