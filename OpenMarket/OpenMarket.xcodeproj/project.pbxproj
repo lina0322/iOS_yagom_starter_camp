@@ -14,7 +14,6 @@
 		4C5016F025BF276000762FCF /* ProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5016EF25BF276000762FCF /* ProductList.swift */; };
 		4C5016F325BF276700762FCF /* OpenMarketError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5016F225BF276700762FCF /* OpenMarketError.swift */; };
 		4C5016FD25BF278500762FCF /* OpenMarketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5016FC25BF278500762FCF /* OpenMarketTests.swift */; };
-		4C6AE5A625CC07C40088D65C /* Reloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6AE5A525CC07C40088D65C /* Reloadable.swift */; };
 		4C7D3DDF25CCDA4B00DE03DC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D3DDE25CCDA4B00DE03DC /* DetailViewController.swift */; };
 		4CB24CC425C6539000DBF14D /* LoadingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB24CC325C6539000DBF14D /* LoadingCollectionViewCell.swift */; };
 		4CDBB92525C4FD1400AB29C9 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDBB92425C4FD1400AB29C9 /* LaunchViewController.swift */; };
@@ -58,7 +57,6 @@
 		4C5016FA25BF278500762FCF /* OpenMarketTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenMarketTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C5016FC25BF278500762FCF /* OpenMarketTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMarketTests.swift; sourceTree = "<group>"; };
 		4C5016FE25BF278500762FCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4C6AE5A525CC07C40088D65C /* Reloadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reloadable.swift; sourceTree = "<group>"; };
 		4C7D3DDE25CCDA4B00DE03DC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		4CB24CC325C6539000DBF14D /* LoadingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCollectionViewCell.swift; sourceTree = "<group>"; };
 		4CDBB92425C4FD1400AB29C9 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
@@ -125,15 +123,6 @@
 			path = OpenMarketTests;
 			sourceTree = "<group>";
 		};
-		4C6AE5A425CC07AE0088D65C /* Protocol & Extension */ = {
-			isa = PBXGroup;
-			children = (
-				4CDBB94825C5840800AB29C9 /* Extension.swift */,
-				4C6AE5A525CC07C40088D65C /* Reloadable.swift */,
-			);
-			path = "Protocol & Extension";
-			sourceTree = "<group>";
-		};
 		C70FB0EE25BEF61C00C9924E = {
 			isa = PBXGroup;
 			children = (
@@ -196,13 +185,13 @@
 		E268E64325C31635009A3D7C /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				4C6AE5A425CC07AE0088D65C /* Protocol & Extension */,
 				4CDBB92425C4FD1400AB29C9 /* LaunchViewController.swift */,
 				C70FB0FE25BEF61C00C9924E /* OpenMarketViewController.swift */,
 				E268E64425C3165F009A3D7C /* ListViewController.swift */,
 				E268E64A25C31676009A3D7C /* GridViewController.swift */,
 				4C7D3DDE25CCDA4B00DE03DC /* DetailViewController.swift */,
 				E210416D25C46097008C60A8 /* ProductRegistrationViewController.swift */,
+				4CDBB94825C5840800AB29C9 /* Extension.swift */,
 				E210413025C3D861008C60A8 /* CustomCell */,
 			);
 			path = ViewController;
@@ -332,7 +321,6 @@
 				4CB24CC425C6539000DBF14D /* LoadingCollectionViewCell.swift in Sources */,
 				E268E61C25C142DA009A3D7C /* Uploader.swift in Sources */,
 				4CE9FAB325CBACF60088184A /* OpenMarketString.swift in Sources */,
-				4C6AE5A625CC07C40088D65C /* Reloadable.swift in Sources */,
 				E268E64B25C31676009A3D7C /* GridViewController.swift in Sources */,
 				4CDBB92525C4FD1400AB29C9 /* LaunchViewController.swift in Sources */,
 				4CDBB94925C5840800AB29C9 /* Extension.swift in Sources */,

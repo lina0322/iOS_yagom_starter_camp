@@ -38,15 +38,9 @@ final class ProductRegistrationViewController: UIViewController {
         super.viewDidLoad()
         registerNotification()
         configureNavigatinbar()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        DispatchQueue.main.async {
-            self.configureKeyboardDoneButton()
-            self.setUpPasswordSecure()
-            self.registorActionToTextFields()
-        }
+        configureKeyboardDoneButton()
+        setUpPasswordSecure()
+        registorActionToTextFields()
     }
     
     private func registorActionToTextFields() {
@@ -62,8 +56,8 @@ final class ProductRegistrationViewController: UIViewController {
               let price = priceField.text, !price.isEmpty,
               let stock = stockField.text, !stock.isEmpty,
               let description = descriptionView.text, !description.isEmpty,
-              !images.isEmpty,
-              let password = passwordField.text, !password.isEmpty else {
+              let password = passwordField.text, !password.isEmpty,
+              !images.isEmpty else {
             registrationButton.isEnabled = false
             return
         }
@@ -86,7 +80,7 @@ final class ProductRegistrationViewController: UIViewController {
         passwordField.isSecureTextEntry = true
     }
     
-    // MARK: - Keyboard 관련
+    // MARK: - Keyboard
     func registerNotification(){
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -143,7 +137,7 @@ final class ProductRegistrationViewController: UIViewController {
     }
 }
 
-// MARK: - UPload to server
+// MARK: - Data
 extension ProductRegistrationViewController {
     func postProduct() {
         guard let title = titleField.text, let currency = currencyField.text, let priceText = priceField.text, var price = Int(priceText), let stockText = stockField.text, let stock = Int(stockText), let description = descriptionView.text, let password = passwordField.text, images.count > 0 else {
@@ -239,7 +233,7 @@ extension ProductRegistrationViewController: UIImagePickerControllerDelegate, UI
     }
 }
 
-// MARK: - TextView와 TextField
+// MARK: - TextView & TextField
 extension ProductRegistrationViewController: UITextViewDelegate, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let currentTextFieldTage = textField.tag

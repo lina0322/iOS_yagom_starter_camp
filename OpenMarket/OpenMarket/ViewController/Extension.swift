@@ -7,6 +7,14 @@
 
 import UIKit
 
+protocol Reloadable {
+    func reloadData()
+}
+
+extension UITableView: Reloadable {}
+
+extension UICollectionView: Reloadable {}
+
 extension UIViewController {
     func loadNextPage(for view: Reloadable?, completionHandler: @escaping (Result<Bool, OpenMarketError>) -> ()) {
         OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: OpenMarketData.shared.currentPage)) { result in
