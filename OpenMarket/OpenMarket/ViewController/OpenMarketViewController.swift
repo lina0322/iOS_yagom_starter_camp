@@ -8,8 +8,8 @@
 import UIKit
 
 final class OpenMarketViewController: UIViewController {
-    private let listViewController = ListViewController()
-    private let gridViewController = GridViewController()
+    private var listViewController = ListViewController()
+    private var gridViewController = GridViewController()
     private let segmentedControl = UISegmentedControl()
     
     override func viewDidLoad() {
@@ -19,6 +19,11 @@ final class OpenMarketViewController: UIViewController {
     }
     
     private func configureView() {
+        guard let listView = storyboard?.instantiateViewController(identifier: OpenMarketString.ListViewIdentifier) as? ListViewController, let gridView = storyboard?.instantiateViewController(identifier: OpenMarketString.GridViewIdentifier) as? GridViewController else {
+            return
+        }
+        listViewController = listView
+        gridViewController = gridView
         addChild(listViewController)
         addChild(gridViewController)
         configureConstraintToSafeArea(for: listViewController.view)
@@ -27,8 +32,10 @@ final class OpenMarketViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        configureSegmentedControl()
+        navigationController?.navigationBar.isHidden = false
+        navigationItem.hidesBackButton = true
         navigationItem.titleView = segmentedControl
+        configureSegmentedControl()
     }
 
     private func configureSegmentedControl() {
@@ -56,7 +63,7 @@ final class OpenMarketViewController: UIViewController {
             guard let registrationViewController = segue.destination as? ProductRegistrationViewController else {
                 return
             }
-            registrationViewController.navigationTitle = OpenMarketString.productRegistration
+            registrationViewController.title = OpenMarketString.productRegistration
         }
     }
 }

@@ -13,6 +13,7 @@ final class LaunchViewController: UIViewController, Insertable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = true
         configureLaunchImage()
         configureIndicatorConstraint()
         indicator.startAnimating()
@@ -62,9 +63,9 @@ final class LaunchViewController: UIViewController, Insertable {
     }
     
     private func goOpenMarketView() {
-        if let openMarketViewController = storyboard?.instantiateViewController(identifier: OpenMarketString.navigationControllerIdentifier) {
-            openMarketViewController.modalPresentationStyle = .overFullScreen
-            present(openMarketViewController, animated: false, completion: nil)
+        guard let openMarketViewController = storyboard?.instantiateViewController(identifier: OpenMarketString.openMarektControllerIdentifier) else {
+            return
         }
+        navigationController?.pushViewController(openMarketViewController, animated: true)
     }
 }

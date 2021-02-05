@@ -7,9 +7,12 @@
 
 enum OpenMarketString {
     static let apiBaseURL = "https://camp-open-market.herokuapp.com"
-    static let navigationControllerIdentifier = "OpenMarketNavigation"
-    static let registrationViewIdentifier = "RegistrationView"
-    static let DetailViewIdentifier = "DetailView"
+    static let openMarektControllerIdentifier = "MainView"
+    static let registrationViewIdentifier = "RegistratinView"
+    static let editingViewIdentifier = "EditingView" 
+    static let detailViewIdentifier = "DetailView"
+    static let ListViewIdentifier = "ListView"
+    static let GridViewIdentifier = "GridView"
     static let list = "LIST"
     static let grid = "GRID"
     static let productRegistration = "상품등록"

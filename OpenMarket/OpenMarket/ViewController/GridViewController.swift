@@ -12,6 +12,7 @@ final class GridViewController: UIViewController {
     private var hasPage: Bool = true
     private var scrollFlag = false
     private let itemSpacing: CGFloat = 8
+    private var id: Int? = nil
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -112,18 +113,23 @@ extension GridViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: - Extension Scroll
+// MARK: - Segue
 extension GridViewController: UICollectionViewDelegate, Insertable {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        goDetailView(id: OpenMarketData.shared.productList[indexPath.row].id)
+        id = OpenMarketData.shared.productList[indexPath.row].id
+        performSegue(withIdentifier: OpenMarketString.detailViewIdentifier, sender: nil)
     }
     
-    private func goDetailView(id: Int?) {
-        let detailView = DetailViewController()
-        detailView.id = id
-        navigationController?.pushViewController(detailView, animated: true)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == OpenMarketString.detailViewIdentifier {
+            guard let detailViewController = segue.destination as? DetailViewController else {
+                return
+            }
+            detailViewController.id = id
+        }
     }
     
+    // MARK: - Extension Scroll
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height

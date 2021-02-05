@@ -11,6 +11,7 @@ final class ListViewController: UIViewController {
     private let tableView = UITableView()
     private var isPaging: Bool = false
     private var hasPage: Bool = true
+    private var id: Int? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,19 +85,24 @@ extension ListViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - Extension Scroll
+// MARK: - Segue
 extension ListViewController: UITableViewDelegate, Insertable {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        goDetailView(id: OpenMarketData.shared.productList[indexPath.row].id)
+        id = OpenMarketData.shared.productList[indexPath.row].id
+        performSegue(withIdentifier: OpenMarketString.detailViewIdentifier, sender: nil)
     }
     
-    private func goDetailView(id: Int?) {
-        let detailView = DetailViewController()
-        detailView.id = id
-        navigationController?.pushViewController(detailView, animated: true)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == OpenMarketString.detailViewIdentifier {
+            guard let detailViewController = segue.destination as? DetailViewController else {
+                return
+            }
+            detailViewController.id = id
+        }
     }
     
+    // MARK: - Extension Scroll
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height

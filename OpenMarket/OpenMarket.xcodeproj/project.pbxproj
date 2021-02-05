@@ -204,8 +204,8 @@
 				C70FB0FE25BEF61C00C9924E /* OpenMarketViewController.swift */,
 				E268E64425C3165F009A3D7C /* ListViewController.swift */,
 				E268E64A25C31676009A3D7C /* GridViewController.swift */,
-				E210416D25C46097008C60A8 /* ProductRegistrationViewController.swift */,
 				4C7D3DDE25CCDA4B00DE03DC /* DetailViewController.swift */,
+				E210416D25C46097008C60A8 /* ProductRegistrationViewController.swift */,
 				E210413025C3D861008C60A8 /* CustomCell */,
 			);
 			path = ViewController;

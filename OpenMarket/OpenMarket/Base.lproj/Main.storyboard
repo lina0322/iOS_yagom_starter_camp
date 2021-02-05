@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OaR-f2-IDh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VkP-JV-2uz">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -12,24 +12,94 @@
         <!--Open Market View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="OpenMarketViewController" customModule="OpenMarket" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainView" id="BYZ-38-t0r" customClass="OpenMarketViewController" customModule="OpenMarket" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ba2-E3-YH1">
+                                <rect key="frame" x="147" y="738" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbj-ja-4f0">
+                                <rect key="frame" x="331" y="780" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="2rn-W6-vlx" kind="show" id="KhS-A2-OUV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vK0-gB-ncp">
+                                <rect key="frame" x="356" y="125" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="lxk-aL-cVd" kind="show" id="7OU-Hs-CIQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="BZr-SN-Xm0">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="hRf-vo-TXe">
                             <connections>
-                                <segue destination="rlX-3Q-46u" kind="show" identifier="RegistrationView" id="Tts-tX-yqt"/>
+                                <segue destination="rlX-3Q-46u" kind="show" id="nCd-1p-fOA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="777" y="82"/>
+            <point key="canvasLocation" x="1686.9565217391305" y="81.696428571428569"/>
+        </scene>
+        <!--Grid View Controller-->
+        <scene sceneID="xkP-XT-nUS">
+            <objects>
+                <viewController storyboardIdentifier="GridView" id="2rn-W6-vlx" customClass="GridViewController" customModule="OpenMarket" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zXA-4k-LIF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wq-p0-CDT">
+                                <rect key="frame" x="356" y="787" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="Yj7-4U-nLL" kind="show" identifier="DetailView" id="y2R-o8-mvA"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="8pi-qY-gAT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="MQO-VO-J4P"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HVd-Ln-YNi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2461" y="462"/>
+        </scene>
+        <!--List View Controller-->
+        <scene sceneID="xsx-Hy-vQ3">
+            <objects>
+                <viewController storyboardIdentifier="ListView" id="lxk-aL-cVd" customClass="ListViewController" customModule="OpenMarket" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="spe-q3-aq0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kol-za-x8z">
+                                <rect key="frame" x="356" y="832" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="Yj7-4U-nLL" kind="show" identifier="DetailView" id="Us4-Kd-jqn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="JfS-1r-djk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dnP-Wr-Xwi"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ANw-bF-lss" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2461" y="-468"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="TCU-fF-9pc">
@@ -38,18 +108,32 @@
                     <view key="view" contentMode="scaleToFill" id="RPd-Kn-eyC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oop-89-yXn">
+                                <rect key="frame" x="335" y="96" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HlR-dm-baD">
+                                <rect key="frame" x="329" y="640" width="85" height="145"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="rlX-3Q-46u" kind="show" identifier="RegistratinView" id="8Tf-wc-23D"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="OgH-qg-c9B"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="xI8-ET-pz0"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nMP-SG-r79" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1713" y="352"/>
+            <point key="canvasLocation" x="3234.7826086956525" y="256.47321428571428"/>
         </scene>
         <!--Product Registration View Controller-->
         <scene sceneID="1zN-O1-2Xt">
             <objects>
-                <viewController id="rlX-3Q-46u" customClass="ProductRegistrationViewController" customModule="OpenMarket" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegistratinView" id="rlX-3Q-46u" customClass="ProductRegistrationViewController" customModule="OpenMarket" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jmx-aS-x1Z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -309,7 +393,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="currencyField" destination="ZmB-1u-A6u" id="qzh-2n-F9p"/>
-                        <outlet property="descriptionView" destination="Wyk-EE-jal" id="QMy-I3-6w4"/>
+                        <outlet property="descriptionView" destination="Wyk-EE-jal" id="BL2-rh-LQZ"/>
                         <outlet property="imageCountLabel" destination="KAr-SO-fPM" id="Lba-AT-bKg"/>
                         <outlet property="originalPriceField" destination="F02-8C-v2p" id="uVz-gP-Zug"/>
                         <outlet property="passwordField" destination="dPX-tb-fFL" id="ZO9-kN-Zp1"/>
@@ -328,7 +412,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lWN-YK-CWC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1714" y="-350"/>
+            <point key="canvasLocation" x="3993" y="-181"/>
         </scene>
         <!--Launch View Controller-->
         <scene sceneID="1AK-nt-hLE">
@@ -337,33 +421,47 @@
                     <view key="view" contentMode="scaleToFill" id="sMC-UB-0WZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUY-eq-iIx">
+                                <rect key="frame" x="216" y="293" width="46" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="Xkk-S8-Ecq"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6rB-pp-VZr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="fwF-RC-jVp"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rrt-2u-2u6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1029" y="82"/>
+            <point key="canvasLocation" x="877" y="82"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="wbJ-Ll-4cf">
+        <scene sceneID="VLF-q2-cTF">
             <objects>
-                <navigationController storyboardIdentifier="OpenMarketNavigation" automaticallyAdjustsScrollViewInsets="NO" id="XK9-2O-fyQ" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VkP-JV-2uz" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dkN-BL-5Vi">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Khc-3v-U8z">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="lDy-Bv-8aC"/>
+                        <segue destination="OaR-f2-IDh" kind="relationship" relationship="rootViewController" id="ioX-My-Ufm"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7k0-a9-geQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I3A-9E-D4e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-120" y="82"/>
+            <point key="canvasLocation" x="30" y="82"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="8Tf-wc-23D"/>
+        <segue reference="y2R-o8-mvA"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

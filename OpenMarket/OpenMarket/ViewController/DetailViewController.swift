@@ -11,17 +11,17 @@ final class DetailViewController: UIViewController, Insertable {
     var id: Int? = nil
     var product: Product? = nil
     private let idLabel = UILabel()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationbar()
+        view.backgroundColor = .white
+        configureNavigationBar()
         setUpProductData()
     }
     
     func test() {
         let safeArea = view.safeAreaLayoutGuide
         guard let description = product?.descriptions else { return }
-        view.backgroundColor = .white
         view.addSubview(idLabel)
         idLabel.text = "\(description)"
         idLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -31,15 +31,25 @@ final class DetailViewController: UIViewController, Insertable {
         idLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -10).isActive = true
     }
     
-    private func configureNavigationbar() {
+    // MARK: - Navigation Bar
+    private func configureNavigationBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(popView))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(showActionSheet))
         
     }
     
+    @objc private func popView() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: - Action Sheet
     @objc private func showActionSheet() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let editingButton = UIAlertAction(title: OpenMarketString.editing, style: .default, handler: nil)
+        let editingButton = UIAlertAction(title: OpenMarketString.editing, style: .default) { _ in
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: OpenMarketString.registrationViewIdentifier, sender: nil)
+            }
+        }
         let deletionButton = UIAlertAction(title: OpenMarketString.deletion, style: .destructive) { _ in
             DispatchQueue.main.async {
                 self.shwoDeletionAlert()
@@ -51,10 +61,6 @@ final class DetailViewController: UIViewController, Insertable {
         actionSheet.addAction(deletionButton)
         actionSheet.addAction(cancelButton)
         self.present(actionSheet, animated: true, completion: nil)
-    }
-    
-    @objc private func popView() {
-        self.navigationController?.popViewController(animated: true)
     }
     
     private func shwoDeletionAlert() {
@@ -70,6 +76,17 @@ final class DetailViewController: UIViewController, Insertable {
         present(alert, animated: true, completion: nil)
     }
     
+    // MARK: - Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == OpenMarketString.registrationViewIdentifier {
+            guard let registrationViewController = segue.destination as? ProductRegistrationViewController else {
+                return
+            }
+            registrationViewController.title = OpenMarketString.productEditing
+        }
+    }
+    
+    // MARK: - DATA
     private func setUpProductData() {
         guard let id = id else {
             return

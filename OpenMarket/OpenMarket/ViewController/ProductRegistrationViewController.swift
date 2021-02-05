@@ -20,7 +20,7 @@ final class ProductRegistrationViewController: UIViewController {
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet weak var registrationButton: UIBarButtonItem!
     private let cancelButton = UIButton()
-    var navigationTitle = String.empty
+    var product: Product? = nil
     var images: [Data] = [] {
         didSet {
             imageCountLabel.text = "현재 첨부된 이미지 개수 : \(images.count)개"
@@ -38,9 +38,15 @@ final class ProductRegistrationViewController: UIViewController {
         super.viewDidLoad()
         registerNotification()
         configureNavigatinbar()
-        configureKeyboardDoneButton()
-        setUpPasswordSecure()
-        registorActionToTextFields()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DispatchQueue.main.async {
+            self.configureKeyboardDoneButton()
+            self.setUpPasswordSecure()
+            self.registorActionToTextFields()
+        }
     }
     
     private func registorActionToTextFields() {
@@ -122,7 +128,6 @@ final class ProductRegistrationViewController: UIViewController {
     private func configureNavigatinbar() {
         configureCancelButton()
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelButton)
-        navigationItem.title = navigationTitle
     }
     
     private func configureCancelButton() {
