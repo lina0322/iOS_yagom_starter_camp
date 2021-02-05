@@ -42,7 +42,7 @@ class LoadingTableViewCell: UITableViewCell {
         indicator.stopAnimating()
         label.text = String.empty
     }
-        
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class DetailViewController: UIViewController, Insertable {
+final class DetailViewController: UIViewController {
     var id: Int? = nil
     var product: Product? = nil
     private let idLabel = UILabel()
@@ -116,11 +116,10 @@ final class DetailViewController: UIViewController, Insertable {
             case .success(_):
                 DispatchQueue.main.async {
                     self.resetData()
-                    self.showSuccessAlert(about: "삭제 성공")
                 }
-            case .failure(let error):
+            case .failure(_):
                 DispatchQueue.main.async {
-                    self.showErrorAlert(about: error.localizedDescription)
+                    self.showErrorAlert(about: OpenMarketString.deletionFailure, message: OpenMarketString.passwordErrorMessage)
                 }
             }
         }
@@ -133,7 +132,7 @@ final class DetailViewController: UIViewController, Insertable {
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
-                    self.showSuccessAlert(about: OpenMarketString.registrationSuccess)
+                    self.showSuccessAlert(about: OpenMarketString.deletionSuccess)
                 }
             case .failure(let error):
                 DispatchQueue.main.async {

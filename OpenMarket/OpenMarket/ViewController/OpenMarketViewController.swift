@@ -37,7 +37,7 @@ final class OpenMarketViewController: UIViewController {
         navigationItem.titleView = segmentedControl
         configureSegmentedControl()
     }
-
+    
     private func configureSegmentedControl() {
         segmentedControl.insertSegment(withTitle: OpenMarketString.list, at: 0, animated: true)
         segmentedControl.insertSegment(withTitle: OpenMarketString.grid, at: 1, animated: true)

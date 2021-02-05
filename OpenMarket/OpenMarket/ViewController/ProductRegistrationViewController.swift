@@ -62,6 +62,7 @@ final class ProductRegistrationViewController: UIViewController {
               let price = priceField.text, !price.isEmpty,
               let stock = stockField.text, !stock.isEmpty,
               let description = descriptionView.text, !description.isEmpty,
+              !images.isEmpty,
               let password = passwordField.text, !password.isEmpty else {
             registrationButton.isEnabled = false
             return
@@ -115,7 +116,7 @@ final class ProductRegistrationViewController: UIViewController {
         
         toolBarKeyboard.items = [flexibleSpace, doneButton]
         descriptionView.inputAccessoryView = toolBarKeyboard
-        [titleField, currencyField, priceField, stockField, passwordField].forEach {
+        [titleField, currencyField, priceField, originalPriceField, stockField, passwordField].forEach {
             $0.inputAccessoryView = toolBarKeyboard
         }
     }
@@ -143,7 +144,7 @@ final class ProductRegistrationViewController: UIViewController {
 }
 
 // MARK: - UPload to server
-extension ProductRegistrationViewController: Insertable {
+extension ProductRegistrationViewController {
     func postProduct() {
         guard let title = titleField.text, let currency = currencyField.text, let priceText = priceField.text, var price = Int(priceText), let stockText = stockField.text, let stock = Int(stockText), let description = descriptionView.text, let password = passwordField.text, images.count > 0 else {
             return
@@ -233,6 +234,7 @@ extension ProductRegistrationViewController: UIImagePickerControllerDelegate, UI
                 images.append(image)
             }
         }
+        checkAllRequirementsAreFilled()
         dismiss(animated: true, completion: nil)
     }
 }

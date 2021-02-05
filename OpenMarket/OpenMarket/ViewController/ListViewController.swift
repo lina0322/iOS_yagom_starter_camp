@@ -86,7 +86,7 @@ extension ListViewController: UITableViewDataSource {
 }
 
 // MARK: - Segue
-extension ListViewController: UITableViewDelegate, Insertable {
+extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         id = OpenMarketData.shared.productList[indexPath.row].id

@@ -8,6 +8,29 @@
 import UIKit
 
 extension UIViewController {
+    func loadNextPage(for view: Reloadable?, completionHandler: @escaping (Result<Bool, OpenMarketError>) -> ()) {
+        OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: OpenMarketData.shared.currentPage)) { result in
+            switch result {
+            case .success(let data):
+                if data.items.count == 0 {
+                    completionHandler(.success(false))
+                } else {
+                    OpenMarketData.shared.productList.append(contentsOf: data.items)
+                    OpenMarketData.shared.currentPage += 1
+                    
+                    completionHandler(.success(true))
+                }
+                if let view = view {
+                    DispatchQueue.main.async {
+                        view.reloadData()
+                    }
+                }
+            case .failure(let error):
+                completionHandler(.failure(error))
+            }
+        }
+    }
+    
     func showSuccessAlert(about message: String) {
         let alert = UIAlertController(title: message, message: String.empty, preferredStyle: .alert)
         let cancelButton = UIAlertAction(title: OpenMarketString.confirm, style: .cancel) { _ in

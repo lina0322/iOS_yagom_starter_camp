@@ -8,36 +8,10 @@
 import UIKit
 
 protocol Reloadable {
-    var isTableView: Bool { get }
-    var isCollectionView: Bool { get }
-    
     func reloadData()
-    func beginUpdates()
-    func endUpdates()
-    func insertRows(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation)
-    func numberOfRows(inSection section: Int) -> Int
 }
 
-extension UITableView: Reloadable {
-    var isTableView: Bool {
-        return true
-    }
-    var isCollectionView: Bool {
-        return false
-    }
-}
+extension UITableView: Reloadable {}
 
-extension UICollectionView: Reloadable {
-    var isTableView: Bool {
-        return false
-    }
-    var isCollectionView: Bool {
-        return true
-    }
-    
-    func beginUpdates() {}
-    func endUpdates() {}
-    func insertRows(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation) {}
-    func numberOfRows(inSection section: Int) -> Int { return 0 }
-}
+extension UICollectionView: Reloadable {}
 

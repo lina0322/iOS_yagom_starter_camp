@@ -27,6 +27,7 @@ final class GridViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
         collectionView.reloadData()
         isPaging = false
         hasPage = true
@@ -114,7 +115,7 @@ extension GridViewController: UICollectionViewDataSource {
 }
 
 // MARK: - Segue
-extension GridViewController: UICollectionViewDelegate, Insertable {
+extension GridViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         id = OpenMarketData.shared.productList[indexPath.row].id
         performSegue(withIdentifier: OpenMarketString.detailViewIdentifier, sender: nil)

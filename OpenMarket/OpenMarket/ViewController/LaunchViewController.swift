@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class LaunchViewController: UIViewController, Insertable {
+final class LaunchViewController: UIViewController {
     private let indicator = UIActivityIndicatorView()
     private let launchImage = UIImageView()
     

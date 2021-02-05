@@ -60,7 +60,7 @@ final class ProductTableViewCell: UITableViewCell {
         priceLabel.adjustsFontSizeToFitWidth = true
         stockLabel.adjustsFontSizeToFitWidth = true
         priceBeforeSaleLabel.adjustsFontSizeToFitWidth = true
-
+        
         titleLabel.font = .preferredFont(forTextStyle: .headline)
         priceLabel.font = .preferredFont(forTextStyle: .body)
         stockLabel.font = .preferredFont(forTextStyle: .body)
@@ -80,13 +80,13 @@ final class ProductTableViewCell: UITableViewCell {
         self.contentView.addSubview(priceBeforeSaleLabel)
         self.contentView.addSubview(thumbnailImageView)
         self.contentView.addSubview(spacingView)
-
+        
         NSLayoutConstraint.activate([
             thumbnailImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.17),
             thumbnailImageView.heightAnchor.constraint(equalTo: thumbnailImageView.widthAnchor, multiplier: 1),
             thumbnailImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             thumbnailImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-      
+            
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             titleLabel.leadingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor, constant: 10),
             titleLabel.widthAnchor.constraint(greaterThanOrEqualTo: contentView.widthAnchor, multiplier: 0.3),
@@ -99,11 +99,11 @@ final class ProductTableViewCell: UITableViewCell {
             stockLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor),
             stockLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             stockLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-       
+            
             priceBeforeSaleLabel.topAnchor.constraint(equalTo: spacingView.bottomAnchor, constant: 5),
             priceBeforeSaleLabel.leadingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor, constant: 10),
             priceBeforeSaleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
-       
+            
             priceLabel.topAnchor.constraint(equalTo: priceBeforeSaleLabel.topAnchor),
             priceLabel.bottomAnchor.constraint(equalTo: priceBeforeSaleLabel.bottomAnchor)
         ])
