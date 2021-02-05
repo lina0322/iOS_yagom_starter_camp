@@ -147,7 +147,7 @@ final class ProductRegistrationViewController: UIViewController {
 }
 
 // MARK: - UPload to server
-extension ProductRegistrationViewController {
+extension ProductRegistrationViewController: Insertable {
     func postProduct() {
         guard let title = titleField.text, let currency = currencyField.text, let priceText = priceField.text, var price = Int(priceText), let stockText = stockField.text, let stock = Int(stockText), let description = descriptionView.text, let password = passwordField.text, images.count > 0 else {
             return
@@ -169,6 +169,21 @@ extension ProductRegistrationViewController {
         )
         
         Uploader.uploadData(by: .post, product: product, apiRequestType: .postProduct) { result in
+            switch result {
+            case .success(_):
+                self.resetData()
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.showErrorAlert(about: error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func resetData() {
+        OpenMarketData.shared.productList.removeAll()
+        OpenMarketData.shared.currentPage = 1
+        self.loadNextPage(for: nil) { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {

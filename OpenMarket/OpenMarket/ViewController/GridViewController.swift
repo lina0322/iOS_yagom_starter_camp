@@ -10,6 +10,7 @@ import UIKit
 final class GridViewController: UIViewController {
     private var isPaging: Bool = false
     private var hasPage: Bool = true
+    private var scrollFlag = false
     private let itemSpacing: CGFloat = 8
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -21,6 +22,13 @@ final class GridViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
+        isPaging = false
+        hasPage = true
     }
     
     private func configureCollectionView() {
@@ -111,17 +119,15 @@ extension GridViewController: UICollectionViewDelegate, Insertable {
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.height
         
-        if offsetY > (contentHeight - height), hasPage {
-            if isPaging == false {
-                isPaging = true
-                loadNextPage(for: collectionView) { result in
-                    switch result {
-                    case .success(let hasPage):
-                        self.hasPage = hasPage
-                        self.isPaging = false
-                    case .failure(let error):
-                        self.showErrorAlert(about: error.localizedDescription)
-                    }
+        if offsetY > (contentHeight - height), hasPage, isPaging == false {
+            isPaging = true
+            loadNextPage(for: collectionView) { result in
+                switch result {
+                case .success(let hasPage):
+                    self.hasPage = hasPage
+                    self.isPaging = false
+                case .failure(let error):
+                    self.showErrorAlert(about: error.localizedDescription)
                 }
             }
         }

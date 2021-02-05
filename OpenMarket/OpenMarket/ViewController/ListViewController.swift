@@ -17,6 +17,13 @@ final class ListViewController: UIViewController {
         configureTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+        isPaging = false
+        hasPage = true
+    }
+    
     private func configureTableView() {
         configureConstraintToSafeArea(for: tableView)
         tableView.dataSource = self
@@ -50,13 +57,13 @@ extension ListViewController: UITableViewDataSource {
                 OpenMarketData.shared.loadImage(imageURL: thumbnailURL) { result in
                     switch result {
                     case .success(let image):
-                    DispatchQueue.main.async {
-                        if let index: IndexPath = tableView.indexPath(for: cell) {
-                            if index.row == indexPath.row {
-                                cell.thumbnailImageView.image = image
+                        DispatchQueue.main.async {
+                            if let index: IndexPath = tableView.indexPath(for: cell) {
+                                if index.row == indexPath.row {
+                                    cell.thumbnailImageView.image = image
+                                }
                             }
                         }
-                    }
                     case .failure(let error):
                         debugPrint(error.localizedDescription)
                     }
@@ -83,18 +90,16 @@ extension ListViewController: UITableViewDelegate, Insertable {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.height
-
-        if offsetY > (contentHeight - height), hasPage {
-            if isPaging == false {
-                isPaging = true
-                loadNextPage(for: tableView) { result in
-                    switch result {
-                    case .success(let hasPage):
-                        self.hasPage = hasPage
-                        self.isPaging = false
-                    case .failure(let error):
-                        self.showErrorAlert(about: error.localizedDescription)
-                    }
+        
+        if offsetY > (contentHeight - height), hasPage, isPaging == false {
+            isPaging = true
+            loadNextPage(for: tableView) { result in
+                switch result {
+                case .success(let hasPage):
+                    self.hasPage = hasPage
+                    self.isPaging = false
+                case .failure(let error):
+                    self.showErrorAlert(about: error.localizedDescription)
                 }
             }
         }

@@ -11,6 +11,8 @@ class LoadingTableViewCell: UITableViewCell {
     static var identifier: String {
         return "\(self)"
     }
+    let indicator = UIActivityIndicatorView()
+    let label = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -18,7 +20,6 @@ class LoadingTableViewCell: UITableViewCell {
     
     func startIndicator() {
         let safeArea = self.safeAreaLayoutGuide
-        let indicator = UIActivityIndicatorView()
         indicator.translatesAutoresizingMaskIntoConstraints = false
         indicator.startAnimating()
         addSubview(indicator)
@@ -28,7 +29,6 @@ class LoadingTableViewCell: UITableViewCell {
     
     func showLabel() {
         let safeArea = self.safeAreaLayoutGuide
-        let label = UILabel()
         label.text = OpenMarketString.lastPage
         label.font = .preferredFont(forTextStyle: .body)
         label.adjustsFontSizeToFitWidth = true
@@ -36,6 +36,11 @@ class LoadingTableViewCell: UITableViewCell {
         addSubview(label)
         label.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor).isActive = true
+    }
+    
+    override func prepareForReuse() {
+        indicator.stopAnimating()
+        label.text = String.empty
     }
         
     required init?(coder: NSCoder) {

@@ -24,10 +24,10 @@ extension Insertable {
                 } else {
                     OpenMarketData.shared.productList.append(contentsOf: data.items)
                     OpenMarketData.shared.currentPage += 1
-                    completionHandler(.success(true))
                     if let view = view {
                         self.reloadNewCell(view: view)
                     }
+                    completionHandler(.success(true))
                 }
             case .failure(let error):
                 completionHandler(.failure(error))
@@ -55,6 +55,8 @@ extension Insertable {
                     view.insertRows(at: [indexPath], with: .none)
                 }
                 view.endUpdates()
+            } else {
+                view.reloadData()
             }
         }
     }
