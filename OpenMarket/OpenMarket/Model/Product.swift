@@ -47,7 +47,7 @@ struct Product: Codable {
         self.stock = stock
         self.discountedPrice = discountedPrice
         self.imageFiles = imageFiles
-
+        
         self.imageURLs = nil
         self.thumbnailURLs = nil
         self.timeStampDate = nil
@@ -78,14 +78,14 @@ struct Product: Codable {
     }
     
     var parameters: [String : Any?] {[
-            "title": title,
-            "descriptions": descriptions,
-            "price": price,
-            "currency": currency,
-            "stock": stock,
-            "discounted_price": discountedPrice,
-            "images": imageFiles,
-            "password": password
+        "title": title,
+        "descriptions": descriptions,
+        "price": price,
+        "currency": currency,
+        "stock": stock,
+        "discounted_price": discountedPrice,
+        "images": imageFiles,
+        "password": password
     ]}
     
     func makeRegistrationDate() -> Date? {

@@ -3,7 +3,7 @@
 //  OpenMarket
 //
 //  Created by Jinho Choi on 2021/01/30.
-// TODO: 등록완료 후 데이터 리로드... info.plist
+//
 
 import UIKit
 
@@ -20,7 +20,7 @@ final class ProductRegistrationViewController: UIViewController {
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet weak var registrationButton: UIBarButtonItem!
     private let cancelButton = UIButton()
-    var navigationTitle = String.empty
+    var product: Product? = nil
     var images: [Data] = [] {
         didSet {
             imageCountLabel.text = "현재 첨부된 이미지 개수 : \(images.count)개"
@@ -56,7 +56,8 @@ final class ProductRegistrationViewController: UIViewController {
               let price = priceField.text, !price.isEmpty,
               let stock = stockField.text, !stock.isEmpty,
               let description = descriptionView.text, !description.isEmpty,
-              let password = passwordField.text, !password.isEmpty else {
+              let password = passwordField.text, !password.isEmpty,
+              !images.isEmpty else {
             registrationButton.isEnabled = false
             return
         }
@@ -65,15 +66,6 @@ final class ProductRegistrationViewController: UIViewController {
     
     @IBAction func touchUpRegistrationButton() {
         postProduct()
-    }
-    
-    func showSuccessAlert(about message: String) {
-        let alert = UIAlertController(title: message, message: String.empty, preferredStyle: .alert)
-        let cancelButton = UIAlertAction(title: OpenMarketString.confirm, style: .cancel) { _ in
-            self.navigationController?.popViewController(animated: true)
-        }
-        alert.addAction(cancelButton)
-        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func touchUpAddImageButton() {
@@ -88,7 +80,7 @@ final class ProductRegistrationViewController: UIViewController {
         passwordField.isSecureTextEntry = true
     }
     
-    // MARK: - Keyboard 관련
+    // MARK: - Keyboard
     func registerNotification(){
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -118,8 +110,8 @@ final class ProductRegistrationViewController: UIViewController {
         
         toolBarKeyboard.items = [flexibleSpace, doneButton]
         descriptionView.inputAccessoryView = toolBarKeyboard
-        for textField in textFields {
-            textField.inputAccessoryView = toolBarKeyboard
+        [titleField, currencyField, priceField, originalPriceField, stockField, passwordField].forEach {
+            $0.inputAccessoryView = toolBarKeyboard
         }
     }
     
@@ -131,7 +123,6 @@ final class ProductRegistrationViewController: UIViewController {
     private func configureNavigatinbar() {
         configureCancelButton()
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelButton)
-        navigationItem.title = navigationTitle
     }
     
     private func configureCancelButton() {
@@ -146,7 +137,7 @@ final class ProductRegistrationViewController: UIViewController {
     }
 }
 
-// MARK: - UPload to server
+// MARK: - Data
 extension ProductRegistrationViewController {
     func postProduct() {
         guard let title = titleField.text, let currency = currencyField.text, let priceText = priceField.text, var price = Int(priceText), let stockText = stockField.text, let stock = Int(stockText), let description = descriptionView.text, let password = passwordField.text, images.count > 0 else {
@@ -169,6 +160,21 @@ extension ProductRegistrationViewController {
         )
         
         Uploader.uploadData(by: .post, product: product, apiRequestType: .postProduct) { result in
+            switch result {
+            case .success(_):
+                self.resetData()
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.showErrorAlert(about: error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func resetData() {
+        OpenMarketData.shared.productList.removeAll()
+        OpenMarketData.shared.currentPage = 1
+        self.loadPage(for: nil) { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
@@ -222,11 +228,12 @@ extension ProductRegistrationViewController: UIImagePickerControllerDelegate, UI
                 images.append(image)
             }
         }
+        checkAllRequirementsAreFilled()
         dismiss(animated: true, completion: nil)
     }
 }
 
-// MARK: - TextView와 TextField
+// MARK: - TextView & TextField
 extension ProductRegistrationViewController: UITextViewDelegate, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let currentTextFieldTage = textField.tag

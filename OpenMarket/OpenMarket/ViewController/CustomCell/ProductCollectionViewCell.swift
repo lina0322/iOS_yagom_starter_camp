@@ -73,7 +73,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         priceBeforeSaleLabel.translatesAutoresizingMaskIntoConstraints = false
         spacingView1.translatesAutoresizingMaskIntoConstraints = false
         spacingView2.translatesAutoresizingMaskIntoConstraints = false
-
+        
         titleLabel.adjustsFontSizeToFitWidth = true
         priceLabel.adjustsFontSizeToFitWidth = true
         stockLabel.adjustsFontSizeToFitWidth = true
@@ -83,7 +83,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         priceLabel.font = .preferredFont(forTextStyle: .body)
         stockLabel.font = .preferredFont(forTextStyle: .body)
         priceBeforeSaleLabel.font = .preferredFont(forTextStyle: .body)
-
+        
         
         titleLabel.textAlignment = .center
         priceLabel.textAlignment = .center
@@ -114,7 +114,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
             labelsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
         ])
     }
-        
+    
     func removePriceBeforeSaleLabel() {
         priceBeforeSaleLabel.removeFromSuperview()
     }

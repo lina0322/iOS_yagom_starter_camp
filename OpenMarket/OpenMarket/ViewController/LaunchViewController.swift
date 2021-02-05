@@ -7,12 +7,13 @@
 
 import UIKit
 
-final class LaunchViewController: UIViewController, Insertable {
+final class LaunchViewController: UIViewController {
     private let indicator = UIActivityIndicatorView()
     private let launchImage = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = true
         configureLaunchImage()
         configureIndicatorConstraint()
         indicator.startAnimating()
@@ -46,14 +47,14 @@ final class LaunchViewController: UIViewController, Insertable {
     }
     
     private func setUpData() {
-        loadNextPage(for: nil) { result in
+        loadPage(for: nil) { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
+                    self.indicator.stopAnimating()
                     self.goOpenMarketView()
                 }
             case .failure(let error):
-                self.indicator.stopAnimating()
                 DispatchQueue.main.async {
                     self.showErrorAlert(about: error.localizedDescription)
                 }
@@ -62,9 +63,9 @@ final class LaunchViewController: UIViewController, Insertable {
     }
     
     private func goOpenMarketView() {
-        if let openMarketViewController = storyboard?.instantiateViewController(identifier: OpenMarketString.navigationControllerIdentifier) {
-            openMarketViewController.modalPresentationStyle = .overFullScreen
-            present(openMarketViewController, animated: false, completion: nil)
+        guard let openMarketViewController = storyboard?.instantiateViewController(identifier: OpenMarketString.openMarektControllerIdentifier) else {
+            return
         }
+        navigationController?.pushViewController(openMarketViewController, animated: true)
     }
 }

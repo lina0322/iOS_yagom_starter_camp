@@ -10,7 +10,9 @@ import UIKit
 final class GridViewController: UIViewController {
     private var isPaging: Bool = false
     private var hasPage: Bool = true
+    private var scrollFlag = false
     private let itemSpacing: CGFloat = 8
+    private var id: Int? = nil
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -21,6 +23,14 @@ final class GridViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+        collectionView.reloadData()
+        isPaging = false
+        hasPage = true
     }
     
     private func configureCollectionView() {
@@ -77,12 +87,16 @@ extension GridViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             cell.fillLabels(about: productList[indexPath.row])
-            DispatchQueue.global().async {
-                guard let imageURLText = productList[indexPath.row].thumbnailURLs?.first, let thumbnailURL = URL(string: imageURLText), let imageData: Data = try? Data(contentsOf: thumbnailURL) else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    cell.thumbnailImageView.image = UIImage(data: imageData)
+            if let thumbnailURL = productList[indexPath.row].thumbnailURLs?.first {
+                OpenMarketData.shared.loadImage(imageURL: thumbnailURL) { result in
+                    switch result {
+                    case .success(let image):
+                        DispatchQueue.main.async {
+                            cell.thumbnailImageView.image = image
+                        }
+                    case .failure(let error):
+                        debugPrint(error.localizedDescription)
+                    }
                 }
             }
             return cell
@@ -100,30 +114,37 @@ extension GridViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - Segue
 extension GridViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        dump(indexPath)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        id = OpenMarketData.shared.productList[indexPath.row].id
+        performSegue(withIdentifier: OpenMarketString.detailViewIdentifier, sender: nil)
     }
-}
-
-// MARK: - Extension Scroll
-extension GridViewController: Insertable {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == OpenMarketString.detailViewIdentifier {
+            guard let detailViewController = segue.destination as? DetailViewController else {
+                return
+            }
+            detailViewController.id = id
+        }
+    }
+    
+    // MARK: - Extension Scroll
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.height
         
-        if offsetY > (contentHeight - height), hasPage {
-            if isPaging == false {
-                isPaging = true
-                loadNextPage(for: collectionView) { result in
-                    switch result {
-                    case .success(let hasPage):
-                        self.hasPage = hasPage
-                        self.isPaging = false
-                    case .failure(let error):
-                        self.showErrorAlert(about: error.localizedDescription)
-                    }
+        if offsetY > (contentHeight - height), hasPage, isPaging == false {
+            isPaging = true
+            loadPage(for: collectionView) { result in
+                switch result {
+                case .success(let hasPage):
+                    self.hasPage = hasPage
+                    self.isPaging = false
+                case .failure(let error):
+                    self.showErrorAlert(about: error.localizedDescription)
                 }
             }
         }

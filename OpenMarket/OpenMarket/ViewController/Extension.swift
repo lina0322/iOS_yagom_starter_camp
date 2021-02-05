@@ -8,39 +8,29 @@
 import UIKit
 
 protocol Reloadable {
-    var isTableView: Bool { get }
-    var isCollectionView: Bool { get }
-    
     func reloadData()
-    
-    func beginUpdates()
-    func endUpdates()
-    func insertRows(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation)
-    func numberOfRows(inSection section: Int) -> Int
-    
-    func insertItems(at indexPaths: [IndexPath])
 }
 
-protocol Insertable {
-    func loadNextPage(for view: Reloadable?, completionHandler: @escaping (Result<Bool, OpenMarketError>) -> ())
-    func reloadAllSection(view: Reloadable?)
-    func reloadNewCell(view: Reloadable)
-}
+extension UITableView: Reloadable {}
 
-extension Insertable {
-    func loadNextPage(for view: Reloadable?, completionHandler: @escaping (Result<Bool, OpenMarketError>) -> ()) {
+extension UICollectionView: Reloadable {}
+
+extension UIViewController {
+    func loadPage(for view: Reloadable?, completionHandler: @escaping (Result<Bool, OpenMarketError>) -> ()) {
         OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: OpenMarketData.shared.currentPage)) { result in
             switch result {
             case .success(let data):
                 if data.items.count == 0 {
-                    self.reloadAllSection(view: view)
                     completionHandler(.success(false))
                 } else {
                     OpenMarketData.shared.productList.append(contentsOf: data.items)
                     OpenMarketData.shared.currentPage += 1
+                    
                     completionHandler(.success(true))
-                    if let view = view {
-                        self.reloadNewCell(view: view)
+                }
+                if let view = view {
+                    DispatchQueue.main.async {
+                        view.reloadData()
                     }
                 }
             case .failure(let error):
@@ -49,57 +39,15 @@ extension Insertable {
         }
     }
     
-    func reloadAllSection(view: Reloadable?) {
-        guard let view = view else {
-            return
+    func showSuccessAlert(about message: String) {
+        let alert = UIAlertController(title: message, message: String.empty, preferredStyle: .alert)
+        let cancelButton = UIAlertAction(title: OpenMarketString.confirm, style: .cancel) { _ in
+            self.navigationController?.popViewController(animated: true)
         }
-        DispatchQueue.main.async {
-            view.reloadData()
-        }
+        alert.addAction(cancelButton)
+        present(alert, animated: true, completion: nil)
     }
     
-    func reloadNewCell(view: Reloadable) {
-        DispatchQueue.main.async {
-            let count = OpenMarketData.shared.productList.count
-            let lastCount = view.numberOfRows(inSection: 0)
-            if view.isTableView {
-                view.beginUpdates()
-                for row in (lastCount)...(count - 1) {
-                    let indexPath = IndexPath(row: row, section: 0)
-                    view.insertRows(at: [indexPath], with: .none)
-                }
-                view.endUpdates()
-            }
-        }
-    }
-}
-
-extension UITableView: Reloadable {
-    var isTableView: Bool {
-        return true
-    }
-    var isCollectionView: Bool {
-        return false
-    }
-    
-    func insertItems(at indexPaths: [IndexPath]) {}
-}
-
-extension UICollectionView: Reloadable {
-    var isTableView: Bool {
-        return false
-    }
-    var isCollectionView: Bool {
-        return true
-    }
-    
-    func beginUpdates() {}
-    func endUpdates() {}
-    func insertRows(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation) {}
-    func numberOfRows(inSection section: Int) -> Int { return 0 }
-}
-
-extension UIViewController {
     func showErrorAlert(about title: String, message: String = OpenMarketString.warning) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let cancelButton = UIAlertAction(title: OpenMarketString.confirm, style: .cancel, handler: .none)
