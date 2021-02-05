@@ -88,10 +88,10 @@ extension ListViewController: UITableViewDataSource {
 extension ListViewController: UITableViewDelegate, Insertable {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        goDetailView(id: indexPath.row)
+        goDetailView(id: OpenMarketData.shared.productList[indexPath.row].id)
     }
     
-    private func goDetailView(id: Int) {
+    private func goDetailView(id: Int?) {
         let detailView = DetailViewController()
         detailView.id = id
         navigationController?.pushViewController(detailView, animated: true)

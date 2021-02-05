@@ -56,7 +56,7 @@ final class OpenMarketViewController: UIViewController {
             guard let registrationViewController = segue.destination as? ProductRegistrationViewController else {
                 return
             }
-            registrationViewController.navigationTitle = OpenMarketString.registration
+            registrationViewController.navigationTitle = OpenMarketString.productRegistration
         }
     }
 }

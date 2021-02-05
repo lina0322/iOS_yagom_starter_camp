@@ -67,15 +67,6 @@ final class ProductRegistrationViewController: UIViewController {
         postProduct()
     }
     
-    func showSuccessAlert(about message: String) {
-        let alert = UIAlertController(title: message, message: String.empty, preferredStyle: .alert)
-        let cancelButton = UIAlertAction(title: OpenMarketString.confirm, style: .cancel) { _ in
-            self.navigationController?.popViewController(animated: true)
-        }
-        alert.addAction(cancelButton)
-        present(alert, animated: true, completion: nil)
-    }
-    
     @IBAction func touchUpAddImageButton() {
         if images.count < 5 {
             showImagePickerActionSheet()

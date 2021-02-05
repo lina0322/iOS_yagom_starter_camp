@@ -115,10 +115,10 @@ extension GridViewController: UICollectionViewDataSource {
 // MARK: - Extension Scroll
 extension GridViewController: UICollectionViewDelegate, Insertable {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        goDetailView(id: indexPath.row)
+        goDetailView(id: OpenMarketData.shared.productList[indexPath.row].id)
     }
     
-    private func goDetailView(id: Int) {
+    private func goDetailView(id: Int?) {
         let detailView = DetailViewController()
         detailView.id = id
         navigationController?.pushViewController(detailView, animated: true)
