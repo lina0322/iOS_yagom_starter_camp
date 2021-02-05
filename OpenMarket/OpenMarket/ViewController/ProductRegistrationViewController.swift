@@ -174,7 +174,7 @@ extension ProductRegistrationViewController {
     func resetData() {
         OpenMarketData.shared.productList.removeAll()
         OpenMarketData.shared.currentPage = 1
-        self.loadNextPage(for: nil) { result in
+        self.loadPage(for: nil) { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {

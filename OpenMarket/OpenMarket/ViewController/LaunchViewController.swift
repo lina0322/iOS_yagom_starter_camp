@@ -47,7 +47,7 @@ final class LaunchViewController: UIViewController {
     }
     
     private func setUpData() {
-        loadNextPage(for: nil) { result in
+        loadPage(for: nil) { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {

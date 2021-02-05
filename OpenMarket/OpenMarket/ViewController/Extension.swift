@@ -16,7 +16,7 @@ extension UITableView: Reloadable {}
 extension UICollectionView: Reloadable {}
 
 extension UIViewController {
-    func loadNextPage(for view: Reloadable?, completionHandler: @escaping (Result<Bool, OpenMarketError>) -> ()) {
+    func loadPage(for view: Reloadable?, completionHandler: @escaping (Result<Bool, OpenMarketError>) -> ()) {
         OpenMarketJSONDecoder<ProductList>.decodeData(about: .loadPage(page: OpenMarketData.shared.currentPage)) { result in
             switch result {
             case .success(let data):

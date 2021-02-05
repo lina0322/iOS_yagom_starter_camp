@@ -110,7 +110,7 @@ extension ListViewController: UITableViewDelegate {
         
         if offsetY > (contentHeight - height), hasPage, isPaging == false {
             isPaging = true
-            loadNextPage(for: tableView) { result in
+            loadPage(for: tableView) { result in
                 switch result {
                 case .success(let hasPage):
                     self.hasPage = hasPage

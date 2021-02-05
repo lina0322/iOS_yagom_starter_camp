@@ -138,7 +138,7 @@ extension GridViewController: UICollectionViewDelegate {
         
         if offsetY > (contentHeight - height), hasPage, isPaging == false {
             isPaging = true
-            loadNextPage(for: collectionView) { result in
+            loadPage(for: collectionView) { result in
                 switch result {
                 case .success(let hasPage):
                     self.hasPage = hasPage
