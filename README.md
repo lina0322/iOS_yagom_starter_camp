@@ -113,7 +113,7 @@
 
 📝 설명 : 맛있는 주스를 만들고, 재고 관리까지 해주는 app
 
-<img width="300" src="https://user-images.githubusercontent.com/49546979/107152042-266d0300-69a9-11eb-8842-3eac77a01067.gif">
+<img width="600" src="https://user-images.githubusercontent.com/49546979/107152042-266d0300-69a9-11eb-8842-3eac77a01067.gif">
 
 🗂 세부사항
 - 읽기전용 프로퍼티 사용
