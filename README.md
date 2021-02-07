@@ -1,3 +1,23 @@
+## iOS_yagom_stater_camp
+저는 이 repository에 2020년 11월부터 2021년 4월까지(예정) 이루어진, [yagom ios 스타터 캠프](https://yagom.net/ios-starter-camp-2nd/)에 1기로 참여하여 학습한 내용을 정리하였습니다.
+
+### 목차
+> 목차를 누르면 아래 설명으로 이동하고, 옆 링크를 누르면 해당 폴더로 이동합니다. (현 README에는 간단하게 정리하였고, 각 폴더 내부에 README에는 좀 더 상세하게 내용을 정리하였습니다.)
+
+
+
+[0.구구단](##0.구구단)
+[1.묵찌빠](##1.묵찌빠)
+[2.웹 브라우저](##2.웹_브라우저)
+
+### 0.구구단
+
+<img width="300" src="https://user-images.githubusercontent.com/49546979/107142886-2d7a1e00-6975-11eb-9483-6e746c4101af.png">
+
+### 1.묵찌빠
+
+
+
 |프로젝트|기간|설명|세부사항|TIL|
 |------|---|---|---|---|
 |[구구단](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2020_11_03_timesTable)|캠프 시작 전(1d), 첫날(1d)|입력받은 숫자값에 해당하는 구구단 출력</br> ![image](https://user-images.githubusercontent.com/49546979/107142886-2d7a1e00-6975-11eb-9483-6e746c4101af.png) 
@@ -13,4 +33,5 @@
 |[날씨 예보](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2021_01_24_weatherForecast)|01/18 ~ 01/24(1w)|||
 |오픈 마켓||||
 
+###2.웹 브라우저
 
