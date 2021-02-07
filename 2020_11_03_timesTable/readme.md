@@ -1,3 +1,20 @@
+## 사전과제 - 구구단
+🗓 기간 : 캠프 시작 전 && 캠프 첫날(1d)
+
+📝 설명 : 입력받은 숫자값에 해당하는 구구단 출력
+
+<img width="400" alt="스크린샷 2021-02-07 18 46 23" src="https://user-images.githubusercontent.com/49546979/107142853-f277ea80-6974-11eb-86b4-91bce51df8ce.png">
+
+
+🗂 세부사항
+- readLine()으로 input 받기
+- switch 사용
+- 함수 만들기
+- 순환 함수 사용
+
+🖇 관련 TIL
+- [2020_11_02](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_02.md)
+
 ### 처음 구현하고자 했던 것(timesTable.swift)
 
 1. 1~9단 출력(후 주석처리)
@@ -30,4 +47,3 @@ if let을 사용하여 정리해봄
 사용했던 ssh환경에서 한글입력이 안되어서 영어로 올렸었는데,  
 지금은 가능해져서 편안하게 한글로 작성함.😆
 
-<img width="566" alt="스크린샷 2021-02-07 18 46 23" src="https://user-images.githubusercontent.com/49546979/107142853-f277ea80-6974-11eb-86b4-91bce51df8ce.png">
