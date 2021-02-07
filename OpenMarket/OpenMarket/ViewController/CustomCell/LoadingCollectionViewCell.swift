@@ -29,7 +29,7 @@ class LoadingCollectionViewCell: UICollectionViewCell {
     
     func showLabel() {
         let safeArea = self.safeAreaLayoutGuide
-        label.text = OpenMarketString.lastPage
+        label.text = UIString.lastPage
         label.font = .preferredFont(forTextStyle: .body)
         label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false

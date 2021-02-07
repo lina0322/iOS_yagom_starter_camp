@@ -31,10 +31,10 @@ final class ProductTableViewCell: UITableViewCell {
             return
         }
         titleLabel.text = title
-        stockLabel.text =  OpenMarketString.leftStock + "\(stock.addComma())"
+        stockLabel.text =  UIString.leftStock + "\(stock.addComma())"
         priceLabel.text = "\(currency) \(price.addComma())"
         if stock == 0 {
-            stockLabel.text = OpenMarketString.outOfStock
+            stockLabel.text = UIString.outOfStock
             stockLabel.textColor = .systemOrange
         }
         if let discountedPrice = product.discountedPrice {

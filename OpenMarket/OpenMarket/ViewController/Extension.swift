@@ -41,16 +41,16 @@ extension UIViewController {
     
     func showSuccessAlert(about message: String) {
         let alert = UIAlertController(title: message, message: String.empty, preferredStyle: .alert)
-        let cancelButton = UIAlertAction(title: OpenMarketString.confirm, style: .cancel) { _ in
+        let cancelButton = UIAlertAction(title: UIString.confirm, style: .cancel) { _ in
             self.navigationController?.popViewController(animated: true)
         }
         alert.addAction(cancelButton)
         present(alert, animated: true, completion: nil)
     }
     
-    func showErrorAlert(about title: String, message: String = OpenMarketString.warning) {
+    func showErrorAlert(about title: String, message: String = UIString.warning) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let cancelButton = UIAlertAction(title: OpenMarketString.confirm, style: .cancel, handler: .none)
+        let cancelButton = UIAlertAction(title: UIString.confirm, style: .cancel, handler: .none)
         
         alert.addAction(cancelButton)
         present(alert, animated: true, completion: nil)

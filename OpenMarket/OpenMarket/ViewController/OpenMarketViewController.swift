@@ -39,8 +39,8 @@ final class OpenMarketViewController: UIViewController {
     }
     
     private func configureSegmentedControl() {
-        segmentedControl.insertSegment(withTitle: OpenMarketString.list, at: 0, animated: true)
-        segmentedControl.insertSegment(withTitle: OpenMarketString.grid, at: 1, animated: true)
+        segmentedControl.insertSegment(withTitle: UIString.list, at: 0, animated: true)
+        segmentedControl.insertSegment(withTitle: UIString.grid, at: 1, animated: true)
         segmentedControl.selectedSegmentTintColor = .white
         segmentedControl.backgroundColor = .systemBlue
         segmentedControl.selectedSegmentIndex = 0
@@ -63,7 +63,7 @@ final class OpenMarketViewController: UIViewController {
             guard let registrationViewController = segue.destination as? ProductRegistrationViewController else {
                 return
             }
-            registrationViewController.title = OpenMarketString.productRegistration
+            registrationViewController.title = UIString.productRegistration
         }
     }
 }

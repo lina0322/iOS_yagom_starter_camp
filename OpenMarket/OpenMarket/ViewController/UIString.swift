@@ -5,8 +5,7 @@
 //  Created by 임리나 on 2021/02/04.
 //
 
-enum OpenMarketString {
-    static let apiBaseURL = "https://camp-open-market.herokuapp.com"
+enum UIString {
     static let list = "LIST"
     static let grid = "GRID"
     static let productRegistration = "상품등록"

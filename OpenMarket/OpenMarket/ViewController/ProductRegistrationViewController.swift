@@ -72,7 +72,7 @@ final class ProductRegistrationViewController: UIViewController {
         if images.count < 5 {
             showImagePickerActionSheet()
         } else {
-            showErrorAlert(about: OpenMarketString.tooManyImage, message: String.empty)
+            showErrorAlert(about: UIString.tooManyImage, message: String.empty)
         }
     }
     
@@ -128,7 +128,7 @@ final class ProductRegistrationViewController: UIViewController {
     private func configureCancelButton() {
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.addTarget(self, action: #selector(popView), for: .touchUpInside)
-        cancelButton.setTitle(OpenMarketString.cancel, for: .normal)
+        cancelButton.setTitle(UIString.cancel, for: .normal)
         cancelButton.setTitleColor(.systemBlue, for: .normal)
     }
     
@@ -178,7 +178,7 @@ extension ProductRegistrationViewController {
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
-                    self.showSuccessAlert(about: OpenMarketString.registrationSuccess)
+                    self.showSuccessAlert(about: UIString.registrationSuccess)
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -194,13 +194,13 @@ extension ProductRegistrationViewController: UIImagePickerControllerDelegate, UI
     private func showImagePickerActionSheet() {
         view.endEditing(true)
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let albumButton = UIAlertAction(title: OpenMarketString.album, style: .default) { _ in
+        let albumButton = UIAlertAction(title: UIString.album, style: .default) { _ in
             self.openAlbum()
         }
-        let cameraButton = UIAlertAction(title: OpenMarketString.camera, style: .default) { _ in
+        let cameraButton = UIAlertAction(title: UIString.camera, style: .default) { _ in
             self.openCamera()
         }
-        let cancelButton = UIAlertAction(title: OpenMarketString.cancel, style: .cancel, handler: nil)
+        let cancelButton = UIAlertAction(title: UIString.cancel, style: .cancel, handler: nil)
         
         actionSheet.addAction(albumButton)
         actionSheet.addAction(cameraButton)
@@ -222,7 +222,7 @@ extension ProductRegistrationViewController: UIImagePickerControllerDelegate, UI
         if let originalImage = info[.editedImage] as? UIImage, let image = originalImage.jpegData(compressionQuality: .zero) {
             if image.count > 30000 {
                 DispatchQueue.main.async {
-                    self.showErrorAlert(about: OpenMarketString.bigImage, message: String.empty)
+                    self.showErrorAlert(about: UIString.bigImage, message: String.empty)
                 }
             } else {
                 images.append(image)

@@ -45,17 +45,17 @@ final class DetailViewController: UIViewController {
     // MARK: - Action Sheet
     @objc private func showActionSheet() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let editingButton = UIAlertAction(title: OpenMarketString.editing, style: .default) { _ in
+        let editingButton = UIAlertAction(title: UIString.editing, style: .default) { _ in
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: ViewIdentifier.registration, sender: nil)
             }
         }
-        let deletionButton = UIAlertAction(title: OpenMarketString.deletion, style: .destructive) { _ in
+        let deletionButton = UIAlertAction(title: UIString.deletion, style: .destructive) { _ in
             DispatchQueue.main.async {
                 self.shwoDeletionAlert()
             }
         }
-        let cancelButton = UIAlertAction(title: OpenMarketString.cancel, style: .cancel, handler: nil)
+        let cancelButton = UIAlertAction(title: UIString.cancel, style: .cancel, handler: nil)
         
         actionSheet.addAction(editingButton)
         actionSheet.addAction(deletionButton)
@@ -64,11 +64,11 @@ final class DetailViewController: UIViewController {
     }
     
     private func shwoDeletionAlert() {
-        let alert = UIAlertController(title: OpenMarketString.deletion, message: OpenMarketString.deletionMessage, preferredStyle: .alert)
-        let confirmButton = UIAlertAction(title: OpenMarketString.confirm, style: .default) { _ in
+        let alert = UIAlertController(title: UIString.deletion, message: UIString.deletionMessage, preferredStyle: .alert)
+        let confirmButton = UIAlertAction(title: UIString.confirm, style: .default) { _ in
             self.deleteProduct(password: alert.textFields?.first?.text)
         }
-        let cancelButton = UIAlertAction(title: OpenMarketString.cancel, style: .cancel, handler: nil)
+        let cancelButton = UIAlertAction(title: UIString.cancel, style: .cancel, handler: nil)
         
         alert.addTextField()
         alert.addAction(confirmButton)
@@ -82,7 +82,7 @@ final class DetailViewController: UIViewController {
             guard let registrationViewController = segue.destination as? ProductRegistrationViewController else {
                 return
             }
-            registrationViewController.title = OpenMarketString.productEditing
+            registrationViewController.title = UIString.productEditing
         }
     }
     
@@ -119,7 +119,7 @@ final class DetailViewController: UIViewController {
                 }
             case .failure(_):
                 DispatchQueue.main.async {
-                    self.showErrorAlert(about: OpenMarketString.deletionFailure, message: OpenMarketString.passwordErrorMessage)
+                    self.showErrorAlert(about: UIString.deletionFailure, message: UIString.passwordErrorMessage)
                 }
             }
         }
@@ -132,7 +132,7 @@ final class DetailViewController: UIViewController {
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
-                    self.showSuccessAlert(about: OpenMarketString.deletionSuccess)
+                    self.showSuccessAlert(about: UIString.deletionSuccess)
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
