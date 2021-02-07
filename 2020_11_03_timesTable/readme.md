@@ -29,3 +29,5 @@ if let을 사용하여 정리해봄
 5. 한글
 사용했던 ssh환경에서 한글입력이 안되어서 영어로 올렸었는데,  
 지금은 가능해져서 편안하게 한글로 작성함.😆
+
+<img width="566" alt="스크린샷 2021-02-07 18 46 23" src="https://user-images.githubusercontent.com/49546979/107142853-f277ea80-6974-11eb-86b4-91bce51df8ce.png">
