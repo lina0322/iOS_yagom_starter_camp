@@ -20,6 +20,7 @@ final class ProductRegistrationViewController: UIViewController {
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet weak var registrationButton: UIBarButtonItem!
     private let cancelButton = UIButton()
+    private let imagelimitedCapacity = 30000
     var images: [Data] = [] {
         didSet {
             imageCountLabel.text = "현재 첨부된 이미지 개수 : \(images.count)개"
@@ -218,7 +219,7 @@ extension ProductRegistrationViewController: UIImagePickerControllerDelegate, UI
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let originalImage = info[.editedImage] as? UIImage, let image = originalImage.jpegData(compressionQuality: .zero) {
-            if image.count > 30000 {
+            if image.count > imagelimitedCapacity {
                 DispatchQueue.main.async {
                     self.showErrorAlert(about: UIString.bigImage, message: String.empty)
                 }
