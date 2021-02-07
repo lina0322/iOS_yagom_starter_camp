@@ -19,7 +19,7 @@ struct URLRequestManager {
             return nil
         }
         var urlRequest = URLRequest(url: url)
-        let contentType = httpMethod.makeContentType(boundary: boundary)
+        let contentType = httpMethod.makeHeaderContentType(boundary: boundary)
         
         urlRequest.httpMethod = "\(httpMethod)"
         urlRequest.setValue(contentType, forHTTPHeaderField: HTTPMethod.contextTypeText)

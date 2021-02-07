@@ -27,4 +27,5 @@ enum UIString {
     static let bigImage = "이미지 사이즈가 너무 큽니다!"
     static let tooManyImage = "이미 5개의 이미지를 첨부하였어요."
     static let deletionMessage = "삭제하시려면 비밀번호를 입력해주세요."
+    static let countOfImage = "현재 첨부된 이미지 개수 : %d개"
 }

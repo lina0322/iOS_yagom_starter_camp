@@ -27,7 +27,6 @@ final class GridViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
         collectionView.reloadData()
         isPaging = false
         hasPage = true
