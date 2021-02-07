@@ -19,7 +19,7 @@ final class OpenMarketViewController: UIViewController {
     }
     
     private func configureView() {
-        guard let listView = storyboard?.instantiateViewController(identifier: OpenMarketString.ListViewIdentifier) as? ListViewController, let gridView = storyboard?.instantiateViewController(identifier: OpenMarketString.GridViewIdentifier) as? GridViewController else {
+        guard let listView = storyboard?.instantiateViewController(identifier: ViewIdentifier.list) as? ListViewController, let gridView = storyboard?.instantiateViewController(identifier: ViewIdentifier.grid) as? GridViewController else {
             return
         }
         listViewController = listView
@@ -59,7 +59,7 @@ final class OpenMarketViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == OpenMarketString.registrationViewIdentifier {
+        if segue.identifier == ViewIdentifier.registration {
             guard let registrationViewController = segue.destination as? ProductRegistrationViewController else {
                 return
             }

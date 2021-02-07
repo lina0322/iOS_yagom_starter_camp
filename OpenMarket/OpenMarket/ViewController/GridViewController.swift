@@ -118,11 +118,11 @@ extension GridViewController: UICollectionViewDataSource {
 extension GridViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         id = OpenMarketData.shared.productList[indexPath.row].id
-        performSegue(withIdentifier: OpenMarketString.detailViewIdentifier, sender: nil)
+        performSegue(withIdentifier: ViewIdentifier.detailView, sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == OpenMarketString.detailViewIdentifier {
+        if segue.identifier == ViewIdentifier.detailView {
             guard let detailViewController = segue.destination as? DetailViewController else {
                 return
             }

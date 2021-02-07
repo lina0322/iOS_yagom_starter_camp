@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C3F909E25D028E600AF6887 /* ViewIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3F909D25D028E600AF6887 /* ViewIdentifier.swift */; };
 		4C44EA9B25C26D8B00DA7406 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E268E62725C2579F009A3D7C /* MockURLSession.swift */; };
 		4C5016E725BF274B00762FCF /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5016E625BF274B00762FCF /* Product.swift */; };
 		4C5016EA25BF275200762FCF /* NetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5016E925BF275200762FCF /* NetworkHandler.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C3F909D25D028E600AF6887 /* ViewIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewIdentifier.swift; sourceTree = "<group>"; };
 		4C5016E625BF274B00762FCF /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		4C5016E925BF275200762FCF /* NetworkHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHandler.swift; sourceTree = "<group>"; };
 		4C5016EC25BF275A00762FCF /* OpenMarketJSONDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenMarketJSONDecoder.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		E268E64325C31635009A3D7C /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				4C3F909D25D028E600AF6887 /* ViewIdentifier.swift */,
 				4CDBB92425C4FD1400AB29C9 /* LaunchViewController.swift */,
 				C70FB0FE25BEF61C00C9924E /* OpenMarketViewController.swift */,
 				E268E64425C3165F009A3D7C /* ListViewController.swift */,
@@ -322,6 +325,7 @@
 				E268E61C25C142DA009A3D7C /* Uploader.swift in Sources */,
 				4CE9FAB325CBACF60088184A /* OpenMarketString.swift in Sources */,
 				E268E64B25C31676009A3D7C /* GridViewController.swift in Sources */,
+				4C3F909E25D028E600AF6887 /* ViewIdentifier.swift in Sources */,
 				4CDBB92525C4FD1400AB29C9 /* LaunchViewController.swift in Sources */,
 				4CDBB94925C5840800AB29C9 /* Extension.swift in Sources */,
 				E268E61225C13FFE009A3D7C /* HTTPMethod.swift in Sources */,

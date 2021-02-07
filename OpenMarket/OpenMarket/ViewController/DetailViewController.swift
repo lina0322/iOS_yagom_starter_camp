@@ -47,7 +47,7 @@ final class DetailViewController: UIViewController {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let editingButton = UIAlertAction(title: OpenMarketString.editing, style: .default) { _ in
             DispatchQueue.main.async {
-                self.performSegue(withIdentifier: OpenMarketString.registrationViewIdentifier, sender: nil)
+                self.performSegue(withIdentifier: ViewIdentifier.registration, sender: nil)
             }
         }
         let deletionButton = UIAlertAction(title: OpenMarketString.deletion, style: .destructive) { _ in
@@ -78,7 +78,7 @@ final class DetailViewController: UIViewController {
     
     // MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == OpenMarketString.registrationViewIdentifier {
+        if segue.identifier == ViewIdentifier.registration {
             guard let registrationViewController = segue.destination as? ProductRegistrationViewController else {
                 return
             }
