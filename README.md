@@ -90,37 +90,50 @@
 ### 세번째 프로젝트 - 웹 브라우저
 🗓 기간 : 2020/11/09 ~ 2020/11/13(5d)
 
-📝 설명 : WKWebView을 사용한 웹 브라우저 어플
+📝 설명 : WKWebView을 사용한 웹 브라우저 app
 
 <img width="300" src="https://user-images.githubusercontent.com/49546979/107150699-78f6f100-69a2-11eb-9e87-af8669304bbe.gif">
 
 🗂 세부사항
 - WKWebView(goBack, goForward, reload 등) 사용
 - 정규식을 사용하여 URL주소의 유효성 검증
+- alert 사용
 
 📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2020_11_13_webBrowser)
 
 🖇 해당 주차 TIL
--  H.I.G, 전역변수 단점 : [2020_11_09](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_09.md)
+-  H.I.G(textView와 textField의 차이), 전역변수 단점 : [2020_11_09](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_09.md)
 -  타입, 정규표현식 : [2020_11_09](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_12.md)
 -  OOP의 특징 : [2020_11_09](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_13.md)
 
 </br>
 
 ### 네번째 프로젝트 - 주스 메이커
-🗓 기간 : 2020_11_16 ~ 2020_2020_11_29(2w)
+🗓 기간 : 2020/11/16 ~ 2020/11/29(2w)
 
-📝 설명 : 
+📝 설명 : 맛있는 주스를 만들고, 재고 관리까지 해주는 app
 
-<img width="300" src="">
+<img width="300" src="https://user-images.githubusercontent.com/49546979/107152042-266d0300-69a9-11eb-8842-3eac77a01067.gif">
 
 🗂 세부사항
-- 
+- 읽기전용 프로퍼티 사용
+- enum의 연산프로퍼티 사용
+- CustomStringConvertible 프로토콜을 활용하여 enum의 description 구현
+- Dictionary 사용
+- 예외처리(throws, do-catch, try) 사용
+- Error 프로토콜을 채택한 enum 구현
+- typealias 사용 
+- 싱글턴 사용
+- stepper 사용
 
 📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2020_11_29_juiceMaker)
 
 🖇 해당 주차 TIL
--  : []()
+- struct와 class, 값타입과 참조타입, 프로퍼티, 디자인패턴, 솔리드원칙 : [2020_11_16](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_16.md)
+- Access control : [2020_11_17](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_17.md)
+- if vs guard : [2020_11_19](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_19.md)
+- init vs 프로퍼티 직접 초기화 : [2020_11_23](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_23.md)
+- KVO, 노티피케이션 센터 : [2020_11_26](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_26.md)
 
 </br>
 
