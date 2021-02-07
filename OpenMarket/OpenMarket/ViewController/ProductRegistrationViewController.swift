@@ -20,7 +20,7 @@ final class ProductRegistrationViewController: UIViewController {
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet weak var registrationButton: UIBarButtonItem!
     private let cancelButton = UIButton()
-    private let imagelimitedCapacity = 30000
+    private let imagelimitedCapacity = 30_000
     var images: [Data] = [] {
         didSet {
             imageCountLabel.text = "현재 첨부된 이미지 개수 : \(images.count)개"
