@@ -2,7 +2,7 @@
 ### 세번째 프로젝트 - 웹 브라우저
 🗓 기간 : 2020/11/09 ~ 2020/11/13(5d)
 
-📝 설명 : 컴퓨터와 야구게임(console app)
+📝 설명 : WKWebView을 사용한 웹 브라우저 어플
 
 <img width="300" src="https://user-images.githubusercontent.com/49546979/107150699-78f6f100-69a2-11eb-9e87-af8669304bbe.gif">
 
