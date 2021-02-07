@@ -20,7 +20,6 @@ final class ProductRegistrationViewController: UIViewController {
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet weak var registrationButton: UIBarButtonItem!
     private let cancelButton = UIButton()
-    var product: Product? = nil
     var images: [Data] = [] {
         didSet {
             imageCountLabel.text = "현재 첨부된 이미지 개수 : \(images.count)개"
@@ -126,7 +125,6 @@ final class ProductRegistrationViewController: UIViewController {
     }
     
     private func configureCancelButton() {
-        cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.addTarget(self, action: #selector(popView), for: .touchUpInside)
         cancelButton.setTitle(UIString.cancel, for: .normal)
         cancelButton.setTitleColor(.systemBlue, for: .normal)
