@@ -22,7 +22,7 @@ struct URLRequestManager {
         let contentType = httpMethod.makeContentType(boundary: boundary)
         
         urlRequest.httpMethod = "\(httpMethod)"
-        urlRequest.setValue(contentType, forHTTPHeaderField: HTTPMethod.contextTyepText)
+        urlRequest.setValue(contentType, forHTTPHeaderField: HTTPMethod.contextTypeText)
         return urlRequest
     }
 }

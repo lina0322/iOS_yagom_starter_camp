@@ -27,7 +27,7 @@ enum HTTPMethod: String, CustomStringConvertible {
         }
     }
     
-    static let contextTyepText = "Content-Type"
+    static let contextTypeText = "Content-Type"
     
     func makeContentType(boundary: String) -> String {
         switch self {
