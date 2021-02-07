@@ -1,7 +1,7 @@
 import Foundation
  
 func makeGugu(input: Int){
-    _ = Array(1...9).map { print("\(input) x \($0) = \(input * $0)") }
+    (1...9).map { print("\(input) x \($0) = \(input * $0)") }
 }
  
 func gugu() {
