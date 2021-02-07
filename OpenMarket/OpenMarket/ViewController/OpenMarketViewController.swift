@@ -8,8 +8,8 @@
 import UIKit
 
 final class OpenMarketViewController: UIViewController {
-    private var listViewController = ListViewController()
-    private var gridViewController = GridViewController()
+    private var listViewController: ListViewController?
+    private var gridViewController: GridViewController?
     private let segmentedControl = UISegmentedControl()
     
     override func viewDidLoad() {
@@ -24,6 +24,9 @@ final class OpenMarketViewController: UIViewController {
         }
         listViewController = listView
         gridViewController = gridView
+        guard let listViewController = listViewController, let gridViewController = gridViewController else {
+            return
+        }
         addChild(listViewController)
         addChild(gridViewController)
         configureConstraintToSafeArea(for: listViewController.view)
@@ -49,12 +52,12 @@ final class OpenMarketViewController: UIViewController {
     
     @objc private func didTapSegmentedControl(_ segmentedControl: UISegmentedControl) {
         if segmentedControl.selectedSegmentIndex == 0 {
-            listViewController.view.isHidden = false
-            gridViewController.view.isHidden = true
+            listViewController?.view.isHidden = false
+            gridViewController?.view.isHidden = true
         }
         else {
-            gridViewController.view.isHidden = false
-            listViewController.view.isHidden = true
+            gridViewController?.view.isHidden = false
+            listViewController?.view.isHidden = true
         }
     }
     
