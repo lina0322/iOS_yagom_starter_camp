@@ -5,14 +5,7 @@
 //  Created by 임리나 on 2021/02/04.
 //
 
-enum OpenMarketString {
-    static let apiBaseURL = "https://camp-open-market.herokuapp.com"
-    static let openMarektControllerIdentifier = "MainView"
-    static let registrationViewIdentifier = "RegistratinView"
-    static let editingViewIdentifier = "EditingView" 
-    static let detailViewIdentifier = "DetailView"
-    static let ListViewIdentifier = "ListView"
-    static let GridViewIdentifier = "GridView"
+enum UIString {
     static let list = "LIST"
     static let grid = "GRID"
     static let productRegistration = "상품등록"
@@ -34,4 +27,5 @@ enum OpenMarketString {
     static let bigImage = "이미지 사이즈가 너무 큽니다!"
     static let tooManyImage = "이미 5개의 이미지를 첨부하였어요."
     static let deletionMessage = "삭제하시려면 비밀번호를 입력해주세요."
+    static let countOfImage = "현재 첨부된 이미지 개수 : %d개"
 }

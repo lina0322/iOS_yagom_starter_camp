@@ -8,22 +8,21 @@
 import UIKit
 
 final class ProductRegistrationViewController: UIViewController {
-    @IBOutlet private var textFields: [UITextField]!
     @IBOutlet private var titleField: UITextField!
     @IBOutlet private var currencyField: UITextField!
     @IBOutlet private var priceField: UITextField!
     @IBOutlet private var originalPriceField: UITextField!
     @IBOutlet private var stockField: UITextField!
-    @IBOutlet private var descriptionView: UITextView!
+    @IBOutlet private var descriptionTextView: UITextView!
     @IBOutlet private var passwordField: UITextField!
     @IBOutlet private var imageCountLabel: UILabel!
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet weak var registrationButton: UIBarButtonItem!
     private let cancelButton = UIButton()
-    var product: Product? = nil
+    private let imagelimitedCapacity = 30_000
     var images: [Data] = [] {
         didSet {
-            imageCountLabel.text = "현재 첨부된 이미지 개수 : \(images.count)개"
+            imageCountLabel.text = String(format: UIString.countOfImage, images.count)
             imageCountLabel.textColor = .black
         }
     }
@@ -55,7 +54,7 @@ final class ProductRegistrationViewController: UIViewController {
               let currency = currencyField.text, !currency.isEmpty,
               let price = priceField.text, !price.isEmpty,
               let stock = stockField.text, !stock.isEmpty,
-              let description = descriptionView.text, !description.isEmpty,
+              let description = descriptionTextView.text, !description.isEmpty,
               let password = passwordField.text, !password.isEmpty,
               !images.isEmpty else {
             registrationButton.isEnabled = false
@@ -72,7 +71,7 @@ final class ProductRegistrationViewController: UIViewController {
         if images.count < 5 {
             showImagePickerActionSheet()
         } else {
-            showErrorAlert(about: OpenMarketString.tooManyImage, message: String.empty)
+            showErrorAlert(about: UIString.tooManyImage, message: String.empty)
         }
     }
     
@@ -109,7 +108,7 @@ final class ProductRegistrationViewController: UIViewController {
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(touchUpDoneButton))
         
         toolBarKeyboard.items = [flexibleSpace, doneButton]
-        descriptionView.inputAccessoryView = toolBarKeyboard
+        descriptionTextView.inputAccessoryView = toolBarKeyboard
         [titleField, currencyField, priceField, originalPriceField, stockField, passwordField].forEach {
             $0.inputAccessoryView = toolBarKeyboard
         }
@@ -126,9 +125,8 @@ final class ProductRegistrationViewController: UIViewController {
     }
     
     private func configureCancelButton() {
-        cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.addTarget(self, action: #selector(popView), for: .touchUpInside)
-        cancelButton.setTitle(OpenMarketString.cancel, for: .normal)
+        cancelButton.setTitle(UIString.cancel, for: .normal)
         cancelButton.setTitleColor(.systemBlue, for: .normal)
     }
     
@@ -140,7 +138,7 @@ final class ProductRegistrationViewController: UIViewController {
 // MARK: - Data
 extension ProductRegistrationViewController {
     func postProduct() {
-        guard let title = titleField.text, let currency = currencyField.text, let priceText = priceField.text, var price = Int(priceText), let stockText = stockField.text, let stock = Int(stockText), let description = descriptionView.text, let password = passwordField.text, images.count > 0 else {
+        guard let title = titleField.text, let currency = currencyField.text, let priceText = priceField.text, var price = Int(priceText), let stockText = stockField.text, let stock = Int(stockText), let description = descriptionTextView.text, let password = passwordField.text, images.count > 0 else {
             return
         }
         var discountedPrice: Int? = nil
@@ -178,7 +176,7 @@ extension ProductRegistrationViewController {
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
-                    self.showSuccessAlert(about: OpenMarketString.registrationSuccess)
+                    self.showSuccessAlert(about: UIString.registrationSuccess)
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -194,13 +192,13 @@ extension ProductRegistrationViewController: UIImagePickerControllerDelegate, UI
     private func showImagePickerActionSheet() {
         view.endEditing(true)
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let albumButton = UIAlertAction(title: OpenMarketString.album, style: .default) { _ in
+        let albumButton = UIAlertAction(title: UIString.album, style: .default) { _ in
             self.openAlbum()
         }
-        let cameraButton = UIAlertAction(title: OpenMarketString.camera, style: .default) { _ in
+        let cameraButton = UIAlertAction(title: UIString.camera, style: .default) { _ in
             self.openCamera()
         }
-        let cancelButton = UIAlertAction(title: OpenMarketString.cancel, style: .cancel, handler: nil)
+        let cancelButton = UIAlertAction(title: UIString.cancel, style: .cancel, handler: nil)
         
         actionSheet.addAction(albumButton)
         actionSheet.addAction(cameraButton)
@@ -220,9 +218,9 @@ extension ProductRegistrationViewController: UIImagePickerControllerDelegate, UI
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let originalImage = info[.editedImage] as? UIImage, let image = originalImage.jpegData(compressionQuality: .zero) {
-            if image.count > 30000 {
+            if image.count > imagelimitedCapacity {
                 DispatchQueue.main.async {
-                    self.showErrorAlert(about: OpenMarketString.bigImage, message: String.empty)
+                    self.showErrorAlert(about: UIString.bigImage, message: String.empty)
                 }
             } else {
                 images.append(image)
@@ -236,11 +234,16 @@ extension ProductRegistrationViewController: UIImagePickerControllerDelegate, UI
 // MARK: - TextView & TextField
 extension ProductRegistrationViewController: UITextViewDelegate, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let currentTextFieldTage = textField.tag
-        if currentTextFieldTage < 4 {
-            textFields[currentTextFieldTage + 1].becomeFirstResponder()
-        } else if currentTextFieldTage == 4 {
-            descriptionView.becomeFirstResponder()
+        if textField == titleField {
+            currencyField.becomeFirstResponder()
+        } else if textField == currencyField {
+            priceField.becomeFirstResponder()
+        } else if textField == priceField {
+            originalPriceField.becomeFirstResponder()
+        } else if textField == originalPriceField {
+            stockField.becomeFirstResponder()
+        } else if textField == stockField {
+            descriptionTextView.becomeFirstResponder()
         } else {
             view.endEditing(true)
         }
@@ -248,11 +251,16 @@ extension ProductRegistrationViewController: UITextViewDelegate, UITextFieldDele
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        let currentTextFieldTage = textField.tag
-        if currentTextFieldTage < 4 {
-            textFields[currentTextFieldTage + 1].becomeFirstResponder()
-        } else if currentTextFieldTage == 4 {
-            descriptionView.becomeFirstResponder()
+        if textField == titleField {
+            currencyField.becomeFirstResponder()
+        } else if textField == currencyField {
+            priceField.becomeFirstResponder()
+        } else if textField == priceField {
+            originalPriceField.becomeFirstResponder()
+        } else if textField == originalPriceField {
+            stockField.becomeFirstResponder()
+        } else if textField == stockField {
+            descriptionTextView.becomeFirstResponder()
         } else {
             view.endEditing(true)
         }

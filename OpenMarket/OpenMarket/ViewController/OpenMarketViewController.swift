@@ -8,8 +8,8 @@
 import UIKit
 
 final class OpenMarketViewController: UIViewController {
-    private var listViewController = ListViewController()
-    private var gridViewController = GridViewController()
+    private var listViewController: ListViewController?
+    private var gridViewController: GridViewController?
     private let segmentedControl = UISegmentedControl()
     
     override func viewDidLoad() {
@@ -19,11 +19,14 @@ final class OpenMarketViewController: UIViewController {
     }
     
     private func configureView() {
-        guard let listView = storyboard?.instantiateViewController(identifier: OpenMarketString.ListViewIdentifier) as? ListViewController, let gridView = storyboard?.instantiateViewController(identifier: OpenMarketString.GridViewIdentifier) as? GridViewController else {
+        guard let listView = storyboard?.instantiateViewController(identifier: ViewIdentifier.list) as? ListViewController, let gridView = storyboard?.instantiateViewController(identifier: ViewIdentifier.grid) as? GridViewController else {
             return
         }
         listViewController = listView
         gridViewController = gridView
+        guard let listViewController = listViewController, let gridViewController = gridViewController else {
+            return
+        }
         addChild(listViewController)
         addChild(gridViewController)
         configureConstraintToSafeArea(for: listViewController.view)
@@ -39,8 +42,8 @@ final class OpenMarketViewController: UIViewController {
     }
     
     private func configureSegmentedControl() {
-        segmentedControl.insertSegment(withTitle: OpenMarketString.list, at: 0, animated: true)
-        segmentedControl.insertSegment(withTitle: OpenMarketString.grid, at: 1, animated: true)
+        segmentedControl.insertSegment(withTitle: UIString.list, at: 0, animated: true)
+        segmentedControl.insertSegment(withTitle: UIString.grid, at: 1, animated: true)
         segmentedControl.selectedSegmentTintColor = .white
         segmentedControl.backgroundColor = .systemBlue
         segmentedControl.selectedSegmentIndex = 0
@@ -49,21 +52,21 @@ final class OpenMarketViewController: UIViewController {
     
     @objc private func didTapSegmentedControl(_ segmentedControl: UISegmentedControl) {
         if segmentedControl.selectedSegmentIndex == 0 {
-            listViewController.view.isHidden = false
-            gridViewController.view.isHidden = true
+            listViewController?.view.isHidden = false
+            gridViewController?.view.isHidden = true
         }
         else {
-            gridViewController.view.isHidden = false
-            listViewController.view.isHidden = true
+            gridViewController?.view.isHidden = false
+            listViewController?.view.isHidden = true
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == OpenMarketString.registrationViewIdentifier {
+        if segue.identifier == ViewIdentifier.registration {
             guard let registrationViewController = segue.destination as? ProductRegistrationViewController else {
                 return
             }
-            registrationViewController.title = OpenMarketString.productRegistration
+            registrationViewController.title = UIString.productRegistration
         }
     }
 }

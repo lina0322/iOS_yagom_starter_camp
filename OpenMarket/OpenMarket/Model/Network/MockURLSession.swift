@@ -5,7 +5,6 @@
 //  Created by Jinho Choi on 2021/01/28.
 //
 
-//import Foundation
 import UIKit
 
 class MockURLSessionDataTask: URLSessionDataTask {
@@ -21,7 +20,7 @@ class MockURLSession: URLSessionProtocol {
     enum MockAPI {
         case test
         
-        static let baseURL = URL(string: OpenMarketString.apiBaseURL)!
+        static let baseURL = URL(string: URLRequestManager.baseURL)!
         var sampleItems: NSDataAsset {
             NSDataAsset.init(name: "items")!
         }

@@ -27,9 +27,9 @@ enum HTTPMethod: String, CustomStringConvertible {
         }
     }
     
-    static let contextTyepText = "Content-Type"
+    static let contextTypeText = "Content-Type"
     
-    func makeContentType(boundary: String) -> String {
+    func makeHeaderContentType(boundary: String) -> String {
         switch self {
         case .get, .delete, .put:
             return "application/json"

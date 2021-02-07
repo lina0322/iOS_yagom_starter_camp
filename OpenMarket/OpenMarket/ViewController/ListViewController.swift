@@ -90,11 +90,11 @@ extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         id = OpenMarketData.shared.productList[indexPath.row].id
-        performSegue(withIdentifier: OpenMarketString.detailViewIdentifier, sender: nil)
+        performSegue(withIdentifier: ViewIdentifier.detailView, sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == OpenMarketString.detailViewIdentifier {
+        if segue.identifier == ViewIdentifier.detailView {
             guard let detailViewController = segue.destination as? DetailViewController else {
                 return
             }

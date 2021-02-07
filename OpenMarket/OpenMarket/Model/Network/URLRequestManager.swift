@@ -8,7 +8,8 @@
 import Foundation
 
 struct URLRequestManager {
-    private static let baseURL = OpenMarketString.apiBaseURL
+    static let baseURL = "https://camp-open-market.herokuapp.com"
+
     static let boundary = UUID().uuidString
     
     static func makeURLRequest(for httpMethod: HTTPMethod, about apiRequestType: APIRequestType = .loadPage(page: 1)) -> URLRequest? {
@@ -18,10 +19,10 @@ struct URLRequestManager {
             return nil
         }
         var urlRequest = URLRequest(url: url)
-        let contentType = httpMethod.makeContentType(boundary: boundary)
+        let contentType = httpMethod.makeHeaderContentType(boundary: boundary)
         
         urlRequest.httpMethod = "\(httpMethod)"
-        urlRequest.setValue(contentType, forHTTPHeaderField: HTTPMethod.contextTyepText)
+        urlRequest.setValue(contentType, forHTTPHeaderField: HTTPMethod.contextTypeText)
         return urlRequest
     }
 }

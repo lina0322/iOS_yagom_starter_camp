@@ -63,7 +63,7 @@ final class LaunchViewController: UIViewController {
     }
     
     private func goOpenMarketView() {
-        guard let openMarketViewController = storyboard?.instantiateViewController(identifier: OpenMarketString.openMarektControllerIdentifier) else {
+        guard let openMarketViewController = storyboard?.instantiateViewController(identifier: ViewIdentifier.openMarekt) else {
             return
         }
         navigationController?.pushViewController(openMarketViewController, animated: true)
