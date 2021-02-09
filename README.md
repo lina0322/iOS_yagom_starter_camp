@@ -3,49 +3,25 @@
 
 ### 📖목차
 
-[사전과제 - 구구단](#사전과제---구구단)
-
 [첫번째 프로젝트 - 묵찌빠](#첫번째-프로젝트---묵찌빠)
 
-[두번째 프로젝트 - 야구 게임](#두번째-프로젝트---야구-게임)
+[두번째 프로젝트 - 웹 브라우저](#두번째-프로젝트---웹-브라우저)
 
-[세번째 프로젝트 - 웹 브라우저](#세번째-프로젝트---웹-브라우저)
+[세번째 프로젝트 - 주스 메이커](#세번째-프로젝트---주스-메이커)
 
-[네번째 프로젝트 - 주스 메이커](#네번째-프로젝트---주스-메이커)
+[네번째 프로젝트 - 회원가입](#네번째-프로젝트---회원가입)
 
-[다섯번째 프로젝트 - 회원가입](#다섯번째-프로젝트---회원가입)
+[다섯번째 프로젝트 - 계산기](#다섯번째-프로젝트---계산기)
 
-[여섯번째 프로젝트 - 계산기](#여섯번째-프로젝트---계산기)
+[여섯번째 프로젝트 - 만국박람회](#여섯번째-프로젝트---만국박람회)
 
-[일곱번째 프로젝트 - 만국박람회](#일곱번째-프로젝트---만국박람회)
+[일곱번째 프로젝트 - 은행 창구 매니저](#일곱번째-프로젝트---은행-창구-매니저)
 
-[여덟번째 프로젝트 - 은행 창구 매니저](#여덟번째-프로젝트---은행-창구-매니저)
+[여덟번째 프로젝트 - 날씨정보](#여덟번째-프로젝트---날씨정보)
 
-[아홉번째 프로젝트 - 날씨정보](#아홉번째-프로젝트---날씨정보)
-
-[열번째 프로젝트 - 오픈 마켓](#열번째-프로젝트---오픈-마켓)
+[아홉번째 프로젝트 - 오픈 마켓](#아홉번째-프로젝트---오픈-마켓)
 
 ---
-
-### 사전과제 - 구구단
-🗓 기간 : 캠프 시작 전 && 캠프 첫날(1d)
-
-📝 설명 : 입력받은 숫자값에 해당하는 구구단 출력(console app)
-
-<img width="300" src="https://user-images.githubusercontent.com/49546979/107142886-2d7a1e00-6975-11eb-9483-6e746c4101af.png">
-
-🗂 세부사항
-- readLine()으로 input 받기
-- switch 사용
-- 함수 만들기
-- 순환 함수 사용
-
-📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2020_11_03_timesTable)
-
-🖇 해당 주차 TIL
-- 강제언래핑, 고차함수, 순환 함수 : [2020_11_02](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_02.md)
-
-</br>
 
 ### 첫번째 프로젝트 - 묵찌빠
 🗓 기간 : 2020/11/03 ~ 2020/11/04(2d)
@@ -67,61 +43,57 @@
 
 </br>
 
-### 두번째 프로젝트 - 야구 게임
-🗓 기간 : 2020/11/05 ~ 2020/11/08(4d)
-
-📝 설명 : 컴퓨터와 야구게임(console app)
-
-<img width="300" src="https://user-images.githubusercontent.com/49546979/107148041-64136100-6994-11eb-9746-ddb1a7bcd181.png">
-
-🗂 세부사항
-- Int.random(in:) 함수 사용
-- 배열에 contains, append 함수 사용
-
-
-📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2020_11_08_baseballGame)
-
-🖇 해당 주차 TIL
-- 컴퓨터의 역사, 컴퓨터의 구성, 컴퓨터의 연산 : [2020_11_05](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_05.md)
-- optional : [2020_11_06](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_06.md)
-
-</br>
-
-### 세번째 프로젝트 - 웹 브라우저
+### 두번째 프로젝트 - 웹 브라우저
 🗓 기간 : 2020/11/09 ~ 2020/11/13(5d)
 
-📝 설명 : 컴퓨터와 야구게임(console app)
+📝 설명 : WKWebView을 사용한 웹 브라우저 app
 
-<img width="300" src="">
+<img width="300" src="https://user-images.githubusercontent.com/49546979/107150699-78f6f100-69a2-11eb-9e87-af8669304bbe.gif">
 
 🗂 세부사항
-- 
+- WKWebView(goBack, goForward, reload 등) 사용
+- 정규식을 사용하여 URL주소의 유효성 검증
+- alert 사용
 
 📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2020_11_13_webBrowser)
 
 🖇 해당 주차 TIL
--  : []()
+-  H.I.G(textView와 textField의 차이), 전역변수 단점 : [2020_11_09](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_09.md)
+-  타입, 정규표현식 : [2020_11_09](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_12.md)
+-  OOP의 특징 : [2020_11_09](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_13.md)
 
 </br>
 
-### 네번째 프로젝트 - 주스 메이커
-🗓 기간 : 2020_11_16 ~ 2020_2020_11_29(2w)
+### 세번째 프로젝트 - 주스 메이커
+🗓 기간 : 2020/11/16 ~ 2020/11/29(2w)
 
-📝 설명 : 
+📝 설명 : 맛있는 주스를 만들고, 재고 관리까지 해주는 app
 
-<img width="300" src="">
+<img width="600" src="https://user-images.githubusercontent.com/49546979/107152042-266d0300-69a9-11eb-8842-3eac77a01067.gif">
 
 🗂 세부사항
-- 
+- 읽기전용 프로퍼티 사용
+- enum의 연산프로퍼티 사용
+- CustomStringConvertible 프로토콜을 활용하여 enum의 description 구현
+- Dictionary 사용
+- 예외처리(throws, do-catch, try) 사용
+- Error 프로토콜을 채택한 enum 구현
+- typealias 사용 
+- 싱글턴 사용
+- stepper 사용
 
 📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2020_11_29_juiceMaker)
 
 🖇 해당 주차 TIL
--  : []()
+- struct와 class, 값타입과 참조타입, 프로퍼티, 디자인패턴, 솔리드원칙 : [2020_11_16](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_16.md)
+- Access control : [2020_11_17](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_17.md)
+- if vs guard : [2020_11_19](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_19.md)
+- init vs 프로퍼티 직접 초기화 : [2020_11_23](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_23.md)
+- KVO, 노티피케이션 센터 : [2020_11_26](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_26.md)
 
 </br>
 
-### 다섯번째 프로젝트 - 회원가입
+### 네번째 프로젝트 - 회원가입
 🗓 기간 : 2020/11/30 ~ 2020/12/06(1w)
 
 📝 설명 : 
@@ -138,7 +110,7 @@
 
 </br>
 
-### 여섯번째 프로젝트 - 계산기
+### 다섯번째 프로젝트 - 계산기
 🗓 기간 : 2020/12/07 ~ 2020/12/20(2w)
 
 📝 설명 : 
@@ -155,7 +127,7 @@
 
 </br>
 
-### 일곱번째 프로젝트 - 만국박람회
+### 여섯번째 프로젝트 - 만국박람회
 🗓 기간 : 2020/12/21 ~ 2021/12/27(1w)
 
 📝 설명 : 
@@ -171,7 +143,7 @@
 
 </br>
 
-### 여덟번째 프로젝트 - 은행 창구 매니저
+### 일곱번째 프로젝트 - 은행 창구 매니저
 🗓 기간 : 2021/01/04 ~ 2021/01/17(2w)
 
 📝 설명 : (console app)
@@ -187,7 +159,7 @@
 
 </br>
 
-### 아홉번째 프로젝트 - 날씨정보
+### 여덟번째 프로젝트 - 날씨정보
 🗓 기간 : 2021/01_18 ~ 2012/01/24(1w)
 
 📝 설명 : 
@@ -203,7 +175,7 @@
 
 </br>
 
-### 열번째 프로젝트 - 오픈 마켓
+### 째 프로젝트 - 오픈 마켓
 🗓 기간 : 
 
 📝 설명 : 
