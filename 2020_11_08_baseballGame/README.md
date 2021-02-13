@@ -9,9 +9,6 @@
 - Int.random(in:) 함수 사용
 - 배열에 contains, append 함수 사용
 
-
-📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2020_11_08_baseballGame)
-
 🖇 해당 주차 TIL
 - 컴퓨터의 역사, 컴퓨터의 구성, 컴퓨터의 연산 : [2020_11_05](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_05.md)
 - optional : [2020_11_06](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_06.md)
