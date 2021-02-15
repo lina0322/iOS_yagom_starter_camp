@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8280AFC625DA6759004EA888 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8280AFC525DA6759004EA888 /* Note.swift */; };
+		8280AFCB25DA6BC9004EA888 /* NoteJSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8280AFCA25DA6BC9004EA888 /* NoteJSONDecoder.swift */; };
+		8280AFD425DA6ED6004EA888 /* NoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8280AFD325DA6ED6004EA888 /* NoteTableViewController.swift */; };
 		C7481C6E25BBCF3900B9CA55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7481C6D25BBCF3900B9CA55 /* AppDelegate.swift */; };
 		C7481C7025BBCF3900B9CA55 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7481C6F25BBCF3900B9CA55 /* SceneDelegate.swift */; };
 		C7481C7225BBCF3900B9CA55 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7481C7125BBCF3900B9CA55 /* ViewController.swift */; };
@@ -36,6 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8280AFC525DA6759004EA888 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		8280AFCA25DA6BC9004EA888 /* NoteJSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteJSONDecoder.swift; sourceTree = "<group>"; };
+		8280AFD325DA6ED6004EA888 /* NoteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewController.swift; sourceTree = "<group>"; };
 		C7481C6A25BBCF3900B9CA55 /* CloudNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7481C6D25BBCF3900B9CA55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7481C6F25BBCF3900B9CA55 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +84,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8280AFC425DA6739004EA888 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8280AFC525DA6759004EA888 /* Note.swift */,
+				8280AFCA25DA6BC9004EA888 /* NoteJSONDecoder.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8280AFD225DA6EAF004EA888 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8280AFD325DA6ED6004EA888 /* NoteTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		C7481C6125BBCF3900B9CA55 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +124,8 @@
 		C7481C6C25BBCF3900B9CA55 /* CloudNotes */ = {
 			isa = PBXGroup;
 			children = (
+				8280AFD225DA6EAF004EA888 /* Controller */,
+				8280AFC425DA6739004EA888 /* Model */,
 				C7481C6D25BBCF3900B9CA55 /* AppDelegate.swift */,
 				C7481C6F25BBCF3900B9CA55 /* SceneDelegate.swift */,
 				C7481C7125BBCF3900B9CA55 /* ViewController.swift */,
@@ -261,6 +286,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8280AFD425DA6ED6004EA888 /* NoteTableViewController.swift in Sources */,
+				8280AFCB25DA6BC9004EA888 /* NoteJSONDecoder.swift in Sources */,
+				8280AFC625DA6759004EA888 /* Note.swift in Sources */,
 				C7481C7225BBCF3900B9CA55 /* ViewController.swift in Sources */,
 				C7481C6E25BBCF3900B9CA55 /* AppDelegate.swift in Sources */,
 				C7481C7025BBCF3900B9CA55 /* SceneDelegate.swift in Sources */,

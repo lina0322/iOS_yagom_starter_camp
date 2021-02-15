@@ -5,17 +5,20 @@
 //  Created by 김태형 on 2021/02/15.
 //
 
-import Foundation
+import UIKit
 
-struct JSONDecoder {
+struct NoteJSONDecoder {
     let jsonDecoder = JSONDecoder()
+    var notes: [Note] = []
     
-    guard let dataAsset = NSDataAsset(name: "items") else {
-    return
-    }
-    do {
-    self.entryOfKorea = try jsonDecoder.decode([Note].self, from: dataAsset.data)
-    } catch {
-    debugPrint("Error")
+    mutating func decodeData() {
+        guard let dataAsset = NSDataAsset(name: "sample") else {
+            return
+        }
+        do {
+            self.notes = try jsonDecoder.decode([Note].self, from: dataAsset.data)
+        } catch {
+            debugPrint("Error")
+        }
     }
 }
