@@ -12,29 +12,25 @@ class NoteTableViewCell: UITableViewCell {
     let titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = .preferredFont(forTextStyle: .headline)
+        titleLabel.font = .preferredFont(forTextStyle: .title1)
         titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.textColor = .black
-        titleLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        titleLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return titleLabel
     }()
     let lastModifiedDateLabel: UILabel = {
         let lastModifiedDateLabel = UILabel()
         lastModifiedDateLabel.translatesAutoresizingMaskIntoConstraints = false
         lastModifiedDateLabel.font = .preferredFont(forTextStyle: .body)
-        lastModifiedDateLabel.adjustsFontSizeToFitWidth = true
         lastModifiedDateLabel.adjustsFontForContentSizeCategory = true
         lastModifiedDateLabel.textColor = .black
-        lastModifiedDateLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        lastModifiedDateLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        lastModifiedDateLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        lastModifiedDateLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return lastModifiedDateLabel
     }()
     let detailLabel: UILabel = {
         let detailLabel = UILabel()
         detailLabel.translatesAutoresizingMaskIntoConstraints = false
         detailLabel.font = .preferredFont(forTextStyle: .body)
-        detailLabel.adjustsFontSizeToFitWidth = false
         detailLabel.adjustsFontForContentSizeCategory = true
         detailLabel.textColor = .gray
         detailLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
@@ -52,21 +48,21 @@ class NoteTableViewCell: UITableViewCell {
     }
     
     private func setUpConstraints() {
-        addSubview(titleLabel)
-        addSubview(lastModifiedDateLabel)
-        addSubview(detailLabel)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(lastModifiedDateLabel)
+        contentView.addSubview(detailLabel)
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-//            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
-//            titleLabel.bottomAnchor.constraint(equalTo: lastModifiedDateLabel.topAnchor),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             
             lastModifiedDateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-            lastModifiedDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            lastModifiedDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            lastModifiedDateLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             
-            detailLabel.leadingAnchor.constraint(equalTo: lastModifiedDateLabel.trailingAnchor, constant: 5),
-//            detailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            detailLabel.leadingAnchor.constraint(equalTo: lastModifiedDateLabel.trailingAnchor, constant: 40),
+            detailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             detailLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             detailLabel.bottomAnchor.constraint(equalTo: lastModifiedDateLabel.bottomAnchor)
         ])

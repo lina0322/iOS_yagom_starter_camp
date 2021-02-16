@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NoteTableViewController: UIViewController {
+class NoteViewController: UIViewController, UITableViewDelegate {
     let tableView = UITableView()
     var noteList = [Note]()
     let dateFormatter = DateFormat()
@@ -16,14 +16,19 @@ class NoteTableViewController: UIViewController {
         var decoder: NoteJSONDecoder = NoteJSONDecoder()
         decoder.decodeData()
         noteList = decoder.notes
+        view.backgroundColor = .white
         setUpTableView()
+        setUpNavigationItem()
     }
     
     private func setUpTableView() {
         tableView.dataSource = self
+        tableView.delegate = self
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 70
+        view.addSubview(tableView)
         self.tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: NoteTableViewCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(tableView)
         
         let safeLayoutGuide = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
@@ -35,8 +40,7 @@ class NoteTableViewController: UIViewController {
     }
 }
 
-
-extension NoteTableViewController: UITableViewDataSource {
+extension NoteViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return noteList.count
     }
@@ -59,5 +63,4 @@ extension NoteTableViewController: UITableViewDataSource {
         
         return cell
     }
-    
 }
