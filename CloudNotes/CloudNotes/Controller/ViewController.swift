@@ -13,6 +13,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setUpView()
     }
+    
     private func setUpView() {
         addChild(noteTableViewController)
         self.view.addSubview(noteTableViewController.view)
