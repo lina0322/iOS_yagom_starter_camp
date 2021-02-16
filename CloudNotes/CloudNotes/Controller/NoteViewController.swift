@@ -11,6 +11,10 @@ class NoteViewController: UIViewController, UITableViewDelegate {
     let tableView = UITableView()
     var noteList = [Note]()
     let dateFormatter = DateFormat()
+    lazy var addNoteButton: UIBarButtonItem = {
+        let button =  UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped(_:)))
+        return button
+    }()
     
     override func viewDidLoad() {
         var decoder: NoteJSONDecoder = NoteJSONDecoder()
@@ -37,6 +41,15 @@ class NoteViewController: UIViewController, UITableViewDelegate {
             tableView.topAnchor.constraint(equalTo: safeLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: safeLayoutGuide.bottomAnchor)
         ])
+    }
+    
+    private func setUpNavigationItem() {
+        self.navigationItem.rightBarButtonItem = addNoteButton
+        self.navigationItem.title = "메뉴"
+    }
+    
+    @objc private func addButtonTapped(_ sender: Any) {
+        print("button pressed")
     }
 }
 
