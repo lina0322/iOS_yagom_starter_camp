@@ -28,8 +28,6 @@ class NoteViewController: UIViewController, UITableViewDelegate {
     private func setUpTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 70
         view.addSubview(tableView)
         self.tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: NoteTableViewCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
