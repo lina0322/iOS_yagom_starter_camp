@@ -6,3 +6,19 @@
 //
 
 import Foundation
+
+enum NoteError: Error {
+    case decodingFailure
+    case wrongData
+}
+
+extension NoteError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .decodingFailure:
+            return "Decoding fail"
+        case .wrongData:
+            return "Wrong data"
+        }
+    }
+}
