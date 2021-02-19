@@ -10,6 +10,7 @@ import Foundation
 enum NoteError: Error {
     case decodingFailure
     case wrongData
+    case cellError
 }
 
 extension NoteError: LocalizedError {
@@ -19,6 +20,8 @@ extension NoteError: LocalizedError {
             return "Decoding fail"
         case .wrongData:
             return "Wrong data"
+        case .cellError:
+            return "Cell error"
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  MemoSplitViewController.swift
+//  NoteSplitViewController.swift
 //  CloudNotes
 //
 //  Created by 김태형 on 2021/02/19.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MemoSplitViewController: UISplitViewController {
+final class NoteSplitViewController: UISplitViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +17,7 @@ class MemoSplitViewController: UISplitViewController {
     }
     
     private func setControllers() {
-        let tableView:UIViewController = NoteViewController()
+        let tableView:UIViewController = NoteTableViewController()
         let detailView:UIViewController = DetailViewController()
         let navigationController = UINavigationController(rootViewController: tableView)
         
@@ -26,7 +26,7 @@ class MemoSplitViewController: UISplitViewController {
     }
 }
 
-extension MemoSplitViewController: UISplitViewControllerDelegate {
+extension NoteSplitViewController: UISplitViewControllerDelegate {
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
         return true
     }

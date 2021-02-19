@@ -9,8 +9,8 @@ import UIKit
 
 class DetailViewController: UIViewController, UITextViewDelegate {
     let textView = UITextView()
-    var memoTitle: String = ""
-    var memoBody: String = ""
+    var noteTitle: String = ""
+    var noteBody: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +21,8 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         view.addSubview(textView)
         textView.delegate = self
         textView.translatesAutoresizingMaskIntoConstraints = false
-        let content = NSMutableAttributedString(string: "\(memoTitle) \n \(memoBody)")
-        content.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 20.0), range: NSMakeRange(0, memoTitle.count))
+        let content = NSMutableAttributedString(string: "\(noteTitle) \n \(noteBody)")
+        content.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 20.0), range: NSMakeRange(0, noteTitle.count))
         textView.attributedText = content
         
         let safeLayoutGuide = view.safeAreaLayoutGuide
