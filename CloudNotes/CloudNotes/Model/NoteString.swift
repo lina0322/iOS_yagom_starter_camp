@@ -5,4 +5,7 @@
 //  Created by 김태형 on 2021/02/19.
 //
 
-import Foundation
+enum NoteString {
+    static let memo = "메모"
+    static let sample = "sample"
+}
