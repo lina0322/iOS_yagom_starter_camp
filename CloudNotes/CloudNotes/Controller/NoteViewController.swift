@@ -10,7 +10,7 @@ import UIKit
 class NoteViewController: UIViewController, UITableViewDelegate {
     let tableView = UITableView()
     var noteList = [Note]()
-    let dateFormatter = DateFormat()
+    let dateFormatter = DateFormatter()
     lazy var addNoteButton: UIBarButtonItem = {
         let button =  UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped(_:)))
         return button
@@ -49,6 +49,15 @@ class NoteViewController: UIViewController, UITableViewDelegate {
     @objc private func addButtonTapped(_ sender: Any) {
         print("button pressed")
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if traitCollection.verticalSizeClass == .compact {
+            
+        } else {
+            
+        }
+    }
 }
 
 extension NoteViewController: UITableViewDataSource {
@@ -70,7 +79,7 @@ extension NoteViewController: UITableViewDataSource {
         
         cell.titleLabel.text = title
         cell.detailLabel.text = body
-        cell.lastModifiedDateLabel.text = dateFormatter.convertFormat(unixTimeStamp: lastModifiedDate)
+        cell.lastModifiedDateLabel.text = DateFormatter.convertToUserLocaleString(unixTimeStamp: lastModifiedDate)
         
         return cell
     }

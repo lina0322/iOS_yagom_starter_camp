@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct DateFormat {
-    func convertFormat(unixTimeStamp: Int) -> String {
+extension DateFormatter {
+    static func convertToUserLocaleString(unixTimeStamp: Int) -> String {
         let dateFormatter = DateFormatter()
         let date = Date(timeIntervalSince1970: TimeInterval(unixTimeStamp))
         let locale = Locale.current.identifier
