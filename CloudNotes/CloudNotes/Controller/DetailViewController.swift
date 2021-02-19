@@ -26,7 +26,7 @@ final class DetailViewController: UIViewController {
         configureTextView()
     }
     
-    func configureTextView() {
+    private func configureTextView() {
         detailTextView.delegate = self
         view.addSubview(detailTextView)
         let safeArea = view.safeAreaLayoutGuide
@@ -40,6 +40,15 @@ final class DetailViewController: UIViewController {
         let content = NSMutableAttributedString(string: "\(noteTitle) \n \(noteBody)")
         content.addAttribute(NSAttributedString.Key.font, value: UIFont.preferredFont(forTextStyle: .title1), range: NSMakeRange(0, noteTitle.count))
         detailTextView.attributedText = content
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if traitCollection.verticalSizeClass == .compact {
+            navigationController?.navigationBar.isHidden = true
+        } else {
+            navigationController?.navigationBar.isHidden = false
+        }
     }
 }
 
