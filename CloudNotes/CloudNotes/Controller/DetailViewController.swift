@@ -7,31 +7,42 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UITextViewDelegate {
-    let textView = UITextView()
-    var noteTitle: String = ""
-    var noteBody: String = ""
+final class DetailViewController: UIViewController {
+    var noteTitle: String = String.empty
+    var noteBody: String = String.empty
+    private let detailTextView: UITextView = {
+        let textView = UITextView()
+        textView.isEditable = false
+        textView.dataDetectorTypes = .all
+        textView.adjustsFontForContentSizeCategory = true
+        textView.font = .preferredFont(forTextStyle: .body)
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.textContainerInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        return textView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpTextView()
+        configureTextView()
     }
     
-    func setUpTextView() {
-        view.addSubview(textView)
-        textView.delegate = self
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        let content = NSMutableAttributedString(string: "\(noteTitle) \n \(noteBody)")
-        content.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 20.0), range: NSMakeRange(0, noteTitle.count))
-        textView.attributedText = content
-        
-        let safeLayoutGuide = view.safeAreaLayoutGuide
+    func configureTextView() {
+        detailTextView.delegate = self
+        view.addSubview(detailTextView)
+        let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            textView.leadingAnchor.constraint(equalTo: safeLayoutGuide.leadingAnchor),
-            textView.trailingAnchor.constraint(equalTo: safeLayoutGuide.trailingAnchor),
-            textView.topAnchor.constraint(equalTo: safeLayoutGuide.topAnchor),
-            textView.bottomAnchor.constraint(equalTo: safeLayoutGuide.bottomAnchor)
+            detailTextView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            detailTextView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            detailTextView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            detailTextView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
         ])
+        
+        let content = NSMutableAttributedString(string: "\(noteTitle) \n \(noteBody)")
+        content.addAttribute(NSAttributedString.Key.font, value: UIFont.preferredFont(forTextStyle: .title1), range: NSMakeRange(0, noteTitle.count))
+        detailTextView.attributedText = content
     }
 }
 
+extension DetailViewController: UITextViewDelegate {
+    
+}
