@@ -7,23 +7,31 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
-
+class DetailViewController: UIViewController, UITextViewDelegate {
+    let textView = UITextView()
+    var memoTitle: String = ""
+    var memoBody: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setUpTextView()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setUpTextView() {
+        view.addSubview(textView)
+        textView.delegate = self
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        let content = NSMutableAttributedString(string: "\(memoTitle) \n \(memoBody)")
+        content.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 20.0), range: NSMakeRange(0, memoTitle.count))
+        textView.attributedText = content
+        
+        let safeLayoutGuide = view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            textView.leadingAnchor.constraint(equalTo: safeLayoutGuide.leadingAnchor),
+            textView.trailingAnchor.constraint(equalTo: safeLayoutGuide.trailingAnchor),
+            textView.topAnchor.constraint(equalTo: safeLayoutGuide.topAnchor),
+            textView.bottomAnchor.constraint(equalTo: safeLayoutGuide.bottomAnchor)
+        ])
     }
-    */
-
 }
+
