@@ -17,9 +17,11 @@ class NoteViewController: UIViewController, UITableViewDelegate {
     }()
     
     override func viewDidLoad() {
-        var decoder: NoteJSONDecoder = NoteJSONDecoder()
-        decoder.decodeData()
-        noteList = decoder.notes
+        guard let dataAsset = NSDataAsset(name: NoteString.sample)?.data else {
+            return
+        }
+        NoteJSONDecoder.decodeData(dataAsset)
+        noteList = NoteJSONDecoder.notes
         view.backgroundColor = .white
         setUpTableView()
         setUpNavigationItem()
@@ -43,20 +45,11 @@ class NoteViewController: UIViewController, UITableViewDelegate {
     
     private func setUpNavigationItem() {
         self.navigationItem.rightBarButtonItem = addNoteButton
-        self.navigationItem.title = "메뉴"
+        self.navigationItem.title = NoteString.memo
     }
     
     @objc private func addButtonTapped(_ sender: Any) {
         print("button pressed")
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        if traitCollection.verticalSizeClass == .compact {
-            
-        } else {
-            
-        }
     }
 }
 
@@ -69,7 +62,7 @@ extension NoteViewController: UITableViewDataSource {
         let note = noteList[indexPath.row]
         let title = note.title
         let body = note.body
-        let lastModifiedDate = note.lastModified
+        let lastModifiedDate = note.lastModifiedDate
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NoteTableViewCell.identifier, for: indexPath) as? NoteTableViewCell else {
             debugPrint("CellError")
@@ -79,8 +72,7 @@ extension NoteViewController: UITableViewDataSource {
         
         cell.titleLabel.text = title
         cell.detailLabel.text = body
-        cell.lastModifiedDateLabel.text = DateFormatter.convertToUserLocaleString(unixTimeStamp: lastModifiedDate)
-        
+        cell.lastModifiedDateLabel.text = lastModifiedDate
         return cell
     }
     

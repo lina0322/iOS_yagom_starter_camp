@@ -14,6 +14,8 @@
 		82897EF925DB86B400433BA7 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82897EF825DB86B400433BA7 /* Extension.swift */; };
 		82EEF6DF25DF8E14001CD667 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EEF6DE25DF8E14001CD667 /* SplitViewController.swift */; };
 		82EEF6E425DF9002001CD667 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EEF6E325DF9002001CD667 /* DetailViewController.swift */; };
+		82EEF6EF25DFBDC8001CD667 /* NoteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EEF6EE25DFBDC8001CD667 /* NoteError.swift */; };
+		82EEF6F425DFBFF0001CD667 /* NoteString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EEF6F325DFBFF0001CD667 /* NoteString.swift */; };
 		C7481C6E25BBCF3900B9CA55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7481C6D25BBCF3900B9CA55 /* AppDelegate.swift */; };
 		C7481C7025BBCF3900B9CA55 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7481C6F25BBCF3900B9CA55 /* SceneDelegate.swift */; };
 		C7481C7825BBCF3900B9CA55 /* CloudNotes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C7481C7625BBCF3900B9CA55 /* CloudNotes.xcdatamodeld */; };
@@ -48,6 +50,8 @@
 		82897EF825DB86B400433BA7 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		82EEF6DE25DF8E14001CD667 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		82EEF6E325DF9002001CD667 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		82EEF6EE25DFBDC8001CD667 /* NoteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteError.swift; sourceTree = "<group>"; };
+		82EEF6F325DFBFF0001CD667 /* NoteString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteString.swift; sourceTree = "<group>"; };
 		C7481C6A25BBCF3900B9CA55 /* CloudNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7481C6D25BBCF3900B9CA55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7481C6F25BBCF3900B9CA55 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,7 +97,8 @@
 			children = (
 				8280AFC525DA6759004EA888 /* Note.swift */,
 				8280AFCA25DA6BC9004EA888 /* NoteJSONDecoder.swift */,
-				82897EF825DB86B400433BA7 /* Extension.swift */,
+				82EEF6EE25DFBDC8001CD667 /* NoteError.swift */,
+				82EEF6F325DFBFF0001CD667 /* NoteString.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -142,6 +147,7 @@
 			children = (
 				8280AFC425DA6739004EA888 /* Model */,
 				8280AFD225DA6EAF004EA888 /* Controller */,
+				82897EF825DB86B400433BA7 /* Extension.swift */,
 				C7481C6D25BBCF3900B9CA55 /* AppDelegate.swift */,
 				C7481C6F25BBCF3900B9CA55 /* SceneDelegate.swift */,
 				C7481C7925BBCF3A00B9CA55 /* Assets.xcassets */,
@@ -299,8 +305,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82EEF6F425DFBFF0001CD667 /* NoteString.swift in Sources */,
 				8280AFD425DA6ED6004EA888 /* NoteViewController.swift in Sources */,
 				8280AFCB25DA6BC9004EA888 /* NoteJSONDecoder.swift in Sources */,
+				82EEF6EF25DFBDC8001CD667 /* NoteError.swift in Sources */,
 				8280AFC625DA6759004EA888 /* Note.swift in Sources */,
 				8280AFDC25DA893B004EA888 /* NoteTableViewCell.swift in Sources */,
 				82897EF925DB86B400433BA7 /* Extension.swift in Sources */,

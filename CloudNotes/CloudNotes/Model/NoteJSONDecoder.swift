@@ -8,17 +8,13 @@
 import UIKit
 
 struct NoteJSONDecoder {
-    let jsonDecoder = JSONDecoder()
-    var notes: [Note] = []
+    static var notes: [Note] = []
     
-    mutating func decodeData() {
-        guard let dataAsset = NSDataAsset(name: "sample") else {
-            return
-        }
+    static func decodeData(_ data: Data) {
         do {
-            self.notes = try jsonDecoder.decode([Note].self, from: dataAsset.data)
+            self.notes = try JSONDecoder().decode([Note].self, from: data)
         } catch {
-            debugPrint("Error")
+            debugPrint(NoteError.decodingFailure.localizedDescription)
         }
     }
 }
