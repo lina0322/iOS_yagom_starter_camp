@@ -1,5 +1,5 @@
 //
-//  SplitViewController.swift
+//  MemoSplitViewController.swift
 //  CloudNotes
 //
 //  Created by 김태형 on 2021/02/19.
@@ -7,26 +7,26 @@
 
 import UIKit
 
-class MemoViewController: UISplitViewController {
+class MemoSplitViewController: UISplitViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
-        self.preferredDisplayMode = .oneBesideSecondary
         view.backgroundColor = .white
+        setControllers()
+    }
+    
+    private func setControllers() {
         let tableView:UIViewController = NoteViewController()
         let detailView:UIViewController = DetailViewController()
         let navigationController = UINavigationController(rootViewController: tableView)
-        self.viewControllers = [navigationController, detailView]
         
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        self.preferredDisplayMode = .oneBesideSecondary
+        self.viewControllers = [navigationController, detailView]
     }
 }
 
-extension MemoViewController: UISplitViewControllerDelegate {
+extension MemoSplitViewController: UISplitViewControllerDelegate {
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
         return true
     }
