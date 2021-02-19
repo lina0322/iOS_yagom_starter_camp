@@ -11,7 +11,7 @@ extension DateFormatter {
     static func convertToUserLocaleString(unixTimeStamp: Int) -> String {
         let dateFormatter = DateFormatter()
         let date = Date(timeIntervalSince1970: TimeInterval(unixTimeStamp))
-        let locale = Locale.current.identifier
+        let locale = Locale.autoupdatingCurrent.identifier
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
         dateFormatter.locale = Locale(identifier: locale)
