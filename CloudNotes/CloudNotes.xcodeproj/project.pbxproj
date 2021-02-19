@@ -12,6 +12,8 @@
 		8280AFD425DA6ED6004EA888 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8280AFD325DA6ED6004EA888 /* NoteViewController.swift */; };
 		8280AFDC25DA893B004EA888 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8280AFDB25DA893B004EA888 /* NoteTableViewCell.swift */; };
 		82897EF925DB86B400433BA7 /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82897EF825DB86B400433BA7 /* DateFormat.swift */; };
+		82EEF6DF25DF8E14001CD667 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EEF6DE25DF8E14001CD667 /* SplitViewController.swift */; };
+		82EEF6E425DF9002001CD667 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EEF6E325DF9002001CD667 /* DetailViewController.swift */; };
 		C7481C6E25BBCF3900B9CA55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7481C6D25BBCF3900B9CA55 /* AppDelegate.swift */; };
 		C7481C7025BBCF3900B9CA55 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7481C6F25BBCF3900B9CA55 /* SceneDelegate.swift */; };
 		C7481C7825BBCF3900B9CA55 /* CloudNotes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C7481C7625BBCF3900B9CA55 /* CloudNotes.xcdatamodeld */; };
@@ -44,6 +46,8 @@
 		8280AFD325DA6ED6004EA888 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		8280AFDB25DA893B004EA888 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		82897EF825DB86B400433BA7 /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
+		82EEF6DE25DF8E14001CD667 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
+		82EEF6E325DF9002001CD667 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C7481C6A25BBCF3900B9CA55 /* CloudNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7481C6D25BBCF3900B9CA55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7481C6F25BBCF3900B9CA55 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				8280AFD325DA6ED6004EA888 /* NoteViewController.swift */,
+				82EEF6E325DF9002001CD667 /* DetailViewController.swift */,
+				82EEF6DE25DF8E14001CD667 /* SplitViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -298,7 +304,9 @@
 				8280AFC625DA6759004EA888 /* Note.swift in Sources */,
 				8280AFDC25DA893B004EA888 /* NoteTableViewCell.swift in Sources */,
 				82897EF925DB86B400433BA7 /* DateFormat.swift in Sources */,
+				82EEF6DF25DF8E14001CD667 /* SplitViewController.swift in Sources */,
 				C7481C6E25BBCF3900B9CA55 /* AppDelegate.swift in Sources */,
+				82EEF6E425DF9002001CD667 /* DetailViewController.swift in Sources */,
 				C7481C7025BBCF3900B9CA55 /* SceneDelegate.swift in Sources */,
 				C7481C7825BBCF3900B9CA55 /* CloudNotes.xcdatamodeld in Sources */,
 			);
