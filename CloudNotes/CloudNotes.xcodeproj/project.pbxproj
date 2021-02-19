@@ -104,6 +104,7 @@
 				8280AFD325DA6ED6004EA888 /* NoteViewController.swift */,
 				82EEF6E325DF9002001CD667 /* DetailViewController.swift */,
 				82EEF6DE25DF8E14001CD667 /* SplitViewController.swift */,
+				8280AFE025DA893E004EA888 /* Cell */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -139,9 +140,8 @@
 		C7481C6C25BBCF3900B9CA55 /* CloudNotes */ = {
 			isa = PBXGroup;
 			children = (
-				8280AFE025DA893E004EA888 /* Cell */,
-				8280AFD225DA6EAF004EA888 /* Controller */,
 				8280AFC425DA6739004EA888 /* Model */,
+				8280AFD225DA6EAF004EA888 /* Controller */,
 				C7481C6D25BBCF3900B9CA55 /* AppDelegate.swift */,
 				C7481C6F25BBCF3900B9CA55 /* SceneDelegate.swift */,
 				C7481C7925BBCF3A00B9CA55 /* Assets.xcassets */,

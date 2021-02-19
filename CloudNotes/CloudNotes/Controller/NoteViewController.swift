@@ -74,4 +74,11 @@ extension NoteViewController: UITableViewDataSource {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailView = DetailViewController()
+        detailView.memoTitle = noteList[indexPath.row].title
+        detailView.memoBody = noteList[indexPath.row].body
+        splitViewController?.showDetailViewController(detailView, sender: nil)
+    }
 }

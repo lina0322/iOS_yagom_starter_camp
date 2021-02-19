@@ -8,13 +8,17 @@
 import UIKit
 
 class SplitViewController: UISplitViewController {
-    var root:UIViewController?
-    var detail:UIViewController?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
         self.preferredDisplayMode = .oneBesideSecondary
+        view.backgroundColor = .white
+        let tableView:UIViewController = NoteViewController()
+        let detailView:UIViewController = DetailViewController()
+        let navigationController = UINavigationController(rootViewController: tableView)
+        self.viewControllers = [navigationController, detailView]
+        
     }
     
     override func didReceiveMemoryWarning() {
