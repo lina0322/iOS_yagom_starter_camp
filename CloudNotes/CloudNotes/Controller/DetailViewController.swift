@@ -27,7 +27,6 @@ final class DetailViewController: UIViewController {
     }
     
     private func configureTextView() {
-        detailTextView.delegate = self
         view.addSubview(detailTextView)
 
         let safeArea = view.safeAreaLayoutGuide
@@ -37,7 +36,7 @@ final class DetailViewController: UIViewController {
             detailTextView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             detailTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        
+               
         let content = NSMutableAttributedString(string: "\(noteTitle) \n\n", attributes: [.font: UIFont.preferredFont(forTextStyle: .title1)])
         content.append(NSMutableAttributedString(string: noteBody, attributes: [.font: UIFont.preferredFont(forTextStyle: .body)]))
         detailTextView.attributedText = content
@@ -53,6 +52,3 @@ final class DetailViewController: UIViewController {
     }
 }
 
-extension DetailViewController: UITextViewDelegate {
-    
-}
