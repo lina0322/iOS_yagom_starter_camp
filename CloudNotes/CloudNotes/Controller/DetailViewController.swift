@@ -35,7 +35,7 @@ final class DetailViewController: UIViewController {
             detailTextView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             detailTextView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
             detailTextView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            detailTextView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
+            detailTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
         let content = NSMutableAttributedString(string: "\(noteTitle) \n\n", attributes: [.font: UIFont.preferredFont(forTextStyle: .title1)])
