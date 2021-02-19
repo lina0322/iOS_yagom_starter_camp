@@ -19,3 +19,7 @@ extension DateFormatter {
         return strDate
     }
 }
+
+extension String {
+    static let empty = ""
+}
