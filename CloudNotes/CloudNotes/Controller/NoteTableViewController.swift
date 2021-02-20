@@ -9,10 +9,6 @@ import UIKit
 
 final class NoteTableViewController: UITableViewController {
     private var noteList = [Note]()
-    lazy var addNoteButton: UIBarButtonItem = {
-        let button =  UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped(_:)))
-        return button
-    }()
     
     override func viewDidLoad() {
         guard let dataAsset = NSDataAsset(name: NoteString.sample)?.data else {
@@ -30,15 +26,16 @@ final class NoteTableViewController: UITableViewController {
     }
     
     private func registerCell() {
-        self.tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: NoteTableViewCell.identifier)
+        tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: NoteTableViewCell.identifier)
     }
     
     private func configureNavigationItem() {
-        self.navigationItem.rightBarButtonItem = addNoteButton
-        self.navigationItem.title = NoteString.memo
+        let addButton =  UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(touchUpAddButton))
+        navigationItem.rightBarButtonItem = addButton
+        navigationItem.title = NoteString.memo
     }
     
-    @objc private func addButtonTapped(_ sender: Any) {
+    @objc private func touchUpAddButton() {
         print("button pressed")
     }
 }
