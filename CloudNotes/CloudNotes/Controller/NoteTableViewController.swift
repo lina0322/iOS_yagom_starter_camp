@@ -52,10 +52,7 @@ extension NoteTableViewController {
             return UITableViewCell()
         }
         let note = noteList[indexPath.row]
-        cell.accessoryType = .disclosureIndicator
-        cell.titleLabel.text = note.title
-        cell.detailLabel.text = note.body
-        cell.lastModifiedDateLabel.text = note.lastModifiedDate
+        cell.configure(note)
         return cell
     }
 }

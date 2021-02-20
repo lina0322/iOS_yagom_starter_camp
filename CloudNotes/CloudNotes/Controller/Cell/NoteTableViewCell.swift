@@ -39,6 +39,12 @@ class NoteTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpConstraints()
     }
+    func configure(_ note: Note) {
+        accessoryType = .disclosureIndicator
+        titleLabel.text = note.title
+        detailLabel.text = note.body
+        lastModifiedDateLabel.text = note.lastModifiedDate
+    }
     
     private func setUpConstraints() {
         contentView.addSubview(titleLabel)
