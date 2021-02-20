@@ -44,11 +44,8 @@ final class DetailViewController: UIViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        if traitCollection.verticalSizeClass == .compact {
-            navigationController?.navigationBar.isHidden = true
-        } else {
-            navigationController?.navigationBar.isHidden = false
-        }
+        let isCompactSize: Bool = traitCollection.verticalSizeClass == .compact
+        navigationController?.navigationBar.isHidden = isCompactSize
     }
 }
 
