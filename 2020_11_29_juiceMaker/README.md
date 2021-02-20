@@ -17,8 +17,6 @@
 - 싱글턴 사용
 - stepper 사용
 
-📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2020_11_29_juiceMaker)
-
 🖇 해당 주차 TIL
 - struct와 class, 값타입과 참조타입, 프로퍼티, 디자인패턴, 솔리드원칙 : [2020_11_16](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_16.md)
 - Access control : [2020_11_17](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_17.md)

@@ -11,8 +11,6 @@
 - class 구현
 - if let과 guard let의 사용
 
-📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2020_11_04_mukchibaGame)
-
 🖇 해당 주차 TIL
 - git 명령어,  git pull request : [2020_11_03](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_03.md)
 
