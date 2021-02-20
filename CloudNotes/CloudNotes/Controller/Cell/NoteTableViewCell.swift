@@ -27,19 +27,19 @@ final class NoteTableViewCell: UITableViewCell {
     }()
     let detailLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .secondaryLabel
         label.adjustsFontForContentSizeCategory = true
         label.font = .preferredFont(forTextStyle: .body)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return label
     }()
-
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureAutoLayout()
     }
-    
+
     private func configureAutoLayout() {
         contentView.addSubview(titleLabel)
         contentView.addSubview(dateLabel)
@@ -53,10 +53,10 @@ final class NoteTableViewCell: UITableViewCell {
             dateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
-
+            
             detailLabel.leadingAnchor.constraint(equalTo: dateLabel.trailingAnchor, constant: 30),
             detailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 5),
-            detailLabel.centerYAnchor.constraint(equalTo: dateLabel.centerYAnchor, constant: 5)
+            detailLabel.centerYAnchor.constraint(equalTo: dateLabel.centerYAnchor)
         ])
     }
     

@@ -10,8 +10,8 @@ import UIKit
 struct NoteJSONDecoder {
     static func decodeData(_ data: Data) -> [Note]? {
         do {
-            let decodeData = try JSONDecoder().decode([Note].self, from: data)
-            return decodeData
+            let decodedData = try JSONDecoder().decode([Note].self, from: data)
+            return decodedData
         } catch {
             debugPrint(NoteError.decodingFailure.localizedDescription)
             return nil

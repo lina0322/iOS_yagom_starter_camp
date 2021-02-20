@@ -10,9 +10,11 @@ import UIKit
 struct Note: Decodable {
     let title: String
     let body: String
-    let lastModified: Int
-    var lastModifiedDate: Date {
-        return Date(timeIntervalSince1970: TimeInterval(lastModified))
+    private let lastModified: Int
+    var lastModifiedDate: String {
+        let date = Date(timeIntervalSince1970: TimeInterval(lastModified))
+        let dateString = DateFormatter.userLocale.string(from: date)
+        return dateString
     }
     
     enum CodingKeys: String, CodingKey {
