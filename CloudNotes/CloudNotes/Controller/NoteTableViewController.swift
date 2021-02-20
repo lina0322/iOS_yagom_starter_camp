@@ -12,7 +12,7 @@ final class NoteTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         guard let dataAsset = NSDataAsset(name: NoteString.sample)?.data else {
-            debugPrint(NoteError.wrongData.localizedDescription)
+            debugPrint(ErrorCase.wrongData.localizedDescription)
             return
         }
         decodeData(dataAsset)
@@ -48,7 +48,7 @@ extension NoteTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NoteTableViewCell.identifier, for: indexPath) as? NoteTableViewCell else {
-            debugPrint(NoteError.cellError.localizedDescription)
+            debugPrint(ErrorCase.cellError.localizedDescription)
             return UITableViewCell()
         }
         let note = noteList[indexPath.row]

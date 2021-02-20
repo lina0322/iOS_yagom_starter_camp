@@ -1,5 +1,5 @@
 //
-//  NoteError.swift
+//  ErrorCase.swift
 //  CloudNotes
 //
 //  Created by 김태형 on 2021/02/19.
@@ -7,13 +7,13 @@
 
 import Foundation
 
-enum NoteError: Error {
+enum ErrorCase: Error {
     case decodingFailure
     case wrongData
     case cellError
 }
 
-extension NoteError: LocalizedError {
+extension ErrorCase: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .decodingFailure:
