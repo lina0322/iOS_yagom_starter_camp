@@ -2,14 +2,14 @@
 //  DetailViewController.swift
 //  CloudNotes
 //
-//  Created by 리나 on 2021/02/19.
+//  Created by 김태형 on 2021/02/19.
 //
 
 import UIKit
 
 final class DetailViewController: UIViewController {
     var noteTitle: String = String.empty
-    var body: String = String.empty
+    var noteBody: String = String.empty
     private let detailTextView: UITextView = {
         let textView = UITextView()
         textView.isEditable = false
@@ -23,27 +23,31 @@ final class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureConstraints()
-        detailTextView.text = "\(noteTitle)\n\n\(body)"
+        configureTextView()
+    }
+    
+    private func configureTextView() {
+        view.addSubview(detailTextView)
+        
+        let safeArea = view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            detailTextView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            detailTextView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            detailTextView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            detailTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        let content = NSMutableAttributedString(string: "\(noteTitle) \n\n", attributes: [.font: UIFont.preferredFont(forTextStyle: .title1)])
+        content.append(NSMutableAttributedString(string: noteBody, attributes: [.font: UIFont.preferredFont(forTextStyle: .body)]))
+        detailTextView.attributedText = content
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        navigationController?.navigationBar.isHidden = false
-
         if traitCollection.verticalSizeClass == .compact {
             navigationController?.navigationBar.isHidden = true
+        } else {
+            navigationController?.navigationBar.isHidden = false
         }
-    }
-    
-    private func configureConstraints() {
-        let safeArea = view.safeAreaLayoutGuide
-        view.addSubview(detailTextView)
-        NSLayoutConstraint.activate([
-            detailTextView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            detailTextView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            detailTextView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            detailTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
     }
 }

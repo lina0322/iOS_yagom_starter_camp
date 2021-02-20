@@ -2,19 +2,19 @@
 //  NoteJSONDecoder.swift
 //  CloudNotes
 //
-//  Created by 리나 on 2021/02/16.
+//  Created by 김태형 on 2021/02/15.
 //
 
 import UIKit
 
 struct NoteJSONDecoder {
-    static func decodeData(_ data: Data) -> [Note]? {
+    static var noteList: [Note] = []
+    
+    static func decodeData(_ data: Data) {
         do {
-            let decodedData = try JSONDecoder().decode([Note].self, from: data)
-            return decodedData
+            self.noteList = try JSONDecoder().decode([Note].self, from: data)
         } catch {
             debugPrint(NoteError.decodingFailure.localizedDescription)
-            return nil
         }
     }
 }

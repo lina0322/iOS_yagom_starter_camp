@@ -2,7 +2,7 @@
 //  NoteTableViewCell.swift
 //  CloudNotes
 //
-//  Created by 리나 on 2021/02/16.
+//  Created by 김태형 on 2021/02/15.
 //
 
 import UIKit
@@ -12,52 +12,58 @@ final class NoteTableViewCell: UITableViewCell {
         return "\(self)"
     }
     let titleLabel: UILabel = {
-        let label = UILabel()
-        label.adjustsFontForContentSizeCategory = true
-        label.font = .preferredFont(forTextStyle: .title1)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+        let titleLabel = UILabel()
+        titleLabel.adjustsFontForContentSizeCategory = true
+        titleLabel.font = .preferredFont(forTextStyle: .title1)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        return titleLabel
     }()
-    let dateLabel: UILabel = {
-        let label = UILabel()
-        label.adjustsFontForContentSizeCategory = true
-        label.font = .preferredFont(forTextStyle: .body)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    let lastModifiedDateLabel: UILabel = {
+        let lastModifiedDateLabel = UILabel()
+        lastModifiedDateLabel.adjustsFontForContentSizeCategory = true
+        lastModifiedDateLabel.font = .preferredFont(forTextStyle: .body)
+        lastModifiedDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        return lastModifiedDateLabel
     }()
     let detailLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .secondaryLabel
-        label.adjustsFontForContentSizeCategory = true
-        label.font = .preferredFont(forTextStyle: .body)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        return label
+        let detailLabel = UILabel()
+        detailLabel.textColor = .gray
+        detailLabel.adjustsFontForContentSizeCategory = true
+        detailLabel.font = .preferredFont(forTextStyle: .body)
+        detailLabel.translatesAutoresizingMaskIntoConstraints = false
+        detailLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        return detailLabel
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configureAutoLayout()
+        setUpConstraints()
     }
-
-    private func configureAutoLayout() {
+    
+    private func setUpConstraints() {
         contentView.addSubview(titleLabel)
-        contentView.addSubview(dateLabel)
+        contentView.addSubview(lastModifiedDateLabel)
         contentView.addSubview(detailLabel)
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
-            dateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-            dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
-            dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+            lastModifiedDateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            lastModifiedDateLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            lastModifiedDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             
-            detailLabel.leadingAnchor.constraint(equalTo: dateLabel.trailingAnchor, constant: 30),
-            detailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 5),
-            detailLabel.centerYAnchor.constraint(equalTo: dateLabel.centerYAnchor)
+            detailLabel.leadingAnchor.constraint(equalTo: lastModifiedDateLabel.trailingAnchor, constant: 40),
+            detailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            detailLabel.centerYAnchor.constraint(equalTo: lastModifiedDateLabel.centerYAnchor)
         ])
+    }
+    
+    override func prepareForReuse() {
+        titleLabel.text = nil
+        lastModifiedDateLabel.text = nil
+        detailLabel.text = nil
     }
     
     required init?(coder: NSCoder) {

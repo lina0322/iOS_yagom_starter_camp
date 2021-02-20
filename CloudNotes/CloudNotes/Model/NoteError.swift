@@ -2,7 +2,7 @@
 //  NoteError.swift
 //  CloudNotes
 //
-//  Created by 리나 on 2021/02/16.
+//  Created by 김태형 on 2021/02/19.
 //
 
 import Foundation
@@ -10,15 +10,18 @@ import Foundation
 enum NoteError: Error {
     case decodingFailure
     case wrongData
+    case cellError
 }
 
 extension NoteError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .decodingFailure:
-            return "디코딩에 실패했습니다."
+            return "Decoding fail"
         case .wrongData:
-            return "잘못된 데이터입니다."
+            return "Wrong data"
+        case .cellError:
+            return "Cell error"
         }
     }
 }

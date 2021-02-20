@@ -1,13 +1,13 @@
 //
-//  SplitViewController.swift
+//  NoteSplitViewController.swift
 //  CloudNotes
 //
-//  Created by 리나 on 2021/02/19.
+//  Created by 김태형 on 2021/02/19.
 //
 
 import UIKit
 
-final class NoteSplitViewController: UISplitViewController, UISplitViewControllerDelegate {
+final class NoteSplitViewController: UISplitViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,17 +15,18 @@ final class NoteSplitViewController: UISplitViewController, UISplitViewControlle
         view.backgroundColor = .white
         setControllers()
     }
-
-    private func setControllers() {
-        let noteViewController = NoteViewController()
-        let detailViewController = DetailViewController()
-        let NoteNavigationController = UINavigationController(rootViewController: noteViewController)
-        
-        viewControllers = [NoteNavigationController, detailViewController]
-        preferredPrimaryColumnWidthFraction = 1/3
-        preferredDisplayMode = .oneBesideSecondary
-    }
     
+    private func setControllers() {
+        let tableView:UIViewController = NoteTableViewController()
+        let detailView:UIViewController = DetailViewController()
+        let navigationController = UINavigationController(rootViewController: tableView)
+        
+        self.preferredDisplayMode = .oneBesideSecondary
+        self.viewControllers = [navigationController, detailView]
+    }
+}
+
+extension NoteSplitViewController: UISplitViewControllerDelegate {
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
         return true
     }

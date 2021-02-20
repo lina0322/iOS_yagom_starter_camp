@@ -2,7 +2,7 @@
 //  NoteString.swift
 //  CloudNotes
 //
-//  Created by 리나 on 2021/02/16.
+//  Created by 김태형 on 2021/02/19.
 //
 
 enum NoteString {
