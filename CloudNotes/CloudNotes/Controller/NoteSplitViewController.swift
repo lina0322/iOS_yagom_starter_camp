@@ -21,8 +21,8 @@ final class NoteSplitViewController: UISplitViewController {
         let detailView:UIViewController = DetailViewController()
         let navigationController = UINavigationController(rootViewController: tableView)
         
-        self.preferredDisplayMode = .oneBesideSecondary
-        self.viewControllers = [navigationController, detailView]
+        preferredDisplayMode = .oneBesideSecondary
+        viewControllers = [navigationController, detailView]
     }
 }
 

@@ -9,10 +9,6 @@ import UIKit
 
 final class NoteTableViewController: UITableViewController {
     private var noteList = [Note]()
-    lazy var addNoteButton: UIBarButtonItem = {
-        let button =  UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped(_:)))
-        return button
-    }()
     
     override func viewDidLoad() {
         guard let dataAsset = NSDataAsset(name: NoteString.sample)?.data else {
@@ -30,15 +26,15 @@ final class NoteTableViewController: UITableViewController {
     }
     
     private func registerCell() {
-        self.tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: NoteTableViewCell.identifier)
+        tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: NoteTableViewCell.identifier)
     }
     
     private func configureNavigationItem() {
-        self.navigationItem.rightBarButtonItem = addNoteButton
-        self.navigationItem.title = NoteString.memo
+        navigationItem.title = NoteString.memo
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(touchUpAddButton))
     }
     
-    @objc private func addButtonTapped(_ sender: Any) {
+    @objc private func touchUpAddButton() {
         print("button pressed")
     }
 }
@@ -55,10 +51,7 @@ extension NoteTableViewController {
             return UITableViewCell()
         }
         let note = noteList[indexPath.row]
-        cell.accessoryType = .disclosureIndicator
-        cell.titleLabel.text = note.title
-        cell.detailLabel.text = note.body
-        cell.lastModifiedDateLabel.text = note.lastModifiedDate
+        cell.configure(note)
         return cell
     }
 }
