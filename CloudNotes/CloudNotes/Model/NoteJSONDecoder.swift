@@ -14,7 +14,7 @@ struct NoteJSONDecoder {
         do {
             self.noteList = try JSONDecoder().decode([Note].self, from: data)
         } catch {
-            debugPrint(NoteError.decodingFailure.localizedDescription)
+            debugPrint(ErrorCase.decodingFailure.localizedDescription)
         }
     }
 }

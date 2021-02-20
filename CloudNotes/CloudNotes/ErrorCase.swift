@@ -7,13 +7,13 @@
 
 import Foundation
 
-enum NoteError: Error {
+enum ErrorCase: Error {
     case decodingFailure
     case wrongData
     case cellError
 }
 
-extension NoteError: LocalizedError {
+extension ErrorCase: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .decodingFailure:
