@@ -11,6 +11,7 @@ enum ErrorCase: Error {
     case decodingFailure
     case wrongData
     case cellError
+    case notSelectedNote
 }
 
 extension ErrorCase: LocalizedError {
@@ -22,6 +23,8 @@ extension ErrorCase: LocalizedError {
             return "Wrong data"
         case .cellError:
             return "Cell error"
+        case .notSelectedNote:
+            return "선택된 노트가 없습니다."
         }
     }
 }

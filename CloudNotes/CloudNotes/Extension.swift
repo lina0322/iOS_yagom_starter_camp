@@ -22,4 +22,5 @@ extension DateFormatter {
 
 extension String {
     static let empty = ""
+    static let newLine = "\n"
 }

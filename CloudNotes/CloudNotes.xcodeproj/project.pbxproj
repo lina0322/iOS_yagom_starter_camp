@@ -97,7 +97,6 @@
 			children = (
 				82EEF71025DFC79B001CD667 /* Note.swift */,
 				8280AFCA25DA6BC9004EA888 /* NoteJSONDecoder.swift */,
-				82EEF6F325DFBFF0001CD667 /* NoteString.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -147,6 +146,7 @@
 				8280AFC425DA6739004EA888 /* Model */,
 				8280AFD225DA6EAF004EA888 /* Controller */,
 				82EEF6EE25DFBDC8001CD667 /* ErrorCase.swift */,
+				82EEF6F325DFBFF0001CD667 /* NoteString.swift */,
 				82897EF825DB86B400433BA7 /* Extension.swift */,
 				C7481C6D25BBCF3900B9CA55 /* AppDelegate.swift */,
 				C7481C6F25BBCF3900B9CA55 /* SceneDelegate.swift */,
