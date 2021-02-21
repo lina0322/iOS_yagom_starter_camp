@@ -9,6 +9,7 @@ import UIKit
 
 final class NoteTableViewController: UITableViewController {
     private var noteList = [Note]()
+    private var noteIndex: Int?
     
     override func viewDidLoad() {
         guard let dataAsset = NSDataAsset(name: NoteString.sample)?.data else {
@@ -37,6 +38,19 @@ final class NoteTableViewController: UITableViewController {
     
     @objc private func touchUpAddButton() {
         print("button pressed")
+        showActionSheet()
+    }
+    
+    private func showActionSheet() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let shareButton = UIAlertAction(title: "Share...", style: .default, handler: nil)
+        let deleteButton = UIAlertAction(title: "Delete", style: .destructive, handler: nil)
+        let cancleButton = UIAlertAction(title: "Cancle", style: .cancel, handler: nil)
+        
+        actionSheet.addAction(shareButton)
+        actionSheet.addAction(deleteButton)
+        actionSheet.addAction(cancleButton)
+        self.present(actionSheet, animated: true, completion: nil)
     }
 }
 
@@ -65,5 +79,9 @@ extension NoteTableViewController {
         detailView.noteBody = noteList[indexPath.row].body
         splitViewController?.showDetailViewController(detailView, sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
+        noteIndex = indexPath.row
     }
 }
+
+// MARK: - UIAlertController
+
