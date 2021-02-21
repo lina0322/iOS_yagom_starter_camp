@@ -43,7 +43,7 @@ final class NoteTableViewController: UITableViewController {
     
     private func showActionSheet() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let shareButton = UIAlertAction(title: "Share...", style: .default, handler: nil)
+        let shareButton = UIAlertAction(title: "Share...", style: .default, handler: { _ in self.showActivityView()})
         let deleteButton = UIAlertAction(title: "Delete", style: .destructive, handler: nil)
         let cancleButton = UIAlertAction(title: "Cancle", style: .cancel, handler: nil)
         
@@ -51,6 +51,16 @@ final class NoteTableViewController: UITableViewController {
         actionSheet.addAction(deleteButton)
         actionSheet.addAction(cancleButton)
         self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    private func showActivityView() {
+        guard let noteIndex = noteIndex else {
+            print("선택된 노트가 없음")
+            return
+        }
+        let shareItem = [noteList[noteIndex].title + "\n" + noteList[noteIndex].body]
+        let activityViewController = UIActivityViewController(activityItems: shareItem, applicationActivities: nil)
+        present(activityViewController, animated: true, completion: nil)
     }
 }
 
