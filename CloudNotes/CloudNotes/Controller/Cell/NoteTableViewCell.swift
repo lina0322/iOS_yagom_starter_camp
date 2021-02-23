@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class NoteTableViewCell: UITableViewCell {
+final class NoteTableViewCell: UITableViewCell {
     static var identifier: String {
         return "\(self)"
     }

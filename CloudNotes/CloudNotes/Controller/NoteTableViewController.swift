@@ -42,11 +42,14 @@ final class NoteTableViewController: UITableViewController {
     }
     
     @objc private func touchUpAddButton() {
-        save("김태형\n 본문입니다.")
+        let detailView = DetailViewController()
+        splitViewController?.showDetailViewController(detailView, sender: nil)
+        
+        save("새로운 메모 \n 추가 텍스트 없음")
         tableView.reloadData()
     }
     
-    func save(_ data: String) {
+    private func save(_ data: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -55,7 +58,7 @@ final class NoteTableViewController: UITableViewController {
             return
         }
         let note = NSManagedObject(entity: entity, insertInto: managedContext)
-        let splitedData = data.split(separator: "\n", maxSplits: 1, omittingEmptySubsequences: false)
+        let splitedData = data.split(separator: "\n", maxSplits: 1, omittingEmptySubsequences: true)
          
         note.setValue(splitedData[0], forKey: "title")
         note.setValue(splitedData[1], forKey: "body")
