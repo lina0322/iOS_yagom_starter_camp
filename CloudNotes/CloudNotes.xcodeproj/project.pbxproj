@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C32FB4525E3B79A007B29B6 /* NoteItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C32FB4325E3B79A007B29B6 /* NoteItem+CoreDataClass.swift */; };
+		4C32FB4625E3B79A007B29B6 /* NoteItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C32FB4425E3B79A007B29B6 /* NoteItem+CoreDataProperties.swift */; };
 		8280AFCB25DA6BC9004EA888 /* NoteJSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8280AFCA25DA6BC9004EA888 /* NoteJSONDecoder.swift */; };
 		8280AFD425DA6ED6004EA888 /* NoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8280AFD325DA6ED6004EA888 /* NoteTableViewController.swift */; };
 		8280AFDC25DA893B004EA888 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8280AFDB25DA893B004EA888 /* NoteTableViewCell.swift */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C32FB4325E3B79A007B29B6 /* NoteItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4C32FB4425E3B79A007B29B6 /* NoteItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8280AFCA25DA6BC9004EA888 /* NoteJSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteJSONDecoder.swift; sourceTree = "<group>"; };
 		8280AFD325DA6ED6004EA888 /* NoteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewController.swift; sourceTree = "<group>"; };
 		8280AFDB25DA893B004EA888 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
@@ -97,6 +101,8 @@
 			children = (
 				82EEF71025DFC79B001CD667 /* Note.swift */,
 				8280AFCA25DA6BC9004EA888 /* NoteJSONDecoder.swift */,
+				4C32FB4325E3B79A007B29B6 /* NoteItem+CoreDataClass.swift */,
+				4C32FB4425E3B79A007B29B6 /* NoteItem+CoreDataProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -310,6 +316,8 @@
 				8280AFCB25DA6BC9004EA888 /* NoteJSONDecoder.swift in Sources */,
 				82EEF6EF25DFBDC8001CD667 /* ErrorCase.swift in Sources */,
 				82EEF71125DFC79B001CD667 /* Note.swift in Sources */,
+				4C32FB4525E3B79A007B29B6 /* NoteItem+CoreDataClass.swift in Sources */,
+				4C32FB4625E3B79A007B29B6 /* NoteItem+CoreDataProperties.swift in Sources */,
 				8280AFDC25DA893B004EA888 /* NoteTableViewCell.swift in Sources */,
 				82897EF925DB86B400433BA7 /* Extension.swift in Sources */,
 				82EEF6DF25DF8E14001CD667 /* NoteSplitViewController.swift in Sources */,
