@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class NoteTableViewCell: UITableViewCell {
     static var identifier: String {
@@ -39,11 +40,13 @@ class NoteTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpConstraints()
     }
-    func configure(_ note: Note) {
+    
+    func configure(_ note: NSManagedObject) {
         accessoryType = .disclosureIndicator
-        titleLabel.text = note.title
-        detailLabel.text = note.body
-        lastModifiedDateLabel.text = note.lastModifiedDate
+        titleLabel.text = note.value(forKey: "title") as? String
+        detailLabel.text = note.value(forKey: "body") as? String
+        let lastModified = DateFormatter.convertToUserLocaleString(date: note.value(forKey: "lastModified") as! Date)
+        lastModifiedDateLabel.text = lastModified
     }
     
     private func setUpConstraints() {

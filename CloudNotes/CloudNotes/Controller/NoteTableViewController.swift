@@ -6,24 +6,29 @@
 //
 
 import UIKit
+import CoreData
 
 final class NoteTableViewController: UITableViewController {
-    private var noteList = [Note]()
-    private var noteIndex: Int?
+    private var noteList: [NSManagedObject] = []
     
     override func viewDidLoad() {
-        guard let dataAsset = NSDataAsset(name: NoteString.sample)?.data else {
-            debugPrint(ErrorCase.wrongData.localizedDescription)
-            return
-        }
-        decodeData(dataAsset)
+        loadCoreData()
         registerCell()
         configureNavigationItem()
     }
     
-    private func decodeData(_ data: Data) {
-        NoteJSONDecoder.decodeData(data)
-        noteList = NoteJSONDecoder.noteList
+    private func loadCoreData() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CloudNote")
+        
+        do {
+            noteList = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error)")
+        }
     }
     
     private func registerCell() {
@@ -37,7 +42,31 @@ final class NoteTableViewController: UITableViewController {
     }
     
     @objc private func touchUpAddButton() {
-        print("button pressed")
+        save("김태형\n 본문입니다.")
+        tableView.reloadData()
+    }
+    
+    func save(_ data: String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        guard let entity = NSEntityDescription.entity(forEntityName: "CloudNote", in: managedContext) else {
+            return
+        }
+        let note = NSManagedObject(entity: entity, insertInto: managedContext)
+        let splitedData = data.split(separator: "\n", maxSplits: 1, omittingEmptySubsequences: false)
+         
+        note.setValue(splitedData[0], forKey: "title")
+        note.setValue(splitedData[1], forKey: "body")
+        note.setValue((Date()), forKey: "lastModified")
+        
+        do {
+            try managedContext.save()
+            noteList.append(note)
+        } catch let error as NSError {
+            print("Could not save. \(error)")
+        }
     }
 }
 
@@ -62,13 +91,11 @@ extension NoteTableViewController {
 extension NoteTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailView = DetailViewController()
-        detailView.noteTitle = noteList[indexPath.row].title
-        detailView.noteBody = noteList[indexPath.row].body
+        guard let noteTitle = noteList[indexPath.row].value(forKey: "title") as? String, let noteBody = noteList[indexPath.row].value(forKey: "body") as? String else {
+            return
+        }
+        detailView.noteTitle = noteTitle
+        detailView.noteBody = noteBody
         splitViewController?.showDetailViewController(detailView, sender: nil)
-        tableView.deselectRow(at: indexPath, animated: true)
-        noteIndex = indexPath.row
     }
 }
-
-// MARK: - UIAlertController
-

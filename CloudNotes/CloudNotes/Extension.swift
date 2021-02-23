@@ -8,9 +8,8 @@
 import Foundation
 
 extension DateFormatter {
-    static func convertToUserLocaleString(unixTimeStamp: Int) -> String {
+    static func convertToUserLocaleString(date: Date) -> String {
         let dateFormatter = DateFormatter()
-        let date = Date(timeIntervalSince1970: TimeInterval(unixTimeStamp))
         let locale = Locale.autoupdatingCurrent.identifier
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
