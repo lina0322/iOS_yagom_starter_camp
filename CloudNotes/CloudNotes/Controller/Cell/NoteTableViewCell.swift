@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import CoreData
 
-class NoteTableViewCell: UITableViewCell {
+final class NoteTableViewCell: UITableViewCell {
     static var identifier: String {
         return "\(self)"
     }
@@ -16,6 +17,8 @@ class NoteTableViewCell: UITableViewCell {
         titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.font = .preferredFont(forTextStyle: .title1)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        titleLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
         return titleLabel
     }()
     let lastModifiedDateLabel: UILabel = {
@@ -23,6 +26,10 @@ class NoteTableViewCell: UITableViewCell {
         lastModifiedDateLabel.adjustsFontForContentSizeCategory = true
         lastModifiedDateLabel.font = .preferredFont(forTextStyle: .body)
         lastModifiedDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        lastModifiedDateLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        lastModifiedDateLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        lastModifiedDateLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        lastModifiedDateLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         return lastModifiedDateLabel
     }()
     let detailLabel: UILabel = {
@@ -32,6 +39,7 @@ class NoteTableViewCell: UITableViewCell {
         detailLabel.font = .preferredFont(forTextStyle: .body)
         detailLabel.translatesAutoresizingMaskIntoConstraints = false
         detailLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        detailLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return detailLabel
     }()
     
@@ -39,11 +47,13 @@ class NoteTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpConstraints()
     }
-    func configure(_ note: Note) {
+    
+    func configure(_ note: NSManagedObject) {
         accessoryType = .disclosureIndicator
-        titleLabel.text = note.title
-        detailLabel.text = note.body
-        lastModifiedDateLabel.text = note.lastModifiedDate
+        titleLabel.text = note.value(forKey: "title") as? String
+        detailLabel.text = note.value(forKey: "body") as? String
+        let lastModified = DateFormatter.convertToUserLocaleString(date: note.value(forKey: "lastModified") as! Date)
+        lastModifiedDateLabel.text = lastModified
     }
     
     private func setUpConstraints() {
@@ -62,7 +72,7 @@ class NoteTableViewCell: UITableViewCell {
             
             detailLabel.leadingAnchor.constraint(equalTo: lastModifiedDateLabel.trailingAnchor, constant: 40),
             detailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            detailLabel.centerYAnchor.constraint(equalTo: lastModifiedDateLabel.centerYAnchor)
+            detailLabel.bottomAnchor.constraint(equalTo: lastModifiedDateLabel.bottomAnchor)
         ])
     }
     

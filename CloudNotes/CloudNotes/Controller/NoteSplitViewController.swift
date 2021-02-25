@@ -11,18 +11,18 @@ final class NoteSplitViewController: UISplitViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.delegate = self
+        delegate = self
         view.backgroundColor = .white
         setControllers()
     }
     
     private func setControllers() {
-        let tableView:UIViewController = NoteTableViewController()
-        let detailView:UIViewController = DetailViewController()
+        let tableView = NoteTableViewController()
+        let detailView = DetailViewController()
         let navigationController = UINavigationController(rootViewController: tableView)
         
-        self.preferredDisplayMode = .oneBesideSecondary
-        self.viewControllers = [navigationController, detailView]
+        preferredDisplayMode = .oneBesideSecondary
+        viewControllers = [navigationController, detailView]
     }
 }
 

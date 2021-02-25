@@ -14,4 +14,5 @@ enum NoteString {
     static let deleteTitle = "진짜요?"
     static let deleteMessage = "정말로 삭제하시겠어요?"
     static let confirm = "확인"
+    static let entityName = "CloudNote"
 }
