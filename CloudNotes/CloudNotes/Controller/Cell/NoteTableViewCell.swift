@@ -17,6 +17,8 @@ final class NoteTableViewCell: UITableViewCell {
         titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.font = .preferredFont(forTextStyle: .title1)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        titleLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
         return titleLabel
     }()
     let lastModifiedDateLabel: UILabel = {
@@ -24,6 +26,10 @@ final class NoteTableViewCell: UITableViewCell {
         lastModifiedDateLabel.adjustsFontForContentSizeCategory = true
         lastModifiedDateLabel.font = .preferredFont(forTextStyle: .body)
         lastModifiedDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        lastModifiedDateLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        lastModifiedDateLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        lastModifiedDateLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        lastModifiedDateLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         return lastModifiedDateLabel
     }()
     let detailLabel: UILabel = {
@@ -33,6 +39,7 @@ final class NoteTableViewCell: UITableViewCell {
         detailLabel.font = .preferredFont(forTextStyle: .body)
         detailLabel.translatesAutoresizingMaskIntoConstraints = false
         detailLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        detailLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return detailLabel
     }()
     
@@ -65,7 +72,7 @@ final class NoteTableViewCell: UITableViewCell {
             
             detailLabel.leadingAnchor.constraint(equalTo: lastModifiedDateLabel.trailingAnchor, constant: 40),
             detailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            detailLabel.centerYAnchor.constraint(equalTo: lastModifiedDateLabel.centerYAnchor)
+            detailLabel.bottomAnchor.constraint(equalTo: lastModifiedDateLabel.bottomAnchor)
         ])
     }
     
