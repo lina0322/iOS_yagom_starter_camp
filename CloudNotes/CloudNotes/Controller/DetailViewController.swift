@@ -10,6 +10,7 @@ import UIKit
 final class DetailViewController: UIViewController {
     var noteTitle: String = String.empty
     var noteBody: String = String.empty
+    var noteIndex: Int? = nil
     private let detailTextView: UITextView = {
         let textView = UITextView()
         textView.isEditable = false
@@ -23,10 +24,13 @@ final class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let isCompactSize: Bool = traitCollection.verticalSizeClass == .compact
+
         configureTextView()
         configureNavigationItem()
+        setToolbarHidden(isCompactSize)
     }
-    
+
     private func configureTextView() {
         view.addSubview(detailTextView)
         
@@ -44,49 +48,74 @@ final class DetailViewController: UIViewController {
     }
     
     private func configureNavigationItem() {
-        
+        let moreDetailButton: UIButton = UIButton()
+        moreDetailButton.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
+        moreDetailButton.addTarget(self, action: #selector(showActionSheet), for: .touchUpInside)
+        let barButton =  UIBarButtonItem(customView: moreDetailButton)
+        navigationItem.rightBarButtonItem = barButton
     }
     
-    private func touchUpMoreButton() {
+    @objc private func showActionSheet(_ sender: AnyObject) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let shareButton = UIAlertAction(title: NoteString.share, style: .default) { _ in
-            self.showActivityView()
-        }
-        let deleteButton = UIAlertAction(title: NoteString.delete, style: .destructive) { _ in
-            self.showDeleteAlret()
-        }
-        let cancelButton = UIAlertAction(title: NoteString.cancel, style: .cancel, handler: nil)
+        let shareButton = UIAlertAction(title: NoteString.share, style: .default, handler: { _ in self.showActivityView()})
+        let deleteButton = UIAlertAction(title: NoteString.delete, style: .destructive, handler: { _ in self.showDeleteAlert()})
+        let cancleButton = UIAlertAction(title: NoteString.cancel, style: .cancel, handler: nil)
         
         actionSheet.addAction(shareButton)
         actionSheet.addAction(deleteButton)
-        actionSheet.addAction(cancelButton)
+        actionSheet.addAction(cancleButton)
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if let popoverController = actionSheet.popoverPresentationController {
+                popoverController.barButtonItem = sender as? UIBarButtonItem
+            }
+        }
         present(actionSheet, animated: true, completion: nil)
     }
     
     private func showActivityView() {
-        let textToShare = [noteTitle + String.newLine + noteBody]
-        let activityView = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-        present(activityView, animated: true, completion: nil)
+        let shareItem = [noteTitle + String.newLine + noteBody]
+        let activityViewController = UIActivityViewController(activityItems: shareItem, applicationActivities: nil)
+        
+        
+        present(activityViewController, animated: true, completion: nil)
     }
     
-    private func showDeleteAlret() {
-        let alert = UIAlertController(title: NoteString.deleteTitle, message: NoteString.deleteMessage, preferredStyle: .alert)
-        let cancelButton = UIAlertAction(title: NoteString.cancel, style: .default, handler: nil)
-        let deleteButton = UIAlertAction(title: NoteString.delete, style: .destructive) { _ in
-            // deleteData(noteIndex)
+    private func showDeleteAlert() {
+        let deleteAlert = UIAlertController(title: NoteString.deleteTitle, message: NoteString.deleteMessage, preferredStyle: .alert)
+        self.present(deleteAlert, animated: true, completion: nil)
+        let deleteButton = UIAlertAction(title: NoteString.delete, style: .destructive, handler: nil)
+        let cancleButton = UIAlertAction(title: NoteString.cancel, style: .cancel, handler: nil)
+        
+        deleteAlert.addAction(deleteButton)
+        deleteAlert.addAction(cancleButton)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        let isRegularSize: Bool = traitCollection.verticalSizeClass == .regular
+        setToolbarHidden(isRegularSize)
+    }
+    
+    func setToolbarHidden(_ hidden: Bool) {
+        if hidden {
+            return
         }
+        let toolbar = UIToolbar()
+        let safeArea = view.safeAreaLayoutGuide
+        let moreButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .done, target: self, action: #selector(showActionSheet))
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         
-        alert.addAction(cancelButton)
-        alert.addAction(deleteButton)
-        present(alert, animated: true, completion: nil)
-    }
-    
-    private func showErrorAlert(title: String? = nil, message: String?) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: NoteString.confirm, style: .default, handler: nil)
+        toolbar.setItems([space, moreButton], animated: true)
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
         
-        alert.addAction(okButton)
-        present(alert, animated: true, completion: nil)
+        view.addSubview(toolbar)
+        NSLayoutConstraint.activate([
+            toolbar.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            toolbar.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            toolbar.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
+        ])
+        
     }
 }
 
