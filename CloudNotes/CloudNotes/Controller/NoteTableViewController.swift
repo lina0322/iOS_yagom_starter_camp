@@ -6,24 +6,17 @@
 //
 
 import UIKit
+import CoreData
 
-final class NoteTableViewController: UITableViewController {
+final class NoteTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     private var noteList = [Note]()
-    private var noteIndex: Int?
+    
+    var detailViewController: DetailViewController? = nil
+    var managedObjectContext: NSManagedObjectContext? = nil
     
     override func viewDidLoad() {
-        guard let dataAsset = NSDataAsset(name: NoteString.sample)?.data else {
-            debugPrint(ErrorCase.wrongData.localizedDescription)
-            return
-        }
-        decodeData(dataAsset)
         registerCell()
         configureNavigationItem()
-    }
-    
-    private func decodeData(_ data: Data) {
-        NoteJSONDecoder.decodeData(data)
-        noteList = NoteJSONDecoder.noteList
     }
     
     private func registerCell() {
@@ -31,59 +24,16 @@ final class NoteTableViewController: UITableViewController {
     }
     
     private func configureNavigationItem() {
-        let addButton =  UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(touchUpAddButton))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewItem))
         navigationItem.rightBarButtonItem = addButton
         navigationItem.title = NoteString.memo
     }
     
-    @objc private func touchUpAddButton() {
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let shareButton = UIAlertAction(title: NoteString.share, style: .default) { _ in
-            self.showActivityView()
-        }
-        let deleteButton = UIAlertAction(title: NoteString.delete, style: .destructive) { _ in
-            self.showDeleteAlret()
-        }
-        let cancelButton = UIAlertAction(title: NoteString.cancel, style: .cancel, handler: nil)
+    @objc private func insertNewItem() {
+        let context = fetchedResultsController.managedObjectContext
+        let newNote = NoteItem(context: context)
         
-        actionSheet.addAction(shareButton)
-        actionSheet.addAction(deleteButton)
-        actionSheet.addAction(cancelButton)
-        present(actionSheet, animated: true, completion: nil)
-    }
-    
-    private func showActivityView() {
-        guard let noteIndex = noteIndex else {
-            showErrorAlert(message: ErrorCase.notSelectedNote.localizedDescription)
-            return
-        }
-        let textToShare = [noteList[noteIndex].title + String.newLine + noteList[noteIndex].body]
-        let activityView = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-        present(activityView, animated: true, completion: nil)
-    }
-    
-    private func showDeleteAlret() {
-        guard let noteIndex = noteIndex else {
-            showErrorAlert(message: ErrorCase.notSelectedNote.localizedDescription)
-            return
-        }
-        let alert = UIAlertController(title: NoteString.deleteTitle, message: NoteString.deleteMessage, preferredStyle: .alert)
-        let cancelButton = UIAlertAction(title: NoteString.cancel, style: .default, handler: nil)
-        let deleteButton = UIAlertAction(title: NoteString.delete, style: .destructive) { _ in
-            // deleteData(noteIndex)
-        }
-        
-        alert.addAction(cancelButton)
-        alert.addAction(deleteButton)
-        present(alert, animated: true, completion: nil)
-    }
-    
-    private func showErrorAlert(title: String? = nil, message: String?) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: NoteString.confirm, style: .default, handler: nil)
-        
-        alert.addAction(okButton)
-        present(alert, animated: true, completion: nil)
+        newNote.lastModifiedData = Date()
     }
 }
 
@@ -102,6 +52,10 @@ extension NoteTableViewController {
         cell.configure(note)
         return cell
     }
+    
+    var fetchedResultsController: NSFetchedResultsController<NoteItem> {
+        
+    }
 }
 
 // MARK: - Delegate
@@ -112,6 +66,5 @@ extension NoteTableViewController {
         detailView.noteBody = noteList[indexPath.row].body
         splitViewController?.showDetailViewController(detailView, sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)
-        noteIndex = indexPath.row
     }
 }
