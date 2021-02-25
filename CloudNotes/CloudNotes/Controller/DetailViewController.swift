@@ -57,27 +57,22 @@ final class DetailViewController: UIViewController {
     
     @objc private func showActionSheet(_ sender: AnyObject) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let shareButton = UIAlertAction(title: NoteString.share, style: .default, handler: { _ in self.showActivityView()})
+        let shareButton = UIAlertAction(title: NoteString.share, style: .default, handler: { _ in self.showActivityView(sender)})
         let deleteButton = UIAlertAction(title: NoteString.delete, style: .destructive, handler: { _ in self.showDeleteAlert()})
         let cancleButton = UIAlertAction(title: NoteString.cancel, style: .cancel, handler: nil)
         
         actionSheet.addAction(shareButton)
         actionSheet.addAction(deleteButton)
         actionSheet.addAction(cancleButton)
-        
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            if let popoverController = actionSheet.popoverPresentationController {
-                popoverController.barButtonItem = sender as? UIBarButtonItem
-            }
-        }
+        actionSheet.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
         present(actionSheet, animated: true, completion: nil)
     }
     
-    private func showActivityView() {
+    private func showActivityView(_ sender: AnyObject) {
         let shareItem = [noteTitle + String.newLine + noteBody]
         let activityViewController = UIActivityViewController(activityItems: shareItem, applicationActivities: nil)
         
-        
+        activityViewController.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
         present(activityViewController, animated: true, completion: nil)
     }
     
