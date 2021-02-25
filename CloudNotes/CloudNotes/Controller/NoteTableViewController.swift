@@ -22,7 +22,7 @@ final class NoteTableViewController: UITableViewController {
             return
         }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let contextRequest = NSFetchRequest<NSManagedObject>(entityName: NoteString.entityName)
+        let contextRequest = NSFetchRequest<NSManagedObject>(entityName: EntityString.entityName)
         
         do {
             noteList = try managedContext.fetch(contextRequest)
@@ -54,7 +54,7 @@ final class NoteTableViewController: UITableViewController {
             return
         }
         let managedContext = appDelegate.persistentContainer.viewContext
-        guard let entity = NSEntityDescription.entity(forEntityName: NoteString.entityName, in: managedContext) else {
+        guard let entity = NSEntityDescription.entity(forEntityName: EntityString.entityName, in: managedContext) else {
             return
         }
         let note = NSManagedObject(entity: entity, insertInto: managedContext)

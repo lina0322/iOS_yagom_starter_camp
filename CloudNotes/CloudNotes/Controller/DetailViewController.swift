@@ -24,7 +24,7 @@ final class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let isCompactSize: Bool = traitCollection.verticalSizeClass == .compact
+        let isCompactSize: Bool = traitCollection.horizontalSizeClass == .compact
 
         configureTextView()
         configureNavigationItem()
@@ -53,6 +53,27 @@ final class DetailViewController: UIViewController {
         moreDetailButton.addTarget(self, action: #selector(showActionSheet), for: .touchUpInside)
         let barButton =  UIBarButtonItem(customView: moreDetailButton)
         navigationItem.rightBarButtonItem = barButton
+    }
+    
+    func setToolbarHidden(_ hidden: Bool) {
+        if hidden {
+            return
+        }
+        let toolbar = UIToolbar()
+        let safeArea = view.safeAreaLayoutGuide
+        let moreButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .done, target: self, action: #selector(showActionSheet))
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        
+        toolbar.setItems([space, moreButton], animated: true)
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        toolbar.isTranslucent = true
+
+        view.addSubview(toolbar)
+        NSLayoutConstraint.activate([
+            toolbar.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            toolbar.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            toolbar.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
+        ])
     }
     
     @objc private func showActionSheet(_ sender: AnyObject) {
@@ -88,29 +109,8 @@ final class DetailViewController: UIViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        let isRegularSize: Bool = traitCollection.verticalSizeClass == .regular
-        setToolbarHidden(isRegularSize)
-    }
-    
-    func setToolbarHidden(_ hidden: Bool) {
-        if hidden {
-            return
-        }
-        let toolbar = UIToolbar()
-        let safeArea = view.safeAreaLayoutGuide
-        let moreButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .done, target: self, action: #selector(showActionSheet))
-        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        
-        toolbar.setItems([space, moreButton], animated: true)
-        toolbar.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(toolbar)
-        NSLayoutConstraint.activate([
-            toolbar.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            toolbar.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            toolbar.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
-        ])
-        
+        let isCompactSize: Bool = traitCollection.horizontalSizeClass == .compact
+        setToolbarHidden(isCompactSize)
     }
 }
 
