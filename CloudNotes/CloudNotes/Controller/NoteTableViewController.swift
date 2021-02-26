@@ -9,12 +9,10 @@ import UIKit
 import CoreData
 
 final class NoteTableViewController: UITableViewController {
-    private var noteList: [NSManagedObject] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    // MARK: - Property
+    private var noteList: [NSManagedObject] = []
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         registerCell()
         configureNavigationItem()
@@ -22,22 +20,10 @@ final class NoteTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadCoreData()
+        tableView.reloadData()
     }
     
-    private func loadCoreData() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let request = NSFetchRequest<NSManagedObject>(entityName: "CloudNote")
-        
-        do {
-            noteList = try managedContext.fetch(request)
-        } catch let error as NSError {
-            debugPrint("Could not fetch. \(error)")
-        }
-    }
-    
+    // MARK: - UI
     private func registerCell() {
         tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: NoteTableViewCell.identifier)
     }
@@ -52,8 +38,22 @@ final class NoteTableViewController: UITableViewController {
         let detailView = DetailViewController()
         splitViewController?.showDetailViewController(detailView, sender: nil)
         
-        saveData("새로운 메모 \n 추가 텍스트 없음")
+        saveData(EntityString.newNote)
         tableView.reloadData()
+    }
+    
+    private func loadCoreData() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSManagedObject>(entityName: EntityString.entityName)
+        
+        do {
+            noteList = try managedContext.fetch(request)
+        } catch let error as NSError {
+            debugPrint("Could not fetch. \(error)")
+        }
     }
     
     private func saveData(_ data: String) {
@@ -78,6 +78,7 @@ final class NoteTableViewController: UITableViewController {
             debugPrint("Could not save. \(error)")
         }
     }
+
 }
 
 // MARK: - DataSource

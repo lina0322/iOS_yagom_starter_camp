@@ -9,38 +9,24 @@ import UIKit
 import CoreData
 
 final class NoteTableViewCell: UITableViewCell {
+    // MARK: - Property
     static var identifier: String {
         return "\(self)"
     }
+    
+    // MARK: - Outlet
     let titleLabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.adjustsFontForContentSizeCategory = true
-        titleLabel.font = .preferredFont(forTextStyle: .title1)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
-        titleLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
-        return titleLabel
+        let label = makeLabel(textStyle: .title1)
+        return label
     }()
     let lastModifiedDateLabel: UILabel = {
-        let lastModifiedDateLabel = UILabel()
-        lastModifiedDateLabel.adjustsFontForContentSizeCategory = true
-        lastModifiedDateLabel.font = .preferredFont(forTextStyle: .body)
-        lastModifiedDateLabel.translatesAutoresizingMaskIntoConstraints = false
-        lastModifiedDateLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        lastModifiedDateLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        lastModifiedDateLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        lastModifiedDateLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        return lastModifiedDateLabel
+        let label = makeLabel()
+        return label
     }()
     let detailLabel: UILabel = {
-        let detailLabel = UILabel()
-        detailLabel.textColor = .gray
-        detailLabel.adjustsFontForContentSizeCategory = true
-        detailLabel.font = .preferredFont(forTextStyle: .body)
-        detailLabel.translatesAutoresizingMaskIntoConstraints = false
-        detailLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        detailLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        return detailLabel
+        let label = makeLabel(textColor: .gray)
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        return label
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -50,10 +36,20 @@ final class NoteTableViewCell: UITableViewCell {
     
     func configure(_ note: NSManagedObject) {
         accessoryType = .disclosureIndicator
-        titleLabel.text = note.value(forKey: "title") as? String
-        detailLabel.text = note.value(forKey: "body") as? String
-        let lastModified = DateFormatter.convertToUserLocaleString(date: note.value(forKey: "lastModified") as! Date)
+        titleLabel.text = note.value(forKey: EntityString.title) as? String
+        detailLabel.text = note.value(forKey: EntityString.body) as? String
+        let lastModified = DateFormatter.convertToUserLocaleString(date: note.value(forKey: EntityString.lastModified) as! Date)
         lastModifiedDateLabel.text = lastModified
+    }
+    
+    // MARK: - UI
+    static private func makeLabel(textStyle: UIFont.TextStyle = .body, textColor: UIColor = .black) -> UILabel {
+        let label = UILabel()
+        label.textColor = textColor
+        label.adjustsFontForContentSizeCategory = true
+        label.font = .preferredFont(forTextStyle: textStyle)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }
     
     private func setUpConstraints() {

@@ -188,7 +188,7 @@ final class DetailViewController: UIViewController {
         
         deleteAlert.addAction(deleteButton)
         deleteAlert.addAction(cancleButton)
-        self.present(deleteAlert, animated: true, completion: nil)
+        present(deleteAlert, animated: true, completion: nil)
     }
     
     private func deleteData(_ data: NSManagedObject) {
