@@ -29,6 +29,9 @@ final class DetailViewController: UIViewController {
         configureTextView()
         configureNavigationItem()
         setToolbarHidden(isCompactSize)
+        
+        let tapTextViewGesture = UITapGestureRecognizer(target: self, action: #selector(textViewDidTapped))
+        detailTextView.addGestureRecognizer(tapTextViewGesture)
     }
 
     private func configureTextView() {
@@ -76,6 +79,12 @@ final class DetailViewController: UIViewController {
         ])
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        let isCompactSize: Bool = traitCollection.horizontalSizeClass == .compact
+        setToolbarHidden(isCompactSize)
+    }
+    
     @objc private func showActionSheet(_ sender: AnyObject) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let shareButton = UIAlertAction(title: NoteString.share, style: .default, handler: { _ in self.showActivityView(sender)})
@@ -107,10 +116,53 @@ final class DetailViewController: UIViewController {
         deleteAlert.addAction(cancleButton)
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        let isCompactSize: Bool = traitCollection.horizontalSizeClass == .compact
-        setToolbarHidden(isCompactSize)
+    @objc func textViewDidTapped(recognizer: UITapGestureRecognizer) {
+        guard let textView = recognizer.view as? UITextView else {
+            return
+        }
+        let layoutManager = textView.layoutManager
+        var location = recognizer.location(in: textView)
+        location.x -= textView.textContainerInset.left
+        location.y -= textView.textContainerInset.top
+
+        let glyphIndex: Int = textView.layoutManager.glyphIndex(for: location, in: textView.textContainer, fractionOfDistanceThroughGlyph: nil)
+        let glyphRect = layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 1), in: textView.textContainer)
+        
+        if glyphRect.contains(location) {
+            let characterIndex: Int = layoutManager.characterIndexForGlyph(at: glyphIndex)
+            let attributeName = NSAttributedString.Key.link
+            let attributeValue = textView.textStorage.attribute(attributeName, at: characterIndex, effectiveRange: nil)
+            if let url = attributeValue as? URL {
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else {
+                    debugPrint("There is a problem in your link.")
+                }
+            } else {
+                placeCursor(textView, location)
+                changeTextViewToNormalState()
+            }
+        } else {
+            changeTextViewToNormalState()
+        }
+    }
+    
+    private func placeCursor(_ myTextView: UITextView, _ location: CGPoint) {
+        if let tapPosition = myTextView.closestPosition(to: location) {
+            let uiTextRange = myTextView.textRange(from: tapPosition, to: tapPosition)
+            
+            if let start = uiTextRange?.start, let end = uiTextRange?.end {
+                let loc = myTextView.offset(from: myTextView.beginningOfDocument, to: tapPosition)
+                let length = myTextView.offset(from: start, to: end)
+                myTextView.selectedRange = NSMakeRange(loc, length)
+            }
+        }
+    }
+    
+    private func changeTextViewToNormalState() {
+        detailTextView.isEditable = true
+        detailTextView.dataDetectorTypes = []
+        detailTextView.becomeFirstResponder()
     }
 }
 
