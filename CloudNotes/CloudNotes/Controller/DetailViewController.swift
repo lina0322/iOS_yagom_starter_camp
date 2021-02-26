@@ -6,11 +6,25 @@
 //
 
 import UIKit
+import CoreData
 
 final class DetailViewController: UIViewController {
-    var noteTitle: String = String.empty
-    var noteBody: String = String.empty
-    var noteIndex: Int? = nil
+    // MARK: - Property
+    var note: NSManagedObject? = nil
+    var noteTitle: String {
+        guard let title = note?.value(forKey: EntityString.title) as? String else {
+            return String.empty
+        }
+        return title
+    }
+    var noteBody: String {
+        guard let body = note?.value(forKey: EntityString.body) as? String else {
+            return String.empty
+        }
+        return body
+    }
+
+    // MARK: - Outlet
     private let detailTextView: UITextView = {
         let textView = UITextView()
         textView.isEditable = false
@@ -22,6 +36,7 @@ final class DetailViewController: UIViewController {
         return textView
     }()
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         let isCompactSize: Bool = traitCollection.horizontalSizeClass == .compact
@@ -29,11 +44,10 @@ final class DetailViewController: UIViewController {
         configureTextView()
         configureNavigationItem()
         setToolbarHidden(isCompactSize)
-        
-        let tapTextViewGesture = UITapGestureRecognizer(target: self, action: #selector(textViewDidTapped))
-        detailTextView.addGestureRecognizer(tapTextViewGesture)
+        setTapGesture()
     }
 
+    // MARK: UI
     private func configureTextView() {
         view.addSubview(detailTextView)
         
@@ -44,7 +58,6 @@ final class DetailViewController: UIViewController {
             detailTextView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             detailTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        
         let content = NSMutableAttributedString(string: noteTitle + String.newLine + String.newLine, attributes: [.font: UIFont.preferredFont(forTextStyle: .title1)])
         content.append(NSMutableAttributedString(string: noteBody, attributes: [.font: UIFont.preferredFont(forTextStyle: .body)]))
         detailTextView.attributedText = content
@@ -52,7 +65,7 @@ final class DetailViewController: UIViewController {
     
     private func configureNavigationItem() {
         let moreDetailButton: UIButton = UIButton()
-        moreDetailButton.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
+        moreDetailButton.setImage(UIImage(systemName: NoteString.buttonImage), for: .normal)
         moreDetailButton.addTarget(self, action: #selector(showActionSheet), for: .touchUpInside)
         let barButton =  UIBarButtonItem(customView: moreDetailButton)
         navigationItem.rightBarButtonItem = barButton
@@ -64,7 +77,7 @@ final class DetailViewController: UIViewController {
         }
         let toolbar = UIToolbar()
         let safeArea = view.safeAreaLayoutGuide
-        let moreButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .done, target: self, action: #selector(showActionSheet))
+        let moreButton = UIBarButtonItem(image: UIImage(systemName: NoteString.buttonImage), style: .done, target: self, action: #selector(showActionSheet))
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         
         toolbar.setItems([space, moreButton], animated: true)
@@ -85,35 +98,9 @@ final class DetailViewController: UIViewController {
         setToolbarHidden(isCompactSize)
     }
     
-    @objc private func showActionSheet(_ sender: AnyObject) {
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let shareButton = UIAlertAction(title: NoteString.share, style: .default, handler: { _ in self.showActivityView(sender)})
-        let deleteButton = UIAlertAction(title: NoteString.delete, style: .destructive, handler: { _ in self.showDeleteAlert()})
-        let cancleButton = UIAlertAction(title: NoteString.cancel, style: .cancel, handler: nil)
-        
-        actionSheet.addAction(shareButton)
-        actionSheet.addAction(deleteButton)
-        actionSheet.addAction(cancleButton)
-        actionSheet.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
-        present(actionSheet, animated: true, completion: nil)
-    }
-    
-    private func showActivityView(_ sender: AnyObject) {
-        let shareItem = [noteTitle + String.newLine + noteBody]
-        let activityViewController = UIActivityViewController(activityItems: shareItem, applicationActivities: nil)
-        
-        activityViewController.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
-        present(activityViewController, animated: true, completion: nil)
-    }
-    
-    private func showDeleteAlert() {
-        let deleteAlert = UIAlertController(title: NoteString.deleteTitle, message: NoteString.deleteMessage, preferredStyle: .alert)
-        self.present(deleteAlert, animated: true, completion: nil)
-        let deleteButton = UIAlertAction(title: NoteString.delete, style: .destructive, handler: nil)
-        let cancleButton = UIAlertAction(title: NoteString.cancel, style: .cancel, handler: nil)
-        
-        deleteAlert.addAction(deleteButton)
-        deleteAlert.addAction(cancleButton)
+    private func setTapGesture() {
+        let tapTextViewGesture = UITapGestureRecognizer(target: self, action: #selector(textViewDidTapped))
+        detailTextView.addGestureRecognizer(tapTextViewGesture)
     }
     
     @objc func textViewDidTapped(recognizer: UITapGestureRecognizer) {
@@ -164,5 +151,57 @@ final class DetailViewController: UIViewController {
         detailTextView.dataDetectorTypes = []
         detailTextView.becomeFirstResponder()
     }
-}
 
+    // MARK: Alert
+    @objc private func showActionSheet(_ sender: AnyObject) {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let shareButton = UIAlertAction(title: NoteString.share, style: .default, handler: { _ in self.showActivityView(sender)})
+        let deleteButton = UIAlertAction(title: NoteString.delete, style: .destructive, handler: { _ in self.showDeleteAlert()})
+        let cancleButton = UIAlertAction(title: NoteString.cancel, style: .cancel, handler: nil)
+        
+        actionSheet.addAction(shareButton)
+        actionSheet.addAction(deleteButton)
+        actionSheet.addAction(cancleButton)
+        actionSheet.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    private func showActivityView(_ sender: AnyObject) {
+        let shareItem = [noteTitle + String.newLine + noteBody]
+        let activityViewController = UIActivityViewController(activityItems: shareItem, applicationActivities: nil)
+        
+        activityViewController.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
+        present(activityViewController, animated: true, completion: nil)
+    }
+    
+    private func showDeleteAlert() {
+        guard let note = note else {
+            print("선택된 데이터가 없다고 알람 보여줘야하는 부분")
+            return
+        }
+        let deleteAlert = UIAlertController(title: NoteString.deleteTitle, message: NoteString.deleteMessage, preferredStyle: .alert)
+        let deleteButton = UIAlertAction(title: NoteString.delete, style: .destructive) { _ in
+            self.deleteData(note)
+            
+        }
+        let cancleButton = UIAlertAction(title: NoteString.cancel, style: .cancel, handler: nil)
+        
+        deleteAlert.addAction(deleteButton)
+        deleteAlert.addAction(cancleButton)
+        self.present(deleteAlert, animated: true, completion: nil)
+    }
+    
+    private func deleteData(_ data: NSManagedObject) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        managedContext.delete(data)
+        do {
+            try managedContext.save()
+            navigationController?.popViewController(animated: true)
+        } catch {
+            print("저장실패")
+        }
+    }
+}

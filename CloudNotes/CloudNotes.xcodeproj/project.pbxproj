@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4C0969FB25E7D78A0054DC33 /* EntityString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0969FA25E7D78A0054DC33 /* EntityString.swift */; };
+		4C096A1225E8BB1B0054DC33 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C096A1125E8BB1B0054DC33 /* DataModel.swift */; };
 		8280AFD425DA6ED6004EA888 /* NoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8280AFD325DA6ED6004EA888 /* NoteTableViewController.swift */; };
 		8280AFDC25DA893B004EA888 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8280AFDB25DA893B004EA888 /* NoteTableViewCell.swift */; };
 		82897EF925DB86B400433BA7 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82897EF825DB86B400433BA7 /* Extension.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		4C0969FA25E7D78A0054DC33 /* EntityString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityString.swift; sourceTree = "<group>"; };
+		4C096A1125E8BB1B0054DC33 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		8280AFD325DA6ED6004EA888 /* NoteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewController.swift; sourceTree = "<group>"; };
 		8280AFDB25DA893B004EA888 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		82897EF825DB86B400433BA7 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -90,6 +92,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C096A1025E8BB0D0054DC33 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4C096A1125E8BB1B0054DC33 /* DataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8280AFD225DA6EAF004EA888 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +142,7 @@
 		C7481C6C25BBCF3900B9CA55 /* CloudNotes */ = {
 			isa = PBXGroup;
 			children = (
+				4C096A1025E8BB0D0054DC33 /* Model */,
 				8280AFD225DA6EAF004EA888 /* Controller */,
 				82EEF6EE25DFBDC8001CD667 /* ErrorCase.swift */,
 				82EEF6F325DFBFF0001CD667 /* NoteString.swift */,
@@ -299,6 +310,7 @@
 				4C0969FB25E7D78A0054DC33 /* EntityString.swift in Sources */,
 				82EEF6EF25DFBDC8001CD667 /* ErrorCase.swift in Sources */,
 				8280AFDC25DA893B004EA888 /* NoteTableViewCell.swift in Sources */,
+				4C096A1225E8BB1B0054DC33 /* DataModel.swift in Sources */,
 				82897EF925DB86B400433BA7 /* Extension.swift in Sources */,
 				82EEF6DF25DF8E14001CD667 /* NoteSplitViewController.swift in Sources */,
 				C7481C6E25BBCF3900B9CA55 /* AppDelegate.swift in Sources */,

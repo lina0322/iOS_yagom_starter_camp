@@ -9,12 +9,19 @@ import UIKit
 import CoreData
 
 final class NoteTableViewController: UITableViewController {
-    private var noteList: [NSManagedObject] = []
+    private var noteList: [NSManagedObject] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
-        loadCoreData()
         registerCell()
         configureNavigationItem()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadCoreData()
     }
     
     private func loadCoreData() {
@@ -22,10 +29,10 @@ final class NoteTableViewController: UITableViewController {
             return
         }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let contextRequest = NSFetchRequest<NSManagedObject>(entityName: EntityString.entityName)
+        let request = NSFetchRequest<NSManagedObject>(entityName: "CloudNote")
         
         do {
-            noteList = try managedContext.fetch(contextRequest)
+            noteList = try managedContext.fetch(request)
         } catch let error as NSError {
             debugPrint("Could not fetch. \(error)")
         }
@@ -94,12 +101,7 @@ extension NoteTableViewController {
 extension NoteTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailView = DetailViewController()
-        guard let noteTitle = noteList[indexPath.row].value(forKey: EntityString.title) as? String, let noteBody = noteList[indexPath.row].value(forKey: EntityString.body) as? String else {
-            return
-        }
-        detailView.noteTitle = noteTitle
-        detailView.noteBody = noteBody
-        detailView.noteIndex = indexPath.row
+        detailView.note = noteList[indexPath.row]
         splitViewController?.showDetailViewController(detailView, sender: nil)
     }
 }
