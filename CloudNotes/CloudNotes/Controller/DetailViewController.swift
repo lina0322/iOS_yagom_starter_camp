@@ -6,10 +6,22 @@
 //
 
 import UIKit
+import CoreData
 
 final class DetailViewController: UIViewController {
-    var noteTitle: String = String.empty
-    var noteBody: String = String.empty
+    var note: NSManagedObject? = nil
+    var noteTitle: String {
+        guard let title = note?.value(forKey: "title") as? String else {
+            return String.empty
+        }
+        return title
+    }
+    var noteBody: String {
+        guard let body = note?.value(forKey: "body") as? String else {
+            return String.empty
+        }
+        return body
+    }
     private let detailTextView: UITextView = {
         let textView = UITextView()
         textView.isEditable = false
@@ -29,7 +41,7 @@ final class DetailViewController: UIViewController {
     
     private func configureTextView() {
         view.addSubview(detailTextView)
-
+        
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             detailTextView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
@@ -37,7 +49,7 @@ final class DetailViewController: UIViewController {
             detailTextView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             detailTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-               
+
         let content = NSMutableAttributedString(string: "\(noteTitle) \n\n", attributes: [.font: UIFont.preferredFont(forTextStyle: .title1)])
         content.append(NSMutableAttributedString(string: noteBody, attributes: [.font: UIFont.preferredFont(forTextStyle: .body)]))
         detailTextView.attributedText = content
@@ -74,19 +86,24 @@ final class DetailViewController: UIViewController {
     }
     
     private func showDeleteAlert() {
+        guard let note = note else {
+            print("선택된 데이터가 없다고 알람 보여줘야하는 부분")
+            return
+        }
         let deleteAlert = UIAlertController(title: "진짜루?", message: "정말로 삭제하시겠어요?", preferredStyle: .alert)
         self.present(deleteAlert, animated: true, completion: nil)
-        let deleteButton = UIAlertAction(title: "삭제", style: .destructive, handler: nil)
+        let deleteButton = UIAlertAction(title: "삭제", style: .destructive, handler: { _ in self.deleteData(note)})
         let cancleButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         
         deleteAlert.addAction(deleteButton)
         deleteAlert.addAction(cancleButton)
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        let isCompactSize: Bool = traitCollection.verticalSizeClass == .compact
-        navigationController?.navigationBar.isHidden = isCompactSize
+    private func deleteData(_ data: NSManagedObject) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        managedContext.delete(data)
     }
 }
-

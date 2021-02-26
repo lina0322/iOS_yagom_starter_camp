@@ -22,10 +22,10 @@ final class NoteTableViewController: UITableViewController {
             return
         }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CloudNote")
+        let request = NSFetchRequest<NSManagedObject>(entityName: "CloudNote")
         
         do {
-            noteList = try managedContext.fetch(fetchRequest)
+            noteList = try managedContext.fetch(request)
         } catch let error as NSError {
             print("Could not fetch. \(error)")
         }
@@ -94,11 +94,7 @@ extension NoteTableViewController {
 extension NoteTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailView = DetailViewController()
-        guard let noteTitle = noteList[indexPath.row].value(forKey: "title") as? String, let noteBody = noteList[indexPath.row].value(forKey: "body") as? String else {
-            return
-        }
-        detailView.noteTitle = noteTitle
-        detailView.noteBody = noteBody
+        detailView.note = noteList[indexPath.row]
         splitViewController?.showDetailViewController(detailView, sender: nil)
     }
 }
