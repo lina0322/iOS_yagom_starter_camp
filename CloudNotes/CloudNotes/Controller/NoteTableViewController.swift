@@ -49,12 +49,17 @@ final class NoteTableViewController: UITableViewController {
     private func configureDetailView() {
         let isPad: Bool = UIDevice.current.userInterfaceIdiom == .pad
         
-        if isPad {
+        if isPad || (!isPad && traitCollection.verticalSizeClass == .compact) {
+            print(traitCollection.verticalSizeClass.rawValue)
             let detailView = DetailViewController()
             detailView.note = DataModel.shared.noteList.first
             let detailViewNavigationController = UINavigationController(rootViewController: detailView)
             splitViewController?.showDetailViewController(detailViewNavigationController, sender: nil)
         }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        
     }
 }
 
