@@ -49,14 +49,14 @@ class DataModel {
     
     func deleteData(_ data: NSManagedObject) {
         managedContext.delete(data)
-        
         do {
             try managedContext.save()
             //navigationController?.popViewController(animated: true)
+            fetchData()
+            NotificationCenter.default.post(name: NSNotification.Name("DeleteData"), object: nil)
         } catch let error as NSError {
             debugPrint("Could not save. \(error)")
             managedContext.rollback()
         }
-        fetchData()
     }
 }
