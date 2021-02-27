@@ -10,14 +10,15 @@ import Foundation
 extension DateFormatter {
     static func convertToUserLocaleString(date: Date) -> String {
         let dateFormatter = DateFormatter()
-        guard let locale = Locale.autoupdatingCurrent.collatorIdentifier else {
-            return String.empty
+        var locale = Locale.autoupdatingCurrent.identifier
+        if let collatorLocale = Locale.autoupdatingCurrent.collatorIdentifier {
+            locale = collatorLocale
         }
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
         dateFormatter.locale = Locale(identifier: locale)
-        let strDate = dateFormatter.string(from: date)
-        return strDate
+        let stringDate = dateFormatter.string(from: date)
+        return stringDate
     }
 }
 
