@@ -24,8 +24,9 @@ final class NoteTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         DataModel.shared.fetchData()
         configureDetailView()
+        configureDetailViewNavigationBar()
     }
-        
+    
     // MARK: - UI
     private func registerCell() {
         tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: NoteTableViewCell.identifier)
@@ -35,6 +36,14 @@ final class NoteTableViewController: UITableViewController {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(touchUpAddButton))
         navigationItem.rightBarButtonItem = addButton
         navigationItem.title = NoteString.memo
+    }
+    
+    private func configureDetailViewNavigationBar() {
+        let detailView = DetailViewController()
+        if (traitCollection.horizontalSizeClass == .compact && traitCollection.userInterfaceIdiom == .pad) {
+            let detailViewNavigationController = UINavigationController(rootViewController: detailView)
+            splitViewController?.showDetailViewController(detailViewNavigationController, sender: nil)
+        }
     }
     
     @objc private func touchUpAddButton() {
@@ -90,9 +99,11 @@ extension NoteTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailView = DetailViewController()
         detailView.note = DataModel.shared.noteList[indexPath.row]
-        splitViewController?.showDetailViewController(detailView, sender: nil)
+        let detailViewNavigationController = UINavigationController(rootViewController: detailView)
+        splitViewController?.showDetailViewController(detailViewNavigationController, sender: nil)
         if UIDevice.current.userInterfaceIdiom == .phone {
             tableView.deselectRow(at: indexPath, animated: true)
         }
+        
     }
 }
