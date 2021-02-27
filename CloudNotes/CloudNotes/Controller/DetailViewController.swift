@@ -45,6 +45,7 @@ final class DetailViewController: UIViewController {
         configureNavigationItem()
         setToolbarHidden(isCompactSize)
         setTapGesture()
+        configureKeyboardDoneButton()
     }
 
     // MARK: UI
@@ -98,6 +99,7 @@ final class DetailViewController: UIViewController {
         setToolbarHidden(isCompactSize)
     }
     
+    // MARK: - Tap Gesture
     private func setTapGesture() {
         let tapTextViewGesture = UITapGestureRecognizer(target: self, action: #selector(textViewDidTapped))
         detailTextView.addGestureRecognizer(tapTextViewGesture)
@@ -151,7 +153,22 @@ final class DetailViewController: UIViewController {
         detailTextView.dataDetectorTypes = []
         detailTextView.becomeFirstResponder()
     }
-
+    
+    // MARK: - Keyboard
+    private func configureKeyboardDoneButton() {
+        let toolBarKeyboard = UIToolbar()
+        toolBarKeyboard.sizeToFit()
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(touchUpDoneButton))
+        
+        toolBarKeyboard.items = [space, doneButton]
+        detailTextView.inputAccessoryView = toolBarKeyboard
+    }
+    
+    @objc func touchUpDoneButton(_ sender: UIButton) {
+        view.endEditing(true)
+    }
+    
     // MARK: Alert
     @objc private func showActionSheet(_ sender: AnyObject) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
