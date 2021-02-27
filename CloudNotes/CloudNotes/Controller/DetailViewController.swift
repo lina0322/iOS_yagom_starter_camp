@@ -11,7 +11,6 @@ import CoreData
 final class DetailViewController: UIViewController {
     // MARK: - Property
     var note: NSManagedObject? = nil
-    let moreButton = UIBarButtonItem(image: UIImage(systemName: NoteString.buttonImage), style: .done, target: self, action: #selector(showActionSheet))
     var noteTitle: String {
         guard let title = note?.value(forKey: EntityString.title) as? String else {
             return String.empty
@@ -40,7 +39,6 @@ final class DetailViewController: UIViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureTextView()
         configureNavigationItem()
         setTapGesture()
@@ -64,12 +62,9 @@ final class DetailViewController: UIViewController {
         detailTextView.attributedText = content
     }
     
-    private func configureNavigationItem() {
-        let moreDetailButton: UIButton = UIButton()
-        moreDetailButton.setImage(UIImage(systemName: NoteString.buttonImage), for: .normal)
-        moreDetailButton.addTarget(self, action: #selector(showActionSheet), for: .touchUpInside)
-        let barButton =  UIBarButtonItem(customView: moreDetailButton)
-        navigationItem.rightBarButtonItem = barButton
+    private func configureNavigationItem() {        
+        let moreButton = UIBarButtonItem(image: UIImage(systemName: NoteString.buttonImage), style: .done, target: self, action: #selector(showActionSheet))
+        navigationItem.rightBarButtonItem = moreButton
     }
     
     // MARK: - Tap Gesture

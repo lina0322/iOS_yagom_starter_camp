@@ -19,13 +19,11 @@ final class NoteTableViewController: UITableViewController {
     @objc func reloadTableView(_ notification:Notification) {
         tableView.reloadData()
         configureDetailView()
-        configureDetailViewNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         DataModel.shared.fetchData()
         configureDetailView()
-        configureDetailViewNavigationBar()
     }
     
     // MARK: - UI
@@ -37,14 +35,6 @@ final class NoteTableViewController: UITableViewController {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(touchUpAddButton))
         navigationItem.rightBarButtonItem = addButton
         navigationItem.title = NoteString.memo
-    }
-    
-    private func configureDetailViewNavigationBar() {
-        let detailView = DetailViewController()
-        if (traitCollection.horizontalSizeClass == .compact && traitCollection.userInterfaceIdiom == .pad) {
-            let detailViewNavigationController = UINavigationController(rootViewController: detailView)
-            splitViewController?.showDetailViewController(detailViewNavigationController, sender: nil)
-        }
     }
     
     @objc private func touchUpAddButton() {
@@ -63,7 +53,8 @@ final class NoteTableViewController: UITableViewController {
         if isPad {
             let detailView = DetailViewController()
             detailView.note = DataModel.shared.noteList.first
-            splitViewController?.showDetailViewController(detailView, sender: nil)
+            let detailViewNavigationController = UINavigationController(rootViewController: detailView)
+            splitViewController?.showDetailViewController(detailViewNavigationController, sender: nil)
         }
     }
 }
