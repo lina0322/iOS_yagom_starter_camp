@@ -45,9 +45,13 @@ final class NoteTableViewController: UITableViewController {
     }
     
     private func configureDetailView() {
-        let detailView = DetailViewController()
-        detailView.note = DataModel.shared.noteList.first
-        splitViewController?.showDetailViewController(detailView, sender: nil)
+        let isPad: Bool = UIDevice.current.userInterfaceIdiom == .pad
+        
+        if isPad {
+            let detailView = DetailViewController()
+            detailView.note = DataModel.shared.noteList.first
+            splitViewController?.showDetailViewController(detailView, sender: nil)
+        }
     }
 }
 
