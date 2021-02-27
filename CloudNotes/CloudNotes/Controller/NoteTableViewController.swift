@@ -9,20 +9,16 @@ import UIKit
 import CoreData
 
 final class NoteTableViewController: UITableViewController {
-    // MARK: - Property
-    private var noteList: [NSManagedObject] = []
     
-    // MARK: - Life Cycle
     override func viewDidLoad() {
         registerCell()
         configureNavigationItem()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadCoreData()
-        tableView.reloadData()
+        DataModel.shared.loadCoreData()
     }
-    
+        
     // MARK: - UI
     private func registerCell() {
         tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: NoteTableViewCell.identifier)
@@ -37,54 +33,15 @@ final class NoteTableViewController: UITableViewController {
     @objc private func touchUpAddButton() {
         let detailView = DetailViewController()
         splitViewController?.showDetailViewController(detailView, sender: nil)
-        
-        saveData(EntityString.newNote)
+        DataModel.shared.saveData("새로운 메모 \n 추가 텍스트 없음")
         tableView.reloadData()
     }
-    
-    private func loadCoreData() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let request = NSFetchRequest<NSManagedObject>(entityName: EntityString.entityName)
-        
-        do {
-            noteList = try managedContext.fetch(request)
-        } catch let error as NSError {
-            debugPrint("Could not fetch. \(error)")
-        }
-    }
-    
-    private func saveData(_ data: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        guard let entity = NSEntityDescription.entity(forEntityName: EntityString.entityName, in: managedContext) else {
-            return
-        }
-        let note = NSManagedObject(entity: entity, insertInto: managedContext)
-        let splitedData = data.split(separator: "\n", maxSplits: 1, omittingEmptySubsequences: true)
-        
-        note.setValue(splitedData[0], forKey: EntityString.title)
-        note.setValue(splitedData[1], forKey: EntityString.body)
-        note.setValue((Date()), forKey: EntityString.lastModified)
-        
-        do {
-            try managedContext.save()
-            noteList.append(note)
-        } catch let error as NSError {
-            debugPrint("Could not save. \(error)")
-        }
-    }
-
 }
 
 // MARK: - DataSource
 extension NoteTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return noteList.count
+        return DataModel.shared.noteList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -92,7 +49,7 @@ extension NoteTableViewController {
             debugPrint(ErrorCase.cellError.localizedDescription)
             return UITableViewCell()
         }
-        let note = noteList[indexPath.row]
+        let note = DataModel.shared.noteList[indexPath.row]
         cell.configure(note)
         return cell
     }
@@ -112,7 +69,7 @@ extension NoteTableViewController {
 extension NoteTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailView = DetailViewController()
-        detailView.note = noteList[indexPath.row]
+        detailView.note = DataModel.shared.noteList[indexPath.row]
         splitViewController?.showDetailViewController(detailView, sender: nil)
     }
 }
