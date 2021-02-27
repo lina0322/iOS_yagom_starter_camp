@@ -78,6 +78,7 @@ final class NoteTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         titleLabel.text = nil
         lastModifiedDateLabel.text = nil
         detailLabel.text = nil
