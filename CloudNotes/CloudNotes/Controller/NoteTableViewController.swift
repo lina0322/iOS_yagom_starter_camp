@@ -13,8 +13,11 @@ final class NoteTableViewController: UITableViewController {
     override func viewDidLoad() {
         registerCell()
         configureNavigationItem()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView(_:)), name: NSNotification.Name("DeleteData"), object: nil)
     }
-    
+    @objc func reloadTableView(_ notification:Notification) {
+        tableView.reloadData()
+    }
     override func viewWillAppear(_ animated: Bool) {
         DataModel.shared.fetchData()
     }
