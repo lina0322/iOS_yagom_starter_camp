@@ -19,6 +19,7 @@ final class NoteTableViewController: UITableViewController {
     @objc func reloadTableView(_ notification:Notification) {
         tableView.reloadData()
         configureDetailView()
+        configureDetailViewNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,6 +52,8 @@ final class NoteTableViewController: UITableViewController {
         DataModel.shared.saveData("제목 \n 내용")
         detailView.note = DataModel.shared.noteList.first
         splitViewController?.showDetailViewController(detailView, sender: nil)
+        let detailViewNavigationController = UINavigationController(rootViewController: detailView)
+        splitViewController?.showDetailViewController(detailViewNavigationController, sender: nil)
         tableView.reloadData()
     }
     
