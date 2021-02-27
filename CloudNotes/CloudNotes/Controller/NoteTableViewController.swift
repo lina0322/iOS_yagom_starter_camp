@@ -41,7 +41,6 @@ final class NoteTableViewController: UITableViewController {
         let detailView = DetailViewController()
         DataModel.shared.saveData(NoteString.newNoteMessage)
         detailView.note = DataModel.shared.noteList.first
-        splitViewController?.showDetailViewController(detailView, sender: nil)
         let detailViewNavigationController = UINavigationController(rootViewController: detailView)
         splitViewController?.showDetailViewController(detailViewNavigationController, sender: nil)
         tableView.reloadData()
