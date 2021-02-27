@@ -73,14 +73,18 @@ class DataModel {
         do {
             try managedContext.save()
             fetchData()
+            NotificationCenter.default.post(name: NSNotification.Name(NoteString.editData), object: nil)
         } catch let error as NSError {
             debugPrint("Could not save. \(error)")
             managedContext.rollback()
         }
     }
     
-    private func spliteText(_ data: String) -> (title: Substring, body: Substring) {
-        let splitedData = data.split(separator: "\n", maxSplits: 1, omittingEmptySubsequences: true)
+    private func spliteText(_ data: String) -> (title: Substring, body: Substring?) {
+        let splitedData = data.split(separator: "\n", maxSplits: 1, omittingEmptySubsequences: false)
+        if splitedData.count == 1 {
+            return (title: splitedData[0], body: nil)
+        }
         return (title: splitedData[0], body: splitedData[1])
     }
 }
