@@ -190,7 +190,7 @@ extension DetailViewController: UITextViewDelegate {
         guard let note = note else {
             return
         }
-        DataModel.shared.editData(textView.text, editInto: note)
+        DataModel.shared.editData(detailTextView.text, editInto: note)
         setTextViewDetective(true)
         NotificationCenter.default.post(name: NSNotification.Name(NoteString.editData), object: nil)
     }

@@ -36,6 +36,7 @@ final class NoteTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        setUpConstraints()
     }
     
     func configure(_ note: NSManagedObject) {
