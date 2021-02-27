@@ -10,25 +10,29 @@ import CoreData
 
 final class NoteTableViewController: UITableViewController {
     
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         registerCell()
         configureNavigationItem()
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView(_:)), name: NSNotification.Name(NoteString.editData), object: nil)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        setUpNotificationCenter()
+        configureDetailView()
         DataModel.shared.fetchData()
-        configureDetailView()
-    }
-    
-    @objc func reloadTableView(_ notification:Notification) {
-        tableView.reloadData()
-        configureDetailView()
     }
     
     // MARK: - UI
+    
     private func registerCell() {
         tableView.register(NoteTableViewCell.self, forCellReuseIdentifier: NoteTableViewCell.identifier)
+    }
+    
+    private func setUpNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView(_:)), name: NSNotification.Name(NoteString.notification), object: nil)
+    }
+    
+    @objc private func reloadTableView(_ notification:Notification) {
+        tableView.reloadData()
+        configureDetailView()
     }
     
     private func configureNavigationItem() {
@@ -38,24 +42,28 @@ final class NoteTableViewController: UITableViewController {
     }
     
     @objc private func touchUpAddButton() {
-        let detailView = DetailViewController()
         DataModel.shared.saveData(NoteString.newNoteMessage)
-        detailView.note = DataModel.shared.noteList.first
-        let detailViewNavigationController = UINavigationController(rootViewController: detailView)
-        splitViewController?.showDetailViewController(detailViewNavigationController, sender: nil)
+        showDetailView()
         tableView.reloadData()
     }
     
     private func configureDetailView() {
         let isPad: Bool = UIDevice.current.userInterfaceIdiom == .pad
-        
-        if isPad || (!isPad && traitCollection.verticalSizeClass == .compact) {
-            print(traitCollection.verticalSizeClass.rawValue)
-            let detailView = DetailViewController()
-            detailView.note = DataModel.shared.noteList.first
-            let detailViewNavigationController = UINavigationController(rootViewController: detailView)
-            splitViewController?.showDetailViewController(detailViewNavigationController, sender: nil)
+        let isCompact: Bool = traitCollection.verticalSizeClass == .compact
+        if isPad || isCompact {
+            showDetailView()
         }
+    }
+    
+    private func showDetailView(about note: NSManagedObject? = nil) {
+        let detailView = DetailViewController()
+        if let note = note {
+            detailView.note = note
+        } else {
+            detailView.note = DataModel.shared.noteList.first
+        }
+        let detailViewNavigationController = UINavigationController(rootViewController: detailView)
+        splitViewController?.showDetailViewController(detailViewNavigationController, sender: nil)
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -64,6 +72,7 @@ final class NoteTableViewController: UITableViewController {
 }
 
 // MARK: - DataSource
+
 extension NoteTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return DataModel.shared.noteList.count
@@ -93,15 +102,13 @@ extension NoteTableViewController {
 }
 
 // MARK: - Delegate
+
 extension NoteTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailView = DetailViewController()
-        detailView.note = DataModel.shared.noteList[indexPath.row]
-        let detailViewNavigationController = UINavigationController(rootViewController: detailView)
-        splitViewController?.showDetailViewController(detailViewNavigationController, sender: nil)
+        let note = DataModel.shared.noteList[indexPath.row]
+        showDetailView(about: note)
         if UIDevice.current.userInterfaceIdiom == .phone {
             tableView.deselectRow(at: indexPath, animated: true)
         }
-        
     }
 }

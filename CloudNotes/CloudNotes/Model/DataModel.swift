@@ -8,10 +8,10 @@
 import UIKit
 import CoreData
 
-class DataModel {
+final class DataModel {
     var noteList: [NSManagedObject] = []
     private let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    var managedContext: NSManagedObjectContext {
+    private var managedContext: NSManagedObjectContext {
         return appDelegate!.persistentContainer.viewContext
     }
     static let shared = DataModel()
@@ -28,14 +28,14 @@ class DataModel {
             debugPrint("Could not fetch. \(error)")
         }
     }
-
+    
     func deleteData(_ data: NSManagedObject) {
         managedContext.delete(data)
         
         do {
             try managedContext.save()
             fetchData()
-            NotificationCenter.default.post(name: NSNotification.Name(NoteString.editData), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(NoteString.notification), object: nil)
         } catch let error as NSError {
             debugPrint("Could not save. \(error)")
             managedContext.rollback()
@@ -62,17 +62,17 @@ class DataModel {
         }
     }
     
-    func editData(_ text: String, editInto data: NSManagedObject) {
+    func editData(_ text: String, editInto note: NSManagedObject) {
         let splitedData = spliteText(text)
         
-        data.setValue(splitedData.title, forKey: EntityString.title)
-        data.setValue(splitedData.body, forKey: EntityString.body)
-        data.setValue((Date()), forKey: EntityString.lastModified)
+        note.setValue(splitedData.title, forKey: EntityString.title)
+        note.setValue(splitedData.body, forKey: EntityString.body)
+        note.setValue((Date()), forKey: EntityString.lastModified)
         
         do {
             try managedContext.save()
             fetchData()
-            NotificationCenter.default.post(name: NSNotification.Name(NoteString.editData), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(NoteString.notification), object: nil)
         } catch let error as NSError {
             debugPrint("Could not save. \(error)")
             managedContext.rollback()

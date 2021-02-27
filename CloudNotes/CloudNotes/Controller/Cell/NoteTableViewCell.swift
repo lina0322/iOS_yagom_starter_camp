@@ -10,25 +10,29 @@ import CoreData
 
 final class NoteTableViewCell: UITableViewCell {
     // MARK: - Property
+    
     static var identifier: String {
         return "\(self)"
     }
     
     // MARK: - Outlet
-    let titleLabel: UILabel = {
+    
+    private let titleLabel: UILabel = {
         let label = makeLabel(textStyle: .title1)
         return label
     }()
-    let lastModifiedDateLabel: UILabel = {
+    private let lastModifiedDateLabel: UILabel = {
         let label = makeLabel()
         return label
     }()
-    let detailLabel: UILabel = {
+    private let detailLabel: UILabel = {
         let label = makeLabel(textColor: .gray)
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return label
     }()
-
+    
+    // MARK: - init
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpConstraints()
@@ -39,15 +43,23 @@ final class NoteTableViewCell: UITableViewCell {
         setUpConstraints()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = nil
+        lastModifiedDateLabel.text = nil
+        detailLabel.text = nil
+    }
+    
     func configure(_ note: NSManagedObject) {
+        let lastModified = DateFormatter.convertToUserLocaleString(date: note.value(forKey: EntityString.lastModified) as! Date)
         accessoryType = .disclosureIndicator
         titleLabel.text = note.value(forKey: EntityString.title) as? String
         detailLabel.text = note.value(forKey: EntityString.body) as? String
-        let lastModified = DateFormatter.convertToUserLocaleString(date: note.value(forKey: EntityString.lastModified) as! Date)
         lastModifiedDateLabel.text = lastModified
     }
     
     // MARK: - UI
+    
     static private func makeLabel(textStyle: UIFont.TextStyle = .body, textColor: UIColor = .black) -> UILabel {
         let label = UILabel()
         label.textColor = textColor
@@ -75,12 +87,5 @@ final class NoteTableViewCell: UITableViewCell {
             detailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             detailLabel.bottomAnchor.constraint(equalTo: lastModifiedDateLabel.bottomAnchor)
         ])
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        titleLabel.text = nil
-        lastModifiedDateLabel.text = nil
-        detailLabel.text = nil
     }
 }

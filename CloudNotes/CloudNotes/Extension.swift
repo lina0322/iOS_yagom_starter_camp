@@ -17,8 +17,8 @@ extension DateFormatter {
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
         dateFormatter.locale = Locale(identifier: locale)
-        let stringDate = dateFormatter.string(from: date)
-        return stringDate
+        let dateString = dateFormatter.string(from: date)
+        return dateString
     }
 }
 

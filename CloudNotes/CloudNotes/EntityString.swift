@@ -10,5 +10,4 @@ enum EntityString {
     static let title = "title"
     static let body = "body"
     static let lastModified = "lastModified"
-    static let newNote = "새로운 메모 \n 추가 텍스트 없음"
 }
