@@ -82,7 +82,6 @@ final class DetailViewController: UIViewController {
         
         toolbar.setItems([space, moreButton], animated: true)
         toolbar.translatesAutoresizingMaskIntoConstraints = false
-        toolbar.isTranslucent = true
 
         view.addSubview(toolbar)
         NSLayoutConstraint.activate([
@@ -181,7 +180,7 @@ final class DetailViewController: UIViewController {
         }
         let deleteAlert = UIAlertController(title: NoteString.deleteTitle, message: NoteString.deleteMessage, preferredStyle: .alert)
         let deleteButton = UIAlertAction(title: NoteString.delete, style: .destructive) { _ in
-            self.deleteData(note)
+            DataModel.shared.deleteData(note)
             
         }
         let cancleButton = UIAlertAction(title: NoteString.cancel, style: .cancel, handler: nil)
@@ -189,19 +188,5 @@ final class DetailViewController: UIViewController {
         deleteAlert.addAction(deleteButton)
         deleteAlert.addAction(cancleButton)
         self.present(deleteAlert, animated: true, completion: nil)
-    }
-    
-    private func deleteData(_ data: NSManagedObject) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        managedContext.delete(data)
-        do {
-            try managedContext.save()
-            navigationController?.popViewController(animated: true)
-        } catch {
-            print("저장실패")
-        }
     }
 }
