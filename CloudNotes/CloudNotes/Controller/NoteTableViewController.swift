@@ -91,5 +91,8 @@ extension NoteTableViewController {
         let detailView = DetailViewController()
         detailView.note = DataModel.shared.noteList[indexPath.row]
         splitViewController?.showDetailViewController(detailView, sender: nil)
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
 }
