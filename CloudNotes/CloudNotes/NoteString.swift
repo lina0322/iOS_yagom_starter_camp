@@ -15,4 +15,5 @@ enum NoteString {
     static let deleteMessage = "정말로 삭제하시겠어요?"
     static let confirm = "확인"
     static let buttonImage = "ellipsis.circle"
+    static let editData = "EditData"
 }

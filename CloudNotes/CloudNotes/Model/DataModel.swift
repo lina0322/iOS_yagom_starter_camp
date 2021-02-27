@@ -53,7 +53,7 @@ class DataModel {
             try managedContext.save()
             //navigationController?.popViewController(animated: true)
             fetchData()
-            NotificationCenter.default.post(name: NSNotification.Name("DeleteData"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(NoteString.editData), object: nil)
         } catch let error as NSError {
             debugPrint("Could not save. \(error)")
             managedContext.rollback()
