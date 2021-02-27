@@ -11,6 +11,7 @@ import CoreData
 final class DetailViewController: UIViewController {
     // MARK: - Property
     var note: NSManagedObject? = nil
+    let moreButton = UIBarButtonItem(image: UIImage(systemName: NoteString.buttonImage), style: .done, target: self, action: #selector(showActionSheet))
     var noteTitle: String {
         guard let title = note?.value(forKey: EntityString.title) as? String else {
             return String.empty
@@ -23,7 +24,7 @@ final class DetailViewController: UIViewController {
         }
         return body
     }
-
+    
     // MARK: - Outlet
     private let detailTextView: UITextView = {
         let textView = UITextView()
@@ -39,15 +40,13 @@ final class DetailViewController: UIViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        let isCompactSize: Bool = traitCollection.horizontalSizeClass == .compact
-
+        
         configureTextView()
         configureNavigationItem()
-        setToolbarHidden(isCompactSize)
         setTapGesture()
         configureKeyboardDoneButton()
     }
-
+    
     // MARK: UI
     private func configureTextView() {
         detailTextView.delegate = self
@@ -73,32 +72,6 @@ final class DetailViewController: UIViewController {
         navigationItem.rightBarButtonItem = barButton
     }
     
-    func setToolbarHidden(_ hidden: Bool) {
-        if hidden {
-            return
-        }
-        let toolbar = UIToolbar()
-        let safeArea = view.safeAreaLayoutGuide
-        let moreButton = UIBarButtonItem(image: UIImage(systemName: NoteString.buttonImage), style: .done, target: self, action: #selector(showActionSheet))
-        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        
-        toolbar.setItems([space, moreButton], animated: true)
-        toolbar.translatesAutoresizingMaskIntoConstraints = false
-
-        view.addSubview(toolbar)
-        NSLayoutConstraint.activate([
-            toolbar.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            toolbar.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            toolbar.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
-        ])
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        let isCompactSize: Bool = traitCollection.horizontalSizeClass == .compact
-        setToolbarHidden(isCompactSize)
-    }
-    
     // MARK: - Tap Gesture
     private func setTapGesture() {
         let tapTextViewGesture = UITapGestureRecognizer(target: self, action: #selector(textViewDidTapped))
@@ -113,7 +86,7 @@ final class DetailViewController: UIViewController {
         var location = recognizer.location(in: textView)
         location.x -= textView.textContainerInset.left
         location.y -= textView.textContainerInset.top
-
+        
         let glyphIndex: Int = textView.layoutManager.glyphIndex(for: location, in: textView.textContainer, fractionOfDistanceThroughGlyph: nil)
         let glyphRect = layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 1), in: textView.textContainer)
         
