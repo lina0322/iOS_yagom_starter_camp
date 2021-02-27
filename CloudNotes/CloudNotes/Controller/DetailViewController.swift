@@ -57,6 +57,7 @@ final class DetailViewController: UIViewController {
             detailTextView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             detailTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        
         let content = NSMutableAttributedString(string: noteTitle + String.newLine, attributes: [.font: UIFont.preferredFont(forTextStyle: .title1)])
         content.append(NSMutableAttributedString(string: noteBody, attributes: [.font: UIFont.preferredFont(forTextStyle: .body)]))
         detailTextView.attributedText = content
@@ -69,11 +70,11 @@ final class DetailViewController: UIViewController {
     
     // MARK: - Tap Gesture
     private func setTapGesture() {
-        let tapTextViewGesture = UITapGestureRecognizer(target: self, action: #selector(textViewDidTapped))
+        let tapTextViewGesture = UITapGestureRecognizer(target: self, action: #selector(tapTextView))
         detailTextView.addGestureRecognizer(tapTextViewGesture)
     }
     
-    @objc func textViewDidTapped(recognizer: UITapGestureRecognizer) {
+    @objc func tapTextView(recognizer: UITapGestureRecognizer) {
         guard let textView = recognizer.view as? UITextView else {
             return
         }
@@ -155,7 +156,6 @@ final class DetailViewController: UIViewController {
         let deleteAlert = UIAlertController(title: NoteString.deleteTitle, message: NoteString.deleteMessage, preferredStyle: .alert)
         let deleteButton = UIAlertAction(title: NoteString.delete, style: .destructive) { _ in
             DataModel.shared.deleteData(note)
-            
         }
         let cancleButton = UIAlertAction(title: NoteString.cancel, style: .cancel, handler: nil)
         
@@ -184,6 +184,9 @@ extension DetailViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         guard let note = note else {
             return
+        }
+        if detailTextView.text == String.empty {
+            DataModel.shared.deleteData(note)
         }
         DataModel.shared.editData(detailTextView.text, editInto: note)
         setTextViewDetective(true)

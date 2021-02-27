@@ -16,13 +16,13 @@ final class NoteTableViewController: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView(_:)), name: NSNotification.Name(NoteString.editData), object: nil)
     }
     
-    @objc func reloadTableView(_ notification:Notification) {
-        tableView.reloadData()
+    override func viewWillAppear(_ animated: Bool) {
+        DataModel.shared.fetchData()
         configureDetailView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        DataModel.shared.fetchData()
+    @objc func reloadTableView(_ notification:Notification) {
+        tableView.reloadData()
         configureDetailView()
     }
     
@@ -39,7 +39,7 @@ final class NoteTableViewController: UITableViewController {
     
     @objc private func touchUpAddButton() {
         let detailView = DetailViewController()
-        DataModel.shared.saveData("제목 \n 내용")
+        DataModel.shared.saveData(NoteString.newNoteMessage)
         detailView.note = DataModel.shared.noteList.first
         splitViewController?.showDetailViewController(detailView, sender: nil)
         let detailViewNavigationController = UINavigationController(rootViewController: detailView)

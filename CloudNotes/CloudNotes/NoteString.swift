@@ -16,4 +16,5 @@ enum NoteString {
     static let confirm = "확인"
     static let buttonImage = "ellipsis.circle"
     static let editData = "EditData"
+    static let newNoteMessage = "제목을 입력하세요. \n 내용을 입력하세요."
 }
