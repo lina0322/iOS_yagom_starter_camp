@@ -10,7 +10,9 @@ import Foundation
 extension DateFormatter {
     static func convertToUserLocaleString(date: Date) -> String {
         let dateFormatter = DateFormatter()
-        let locale = Locale.autoupdatingCurrent.identifier
+        guard let locale = Locale.autoupdatingCurrent.collatorIdentifier else {
+            return String.empty
+        }
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
         dateFormatter.locale = Locale(identifier: locale)
