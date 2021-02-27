@@ -97,8 +97,45 @@
 			isa = PBXGroup;
 			children = (
 				4C096A1125E8BB1B0054DC33 /* DataModel.swift */,
+				C7481C7625BBCF3900B9CA55 /* CloudNotes.xcdatamodeld */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		4C86026025EAADC6004E99DE /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				82EEF6EE25DFBDC8001CD667 /* ErrorCase.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		4C86026125EAADDD004E99DE /* String */ = {
+			isa = PBXGroup;
+			children = (
+				4C0969FA25E7D78A0054DC33 /* EntityString.swift */,
+				82EEF6F325DFBFF0001CD667 /* NoteString.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
+		4C86026525EAB0A7004E99DE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C7481C6D25BBCF3900B9CA55 /* AppDelegate.swift */,
+				C7481C6F25BBCF3900B9CA55 /* SceneDelegate.swift */,
+				C7481C7925BBCF3A00B9CA55 /* Assets.xcassets */,
+				C7481C7E25BBCF3A00B9CA55 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4C86026625EAB0D5004E99DE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				82897EF825DB86B400433BA7 /* Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		8280AFD225DA6EAF004EA888 /* Controller */ = {
@@ -145,16 +182,11 @@
 			children = (
 				4C096A1025E8BB0D0054DC33 /* Model */,
 				8280AFD225DA6EAF004EA888 /* Controller */,
-				82EEF6EE25DFBDC8001CD667 /* ErrorCase.swift */,
-				82EEF6F325DFBFF0001CD667 /* NoteString.swift */,
-				4C0969FA25E7D78A0054DC33 /* EntityString.swift */,
-				82897EF825DB86B400433BA7 /* Extension.swift */,
-				C7481C6D25BBCF3900B9CA55 /* AppDelegate.swift */,
-				C7481C6F25BBCF3900B9CA55 /* SceneDelegate.swift */,
-				C7481C7925BBCF3A00B9CA55 /* Assets.xcassets */,
+				4C86026625EAB0D5004E99DE /* Extension */,
+				4C86026125EAADDD004E99DE /* String */,
+				4C86026025EAADC6004E99DE /* Error */,
+				4C86026525EAB0A7004E99DE /* Supporting Files */,
 				C7481C7B25BBCF3A00B9CA55 /* LaunchScreen.storyboard */,
-				C7481C7E25BBCF3A00B9CA55 /* Info.plist */,
-				C7481C7625BBCF3900B9CA55 /* CloudNotes.xcdatamodeld */,
 			);
 			path = CloudNotes;
 			sourceTree = "<group>";
