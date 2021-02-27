@@ -50,6 +50,7 @@ final class DetailViewController: UIViewController {
 
     // MARK: UI
     private func configureTextView() {
+        detailTextView.delegate = self
         view.addSubview(detailTextView)
         
         let safeArea = view.safeAreaLayoutGuide
@@ -59,7 +60,7 @@ final class DetailViewController: UIViewController {
             detailTextView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             detailTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        let content = NSMutableAttributedString(string: noteTitle + String.newLine + String.newLine, attributes: [.font: UIFont.preferredFont(forTextStyle: .title1)])
+        let content = NSMutableAttributedString(string: noteTitle + String.newLine, attributes: [.font: UIFont.preferredFont(forTextStyle: .title1)])
         content.append(NSMutableAttributedString(string: noteBody, attributes: [.font: UIFont.preferredFont(forTextStyle: .body)]))
         detailTextView.attributedText = content
     }
@@ -128,10 +129,10 @@ final class DetailViewController: UIViewController {
                 }
             } else {
                 placeCursor(textView, location)
-                changeTextViewToNormalState()
+                setTextViewDetective(false)
             }
         } else {
-            changeTextViewToNormalState()
+            setTextViewDetective(false)
         }
     }
     
@@ -147,25 +148,13 @@ final class DetailViewController: UIViewController {
         }
     }
     
-    private func changeTextViewToNormalState() {
-        detailTextView.isEditable = true
-        detailTextView.dataDetectorTypes = []
-        detailTextView.becomeFirstResponder()
-    }
-    
-    // MARK: - Keyboard
-    private func configureKeyboardDoneButton() {
-        let toolBarKeyboard = UIToolbar()
-        toolBarKeyboard.sizeToFit()
-        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(touchUpDoneButton))
-        
-        toolBarKeyboard.items = [space, doneButton]
-        detailTextView.inputAccessoryView = toolBarKeyboard
-    }
-    
-    @objc func touchUpDoneButton(_ sender: UIButton) {
-        view.endEditing(true)
+    private func setTextViewDetective(_ isDetecvite: Bool) {
+        if isDetecvite {
+            detailTextView.isEditable = false
+        } else {
+            detailTextView.isEditable = true
+            detailTextView.becomeFirstResponder()
+        }
     }
     
     // MARK: Alert
@@ -205,5 +194,31 @@ final class DetailViewController: UIViewController {
         deleteAlert.addAction(deleteButton)
         deleteAlert.addAction(cancleButton)
         present(deleteAlert, animated: true, completion: nil)
+    }
+    
+    // MARK: - Keyboard
+    private func configureKeyboardDoneButton() {
+        let toolBarKeyboard = UIToolbar()
+        toolBarKeyboard.sizeToFit()
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(touchUpDoneButton))
+        
+        toolBarKeyboard.items = [space, doneButton]
+        detailTextView.inputAccessoryView = toolBarKeyboard
+    }
+    
+    @objc func touchUpDoneButton(_ sender: UIButton) {
+        view.endEditing(true)
+    }
+}
+
+extension DetailViewController: UITextViewDelegate {
+    func textViewDidEndEditing(_ textView: UITextView) {
+        guard let note = note else {
+            return
+        }
+        DataModel.shared.editData(textView.text, editInto: note)
+        setTextViewDetective(true)
+        NotificationCenter.default.post(name: NSNotification.Name(NoteString.editData), object: nil)
     }
 }

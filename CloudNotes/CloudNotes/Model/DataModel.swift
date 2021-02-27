@@ -19,6 +19,8 @@ class DataModel {
     
     func fetchData() {
         let request = NSFetchRequest<NSManagedObject>(entityName: EntityString.entityName)
+        let sortType = NSSortDescriptor(key: EntityString.lastModified, ascending: false)
+        request.sortDescriptors = [sortType]
         
         do {
             noteList = try managedContext.fetch(request)
@@ -26,37 +28,63 @@ class DataModel {
             debugPrint("Could not fetch. \(error)")
         }
     }
-    
-    func saveData(_ data: String) {
-        guard let entity = NSEntityDescription.entity(forEntityName: EntityString.entityName, in: managedContext) else {
-            return
-        }
-        let note = NSManagedObject(entity: entity, insertInto: managedContext)
-        let splitedData = data.split(separator: "\n", maxSplits: 1, omittingEmptySubsequences: true)
-        
-        note.setValue(splitedData[0], forKey: EntityString.title)
-        note.setValue(splitedData[1], forKey: EntityString.body)
-        note.setValue((Date()), forKey: EntityString.lastModified)
+
+    func deleteData(_ data: NSManagedObject) {
+        managedContext.delete(data)
         
         do {
             try managedContext.save()
-            noteList.append(note)
+            fetchData()
+            NotificationCenter.default.post(name: NSNotification.Name("DeleteData"), object: nil)
+            //navigationController?.popViewController(animated: true)
         } catch let error as NSError {
             debugPrint("Could not save. \(error)")
             managedContext.rollback()
         }
     }
     
-    func deleteData(_ data: NSManagedObject) {
-        managedContext.delete(data)
+    func saveData(_ text: String) {
+        guard let entity = NSEntityDescription.entity(forEntityName: EntityString.entityName, in: managedContext) else {
+            return
+        }
+        let note = NSManagedObject(entity: entity, insertInto: managedContext)
+        let splitedData = spliteText(text)
+        
+        note.setValue(splitedData.title, forKey: EntityString.title)
+        note.setValue(splitedData.body, forKey: EntityString.body)
+        note.setValue((Date()), forKey: EntityString.lastModified)
+        
         do {
             try managedContext.save()
-            //navigationController?.popViewController(animated: true)
+            noteList.insert(note, at: 0)
+        } catch let error as NSError {
+            debugPrint("Could not save. \(error)")
+            managedContext.rollback()
+        }
+    }
+    
+    func editData(_ text: String, editInto data: NSManagedObject) {
+        let splitedData = spliteText(text)
+        
+        data.setValue(splitedData.title, forKey: EntityString.title)
+        data.setValue(splitedData.body, forKey: EntityString.body)
+        data.setValue((Date()), forKey: EntityString.lastModified)
+        
+        do {
+            try managedContext.save()
             fetchData()
             NotificationCenter.default.post(name: NSNotification.Name(NoteString.editData), object: nil)
         } catch let error as NSError {
             debugPrint("Could not save. \(error)")
             managedContext.rollback()
         }
+    }
+    
+    private func spliteText(_ data: String) -> (title: Substring, body: Substring?) {
+        let splitedData = data.split(separator: "\n", maxSplits: 1, omittingEmptySubsequences: false)
+        if splitedData.count == 1 {
+            return (title: splitedData[0], body: nil)
+        }
+        return (title: splitedData[0], body: splitedData[1])
     }
 }

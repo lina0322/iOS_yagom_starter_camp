@@ -39,8 +39,9 @@ final class NoteTableViewController: UITableViewController {
     
     @objc private func touchUpAddButton() {
         let detailView = DetailViewController()
+        DataModel.shared.saveData("제목 \n 내용")
+        detailView.note = DataModel.shared.noteList.first
         splitViewController?.showDetailViewController(detailView, sender: nil)
-        DataModel.shared.saveData("새로운 메모 \n 추가 텍스트 없음")
         tableView.reloadData()
     }
     
