@@ -75,11 +75,11 @@ final class DetailViewController: UIViewController {
     
     // MARK: - Tap Gesture
     private func setTapGesture() {
-        let tapTextViewGesture = UITapGestureRecognizer(target: self, action: #selector(textViewDidTapped))
+        let tapTextViewGesture = UITapGestureRecognizer(target: self, action: #selector(tapTextView))
         detailTextView.addGestureRecognizer(tapTextViewGesture)
     }
     
-    @objc func textViewDidTapped(recognizer: UITapGestureRecognizer) {
+    @objc func tapTextView(recognizer: UITapGestureRecognizer) {
         guard let textView = recognizer.view as? UITextView else {
             return
         }
