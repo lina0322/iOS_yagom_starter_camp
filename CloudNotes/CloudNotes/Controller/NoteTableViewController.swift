@@ -96,6 +96,16 @@ extension NoteTableViewController {
         cell.configure(note)
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            debugPrint("여기 이 \(indexPath.row)에 대해 삭제기능 넣어야함")
+        }
+    }
 }
 
 // MARK: - Delegate
