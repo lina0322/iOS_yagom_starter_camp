@@ -16,7 +16,7 @@ final class NoteTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        DataModel.shared.loadCoreData()
+        DataModel.shared.fetchData()
     }
         
     // MARK: - UI
@@ -60,7 +60,9 @@ extension NoteTableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            debugPrint("여기 이 \(indexPath.row)에 대해 삭제기능 넣어야함")
+            let data = DataModel.shared.noteList[indexPath.row]
+            DataModel.shared.deleteData(data)
+            tableView.reloadData()
         }
     }
 }

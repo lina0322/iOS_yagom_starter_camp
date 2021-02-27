@@ -9,15 +9,25 @@ import UIKit
 import CoreData
 
 class DataModel {
+    var noteList: [NSManagedObject] = []
+    private let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    var managedContext: NSManagedObjectContext {
+        return appDelegate!.persistentContainer.viewContext
+    }
     static let shared = DataModel()
     private init() {}
-    let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    var noteList: [NSManagedObject] = [] 
+    
+    func fetchData() {
+        let request = NSFetchRequest<NSManagedObject>(entityName: EntityString.entityName)
+        
+        do {
+            noteList = try managedContext.fetch(request)
+        } catch let error as NSError {
+            debugPrint("Could not fetch. \(error)")
+        }
+    }
     
     func saveData(_ data: String) {
-        guard let managedContext = appDelegate?.persistentContainer.viewContext else {
-            return
-        }
         guard let entity = NSEntityDescription.entity(forEntityName: EntityString.entityName, in: managedContext) else {
             return
         }
@@ -33,32 +43,20 @@ class DataModel {
             noteList.append(note)
         } catch let error as NSError {
             debugPrint("Could not save. \(error)")
-        }
-    }
-    
-    func loadCoreData() {
-        guard let managedContext = appDelegate?.persistentContainer.viewContext else {
-            return
-        }
-        let request = NSFetchRequest<NSManagedObject>(entityName: "CloudNote")
-        
-        do {
-            noteList = try managedContext.fetch(request)
-        } catch let error as NSError {
-            debugPrint("Could not fetch. \(error)")
+            managedContext.rollback()
         }
     }
     
     func deleteData(_ data: NSManagedObject) {
-        guard let managedContext = appDelegate?.persistentContainer.viewContext else {
-            return
-        }
         managedContext.delete(data)
+        
         do {
             try managedContext.save()
             //navigationController?.popViewController(animated: true)
-        } catch {
-            print("저장실패")
+        } catch let error as NSError {
+            debugPrint("Could not save. \(error)")
+            managedContext.rollback()
         }
+        fetchData()
     }
 }
