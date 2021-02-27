@@ -34,6 +34,10 @@ final class NoteTableViewCell: UITableViewCell {
         setUpConstraints()
     }
     
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     func configure(_ note: NSManagedObject) {
         accessoryType = .disclosureIndicator
         titleLabel.text = note.value(forKey: EntityString.title) as? String
@@ -76,9 +80,5 @@ final class NoteTableViewCell: UITableViewCell {
         titleLabel.text = nil
         lastModifiedDateLabel.text = nil
         detailLabel.text = nil
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
