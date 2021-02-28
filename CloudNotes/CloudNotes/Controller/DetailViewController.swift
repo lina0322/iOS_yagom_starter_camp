@@ -107,7 +107,7 @@ final class DetailViewController: UIViewController {
                 if UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 } else {
-                    Alert.show(message: ErrorCase.wrongURL.localizedDescription)
+                    showErrorAlert(message: ErrorCase.wrongURL.localizedDescription)
                 }
             } else {
                 placeCursor(textView, location)
@@ -157,7 +157,7 @@ final class DetailViewController: UIViewController {
     
     private func showActivityView(_ sender: AnyObject) {
         guard let text = detailTextView.text else {
-            Alert.show(message: ErrorCase.notSelectedNote.localizedDescription)
+            debugPrint("text 없음")
             return
         }
         let activityViewController = UIActivityViewController(activityItems: [text], applicationActivities: nil)
@@ -168,7 +168,7 @@ final class DetailViewController: UIViewController {
     
     private func showDeleteAlert() {
         guard let note = note else {
-            Alert.show(message: ErrorCase.notSelectedNote.localizedDescription)
+            showErrorAlert(message: ErrorCase.notSelectedNote.localizedDescription)
             return
         }
         let deleteAlert = UIAlertController(title: NoteString.deleteTitle, message: NoteString.deleteMessage, preferredStyle: .alert)
@@ -182,6 +182,12 @@ final class DetailViewController: UIViewController {
         present(deleteAlert, animated: true, completion: nil)
     }
     
+    private func showErrorAlert(title: String? = nil, message: String? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let confirmButton = UIAlertAction(title: NoteString.confirmButton, style: .default, handler: nil)
+        alert.addAction(confirmButton)
+        present(alert, animated: true, completion: nil)
+    }
     // MARK: - Keyboard
     
     private func configureKeyboardDoneButton() {

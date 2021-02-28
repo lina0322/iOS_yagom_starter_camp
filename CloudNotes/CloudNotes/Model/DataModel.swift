@@ -36,7 +36,7 @@ final class DataModel {
         do {
             noteList = try managedContext.fetch(request)
         } catch let error as NSError {
-            Alert.show(title: DataError.fetchFailure.localizedDescription, message: error as? String)
+            debugPrint("\(DataError.fetchFailure.localizedDescription), \(error)")
         }
     }
     
@@ -48,7 +48,7 @@ final class DataModel {
             fetchData()
             NotificationCenter.default.post(name: NSNotification.Name(NoteString.notification), object: nil)
         } catch let error as NSError {
-            Alert.show(title: DataError.deleteFailure.localizedDescription, message: error as? String)
+            debugPrint("\(DataError.deleteFailure.localizedDescription), \(error)")
             managedContext.rollback()
         }
     }
@@ -68,7 +68,7 @@ final class DataModel {
             try managedContext.save()
             noteList.insert(note, at: 0)
         } catch let error as NSError {
-            Alert.show(title: DataError.saveFailure.localizedDescription, message: error as? String)
+            debugPrint("\(DataError.saveFailure.localizedDescription), \(error)")
             managedContext.rollback()
         }
     }
@@ -85,7 +85,7 @@ final class DataModel {
             fetchData()
             NotificationCenter.default.post(name: NSNotification.Name(NoteString.notification), object: nil)
         } catch let error as NSError {
-            Alert.show(title: DataError.editFailure.localizedDescription, message: error as? String)
+            debugPrint("\(DataError.editFailure.localizedDescription), \(error)")
             managedContext.rollback()
         }
     }
