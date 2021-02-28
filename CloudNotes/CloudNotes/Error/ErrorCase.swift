@@ -8,8 +8,6 @@
 import Foundation
 
 enum ErrorCase: Error {
-    case decodingFailure
-    case wrongData
     case cellError
     case notSelectedNote
 }
@@ -17,10 +15,6 @@ enum ErrorCase: Error {
 extension ErrorCase: LocalizedError {
     var errorDescription: String? {
         switch self {
-        case .decodingFailure:
-            return "Decoding fail"
-        case .wrongData:
-            return "Wrong data"
         case .cellError:
             return "Cell error"
         case .notSelectedNote:

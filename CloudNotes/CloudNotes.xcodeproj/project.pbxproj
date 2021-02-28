@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C0969FB25E7D78A0054DC33 /* EntityString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0969FA25E7D78A0054DC33 /* EntityString.swift */; };
 		4C096A1225E8BB1B0054DC33 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C096A1125E8BB1B0054DC33 /* DataModel.swift */; };
+		4C4A5B5025EB4BFE00F07BED /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A5B4F25EB4BFE00F07BED /* Alert.swift */; };
 		8280AFD425DA6ED6004EA888 /* NoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8280AFD325DA6ED6004EA888 /* NoteTableViewController.swift */; };
 		8280AFDC25DA893B004EA888 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8280AFDB25DA893B004EA888 /* NoteTableViewCell.swift */; };
 		82897EF925DB86B400433BA7 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82897EF825DB86B400433BA7 /* Extension.swift */; };
@@ -46,6 +47,7 @@
 		4C0969FA25E7D78A0054DC33 /* EntityString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityString.swift; sourceTree = "<group>"; };
 		4C096A1125E8BB1B0054DC33 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		4C096A1F25EA690B0054DC33 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		4C4A5B4F25EB4BFE00F07BED /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		8280AFD325DA6ED6004EA888 /* NoteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewController.swift; sourceTree = "<group>"; };
 		8280AFDB25DA893B004EA888 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		82897EF825DB86B400433BA7 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			children = (
 				4C096A1125E8BB1B0054DC33 /* DataModel.swift */,
 				C7481C7625BBCF3900B9CA55 /* CloudNotes.xcdatamodeld */,
+				4C4A5B4F25EB4BFE00F07BED /* Alert.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				4C0969FB25E7D78A0054DC33 /* EntityString.swift in Sources */,
 				82EEF6EF25DFBDC8001CD667 /* ErrorCase.swift in Sources */,
 				8280AFDC25DA893B004EA888 /* NoteTableViewCell.swift in Sources */,
+				4C4A5B5025EB4BFE00F07BED /* Alert.swift in Sources */,
 				4C096A1225E8BB1B0054DC33 /* DataModel.swift in Sources */,
 				82897EF925DB86B400433BA7 /* Extension.swift in Sources */,
 				82EEF6DF25DF8E14001CD667 /* NoteSplitViewController.swift in Sources */,
