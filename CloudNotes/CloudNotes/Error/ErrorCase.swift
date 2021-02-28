@@ -10,6 +10,7 @@ import Foundation
 enum ErrorCase: Error {
     case cellError
     case notSelectedNote
+    case wrongURL
 }
 
 extension ErrorCase: LocalizedError {
@@ -19,6 +20,8 @@ extension ErrorCase: LocalizedError {
             return "Cell error"
         case .notSelectedNote:
             return "선택된 노트가 없습니다."
+        case .wrongURL:
+            return "이동할 수 없습니다."
         }
     }
 }

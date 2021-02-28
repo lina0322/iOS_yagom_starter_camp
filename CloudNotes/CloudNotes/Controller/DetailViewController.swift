@@ -107,7 +107,7 @@ final class DetailViewController: UIViewController {
                 if UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 } else {
-                    debugPrint("There is a problem in your link.")
+                    Alert.show(message: ErrorCase.wrongURL.localizedDescription)
                 }
             } else {
                 placeCursor(textView, location)
@@ -157,7 +157,7 @@ final class DetailViewController: UIViewController {
     
     private func showActivityView(_ sender: AnyObject) {
         guard let text = detailTextView.text else {
-            debugPrint("공유할 텍스트 없음.")
+            Alert.show(message: ErrorCase.notSelectedNote.localizedDescription)
             return
         }
         let activityViewController = UIActivityViewController(activityItems: [text], applicationActivities: nil)
@@ -168,7 +168,7 @@ final class DetailViewController: UIViewController {
     
     private func showDeleteAlert() {
         guard let note = note else {
-            debugPrint("선택된 데이터가 없다고 알람 보여줘야하는 부분.")
+            Alert.show(message: ErrorCase.notSelectedNote.localizedDescription)
             return
         }
         let deleteAlert = UIAlertController(title: NoteString.deleteTitle, message: NoteString.deleteMessage, preferredStyle: .alert)

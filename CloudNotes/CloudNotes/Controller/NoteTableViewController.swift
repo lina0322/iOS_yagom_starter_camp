@@ -14,8 +14,8 @@ final class NoteTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         registerCell()
-        configureNavigationItem()
         setUpNotificationCenter()
+        configureNavigationItem()
         configureDetailView()
         DataModel.shared.fetchData()
     }

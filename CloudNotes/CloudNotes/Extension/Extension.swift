@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - DateFormatter
+
 extension DateFormatter {
     static func convertToUserLocaleString(date: Date) -> String {
         let dateFormatter = DateFormatter()
@@ -21,6 +23,8 @@ extension DateFormatter {
         return dateString
     }
 }
+
+// MARK: - String
 
 extension String {
     static let empty = ""

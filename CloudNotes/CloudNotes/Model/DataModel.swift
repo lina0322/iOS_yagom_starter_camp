@@ -9,6 +9,8 @@ import UIKit
 import CoreData
 
 final class DataModel {
+    // MARK: - Property
+    
     var noteList: [NSManagedObject] = []
     private let appDelegate = UIApplication.shared.delegate as? AppDelegate
     private var managedContext: NSManagedObjectContext {
@@ -24,6 +26,8 @@ final class DataModel {
         case editFailure
     }
 
+    // MARK: - CRUD
+    
     func fetchData() {
         let request = NSFetchRequest<NSManagedObject>(entityName: EntityString.entityName)
         let sortType = NSSortDescriptor(key: EntityString.lastModified, ascending: false)
@@ -95,7 +99,7 @@ final class DataModel {
     }
 }
 
-// MARK: - Error
+// MARK: - Error Extension
 extension DataModel.DataError: LocalizedError {
     var errorDescription: String? {
         switch self {
