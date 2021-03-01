@@ -134,7 +134,7 @@ final class DetailViewController: UIViewController {
                 setTextViewDetective(false)
             }
         } else {
-            setTextViewDetective(false)
+            setTextViewDetective(true)
         }
     }
     
