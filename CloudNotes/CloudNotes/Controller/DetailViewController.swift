@@ -111,30 +111,32 @@ final class DetailViewController: UIViewController {
         guard let textView = recognizer.view as? UITextView else {
             return
         }
-        let layoutManager = textView.layoutManager
         var location = recognizer.location(in: textView)
         location.x -= textView.textContainerInset.left
         location.y -= textView.textContainerInset.top
         
         let glyphIndex: Int = textView.layoutManager.glyphIndex(for: location, in: textView.textContainer, fractionOfDistanceThroughGlyph: nil)
-        let glyphRect = layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 1), in: textView.textContainer)
-        
+        let glyphRect = textView.layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 1), in: textView.textContainer)
         if glyphRect.contains(location) {
-            let characterIndex: Int = layoutManager.characterIndexForGlyph(at: glyphIndex)
-            let attributeName = NSAttributedString.Key.link
-            let attributeValue = textView.textStorage.attribute(attributeName, at: characterIndex, effectiveRange: nil)
-            if let url = attributeValue as? URL {
-                if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                } else {
-                    showErrorAlert(message: ErrorCase.wrongURL.localizedDescription)
-                }
-            } else {
-                placeCursor(textView, location)
-                setTextViewDetective(false)
-            }
+            determineCursorLocationOrOpenURL(textView: textView, glyphIndex: glyphIndex, location: location)
         } else {
             setTextViewDetective(true)
+        }
+    }
+    
+    private func determineCursorLocationOrOpenURL(textView: UITextView, glyphIndex: Int, location: CGPoint) {
+        let characterIndex: Int = textView.layoutManager.characterIndexForGlyph(at: glyphIndex)
+        let attributeName = NSAttributedString.Key.link
+        let attributeValue = textView.textStorage.attribute(attributeName, at: characterIndex, effectiveRange: nil)
+        if let url = attributeValue as? URL {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                showErrorAlert(message: ErrorCase.wrongURL.localizedDescription)
+            }
+        } else {
+            placeCursor(textView, location)
+            setTextViewDetective(false)
         }
     }
     
