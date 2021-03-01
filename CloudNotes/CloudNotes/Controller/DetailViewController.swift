@@ -48,6 +48,7 @@ final class DetailViewController: UIViewController {
     func configureView() {
         configureTextView()
         configureConstraints()
+        registerNotificationCenter()
         configureNavigationItem()
         setTapGesture()
         configureKeyboardDoneButton()
@@ -73,6 +74,22 @@ final class DetailViewController: UIViewController {
             detailTextView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             detailTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    private func registerNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(insertDetailViewInset), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resetDetailViewInset), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func insertDetailViewInset(_ notification: Notification) {
+        guard let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        detailTextView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 0)
+    }
+    
+    @objc func resetDetailViewInset(_ notification: Notification) {
+        detailTextView.contentInset = UIEdgeInsets.zero
     }
     
     private func configureNavigationItem() {        
