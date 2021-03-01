@@ -58,9 +58,11 @@ final class DetailViewController: UIViewController {
     
     private func configureTextView() {
         detailTextView.delegate = self
+        let titleFontAttriubute = UIFont.preferredFont(forTextStyle: .title1)
+        let bodyFontAttribute = UIFont.preferredFont(forTextStyle: .body)
+        let content = NSMutableAttributedString(string: noteTitle + String.newLine, attributes: [.font: titleFontAttriubute])
         
-        let content = NSMutableAttributedString(string: noteTitle + String.newLine, attributes: [.font: UIFont.preferredFont(forTextStyle: .title1)])
-        content.append(NSMutableAttributedString(string: noteBody, attributes: [.font: UIFont.preferredFont(forTextStyle: .body)]))
+        content.append(NSMutableAttributedString(string: noteBody, attributes: [.font: bodyFontAttribute]))
         detailTextView.attributedText = content
     }
     
@@ -92,8 +94,9 @@ final class DetailViewController: UIViewController {
         detailTextView.contentInset = UIEdgeInsets.zero
     }
     
-    private func configureNavigationItem() {        
-        let moreButton = UIBarButtonItem(image: UIImage(systemName: NoteString.buttonImage), style: .done, target: self, action: #selector(showActionSheet))
+    private func configureNavigationItem() {
+        let moreButtonImage = UIImage(systemName: NoteString.buttonImage)
+        let moreButton = UIBarButtonItem(image: moreButtonImage, style: .done, target: self, action: #selector(showActionSheet))
         navigationItem.rightBarButtonItem = moreButton
     }
     

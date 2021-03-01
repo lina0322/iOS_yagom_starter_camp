@@ -11,7 +11,7 @@ final class NoteSplitViewController: UISplitViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        delegate = self
+        self.delegate = self
         view.backgroundColor = .white
         setControllers()
     }
