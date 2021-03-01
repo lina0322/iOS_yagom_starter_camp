@@ -9,6 +9,8 @@ import UIKit
 import CoreData
 
 final class DataModel {
+    // MARK: - Property
+    
     var noteList: [NSManagedObject] = []
     private let appDelegate = UIApplication.shared.delegate as? AppDelegate
     private var managedContext: NSManagedObjectContext {
@@ -16,6 +18,15 @@ final class DataModel {
     }
     static let shared = DataModel()
     private init() {}
+    
+    enum DataError {
+        case fetchFailure
+        case deleteFailure
+        case saveFailure
+        case editFailure
+    }
+
+    // MARK: - CRUD
     
     func fetchData() {
         let request = NSFetchRequest<NSManagedObject>(entityName: EntityString.entityName)
@@ -25,7 +36,7 @@ final class DataModel {
         do {
             noteList = try managedContext.fetch(request)
         } catch let error as NSError {
-            debugPrint("Could not fetch. \(error)")
+            debugPrint("\(DataError.fetchFailure.localizedDescription), \(error)")
         }
     }
     
@@ -37,7 +48,7 @@ final class DataModel {
             fetchData()
             NotificationCenter.default.post(name: NSNotification.Name(NoteString.notification), object: nil)
         } catch let error as NSError {
-            debugPrint("Could not save. \(error)")
+            debugPrint("\(DataError.deleteFailure.localizedDescription), \(error)")
             managedContext.rollback()
         }
     }
@@ -57,7 +68,7 @@ final class DataModel {
             try managedContext.save()
             noteList.insert(note, at: 0)
         } catch let error as NSError {
-            debugPrint("Could not save. \(error)")
+            debugPrint("\(DataError.saveFailure.localizedDescription), \(error)")
             managedContext.rollback()
         }
     }
@@ -74,7 +85,7 @@ final class DataModel {
             fetchData()
             NotificationCenter.default.post(name: NSNotification.Name(NoteString.notification), object: nil)
         } catch let error as NSError {
-            debugPrint("Could not save. \(error)")
+            debugPrint("\(DataError.editFailure.localizedDescription), \(error)")
             managedContext.rollback()
         }
     }
@@ -85,5 +96,21 @@ final class DataModel {
             return (title: splitedData[0], body: nil)
         }
         return (title: splitedData[0], body: splitedData[1])
+    }
+}
+
+// MARK: - Error Extension
+extension DataModel.DataError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .fetchFailure:
+            return "데이터를 불러오지 못했습니다."
+        case .deleteFailure:
+            return "데이터를 삭제하지 못했습니다."
+        case .saveFailure:
+            return "데이터 저장에 실패하였습니다."
+        case .editFailure:
+            return "데이터가 수정되지 않았습니다."
+        }
     }
 }

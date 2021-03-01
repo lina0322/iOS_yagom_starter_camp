@@ -124,8 +124,8 @@
 			children = (
 				C7481C6D25BBCF3900B9CA55 /* AppDelegate.swift */,
 				C7481C6F25BBCF3900B9CA55 /* SceneDelegate.swift */,
-				C7481C7925BBCF3A00B9CA55 /* Assets.xcassets */,
 				C7481C7E25BBCF3A00B9CA55 /* Info.plist */,
+				C7481C7925BBCF3A00B9CA55 /* Assets.xcassets */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";

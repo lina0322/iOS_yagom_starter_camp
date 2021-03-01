@@ -14,8 +14,8 @@ final class NoteTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         registerCell()
-        configureNavigationItem()
         setUpNotificationCenter()
+        configureNavigationItem()
         configureDetailView()
         DataModel.shared.fetchData()
     }
@@ -49,8 +49,8 @@ final class NoteTableViewController: UITableViewController {
     
     private func configureDetailView() {
         let isPad: Bool = UIDevice.current.userInterfaceIdiom == .pad
-        let isCompact: Bool = traitCollection.verticalSizeClass == .compact
-        if isPad || isCompact {
+        let isRegular: Bool = traitCollection.horizontalSizeClass == .regular
+        if isPad || isRegular {
             showDetailView()
         }
     }
@@ -67,7 +67,7 @@ final class NoteTableViewController: UITableViewController {
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        
+        configureDetailView()
     }
 }
 

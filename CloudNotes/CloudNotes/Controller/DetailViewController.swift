@@ -124,7 +124,7 @@ final class DetailViewController: UIViewController {
                 if UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 } else {
-                    debugPrint("There is a problem in your link.")
+                    showErrorAlert(message: ErrorCase.wrongURL.localizedDescription)
                 }
             } else {
                 placeCursor(textView, location)
@@ -174,7 +174,7 @@ final class DetailViewController: UIViewController {
     
     private func showActivityView(_ sender: AnyObject) {
         guard let text = detailTextView.text else {
-            debugPrint("공유할 텍스트 없음.")
+            debugPrint("text 없음")
             return
         }
         let activityViewController = UIActivityViewController(activityItems: [text], applicationActivities: nil)
@@ -185,7 +185,7 @@ final class DetailViewController: UIViewController {
     
     private func showDeleteAlert() {
         guard let note = note else {
-            debugPrint("선택된 데이터가 없다고 알람 보여줘야하는 부분.")
+            showErrorAlert(message: ErrorCase.notSelectedNote.localizedDescription)
             return
         }
         let deleteAlert = UIAlertController(title: NoteString.deleteTitle, message: NoteString.deleteMessage, preferredStyle: .alert)
@@ -199,6 +199,12 @@ final class DetailViewController: UIViewController {
         present(deleteAlert, animated: true, completion: nil)
     }
     
+    private func showErrorAlert(title: String? = nil, message: String? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let confirmButton = UIAlertAction(title: NoteString.confirmButton, style: .default, handler: nil)
+        alert.addAction(confirmButton)
+        present(alert, animated: true, completion: nil)
+    }
     // MARK: - Keyboard
     
     private func configureKeyboardDoneButton() {

@@ -8,23 +8,20 @@
 import Foundation
 
 enum ErrorCase: Error {
-    case decodingFailure
-    case wrongData
     case cellError
     case notSelectedNote
+    case wrongURL
 }
 
 extension ErrorCase: LocalizedError {
     var errorDescription: String? {
         switch self {
-        case .decodingFailure:
-            return "Decoding fail"
-        case .wrongData:
-            return "Wrong data"
         case .cellError:
             return "Cell error"
         case .notSelectedNote:
             return "선택된 노트가 없습니다."
+        case .wrongURL:
+            return "이동할 수 없습니다."
         }
     }
 }
