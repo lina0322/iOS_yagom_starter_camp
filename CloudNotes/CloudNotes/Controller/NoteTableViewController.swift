@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import SwiftyDropbox
 
 final class NoteTableViewController: UITableViewController {
     
@@ -18,8 +19,31 @@ final class NoteTableViewController: UITableViewController {
         configureNavigationItem()
         configureDetailView()
         DataModel.shared.fetchData()
+        authorizeDropbox()
+        let client = DropboxClientsManager.authorizedClient
+        client?.files.createFolderV2(path: "/test/path/in/Dropbox/account").response { response, error in
+            if let response = response {
+                dump(response)
+            } else if let error = error {
+                dump(error)
+            }
+        }
     }
     
+    // MARK: - Authorization DropBox
+    
+    func authorizeDropbox() {
+        
+        // New: OAuth 2 code flow with PKCE that grants a short-lived token with scopes.
+        let scopeRequest = ScopeRequest(scopeType: .user, scopes: ["account_info.read"], includeGrantedScopes: false)
+        DropboxClientsManager.authorizeFromControllerV2(
+            UIApplication.shared,
+            controller: self,
+            loadingStatusDelegate: nil,
+            openURL: { (url: URL) -> Void in UIApplication.shared.open(url, options: [:], completionHandler: nil) },
+            scopeRequest: scopeRequest
+        )
+    }
     // MARK: - UI
     
     private func registerCell() {

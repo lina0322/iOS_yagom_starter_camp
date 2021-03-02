@@ -210,6 +210,7 @@ final class DetailViewController: UIViewController {
         alert.addAction(confirmButton)
         present(alert, animated: true, completion: nil)
     }
+    
     // MARK: - Keyboard
     
     private func configureKeyboardDoneButton() {
