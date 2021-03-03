@@ -16,25 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    // MARK: - Dropbox Redirection
-    
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        let oauthCompletion: DropboxOAuthCompletion = {
-            if let authResult = $0 {
-                switch authResult {
-                case .success:
-                    debugPrint("Success! User is logged into DropboxClientsManager.")
-                case .cancel:
-                    debugPrint("Authorization flow was manually canceled by user!")
-                case .error(_, let description):
-                    debugPrint("Error: \(String(describing: description))")
-                }
-            }
-        }
-        let canHandleUrl = DropboxClientsManager.handleRedirectURL(url, completion: oauthCompletion)
-        return canHandleUrl
-    }
-    
     // MARK: - UISceneSession Lifecycle
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
