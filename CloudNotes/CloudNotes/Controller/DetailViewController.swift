@@ -164,24 +164,26 @@ final class DetailViewController: UIViewController {
     
     @objc private func showActionSheet(_ sender: AnyObject) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let uploadButton = UIAlertAction(title: "upload to DropBox", style: .default) { _ in
+            CloudManager.authorizeDropbox(for: .upload, viewController: self)
+     //       CloudManager.upload()
+        }
+         let downloadButton = UIAlertAction(title: "download to DropBox ", style: .default) { _ in
+             CloudManager.download()
+         }
         let shareButton = UIAlertAction(title: NoteString.shareButton, style: .default) { _ in
             self.showActivityView(sender)
         }
         let deleteButton = UIAlertAction(title: NoteString.deleteButton, style: .destructive) { _ in
             self.showDeleteAlert()
         }
-        let uploadButton = UIAlertAction(title: "DropBox upload", style: .default) { _ in
-            CloudManager.upload()
-        }
-        let downloadButton = UIAlertAction(title: "DropBox download", style: .default) { _ in
-            CloudManager.download()
-        }
+       
         let cancleButton = UIAlertAction(title: NoteString.cancelButton, style: .cancel, handler: nil)
 
+        actionSheet.addAction(uploadButton)
+        actionSheet.addAction(downloadButton)
         actionSheet.addAction(shareButton)
         actionSheet.addAction(deleteButton)
-        actionSheet.addAction(downloadButton)
-        actionSheet.addAction(uploadButton)
         actionSheet.addAction(cancleButton)
         actionSheet.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
         present(actionSheet, animated: true, completion: nil)
