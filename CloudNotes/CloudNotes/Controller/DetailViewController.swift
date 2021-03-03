@@ -164,10 +164,10 @@ final class DetailViewController: UIViewController {
     
     @objc private func showActionSheet(_ sender: AnyObject) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let uploadButton = UIAlertAction(title: "upload to DropBox", style: .default) { _ in
+        let uploadButton = UIAlertAction(title: NoteString.dropboxUpload, style: .default) { _ in
             CloudManager.upload(self)
         }
-         let downloadButton = UIAlertAction(title: "download to DropBox ", style: .default) { _ in
+         let downloadButton = UIAlertAction(title: NoteString.dropboxDownload, style: .default) { _ in
             CloudManager.download(self)
          }
         let shareButton = UIAlertAction(title: NoteString.shareButton, style: .default) { _ in

@@ -7,6 +7,8 @@
 
 enum NoteString {
     static let memo = "메모"
+    static let dropboxUpload = "upload to DropBox"
+    static let dropboxDownload = "Dwonload to DropBox"
     static let shareButton = "Share..."
     static let deleteButton = "Delete"
     static let cancelButton = "Cancel"

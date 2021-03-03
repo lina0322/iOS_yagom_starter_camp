@@ -32,10 +32,10 @@ struct CloudManager {
         
         client?.files.download(path: coreDataFile, overwrite: true, destination: destination).response { response, error in
             if let error = error {
-                print(error)
+                debugPrint(error)
             }
             if let response = response {
-                print(response)
+                debugPrint(response)
             }
         }
     }
@@ -47,10 +47,10 @@ struct CloudManager {
         
         client?.files.upload(path: coreDataFile, mode: .overwrite, autorename: false, clientModified: nil, mute: true, input: documentsDirectory).response { response, error in
             if let error = error {
-                print(error)
+                debugPrint(error)
             }
             if let response = response {
-                print(response)
+                debugPrint(response)
             }
         }
     }
