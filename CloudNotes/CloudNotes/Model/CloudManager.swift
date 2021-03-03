@@ -10,7 +10,7 @@ import SwiftyDropbox
 struct CloudManager {
     static let coreDataFile = "/CloudNotes.sqlite-wal"
     static var client: DropboxClient? {
-      return DropboxClientsManager.authorizedClient
+        return DropboxClientsManager.authorizedClient
     }
     
     enum PermissionType {

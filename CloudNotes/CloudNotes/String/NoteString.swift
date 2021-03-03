@@ -7,8 +7,8 @@
 
 enum NoteString {
     static let memo = "메모"
-    static let dropboxUpload = "upload to DropBox"
-    static let dropboxDownload = "Dwonload to DropBox"
+    static let dropboxUpload = "Upload to DropBox"
+    static let dropboxDownload = "Dwonload from DropBox"
     static let shareButton = "Share..."
     static let deleteButton = "Delete"
     static let cancelButton = "Cancel"
@@ -18,4 +18,6 @@ enum NoteString {
     static let buttonImage = "ellipsis.circle"
     static let notification = "notification"
     static let newNoteMessage = "제목을 입력하세요. \n 내용을 입력하세요."
+    static let synchronizationTitle = "서버와 동기화 할까요?"
+    static let synchronizationMessage = "동기화를 하지 않고 업로드를 진행하면,\n 기존의 데이터가 손실될 수 있어요!"
 }

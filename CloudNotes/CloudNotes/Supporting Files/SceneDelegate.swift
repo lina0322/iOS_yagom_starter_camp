@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     // MARK: - Dropbox Redirection
-
+    
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         if let url = URLContexts.first?.url {
             let oauthCompletion: DropboxOAuthCompletion = {

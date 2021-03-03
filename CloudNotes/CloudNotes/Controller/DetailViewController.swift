@@ -167,9 +167,9 @@ final class DetailViewController: UIViewController {
         let uploadButton = UIAlertAction(title: NoteString.dropboxUpload, style: .default) { _ in
             CloudManager.upload(self)
         }
-         let downloadButton = UIAlertAction(title: NoteString.dropboxDownload, style: .default) { _ in
+        let downloadButton = UIAlertAction(title: NoteString.dropboxDownload, style: .default) { _ in
             CloudManager.download(self)
-         }
+        }
         let shareButton = UIAlertAction(title: NoteString.shareButton, style: .default) { _ in
             self.showActivityView(sender)
         }
@@ -177,7 +177,7 @@ final class DetailViewController: UIViewController {
             self.showDeleteAlert()
         }
         let cancleButton = UIAlertAction(title: NoteString.cancelButton, style: .cancel, handler: nil)
-
+        
         actionSheet.addAction(uploadButton)
         actionSheet.addAction(downloadButton)
         actionSheet.addAction(shareButton)

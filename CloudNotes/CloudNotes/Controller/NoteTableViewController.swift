@@ -19,6 +19,21 @@ final class NoteTableViewController: UITableViewController {
         configureNavigationItem()
         configureDetailView()
         DataModel.shared.fetchData()
+        showSynchronizationAlert()
+    }
+    
+    // MARK: - Dropbox Synchronization Alret
+    
+    private func showSynchronizationAlert() {
+        let alert = UIAlertController(title: NoteString.synchronizationTitle, message: NoteString.synchronizationMessage, preferredStyle: .alert)
+        let downloadButton = UIAlertAction(title: NoteString.dropboxDownload, style: .default) { _ in
+            CloudManager.download(self)
+        }
+        let cancelButton = UIAlertAction(title: NoteString.cancelButton, style: .destructive, handler: nil)
+        
+        alert.addAction(downloadButton)
+        alert.addAction(cancelButton)
+        present(alert, animated: true, completion: nil)
     }
     
     // MARK: - UI
