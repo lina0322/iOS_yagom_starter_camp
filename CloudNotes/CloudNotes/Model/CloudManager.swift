@@ -8,7 +8,7 @@
 import SwiftyDropbox
 
 struct CloudManager {
-    let coreDataFile = "CloudNotes.sqlite-wal"
+    let coreDataFile = "/CloudNotes.sqlite-wal"
     let client = DropboxClientsManager.authorizedClient
     
     enum PermissionType  {
@@ -24,6 +24,25 @@ struct CloudManager {
             openURL: { (url: URL) -> Void in UIApplication.shared.open(url, options: [:], completionHandler: nil) },
             scopeRequest: scopeRequest
         )
+    }
+    
+    func download() {
+        let directoryURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+        let destinationURL = directoryURL.appendingPathComponent(coreDataFile)
+        let destination: (URL, HTTPURLResponse) -> URL = { temporaryURL, response in
+            return destinationURL
+        }
+        
+        client?.files.download(path: coreDataFile, overwrite: true, destination: destination).response { response, error in
+            if let response = response {
+                print(response)
+            } else if let error = error {
+                print(error)
+            }
+        }
+        .progress { progressData in
+            print(progressData)
+        }
     }
 }
 
