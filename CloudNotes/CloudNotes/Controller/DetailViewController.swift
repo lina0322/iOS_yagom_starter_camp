@@ -168,7 +168,7 @@ final class DetailViewController: UIViewController {
             CloudManager.upload(self)
         }
          let downloadButton = UIAlertAction(title: "download to DropBox ", style: .default) { _ in
-             CloudManager.download(self)
+            CloudManager.download(self)
          }
         let shareButton = UIAlertAction(title: NoteString.shareButton, style: .default) { _ in
             self.showActivityView(sender)

@@ -9,9 +9,11 @@ import SwiftyDropbox
 
 struct CloudManager {
     static let coreDataFile = "/CloudNotes.sqlite-wal"
-    static let client = DropboxClientsManager.authorizedClient
+    static var client: DropboxClient? {
+      return DropboxClientsManager.authorizedClient
+    }
     
-    enum PermissionType  {
+    enum PermissionType {
         case upload, download
     }
     
@@ -22,7 +24,6 @@ struct CloudManager {
     
     static func download(_ viewController: UIViewController) {
         authorizeDropbox(for: .download, viewController: viewController)
-        
         let directoryURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
         let destinationURL = directoryURL.appendingPathComponent(coreDataFile)
         let destination: (URL, HTTPURLResponse) -> URL = { temporaryURL, response in
@@ -30,18 +31,17 @@ struct CloudManager {
         }
         
         client?.files.download(path: coreDataFile, overwrite: true, destination: destination).response { response, error in
-           if let error = error {
+            if let error = error {
                 print(error)
             }
-        }
-        .progress { progressData in
-            print(progressData)
+            if let response = response {
+                print(response)
+            }
         }
     }
     
     static func upload(_ viewController: UIViewController) {
-        authorizeDropbox(for: .download, viewController: viewController)
-
+        authorizeDropbox(for: .upload, viewController: viewController)
         let paths = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0].appendingPathComponent(coreDataFile)
         
@@ -49,9 +49,9 @@ struct CloudManager {
             if let error = error {
                 print(error)
             }
-        }
-        .progress { progressData in
-            print(progressData)
+            if let response = response {
+                print(response)
+            }
         }
     }
 }
