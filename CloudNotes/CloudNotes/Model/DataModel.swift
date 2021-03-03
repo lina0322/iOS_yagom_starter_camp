@@ -9,6 +9,7 @@ import UIKit
 import CoreData
 
 final class DataModel {
+    
     // MARK: - Property
     
     var noteList: [NSManagedObject] = []
@@ -25,7 +26,7 @@ final class DataModel {
         case saveFailure
         case editFailure
     }
-
+    
     // MARK: - CRUD
     
     func fetchData() {
@@ -100,6 +101,7 @@ final class DataModel {
 }
 
 // MARK: - Error Extension
+
 extension DataModel.DataError: LocalizedError {
     var errorDescription: String? {
         switch self {

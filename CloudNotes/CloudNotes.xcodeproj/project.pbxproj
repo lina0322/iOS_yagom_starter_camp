@@ -113,9 +113,9 @@
 		4C096A1025E8BB0D0054DC33 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4C51D2FD25EFDB1500EE8202 /* CloudManager.swift */,
 				4C096A1125E8BB1B0054DC33 /* DataModel.swift */,
 				C7481C7625BBCF3900B9CA55 /* CloudNotes.xcdatamodeld */,
-				4C51D2FD25EFDB1500EE8202 /* CloudManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
