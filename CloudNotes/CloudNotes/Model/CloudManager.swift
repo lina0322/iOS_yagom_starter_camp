@@ -44,6 +44,22 @@ struct CloudManager {
             print(progressData)
         }
     }
+    
+    func upload() {
+        let paths = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0].appendingPathComponent(coreDataFile)
+        
+        client?.files.upload(path: coreDataFile, mode: .overwrite, autorename: false, clientModified: nil, mute: true, input: documentsDirectory).response { response, error in
+            if let response = response {
+                print(response)
+            } else if let error = error {
+                print(error)
+            }
+        }
+        .progress { progressData in
+            print(progressData)
+        }
+    }
 }
 
 extension CloudManager.PermissionType: CustomStringConvertible {
