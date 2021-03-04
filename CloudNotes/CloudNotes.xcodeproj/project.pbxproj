@@ -10,6 +10,7 @@
 		4C0969FB25E7D78A0054DC33 /* EntityString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0969FA25E7D78A0054DC33 /* EntityString.swift */; };
 		4C096A1225E8BB1B0054DC33 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C096A1125E8BB1B0054DC33 /* DataModel.swift */; };
 		4C51D2FE25EFDB1500EE8202 /* CloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51D2FD25EFDB1500EE8202 /* CloudManager.swift */; };
+		8247BC0025F08A4F0022EDB6 /* CloudString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8247BBFF25F08A4F0022EDB6 /* CloudString.swift */; };
 		8280AFD425DA6ED6004EA888 /* NoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8280AFD325DA6ED6004EA888 /* NoteTableViewController.swift */; };
 		8280AFDC25DA893B004EA888 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8280AFDB25DA893B004EA888 /* NoteTableViewCell.swift */; };
 		82897EF925DB86B400433BA7 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82897EF825DB86B400433BA7 /* Extension.swift */; };
@@ -56,6 +57,7 @@
 		4C51D2FD25EFDB1500EE8202 /* CloudManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudManager.swift; sourceTree = "<group>"; };
 		687913E81EDFD4D92707D33F /* Pods-CloudNotesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudNotesTests.release.xcconfig"; path = "Target Support Files/Pods-CloudNotesTests/Pods-CloudNotesTests.release.xcconfig"; sourceTree = "<group>"; };
 		79D2FF110E41EE71F1047866 /* Pods_CloudNotesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudNotesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8247BBFF25F08A4F0022EDB6 /* CloudString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudString.swift; sourceTree = "<group>"; };
 		8280AFD325DA6ED6004EA888 /* NoteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewController.swift; sourceTree = "<group>"; };
 		8280AFDB25DA893B004EA888 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		82897EF825DB86B400433BA7 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			children = (
 				4C0969FA25E7D78A0054DC33 /* EntityString.swift */,
 				82EEF6F325DFBFF0001CD667 /* NoteString.swift */,
+				8247BBFF25F08A4F0022EDB6 /* CloudString.swift */,
 			);
 			path = String;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				82EEF6EF25DFBDC8001CD667 /* ErrorCase.swift in Sources */,
 				8280AFDC25DA893B004EA888 /* NoteTableViewCell.swift in Sources */,
 				4C51D2FE25EFDB1500EE8202 /* CloudManager.swift in Sources */,
+				8247BC0025F08A4F0022EDB6 /* CloudString.swift in Sources */,
 				4C096A1225E8BB1B0054DC33 /* DataModel.swift in Sources */,
 				82897EF925DB86B400433BA7 /* Extension.swift in Sources */,
 				82EEF6DF25DF8E14001CD667 /* NoteSplitViewController.swift in Sources */,

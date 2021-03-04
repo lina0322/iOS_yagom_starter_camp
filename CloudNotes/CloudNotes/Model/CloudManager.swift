@@ -13,17 +13,15 @@ struct CloudManager {
         return DropboxClientsManager.authorizedClient
     }
     
-    enum PermissionType {
-        case upload, download
-    }
-    
-    static private func authorizeDropbox(for permissionType: PermissionType, viewController: UIViewController) {
-        let scopeRequest = ScopeRequest(scopeType: .user, scopes: ["\(permissionType)"], includeGrantedScopes: false)
-        DropboxClientsManager.authorizeFromControllerV2(UIApplication.shared, controller: viewController, loadingStatusDelegate: nil, openURL: { (url: URL) -> Void in UIApplication.shared.open(url, options: [:], completionHandler: nil) }, scopeRequest: scopeRequest)
+    static private func authorizeDropbox(viewController: UIViewController) {
+        if DropboxClientsManager.authorizedClient == nil && DropboxClientsManager.authorizedTeamClient == nil {
+            let scopeRequest = ScopeRequest(scopeType: .user, scopes: CloudString.requiredScope, includeGrantedScopes: false)
+            DropboxClientsManager.authorizeFromControllerV2(UIApplication.shared, controller: viewController, loadingStatusDelegate: nil, openURL: { (url: URL) -> Void in UIApplication.shared.open(url, options: [:], completionHandler: nil) }, scopeRequest: scopeRequest)
+        }
     }
     
     static func download(_ viewController: UIViewController) {
-        authorizeDropbox(for: .download, viewController: viewController)
+        authorizeDropbox(viewController: viewController)
         let directoryURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
         let destinationURL = directoryURL.appendingPathComponent(coreDataFile)
         let destination: (URL, HTTPURLResponse) -> URL = { temporaryURL, response in
@@ -41,7 +39,7 @@ struct CloudManager {
     }
     
     static func upload(_ viewController: UIViewController) {
-        authorizeDropbox(for: .upload, viewController: viewController)
+        authorizeDropbox(viewController: viewController)
         let paths = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0].appendingPathComponent(coreDataFile)
         
@@ -52,17 +50,6 @@ struct CloudManager {
             if let response = response {
                 debugPrint(response)
             }
-        }
-    }
-}
-
-extension CloudManager.PermissionType: CustomStringConvertible {
-    var description: String {
-        switch self {
-        case .upload:
-            return "files.content.write"
-        case .download:
-            return "files.content.read"
         }
     }
 }
