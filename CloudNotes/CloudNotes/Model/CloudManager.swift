@@ -9,6 +9,8 @@ import SwiftyDropbox
 
 struct CloudManager {
     static let coreDataFile = "/CloudNotes.sqlite-wal"
+    static let coreDataFile2 = "/CloudNotes.sqlite-shm"
+    static let coreDataFile3 = "/CloudNotes.sqlite"
     static var client: DropboxClient? {
         return DropboxClientsManager.authorizedClient
     }
@@ -23,17 +25,21 @@ struct CloudManager {
     static func download(_ viewController: UIViewController) {
         authorizeDropbox(viewController: viewController)
         let directoryURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-        let destinationURL = directoryURL.appendingPathComponent(coreDataFile)
-        let destination: (URL, HTTPURLResponse) -> URL = { temporaryURL, response in
-            return destinationURL
-        }
-        
-        client?.files.download(path: coreDataFile, overwrite: true, destination: destination).response { response, error in
-            if let error = error {
-                debugPrint(error)
+        let fileNames = [coreDataFile, coreDataFile2, coreDataFile3]
+        for file in fileNames {
+            let destinationURL = directoryURL.appendingPathComponent(file)
+            let destination: (URL, HTTPURLResponse) -> URL = { temporaryURL, response in
+                return destinationURL
             }
-            if let response = response {
-                debugPrint(response)
+            client?.files.download(path: file, overwrite: true, destination: destination).response { response, error in
+                if let error = error {
+                    debugPrint(error)
+                }
+                if let response = response {
+                    DataModel.shared.fetchData()
+                    NotificationCenter.default.post(name: NSNotification.Name(NoteString.notification), object: nil)
+                    debugPrint(response)
+                }
             }
         }
     }
@@ -41,14 +47,17 @@ struct CloudManager {
     static func upload(_ viewController: UIViewController) {
         authorizeDropbox(viewController: viewController)
         let paths = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
-        let documentsDirectory = paths[0].appendingPathComponent(coreDataFile)
-        
-        client?.files.upload(path: coreDataFile, mode: .overwrite, autorename: false, clientModified: nil, mute: true, input: documentsDirectory).response { response, error in
-            if let error = error {
-                debugPrint(error)
-            }
-            if let response = response {
-                debugPrint(response)
+        let fileNames = [coreDataFile, coreDataFile2, coreDataFile3]
+        for file in fileNames {
+            let documentsDirectory = paths[0].appendingPathComponent(file)
+            
+            client?.files.upload(path: file, mode: .overwrite, autorename: false, clientModified: nil, mute: true, input: documentsDirectory).response { response, error in
+                if let error = error {
+                    debugPrint(error)
+                }
+                if let response = response {
+                    debugPrint(response)
+                }
             }
         }
     }
