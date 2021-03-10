@@ -20,8 +20,9 @@ final class NoteSplitViewController: UISplitViewController {
         let tableView = NoteTableViewController()
         let navigationController = UINavigationController(rootViewController: tableView)
         
-        preferredDisplayMode = .oneBesideSecondary
-        viewControllers = [navigationController]
+        self.style = 
+        preferredDisplayMode = .twoOverSecondary
+        viewControllers = [navigationController, navigationController, navigationController]
     }
 }
 
