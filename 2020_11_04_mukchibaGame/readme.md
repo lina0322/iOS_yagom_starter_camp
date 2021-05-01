@@ -14,6 +14,10 @@
 🖇 해당 주차 TIL
 - git 명령어,  git pull request : [2020_11_03](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_03.md)
 
+📝 Pull Request
+- [첫번째 PR](https://github.com/yagom-academy/ios-rock-paper-scissors/pull/7)
+- [두번째 PR](https://github.com/yagom-academy/ios-rock-paper-scissors/pull/16)
+
 </br>
 
 ### 처음 구현하고자 했던 것(mukchibaGame.swfit)
