@@ -24,4 +24,10 @@
 - init vs 프로퍼티 직접 초기화 : [2020_11_23](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_23.md)
 - KVO, 노티피케이션 센터 : [2020_11_26](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_26.md)
 
+
+📝 Pull Request && Review
+- [첫번째 PR](https://github.com/yagom-academy/ios-juice-maker/pull/1)
+- [두번째 PR](https://github.com/yagom-academy/ios-juice-maker/pull/11)
+- [세번째 PR](https://github.com/yagom-academy/ios-juice-maker/pull/22)
+
 </br>
