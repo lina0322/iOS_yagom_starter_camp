@@ -1,5 +1,5 @@
 ## ⛺️iOS_yagom_stater_camp
-저는 이 repository에 2020년 11월부터 2021년 4월까지(예정) 이루어진, [yagom ios 스타터 캠프](https://yagom.net/ios-starter-camp-2nd/)에 1기로 참여하여 학습한 내용을 정리하였습니다.
+저는 이 repository에 2020년 11월부터 2021년 4월까지(예정) 이루어진, [yagom ios 스타터 캠프](https://www.yagom-academy.kr)에 1기로 참여하여 학습한 내용을 정리하였습니다.
 
 ### 📖목차
 
