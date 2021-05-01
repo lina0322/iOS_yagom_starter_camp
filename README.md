@@ -256,6 +256,12 @@
 - init vs 프로퍼티 직접 초기화 : [2020_11_23](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_23.md)
 - KVO, 노티피케이션 센터 : [2020_11_26](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_26.md)
 
+📝 Pull Request && Review
+- [첫번째 PR](https://github.com/yagom-academy/ios-juice-maker/pull/1)
+- [두번째 PR](https://github.com/yagom-academy/ios-juice-maker/pull/11)
+- [세번째 PR](https://github.com/yagom-academy/ios-juice-maker/pull/22)
+
+
 </br>
 
 ### 두번째 프로젝트 - 웹 브라우저
@@ -277,6 +283,12 @@
 -  타입, 정규표현식 : [2020_11_09](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_12.md)
 -  OOP의 특징 : [2020_11_09](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_13.md)
 
+📝 Pull Request && Review
+- [첫번째 PR](https://github.com/yagom-academy/ios-web-browser/pull/8)
+- [두번째 PR](https://github.com/yagom-academy/ios-web-browser/pull/20)
+- [세번째 PR](https://github.com/yagom-academy/ios-web-browser/pull/24)
+- [네번째 PR](https://github.com/yagom-academy/ios-web-browser/pull/31)
+
 </br>
 
 ### 첫번째 프로젝트 - 묵찌빠
@@ -296,5 +308,9 @@
 
 🖇 해당 주차 TIL
 - git 명령어,  git pull request : [2020_11_03](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_03.md)
+
+📝 Pull Request && Review
+- [첫번째 PR](https://github.com/yagom-academy/ios-rock-paper-scissors/pull/7)
+- [두번째 PR](https://github.com/yagom-academy/ios-rock-paper-scissors/pull/16)
 
 </br>
