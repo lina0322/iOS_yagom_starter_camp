@@ -15,4 +15,10 @@
 -  타입, 정규표현식 : [2020_11_09](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_12.md)
 -  OOP의 특징 : [2020_11_09](https://github.com/lina0322/iOS_yagom_starter_camp/blob/main/TIL/2020_11/2020_11_13.md)
 
+📝 Pull Request
+- [첫번째 PR](https://github.com/yagom-academy/ios-web-browser/pull/8)
+- [두번째 PR](https://github.com/yagom-academy/ios-web-browser/pull/20)
+- [세번째 PR](https://github.com/yagom-academy/ios-web-browser/pull/24)
+- [네번째 PR](https://github.com/yagom-academy/ios-web-browser/pull/31)
+
 </br>
