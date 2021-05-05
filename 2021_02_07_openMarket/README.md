@@ -11,6 +11,8 @@
   - mock 데이터와, mockURLSession을 이용하여 서버가 없는 상태에서도 테스트할 수 있도록 Unit Test 구현
   - 상품 목록을 Segmented Control을 활용해, 테이블뷰와 컬렌션뷰로 구현
   - completionHandler 사용
+  - CustomStringConvertible 프로토콜 채택하여 description 구현
+  - 
   
 
 - <img width="250" src="https://user-images.githubusercontent.com/49546979/117136006-bcff6380-ade2-11eb-98df-60e77df05e24.gif">
@@ -46,10 +48,43 @@ ustomStringConvertible프로토콜을 준수하는 경우 description에 출력�
 case까지만 접근을 해도 TEST라는 문자열을 받아올 수 있습니다. ex) print(Example2.test)  // TEST  
 
 이것은 기본적으로 Swift의 모든 instance가 String으로 변환이 가능하기 때문인데요.  
-이렇게 변환할떄에는, 각 type에 defaultf로 구현된 description을 반환하게 됩니다.  
-이 description을 custom하면 원하는대로 출력할 수 있게 되는 것이지요.  
+이렇게 변환할때에는, 각 type에 defaultf로 구현된 description을 반환하게 된다고 합니다.  
+결국 이 description을 custom하면 원하는대로 출력할 수 있게 되는 것이지요.  
 
+### 2. LocalizedError
+위와 비슷한 이유로 아래의 오류 코드도 CustomStringConvertible을 채택하여 작성 하였는데요.
+```swift
+enum OpenMarketError: Error, CustomStringConvertible {
+     case wrongURL
+     
+     var description: String {
+         switch self {
+         case .wrongURL:
+             return "잘못된 URL입니다."
+         }
+      }
+}
+```
 
+리뷰를 받고 LocalizedError라는 프로토콜을 알게 되었습니다.  
+이 프로토콜은 오류와 오류가 발생한 이유를 설명하는 현지화 된 메시지를 제공하는 특수 오류라고 [공식 문서](https://developer.apple.com/documentation/foundation/localizederror)에 정의되어 있는데요.  
+기본적으로 에러와 관련된 내용을 전달할 수 있게 프로퍼티를 이미 가지고 있으므로(errorDescription, failureReason, helpAnchor, recoverySuggestion)   
+에러에는 CustomStringConvertible보다는 LocalizedError를 사용하는게 맞다고 판단하여, 아래와 같이 변경하게 되었습니다.  
+
+```swift
+enum OpenMarketError: Error {
+     case wrongURL
+}
+ 
+extension OpenMarketError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .wrongURL:
+            return "잘못된 URL입니다."
+        }
+    }
+}
+```
 
 ## 참고 주소
 
