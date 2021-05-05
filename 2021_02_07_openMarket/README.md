@@ -66,8 +66,8 @@ enum OpenMarketError: Error, CustomStringConvertible {
 }
 ```
 
-리뷰를 받고 LocalizedError라는 프로토콜을 알게 되었습니다.  
-이 프로토콜은 오류와 오류가 발생한 이유를 설명하는 현지화 된 메시지를 제공하는 특수 오류라고 [공식 문서](https://developer.apple.com/documentation/foundation/localizederror)에 정의되어 있는데요.  
+리뷰를 받고 LocalizedError라는 프로토콜을 알게 되었습니다.   
+이 프로토콜은 오류와 오류가 발생한 이유를 설명하는 현지화 된 메시지를 제공하는 특수 오류라고 [공식 문서](https://developer.apple.com/documentation/foundation/localizederror)에 정의되어 있는데요.    
 기본적으로 에러와 관련된 내용을 전달할 수 있게 프로퍼티를 이미 가지고 있으므로(errorDescription, failureReason, helpAnchor, recoverySuggestion)   
 에러에는 CustomStringConvertible보다는 LocalizedError를 사용하는게 맞다고 판단하여, 아래와 같이 변경하게 되었습니다.  
 
@@ -85,6 +85,96 @@ extension OpenMarketError: LocalizedError {
     }
 }
 ```
+
+### 3. mock값을 이용하여 네트워킹 테스트 하기
+decodeData 함수 안에서는 네트워크 코드를 테스트 하면서  
+실제로 네트워킹을 통해 이뤄지기 때문에 속도도 느리고,  
+인터넷 연결을 끊고 테스트를 실행하게 당연히 실패하는 문제가 발생한다는 문제를 알게 되었습니다.     
+이럴때는 네트워킹을 하는게 아니라 로컬에서 mock값을 이용해 테스트를 할 수 있다고 해서, 도전해 보았습니다.
+
+우선 `URLSessionProtocol`을 만들었는데요.  
+제가 URLSession을 사용할 곳에서, 원래 존재하는 `URLSession`과 저의 `MockURLSession` 중에 사용할 수 있게 하기위해. 
+기존의 `URLSession`과 저의 `MockURLSession` 모두 해당 프로토콜을 채택하도록 합니다.  
+(두 클래스가 반드시 가지고 있어야할 것은 dataTask 메서드이기에, 프로토콜 내부에 이 부분만 선언해주었습니다.)    
+
+```swift
+protocol URLSessionProtocol {
+    func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
+}
+
+extension URLSession: URLSessionProtocol { } // 기존 URLSession에 URLSessionProtocol 채택
+
+class MockURLSession: URLSessionProtocol { } // 테스트 용으로 만든 URLSessionProtocol에 URLSessionProtocol 채택
+
+```
+
+아래처럼 실제 네트워크를 다루는 `NetworkHandler` 타입의 구조체를 생성할때, `MockURLSession`을 주입할 수 있게 됩니다.
+
+```swift
+struct NetworkHandler {
+    let session: URLSessionProtocol
+    
+    init(session: URLSessionProtocol = URLSession.shared) {
+        self.session = session
+    }
+}
+```
+
+그리고 나서 아까 만든 MockURLSession가 작동할 수 있도록 메서드를 구현하였고, 이 후에 성공이냐 실패냐에 따라 다르게 생성될 수 있도록 추가하였습니다.  
+(하단에는 중요한 부분만 작성하였습니다.)  
+
+```swift
+class MockURLSession: URLSessionProtocol {
+    var isSuccess: Bool
+    var sessionDataTask: MockURLSessionDataTask?
+    var apiRequestType: APIRequestType
+    var data: Data {
+            return MockAPI.test.sampleItems.data
+        }
+    }
+    
+    init(isSuccess: Bool = true, apiRequestType: APIRequestType = APIRequestType.loadPage(page: 1)) {
+        self.isSuccess = isSuccess
+        self.apiRequestType = apiRequestType
+    }
+    
+    func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+        let successResponse = HTTPURLResponse(url: MockAPI.baseURL,
+                                              statusCode: 200,
+                                              httpVersion: "2",
+                                              headerFields: nil)
+        let failureResponse = HTTPURLResponse(url: MockAPI.baseURL,
+                                              statusCode: 410,
+                                              httpVersion: "2",
+                                              headerFields: nil)
+        let sessionDataTask = MockURLSessionDataTask()
+        
+        sessionDataTask.resumeDidCall = {
+            if self.isSuccess {
+                completionHandler(self.data, successResponse, nil)
+            } else {
+                completionHandler(nil, failureResponse, nil)
+            }
+        }
+        self.sessionDataTask = sessionDataTask
+        return sessionDataTask
+    }
+}
+
+class MockURLSessionDataTask: URLSessionDataTask {
+    override init() { }
+    var resumeDidCall: () -> Void = {}
+    
+    override func resume() {
+        resumeDidCall()
+    }
+}
+
+```
+
+해당 코드를 작성하는데에는 [우아한 형제들의 기술 블로그](https://woowabros.github.io/swift/2020/12/20/ios-networking-and-testing.html)를 참고하였습니다.
+
+
 
 ## 참고 주소
 
