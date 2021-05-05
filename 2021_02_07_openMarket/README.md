@@ -184,7 +184,7 @@ class MockURLSessionDataTask: URLSessionDataTask {
 
 - 📝 [Pull Request && Review](https://github.com/yagom-academy/ios-open-market/pulls)
   - [첫번째 PR](https://github.com/yagom-academy/ios-open-market/pull/2)
-  - [두번째 PR](https://github.com/yagom-academy/ios-juice-maker/pull/11)
-  - [세번째 PR](https://github.com/yagom-academy/ios-juice-maker/pull/22)
+  - [두번째 PR](https://github.com/yagom-academy/ios-open-market/pull/10)
+  - [세번째 PR](https://github.com/yagom-academy/ios-open-market/pull/18)
 
 
