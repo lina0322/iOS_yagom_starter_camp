@@ -4,13 +4,13 @@
 ## 프로젝트 정보
 - 🗓 기간 : 2021/01/25 ~ 2021/02/07(2w)
 
-- 📝 설명 : 사람들에게 
+- 📝 설명 : 판매할 물건을 등록하고, 사람들의 물건을 리스트와 그리드 뷰로 구경하며, 비밀번호를 아는 게시물은 삭제도 할 수 있는 앱 🧺
 
 - 🗂 세부사항
   - HTTP 서버와 통신할 수 있는 모델 구현(CURD)
   - mock 데이터와, mockURLSession을 이용하여 서버가 없는 상태에서도 테스트할 수 있도록 Unit Test 구현
   - 상품 목록을 Segmented Control을 활용해, 테이블뷰와 컬렌션뷰로 구현
-  - 전체 UI 코드로만 작성
+  - 스토리보드와 코드를 모두 사용하여 UI 구현
   - completionHandler 사용
   - CustomStringConvertible 프로토콜 채택하여 description 구현
   - 제네릭 사용
@@ -177,6 +177,16 @@ class MockURLSessionDataTask: URLSessionDataTask {
 해당 코드를 작성하는데에는 [우아한 형제들의 기술 블로그](https://woowabros.github.io/swift/2020/12/20/ios-networking-and-testing.html)를 참고하였습니다.
 
 
+### 정리해야할 이슈들 
+Segmented Control
+complition Handler
+Content-Disposition: form-data
+제네릭
+콜렉션뷰
+NSCache
+LayoutConstraint - 잘못된 레이아웃 제약 
+로딩셀 + 스크롤
+import Foundation
 
 ## 참고 주소
 
