@@ -7,18 +7,20 @@
 - 📝 설명 : 사람들에게 
 
 - 🗂 세부사항
-  - 서버와 통신할 수 있는 모델 구현
+  - HTTP 서버와 통신할 수 있는 모델 구현(CURD)
   - mock 데이터와, mockURLSession을 이용하여 서버가 없는 상태에서도 테스트할 수 있도록 Unit Test 구현
   - 상품 목록을 Segmented Control을 활용해, 테이블뷰와 컬렌션뷰로 구현
+  - 전체 UI 코드로만 작성
   - completionHandler 사용
   - CustomStringConvertible 프로토콜 채택하여 description 구현
-  - 
+  - 제네릭 사용
   
 
 - <img width="250" src="https://user-images.githubusercontent.com/49546979/117136006-bcff6380-ade2-11eb-98df-60e77df05e24.gif">
 
 ## 프로젝트 구조
 
+![UML](https://user-images.githubusercontent.com/49546979/117167308-1a56dd00-ae02-11eb-8614-2462252402cd.png)
 
 
 ## 프로젝트 이슈
