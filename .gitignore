@@ -152,4 +152,14 @@ GitHub.sublime-settings
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
 #
 Pods/
+Packages
+.build
+xcuserdata
+*.xcodeproj
+DerivedData/
+.DS_Store
+db.sqlite
+.swiftpm
 
+Sources/App/Models/AccessToken.swift
+Sources/App/Models/DatabaseInformation.swift

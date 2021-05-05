@@ -42,10 +42,10 @@ final class CoreDataStack {
             var j = i + 1
             while j < things.count {
                 if things[i].id == things[j].id {
-                    if things[i].lastModified > things[j].lastModified {
+                    if things[i].lastModified ?? 0 > things[j].lastModified ?? 0 {
                         things[j].title = things[i].title
-                        things[j].detailDescription = things[i].detailDescription
-                        things[j].dateNumber = things[i].dateNumber
+                        things[j].body = things[i].body
+                        things[j].deadline = things[i].deadline
                         things[j].lastModified = things[i].lastModified
                         things[j].state = things[i].state
                     }

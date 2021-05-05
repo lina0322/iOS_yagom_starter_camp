@@ -33,8 +33,8 @@ class ThingTableView: UITableView, Draggable, Droppable {
     
     func updateThing(_ thing: Thing, title: String, description: String, date: Double, lastModified: Double) {
         thing.title = title
-        thing.detailDescription = description
-        thing.dateNumber = date
+        thing.body = description
+        thing.deadline = date
         thing.lastModified = lastModified
         do {
             try CoreDataStack.shared.persistentContainer.viewContext.save()
@@ -46,7 +46,7 @@ class ThingTableView: UITableView, Draggable, Droppable {
     
     func deleteThing(at indexPath: IndexPath) {
         let thing = list[indexPath.row]
-        let id = thing.id
+        let id = thing.id ?? 0
         list.remove(at: indexPath.row)
         CoreDataStack.shared.persistentContainer.viewContext.delete(thing)
         do {

@@ -1,5 +1,5 @@
 //
-//  DoneTableView.swift
+//  DoingTableView.swift
 //  ProjectManager
 //
 //  Created by 임성민 on 2021/03/17.
@@ -8,13 +8,13 @@
 import UIKit
 import CoreData
 
-final class DoneTableView: ThingTableView {
+final class DoingTableView: ThingTableView {
     
     private lazy var fetchedResultsController: NSFetchedResultsController<Thing> = {
         let context = CoreDataStack.shared.persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<Thing> = NSFetchRequest<Thing>(entityName: Strings.thing)
-        fetchRequest.predicate = NSPredicate(format: "state = 'done'")
-        let sort = NSSortDescriptor(key: #keyPath(Thing.dateNumber), ascending: false)
+        fetchRequest.predicate = NSPredicate(format: "state = 'doing'")
+        let sort = NSSortDescriptor(key: #keyPath(Thing.title), ascending: false)
         fetchRequest.sortDescriptors = [sort]
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self
@@ -23,20 +23,20 @@ final class DoneTableView: ThingTableView {
     
     override init() {
         super.init()
-        tableHeaderView = ThingTableHeaderView(height: 50, title: Strings.doneTitle)
+        tableHeaderView = ThingTableHeaderView(height: 50, title: Strings.doingTitle)
         fetch()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        tableHeaderView = ThingTableHeaderView(height: 50, title: Strings.doneTitle)
+        tableHeaderView = ThingTableHeaderView(height: 50, title: Strings.doingTitle)
         fetch()
     }
     
     func fetchList(_ list: [Thing]) {
         self.list = list
         for thing in list {
-            thing.state = Strings.doneState
+            thing.state = Strings.doingState
         }
         do {
             try CoreDataStack.shared.persistentContainer.viewContext.save()
@@ -58,7 +58,7 @@ final class DoneTableView: ThingTableView {
     }
 }
 
-extension DoneTableView: NSFetchedResultsControllerDelegate {
+extension DoingTableView: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
         case .delete, .insert, .update:
@@ -72,4 +72,3 @@ extension DoneTableView: NSFetchedResultsControllerDelegate {
         self.reloadData()
     }
 }
-

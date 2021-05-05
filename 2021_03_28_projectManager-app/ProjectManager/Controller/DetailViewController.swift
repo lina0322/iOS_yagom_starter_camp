@@ -93,7 +93,7 @@ final class DetailViewController: UIViewController {
             return
         }
         titleTextField.text = thing.title
-        descriptionTextView.text = thing.detailDescription
+        descriptionTextView.text = thing.body
         datePicker.date = thing.date
     }
     

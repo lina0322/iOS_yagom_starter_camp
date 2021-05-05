@@ -39,7 +39,7 @@ enum Strings {
     
     // MARK: - NetworkManager
     
-    static let baseURL = "https://pm-ggoglru.herokuapp.com/things"
+    static let baseURL = "https://project-manager-llim.herokuapp.com/item"
     static let absoluteURL = "\(baseURL)/%d"
     
     // MARK: - NetworkMonitor
