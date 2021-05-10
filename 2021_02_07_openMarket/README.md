@@ -176,6 +176,18 @@ class MockURLSessionDataTask: URLSessionDataTask {
 
 해당 코드를 작성하는데에는 [우아한 형제들의 기술 블로그](https://woowabros.github.io/swift/2020/12/20/ios-networking-and-testing.html)를 참고하였습니다.
 
+### 4. 잘못된 레이아웃 수정하기
+
+테이블뷰 셀을 코드로 구현하면서,
+
+<img width="700" src="https://user-images.githubusercontent.com/33537899/106461177-c2919880-64d7-11eb-8f84-05a8d1d677d7.png">
+<img width="700" src="https://cdn.discordapp.com/attachments/772758139274919947/805814783805751417/2021-02-01_10.07.57.png">
+
+
+
+
+
+
 
 ### 정리해야할 이슈들 
 Segmented Control
