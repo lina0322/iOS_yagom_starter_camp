@@ -12,7 +12,7 @@
 
 ## 프로젝트 구조
 
-![UML](https://user-images.githubusercontent.com/49546979/117693630-32ab6b00-b1f9-11eb-9cd5-dd9e84d293fd.png)
+![UML](https://user-images.githubusercontent.com/49546979/117694761-78b4fe80-b1fa-11eb-9479-52eda923c2b6.png)
 
 
 ## 프로젝트 이슈
