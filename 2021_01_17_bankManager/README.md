@@ -1,4 +1,3 @@
-
 # 일곱번째 프로젝트 - 은행 창구 매니저
 
 ## 프로젝트 정보
@@ -13,7 +12,7 @@
 
 ## 프로젝트 구조
 
-![UML](유엠엘짜기...)
+![UML](https://user-images.githubusercontent.com/49546979/117693630-32ab6b00-b1f9-11eb-9cd5-dd9e84d293fd.png)
 
 
 ## 프로젝트 이슈
