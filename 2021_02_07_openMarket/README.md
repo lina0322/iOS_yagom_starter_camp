@@ -178,12 +178,18 @@ class MockURLSessionDataTask: URLSessionDataTask {
 
 ### 4. 잘못된 레이아웃 수정하기
 
-테이블뷰 셀을 코드로 구현하면서,
-
+테이블뷰 셀을 코드로 구현하면서 아래와 같은 레이아웃 오류가 발생하게 되었습니다.
 <img width="700" src="https://user-images.githubusercontent.com/33537899/106461177-c2919880-64d7-11eb-8f84-05a8d1d677d7.png">
+
+당시에 [Why The Failure, Auto Layout?](https://www.wtfautolayout.com)이라는 사이트에 해당 오류를 넣어보니, 아래와 같은 그림을 볼 수 있었습니다.
 <img width="700" src="https://cdn.discordapp.com/attachments/772758139274919947/805814783805751417/2021-02-01_10.07.57.png">
 
+그림을 살펴보면, 이미지 뷰에 이미 **높이**를 넓이와 1:1로 주었는데  
+또 다시 이미지뷰의 top과 bottom을 지정해주면 중복으로 **높이**가 잡힌다는 문제가 발생한다는 것을 알 수 있었습니다.
 
+위치를 위해 top은 그대로 두고, bottom을 잡아주는 코드를 삭제하여 모호한 오토 레이아웃 오류를 수정하게 되었습니다.
+
+[👉 해당 커밋](https://github.com/yagom-academy/ios-open-market/pull/10/commits/3cd47aed1ff9bd6279f2294dc6b678bd9471cc15)
 
 
 
@@ -196,7 +202,6 @@ Content-Disposition: form-data
 제네릭
 콜렉션뷰
 NSCache
-LayoutConstraint - 잘못된 레이아웃 제약 
 로딩셀 + 스크롤
 import Foundation
 
