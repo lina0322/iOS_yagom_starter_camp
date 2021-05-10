@@ -1,14 +1,14 @@
-<mxfile host="app.diagrams.net" modified="2021-05-10T16:35:25.109Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15" etag="eBCOOtHr43jxCAD3kIvF" version="14.6.9" type="github">
+<mxfile host="app.diagrams.net" modified="2021-05-10T16:42:54.912Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15" etag="mcukgdpK9eAWXpQADJaz" version="14.6.9" type="github">
   <diagram id="C71ZB-FBStdYzD7-oFUT" name="Page-1">
-    <mxGraphModel dx="783" dy="670" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1073" dy="968" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="WEW2qLLJQbQCpldPHpgs-2" value="" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
-          <mxGeometry x="230" y="340" width="260" height="290" as="geometry" />
+          <mxGeometry x="240" y="340" width="250" height="290" as="geometry" />
         </mxCell>
         <mxCell id="WEW2qLLJQbQCpldPHpgs-3" value="&lt;b&gt;&lt;span&gt;func main()&lt;/span&gt;&lt;br&gt;&lt;/b&gt;&lt;br&gt;&lt;span&gt;let bank: Bank&lt;/span&gt;&lt;br&gt;&lt;span&gt;let tellers: Tellers&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span&gt;while isContinue {&lt;/span&gt;&lt;br&gt;&lt;span&gt;&amp;nbsp; &amp;nbsp; Dashboard.printMenu()&lt;/span&gt;&lt;br&gt;&lt;span&gt;&amp;nbsp; &amp;nbsp; let command = readLine()&lt;/span&gt;&lt;br&gt;&lt;span&gt;&amp;nbsp; &amp;nbsp; switch command {&lt;/span&gt;&lt;br&gt;&lt;span&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; case .start:&lt;/span&gt;&lt;br&gt;&lt;span&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; let clients: Clients&lt;/span&gt;&lt;br&gt;&lt;span&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;case .end:&lt;/span&gt;&lt;br&gt;&lt;span&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; isContinue = false&lt;/span&gt;&lt;br&gt;&lt;span&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;}&lt;/span&gt;&lt;br&gt;&lt;span&gt;}&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="290" y="390" width="210" height="220" as="geometry" />
+          <mxGeometry x="300" y="392" width="160" height="220" as="geometry" />
         </mxCell>
         <mxCell id="WEW2qLLJQbQCpldPHpgs-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="WEW2qLLJQbQCpldPHpgs-4" target="WEW2qLLJQbQCpldPHpgs-3">
           <mxGeometry relative="1" as="geometry" />
@@ -134,6 +134,18 @@
               <mxPoint x="260" y="737" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="WEW2qLLJQbQCpldPHpgs-53" value="BusinessType" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#fff2cc;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="370" y="280" width="114" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="WEW2qLLJQbQCpldPHpgs-54" value="case deposit, loan" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="WEW2qLLJQbQCpldPHpgs-53">
+          <mxGeometry y="26" width="114" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="WEW2qLLJQbQCpldPHpgs-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.203;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="WEW2qLLJQbQCpldPHpgs-54" target="WEW2qLLJQbQCpldPHpgs-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="WEW2qLLJQbQCpldPHpgs-61" value="&lt;span style=&quot;background-color: rgb(213, 232, 212); font-size: 14px;&quot;&gt;Struct&lt;/span&gt;&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;background-color: rgb(169, 196, 235); font-size: 14px;&quot;&gt;Class&lt;br style=&quot;font-size: 14px;&quot;&gt;&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 242, 204); font-size: 14px;&quot;&gt;Enum&lt;/span&gt;" style="text;html=1;strokeColor=#666666;fillColor=#f5f5f5;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;spacingTop=0;fontSize=14;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="710" y="800" width="70" height="70" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
