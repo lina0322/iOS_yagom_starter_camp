@@ -35,7 +35,7 @@
 - 🛠 [original repository](https://github.com/jryoun1/ios-bank-manager/tree/step3-lina-develop)
 
 - 📝 [Pull Request && Review](https://github.com/yagom-academy/ios-bank-manager/pulls)
-  - [첫번째 PR]https://github.com/yagom-academy/ios-bank-manager/pull/4)
+  - [첫번째 PR](https://github.com/yagom-academy/ios-bank-manager/pull/4)
   - [두번째 PR](https://github.com/yagom-academy/ios-bank-manager/pull/15)
   - [세번째 PR](https://github.com/yagom-academy/ios-bank-manager/pull/19)
 
