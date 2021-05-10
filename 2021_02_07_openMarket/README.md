@@ -7,13 +7,12 @@
 - 📝 설명 : 판매할 물건을 등록하고, 사람들의 물건을 리스트와 그리드 뷰로 구경하며, 비밀번호를 아는 게시물은 삭제도 할 수 있는 앱 🧺
 
 - 🗂 세부사항
-  - HTTP 서버와 통신할 수 있는 모델 구현(CURD)
+  - HTTP 서버와 통신할 수 있는 모델 구현(CURD) - multipart/form-data
   - mock 데이터와, mockURLSession을 이용하여 서버가 없는 상태에서도 테스트할 수 있도록 Unit Test 구현
   - 상품 목록을 Segmented Control을 활용해, 테이블뷰와 컬렌션뷰로 구현
   - 스토리보드와 코드를 모두 사용하여 UI 구현
-  - completionHandler 사용
+  - completionHandler, 제네릭 사용 사용
   - CustomStringConvertible 프로토콜 채택하여 description 구현
-  - 제네릭 사용
   
 
 - <img width="250" src="https://user-images.githubusercontent.com/49546979/117136006-bcff6380-ade2-11eb-98df-60e77df05e24.gif">
@@ -240,15 +239,14 @@ people can experience an unpleasant flash between the launch screen and the firs
 런치 스크린에서 인디케이터를 사용한 것과 마찬가지로  
 데이터를 불러올때 혹시라도 잠깐의 멈춤이 있다면, 이를 사용자가 앱의 정지라고 느끼지 않도록 하기 위해서 로딩셀을 구현하였습니다.
 
+### 7. Content-Disposition: form-data
 
-### 정리해야할 이슈들. 
-Segmented Control
-complition Handler
-Content-Disposition: form-data
-제네릭
-콜렉션뷰
-NSCache
-import Foundation
+### 8. NSCache
+
+### 9. complition Handler, 제네릭
+
+### 10. 게시물 삭제 구현을 위한 비밀번호 받고 전송하기
+
 
 ## 참고 주소
 
