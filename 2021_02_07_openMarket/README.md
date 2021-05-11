@@ -24,14 +24,25 @@
 
 ## 프로젝트 이슈
 
-### 1. enum의 String 값 타입 vs CustomStringConvertible
+[1. enum의 description](#enum의-description)  
+[2. error의 description](#error의-description)  
+[3. mock값을 이용하여 네트워킹 테스트 하기](#mock값을-이용하여-네트워킹-테스트-하기)  
+[4. 잘못된 레이아웃 수정하기](#잘못된-레이아웃-수정하기)  
+[5. launch srceen이 멈춘 것 처럼 보이는 문제](#launch-srceen이-멈춘-것-처럼-보이는-문제)  
+[6. 얼마만큼의 데이터를 한번에 로드하는 것이 좋을까](#얼마만큼의-데이터를-한번에-로드하는-것이-좋을까)  
+7. Content-Disposition: form-data  
+8. NSCache  
+9. complition Handler, 제네릭  
+10. 게시물 삭제 구현을 위한 비밀번호 받고 전송하기   
+
+### enum의 description
 이 전 프로젝트에서는 주로 enum을 정의하고 case에 바로 원시값을 주어서 사용하였습니다.(아래 예시처럼)
 ```swift
 enum Example1: String {
   case test = "TEST"
 }
 ```
-하지만 이번 프로젝트에서는 CustomStringConvertible 프로토콜을 채택하고, description을 정의하여 사용해 보았는데요.
+하지만 이번 프로젝트에서는 `CustomStringConvertible` 프로토콜을 채택하고, description을 정의하여 사용해 보았는데요.
 ```swift
 enum Example2: CustomStringConvertible {
      case test
@@ -44,15 +55,15 @@ enum Example2: CustomStringConvertible {
       }
 }
 ```
-전자와 같은 경우 Test라는 문자열을 얻어오기위해 case의 rawValue로 접근을 해야하는데 ex) print(Example1.test.rawValue) // TEST  
+전자와 같은 경우 TEST라는 문자열을 얻어오기위해 case의 rawValue로 접근을 해야하는데 ex) print(Example1.test.rawValue) // TEST  
 ustomStringConvertible프로토콜을 준수하는 경우 description에 출력하고 싶은 형태를 만들면  
-case까지만 접근을 해도 TEST라는 문자열을 받아올 수 있습니다. ex) print(Example2.test)  // TEST  
+case까지만 접근을 해도 TEST라는 문자열을 받아올 수 있었습니다. ex) print(Example2.test)  // TEST  
 
 이것은 기본적으로 Swift의 모든 instance가 String으로 변환이 가능하기 때문인데요.  
 이렇게 변환할때에는, 각 type에 defaultf로 구현된 description을 반환하게 된다고 합니다.  
-결국 이 description을 custom하면 원하는대로 출력할 수 있게 되는 것이지요.  
+결국 이 description을 custom하면 원하는대로 출력할 수 있게 되는 것입니다.  
 
-### 2. LocalizedError
+### error의 description
 위와 비슷한 이유로 아래의 오류 코드도 CustomStringConvertible을 채택하여 작성 하였는데요.
 ```swift
 enum OpenMarketError: Error, CustomStringConvertible {
@@ -67,7 +78,7 @@ enum OpenMarketError: Error, CustomStringConvertible {
 }
 ```
 
-리뷰를 받고 LocalizedError라는 프로토콜을 알게 되었습니다.   
+[리뷰](https://github.com/yagom-academy/ios-open-market/pull/2#discussion_r565231030)를 받고 LocalizedError라는 프로토콜을 알게 되었습니다.   
 이 프로토콜은 오류와 오류가 발생한 이유를 설명하는 현지화 된 메시지를 제공하는 특수 오류라고 [공식 문서](https://developer.apple.com/documentation/foundation/localizederror)에 정의되어 있는데요.    
 기본적으로 에러와 관련된 내용을 전달할 수 있게 프로퍼티를 이미 가지고 있으므로(errorDescription, failureReason, helpAnchor, recoverySuggestion)   
 에러에는 CustomStringConvertible보다는 LocalizedError를 사용하는게 맞다고 판단하여, 아래와 같이 변경하게 되었습니다.  
@@ -87,7 +98,7 @@ extension OpenMarketError: LocalizedError {
 }
 ```
 
-### 3. mock값을 이용하여 네트워킹 테스트 하기
+### mock값을 이용하여 네트워킹 테스트 하기
 decodeData 함수 안에서는 네트워크 코드를 테스트 하면서  
 실제로 네트워킹을 통해 이뤄지기 때문에 속도도 느리고,  
 인터넷 연결을 끊고 테스트를 실행하게 당연히 실패하는 문제가 발생한다는 문제를 알게 되었습니다.     
@@ -175,7 +186,7 @@ class MockURLSessionDataTask: URLSessionDataTask {
 
 해당 코드를 작성하는데에는 [우아한 형제들의 기술 블로그](https://woowabros.github.io/swift/2020/12/20/ios-networking-and-testing.html)를 참고하였습니다.
 
-### 4. 잘못된 레이아웃 수정하기
+### 잘못된 레이아웃 수정하기
 
 테이블뷰 셀을 코드로 구현하면서 아래와 같은 레이아웃 오류가 발생하게 되었습니다.
 <img width="700" src="https://user-images.githubusercontent.com/33537899/106461177-c2919880-64d7-11eb-8f84-05a8d1d677d7.png">
@@ -191,7 +202,7 @@ class MockURLSessionDataTask: URLSessionDataTask {
 [👉 해당 커밋](https://github.com/yagom-academy/ios-open-market/pull/10/commits/3cd47aed1ff9bd6279f2294dc6b678bd9471cc15)
 
 
-### 5. Launch srceen이 멈춘 것 처럼 보이는 문제
+### launch srceen이 멈춘 것 처럼 보이는 문제
 
 처음 이 부분을 고민하게 된 배경은 네트워크 통신에 걸리는 `시간`이 문제였습니다.  
 서버와의 통신하는데 시간이 오래걸리면, 첫 테이블뷰의 데이터가 채워지는데 시간이 오래 걸리게 되는 문제가 발생할 수 있는데요.  
@@ -223,7 +234,7 @@ people can experience an unpleasant flash between the launch screen and the firs
  
 비록 현재는 수정하지 못했지만, 기회가 된다면 위와 같이 스켈레톤 뷰를 활용하여 사용자에게 로딩중임을 표현하는 것이 더욱 좋을 것 같다는 생각이 들었습니다.  
 
-### 6. 얼마만큼의 데이터를 한번에 로드하는 것이 좋을까?
+### 얼마만큼의 데이터를 한번에 로드하는 것이 좋을까
 
 화면을 구현하면서 얼마만큼의 데이터를 한 번에 가지고 오는 것이 좋을지에 대해 고민하게 되었습니다.  
 서버에는 이미 100개 이상의 상품이 준비되어있었고, 새로운 상품을 올릴 수도 있는 상태였습니다.  
@@ -239,13 +250,13 @@ people can experience an unpleasant flash between the launch screen and the firs
 런치 스크린에서 인디케이터를 사용한 것과 마찬가지로  
 데이터를 불러올때 혹시라도 잠깐의 멈춤이 있다면, 이를 사용자가 앱의 정지라고 느끼지 않도록 하기 위해서 로딩셀을 구현하였습니다.
 
-### 7. Content-Disposition: form-data
+### Content-Disposition: form-data
 
-### 8. NSCache
+### NSCache
 
-### 9. complition Handler, 제네릭
+### complition Handler, 제네릭
 
-### 10. 게시물 삭제 구현을 위한 비밀번호 받고 전송하기
+### 게시물 삭제 구현을 위한 비밀번호 받고 전송하기
 
 
 ## 참고 주소
@@ -256,5 +267,3 @@ people can experience an unpleasant flash between the launch screen and the firs
   - [첫번째 PR](https://github.com/yagom-academy/ios-open-market/pull/2)
   - [두번째 PR](https://github.com/yagom-academy/ios-open-market/pull/10)
   - [세번째 PR](https://github.com/yagom-academy/ios-open-market/pull/18)
-
-
