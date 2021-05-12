@@ -30,7 +30,7 @@
 [4. 잘못된 레이아웃 수정하기](#잘못된-레이아웃-수정하기)  
 [5. launch srceen이 멈춘 것 처럼 보이는 문제](#launch-srceen이-멈춘-것-처럼-보이는-문제)  
 [6. 얼마만큼의 데이터를 한번에 로드하는 것이 좋을까](#얼마만큼의-데이터를-한번에-로드하는-것이-좋을까)  
-7. Content-Disposition: form-data  
+[7. 이미지는 어떻게 서버에 보낼까](#이미지는-어떻게-서버에-보낼까)  
 8. NSCache  
 9. complition Handler, 제네릭  
 10. 게시물 삭제 구현을 위한 비밀번호 받고 전송하기   
@@ -250,7 +250,14 @@ people can experience an unpleasant flash between the launch screen and the firs
 런치 스크린에서 인디케이터를 사용한 것과 마찬가지로  
 데이터를 불러올때 혹시라도 잠깐의 멈춤이 있다면, 이를 사용자가 앱의 정지라고 느끼지 않도록 하기 위해서 로딩셀을 구현하였습니다.
 
-### Content-Disposition: form-data
+### 이미지는 어떻게 서버에 보낼까
+
+서버에서 보내준 데이터는 application/json 타입이었고, image도 URL을 String으로 보내주어서 쉽게 접근할 수 있었습니다.  
+그런데 제가 서버에 이미지를 보내려고하니, 그 방법이 떠오르지 않았고 [서버 API 문서](https://docs.google.com/spreadsheets/d/1P5CblgFsgq_7FbYbe1_KslQz2Pf3p4Vi9cnH_fVD6RE/edit#gid=1153044612)를 확인하다가 multipart/form-data 타입이라는 것을 알게 되었습니다.
+
+
+
+
 
 ### NSCache
 
