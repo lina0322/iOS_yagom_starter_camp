@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C7A3FFE2649722B00B5DED0 /* HeadOffice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7A3FFC2649722B00B5DED0 /* HeadOffice.swift */; };
+		4C7A3FFF2649722B00B5DED0 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7A3FF92649722B00B5DED0 /* Client.swift */; };
+		4C7A40002649722B00B5DED0 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7A3FFB2649722B00B5DED0 /* Bank.swift */; };
+		4C7A40012649722B00B5DED0 /* Teller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7A3FFA2649722B00B5DED0 /* Teller.swift */; };
+		4C7A40022649722B00B5DED0 /* Tellers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7A3FFD2649722B00B5DED0 /* Tellers.swift */; };
+		4C7A40032649722B00B5DED0 /* Clients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7A3FF82649722B00B5DED0 /* Clients.swift */; };
+		4C7A40082649722E00B5DED0 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7A40042649722E00B5DED0 /* Menu.swift */; };
+		4C7A40092649722E00B5DED0 /* BusinessType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7A40072649722E00B5DED0 /* BusinessType.swift */; };
+		4C7A400A2649722E00B5DED0 /* StringFormattingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7A40052649722E00B5DED0 /* StringFormattingError.swift */; };
+		4C7A400B2649722E00B5DED0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7A40062649722E00B5DED0 /* Message.swift */; };
 		4CB8E9C425A99CE000C021F6 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB8E9C325A99CE000C021F6 /* Dashboard.swift */; };
 		C7694E7A259C3EC00053667F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7694E79259C3EC00053667F /* main.swift */; };
 /* End PBXBuildFile section */
@@ -24,8 +34,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4C019FEA25B12777005F952E /* Enum */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Enum; path = ../../Enum; sourceTree = "<group>"; };
-		4C019FEB25B12781005F952E /* Type */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Type; path = ../../Type; sourceTree = "<group>"; };
+		4C7A3FF82649722B00B5DED0 /* Clients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clients.swift; sourceTree = "<group>"; };
+		4C7A3FF92649722B00B5DED0 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		4C7A3FFA2649722B00B5DED0 /* Teller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teller.swift; sourceTree = "<group>"; };
+		4C7A3FFB2649722B00B5DED0 /* Bank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bank.swift; sourceTree = "<group>"; };
+		4C7A3FFC2649722B00B5DED0 /* HeadOffice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadOffice.swift; sourceTree = "<group>"; };
+		4C7A3FFD2649722B00B5DED0 /* Tellers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tellers.swift; sourceTree = "<group>"; };
+		4C7A40042649722E00B5DED0 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		4C7A40052649722E00B5DED0 /* StringFormattingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFormattingError.swift; sourceTree = "<group>"; };
+		4C7A40062649722E00B5DED0 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		4C7A40072649722E00B5DED0 /* BusinessType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessType.swift; sourceTree = "<group>"; };
 		4CB8E9C325A99CE000C021F6 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		C7694E76259C3EC00053667F /* BankManagerConsoleApp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BankManagerConsoleApp; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7694E79259C3EC00053667F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -42,6 +60,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C7A400C2649723500B5DED0 /* Type */ = {
+			isa = PBXGroup;
+			children = (
+				4C7A3FFB2649722B00B5DED0 /* Bank.swift */,
+				4C7A3FF92649722B00B5DED0 /* Client.swift */,
+				4C7A3FF82649722B00B5DED0 /* Clients.swift */,
+				4C7A3FFC2649722B00B5DED0 /* HeadOffice.swift */,
+				4C7A3FFA2649722B00B5DED0 /* Teller.swift */,
+				4C7A3FFD2649722B00B5DED0 /* Tellers.swift */,
+			);
+			path = Type;
+			sourceTree = "<group>";
+		};
+		4C7A400D2649724600B5DED0 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				4C7A40072649722E00B5DED0 /* BusinessType.swift */,
+				4C7A40042649722E00B5DED0 /* Menu.swift */,
+				4C7A40062649722E00B5DED0 /* Message.swift */,
+				4C7A40052649722E00B5DED0 /* StringFormattingError.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		C7694E6D259C3EC00053667F = {
 			isa = PBXGroup;
 			children = (
@@ -61,8 +103,8 @@
 		C7694E78259C3EC00053667F /* BankManagerConsoleApp */ = {
 			isa = PBXGroup;
 			children = (
-				4C019FEB25B12781005F952E /* Type */,
-				4C019FEA25B12777005F952E /* Enum */,
+				4C7A400D2649724600B5DED0 /* Enum */,
+				4C7A400C2649723500B5DED0 /* Type */,
 				4CB8E9C325A99CE000C021F6 /* Dashboard.swift */,
 				C7694E79259C3EC00053667F /* main.swift */,
 			);
@@ -127,7 +169,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7694E7A259C3EC00053667F /* main.swift in Sources */,
+				4C7A400A2649722E00B5DED0 /* StringFormattingError.swift in Sources */,
+				4C7A3FFE2649722B00B5DED0 /* HeadOffice.swift in Sources */,
+				4C7A40032649722B00B5DED0 /* Clients.swift in Sources */,
+				4C7A40002649722B00B5DED0 /* Bank.swift in Sources */,
+				4C7A40022649722B00B5DED0 /* Tellers.swift in Sources */,
+				4C7A40092649722E00B5DED0 /* BusinessType.swift in Sources */,
+				4C7A3FFF2649722B00B5DED0 /* Client.swift in Sources */,
+				4C7A40082649722E00B5DED0 /* Menu.swift in Sources */,
+				4C7A400B2649722E00B5DED0 /* Message.swift in Sources */,
 				4CB8E9C425A99CE000C021F6 /* Dashboard.swift in Sources */,
+				4C7A40012649722B00B5DED0 /* Teller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
