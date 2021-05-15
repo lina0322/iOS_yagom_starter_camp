@@ -17,6 +17,12 @@
 
 ## 프로젝트 이슈
 
+[1. 어떻게하면 은행원 3명이 동시에 업무를 볼수있을까](#어떻게하면-은행원-3명이-동시에-업무를-볼수있을까)
+[2. 비동기 프로그래밍을 하기위해 무엇을 사용해야할까](#비동기-프로그래밍을-하기위해-무엇을-사용해야할까)
+[3. 어떤 queue를 사용할까](#어떤-queue를-사용할까)
+[4. 비동기로 이루어진 작업이 끝났다는 것을 어떻게 알 수 있을까](#비동기로-이루어진-작업이-끝났다는-것을-어떻게-알-수-있을까)
+
+
 ### 어떻게하면 은행원 3명이 동시에 업무를 볼수있을까
 
 처음에는 은행원 1명으로 코드를 작성하였습니다. 이때는 은행원이 1명이고, 고객을 1명씩 순차적으로 처리하면 되었기 때문에 큰 문제가 없었습니다.  
@@ -45,11 +51,17 @@ class Teller {
     }
 }
 
+func makeTellerList(tellerCount: Int) -> [Teller] {
+    var tellers = [Teller]()
+    
+    for i in 1...tellerCount {
+        tellers.append(Teller(windowNumber: i))
+    }
+    return tellers
+}
+
 func bankBusiness(clientCount: Int) {
-    let firstTeller = Teller(windowNumber: 1)
-    let secondTeller = Teller(windowNumber: 2)
-    let thirdTeller = Teller(windowNumber: 3)
-    let tellers = [firstTeller, secondTeller, thirdTeller]
+    let tellers = makeTellerList(tellerCount: 3)
     
     var client = 1
     while client <= clientCount {
@@ -89,9 +101,123 @@ bankBusiness(clientCount: 10)
 
 GCD는 Operation Queue처럼 다양한 기능을 할 수는 없지만, 현재 스펙상으로는 작업을 취소하는 등의 기능이 필요하지 않아 GCD를 사용하기로 결정하였습니다.
 
-global Queue와 CustomQueue...?
+### 어떤 queue를 사용할까
 
-### 3. Dispatch Group과 세마포어(뮤텍스는 무엇?) 
+GCD에는 main queue와 global queue, custom queue가 있습니다.  
+이 중에서도 main은 UI작업을 담당하는 큐이기 때문에, 은행원의 업무를 처리하면서 멈추는 것(sleep)은 올바르지 않은 동작이라 생각하여 제외하였습니다.
+
+**처음에는 아래처럼 global queue로 작업을 했습니다.**
+
+```swift
+class Teller {
+    var windowNumber: Int
+    var isWorking = false
+    
+    init(windowNumber: Int) {
+        self.windowNumber = windowNumber
+    }
+    
+    func doBusiness(for client: Int) {
+        isWorking = true
+        DispatchQueue.global().async {
+            print("\(self.windowNumber)번 은행원이 \(client)번 고객을 위해 업무를 시작합니다.")
+            Thread.sleep(forTimeInterval: 1)
+            print("\(self.windowNumber)번 은행원이 \(client)번 고객의 업무를 완료하였습니다.")
+            self.isWorking = false
+        }
+    }
+}
+
+func makeTellers(tellerCount: Int) { ... }
+
+func bankBusiness(clientCount: Int) {
+    let tellers = makeTellerList(tellerCount: 3)
+    var currentClientNumber = 1
+    
+    var isContinue = true
+    while isContinue {
+        for teller in tellers {
+            if currentClientNumber > clientCount {
+                isContinue = false
+                break
+            }
+            if teller.isWorking == false {
+                teller.doBusiness(for: currentClientNumber)
+                currentClientNumber += 1
+            }
+        }
+    }
+}
+```
+tellers 배열에서 일하지 않고 있는 teller가 있으면, 손님을 할당받고 global 큐에서 업무를 처리하게 됩니다.  
+이때, global queue는 Concurrent한 큐 이기때문에, 해당 큐 내부에서 스레드를 각각 할당받아 3명이 동시에 업무를 처리하게 됩니다.  
+그럼 아래 그림처럼 while문을 계속 돌면서 비어있는 은행원에게 일을 할당해주기때문에, 한줄서기 같은 모습이 됩니다.  
+이와 같은 경우 플레이그라운드에서 테스했을 때 whlie문이 약 1,100,000회 정도 호출되기 때문에 `과연 좋은 동작인가?`하는 의심을 하게 되었습니다.  
+
+<img width="600" src="https://user-images.githubusercontent.com/49546979/118354436-05b6d980-b5a6-11eb-9321-d2aa02d5a389.png">
+
+
+**그래서 두번째로 custom queue를 사용하여 동작시켜보았습니다.**
+
+```swift 
+
+import Foundation
+
+class Teller {
+    var windowNumber: Int
+    var workingQueue: DispatchQueue
+    
+    init(windowNumber: Int) {
+        self.windowNumber = windowNumber
+        self.workingQueue = DispatchQueue(label: "\(windowNumber)")
+    }
+    
+    func doBusiness(for client: Int) {
+        workingQueue.async {
+            print("\(self.windowNumber)번 은행원이 \(client)번 고객을 위해 업무를 시작합니다.")
+            Thread.sleep(forTimeInterval: 1)
+            print("\(self.windowNumber)번 은행원이 \(client)번 고객의 업무를 완료하였습니다.")
+        }
+    }
+}
+
+func makeTellerList(tellerCount: Int) -> [Teller] { ... }
+
+func bankBusiness(clientCount: Int) {
+    let tellers = makeTellerList(tellerCount: 3)
+    var currentClientNumber = 1
+    
+    var isContinue = true
+    while isContinue {
+        counter += 1
+        for teller in tellers {
+            if currentClientNumber > clientCount {
+                isContinue = false
+                break
+            }
+            teller.doBusiness(for: currentClientNumber)
+            currentClientNumber += 1
+        }
+    }
+}
+
+bankBusiness(clientCount: 10)
+```
+위의 경우는 teller가 일을 하고 있는지를 확인하지 않고, 우선 고객들을 나누어주고  
+custom queue가 serial 하게 동작하기때문에, 은행원의 큐 내부에서 순차적으로 일을 처리해주게 됩니다.  
+이렇게 동작하는 경우는 손님들이 한줄서기가 아니라, 각각 큐에 줄을 서기 때문에 while문은 4번만 동작하게 됩니다.  
+
+<img width="600" src="https://user-images.githubusercontent.com/49546979/118354837-f9cc1700-b5a7-11eb-80d1-cdb6623acea0.png">
+
+그래서 어떤걸 사용해야할까요?  
+만약 지금처럼 업무 시간이 모두 동일하면 커스텀 큐에 미리 대기해도, 시간이 크게 차이가 나지 않아서 상관이 없을 것 같습니다.  
+하지만, 뒤쪽에서는 일반업무와 대출업무 2가지로 나누어지고, 시간도 많이 달라지기때문에 global queue를 사용하여 한줄서기로 진행하는 것이 더 맞는 동작방식이라 생각되어 global queue를 사용하게 되었습니다.  
+
+
+### 비동기로 이루어진 작업이 끝났다는 것을 어떻게 알 수 있을까 
+
+dispatch queue
+dispatch semaphore
 
 ## 참고 주소
 
