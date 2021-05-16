@@ -1,9 +1,13 @@
 ## ⛺️iOS_yagom_stater_camp
-저는 이 repository에 2020년 11월부터 2021년 4월까지(예정) 이루어진, [yagom ios 스타터 캠프](https://www.yagom-academy.kr)에 1기로 참여하여 학습한 내용을 정리하였습니다.
+저는 이 repository에 2020년 11월부터 2021년 4월까지 이루어진, [yagom ios 스타터 캠프](https://www.yagom-academy.kr)에 1기로 참여하여 학습한 내용을 정리하였습니다.
 
-### 📖목차 - 최신순으로 정렬
+### ⭐️ 목차 - 주요 프로젝트
 
-[열네번째 프로젝트 - 내 손은 금손](#열네번째-프로젝트---내-손은-금손)
+[아홉번째 프로젝트 - 오픈 마켓](#아홉번째-프로젝트---오픈-마켓)
+
+[일곱번째 프로젝트 - 은행 창구 매니저](#일곱번째-프로젝트---은행-창구-매니저)
+
+### 📖 목차 - 최신순으로 정렬
 
 [열두번째 프로젝트 - 프로젝트 매니저 서버](#열두번째-프로젝트---프로젝트-매니저-서버)
 
@@ -31,101 +35,30 @@
 
 ---
 
-### 열네번째 프로젝트 - 내 손은 금손
-🗓 기간 : 2021/02/15 ~ (3w)
-
-📝 설명 : 
-
-<img width="300" src="">
-
-🗂 세부사항
-
-📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/)
-
-🖇 해당 주차 TIL
--  : []()
-
-</br>
-
-
-### 열세번째 프로젝트 - 스트림 채팅
-🗓 기간 : 2021/02/15 ~ (3w)
-
-📝 설명 : 
-
-<img width="300" src="">
-
-🗂 세부사항
-- 코드로만 UI 구현
-- Split View 사용
-- 사용자가 설정한 지역 포맷 활용
-- textView의 dataDetectorType 사용
-
-📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/)
-
-🖇 해당 주차 TIL
--  : []()
-
-</br>
-
-
 ### 열두번째 프로젝트 - 프로젝트 매니저 서버
-🗓 기간 : 2021/02/15 ~ (3w)
+🗓 기간 : 2021/03/29 ~ 2021/04/18 (3w)
 
-📝 설명 : 
+📝 설명 : 할 일 칸반보드 정보를 담고있는 서버를 RESTful하게 구현
 
-<img width="300" src="">
-
-🗂 세부사항
-- 코드로만 UI 구현
-- Split View 사용
-- 사용자가 설정한 지역 포맷 활용
-- textView의 dataDetectorType 사용
-
-📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/)
-
-🖇 해당 주차 TIL
--  : []()
+📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2021_04_18_projectManager-server)
 
 </br>
 
 ### 열한번째 프로젝트 - 프로젝트 매니저 어플리케이션
-🗓 기간 : 2021/02/15 ~ (3w)
+🗓 기간 : 2021/03/08 ~ 2021/03/28 (3w)
 
-📝 설명 : 
+📝 설명 : 할 일, 하는 일, 완료 된 일로 나누어진 칸반보드 어플리케이션
 
-<img width="300" src="">
-
-🗂 세부사항
-- 코드로만 UI 구현
-- Split View 사용
-- 사용자가 설정한 지역 포맷 활용
-- textView의 dataDetectorType 사용
-
-📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/)
-
-🖇 해당 주차 TIL
--  : []()
+📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2021_03_28_projectManager-app)
 
 </br>
 
 ### 열번째 프로젝트 - 메모장
-🗓 기간 : 2021/02/15 ~ (3w)
+🗓 기간 : 
 
 📝 설명 : 
 
-<img width="300" src="">
-
-🗂 세부사항
-- 코드로만 UI 구현
-- Split View 사용
-- 사용자가 설정한 지역 포맷 활용
-- textView의 dataDetectorType 사용
-
-📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/)
-
-🖇 해당 주차 TIL
--  : []()
+📎 [해당 폴더로 이동]()
 
 </br>
 
@@ -134,31 +67,17 @@
 
 📝 설명 : 
 
-<img width="300" src="">
-
-🗂 세부사항
-- 
-📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/)
-
-🖇 해당 주차 TIL
--  : []()
+📎 [해당 폴더로 이동]()
 
 </br>
 
 
 ### 여덟번째 프로젝트 - 날씨정보
-🗓 기간 : 2021/01_18 ~ 2012/01/24(1w)
+🗓 기간 :
 
 📝 설명 : 
 
-<img width="300" src="">
-
-🗂 세부사항
-- 
-📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2021_01_24_weatherForecast)
-
-🖇 해당 주차 TIL
--  : []()
+📎 [해당 폴더로 이동]()
 
 </br>
 
