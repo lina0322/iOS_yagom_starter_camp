@@ -120,7 +120,7 @@
 ### 여섯번째 프로젝트 - 만국박람회
 🗓 기간 : 2020/12/21 ~ 2021/12/27(1w)
 
-📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2021_01_03_exposition)
+📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2020_12_27_exposition)
 
 </br>
 
