@@ -6,7 +6,9 @@
 - 📝 설명 : 은행을 개점하면 10~30명의 고객이 방문한다! 고객 등급과 업무에 따라 은행원과 본사가 재빠르게 일처리를 하는 콘솔앱 🏦
 
 - 🗂 세부사항
-  - 
+  - GCD 기반 비동기(Asynchronous) 프로그래밍 구현
+  - global queue를 활용한 동시성(Concurrency) 프로그래밍 구현
+  - DispatchGroup과 DispatchSemaphore 사용
 
 - <img width="250" src="https://user-images.githubusercontent.com/49546979/117671143-72ffee80-b1e3-11eb-981f-8863778b72bf.gif">
 
