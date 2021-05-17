@@ -17,7 +17,7 @@
 
 [아홉번째 프로젝트 - 오픈 마켓](#아홉번째-프로젝트---오픈-마켓)
 
-[여덟번째 프로젝트 - 날씨정보](#여덟번째-프로젝트---날씨정보)
+[여덟번째 프로젝트 - 날씨정보](#여덟번째-프로젝트---날씨-정보)
 
 [일곱번째 프로젝트 - 은행 창구 매니저](#일곱번째-프로젝트---은행-창구-매니저)
 
@@ -40,6 +40,8 @@
 
 📝 설명 : 할 일 칸반보드 정보를 담고있는 서버를 RESTful하게 구현
 
+<img width="1000" alt="스크린샷 2021-05-17 15 04 29" src="https://user-images.githubusercontent.com/49546979/118439568-31aa9a00-b721-11eb-921b-fbb3d673e1d0.png">
+
 📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2021_04_18_projectManager-server)
 
 </br>
@@ -52,6 +54,7 @@
 📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2021_03_28_projectManager-app)
 
 </br>
+
 
 ### 열번째 프로젝트 - 메모장
 🗓 기간 : 2021/02/15 ~ 2021/03/07 (3w)
