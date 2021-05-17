@@ -54,30 +54,45 @@
 </br>
 
 ### 열번째 프로젝트 - 메모장
-🗓 기간 : 
+🗓 기간 : 2021/02/15 ~ 2021/03/07 (3w)
 
-📝 설명 : 
+📝 설명 : 클라우드 서버와 동기화 된, 아이폰과 아이패드르 위하 어플리케이션
 
-📎 [해당 폴더로 이동]()
+📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2021_03_07_cloudNotes)
 
 </br>
 
 ### 아홉번째 프로젝트 - 오픈 마켓
-🗓 기간 : 
+🗓 기간 : 2021/01/25 ~ 2021/02/07(2w)
 
-📝 설명 : 
+📝 설명 : 판매할 물건을 등록하고, 사람들의 물건을 리스트와 그리드 뷰로 구경하며, 비밀번호를 아는 게시물은 삭제도 할 수 있는 앱 🧺
 
-📎 [해당 폴더로 이동]()
+<img width="250" src="https://user-images.githubusercontent.com/49546979/117136006-bcff6380-ade2-11eb-98df-60e77df05e24.gif">
+
+🗂 세부사항
+- HTTP 서버와 통신할 수 있는 모델 구현(CURD) - multipart/form-data
+- mock 데이터와, mockURLSession을 이용하여 서버가 없는 상태에서도 테스트할 수 있도록 Unit Test 구현
+- 상품 목록을 Segmented Control을 활용해, 테이블뷰와 컬렌션뷰로 구현
+- 스토리보드와 코드를 모두 사용하여 UI 구현
+- completionHandler, 제네릭 사용 사용
+- CustomStringConvertible 프로토콜 채택하여 description 구현
+
+📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2021_02_07_openMarket)
+
+📝 [Pull Request && Review](https://github.com/yagom-academy/ios-open-market/pulls)
+- [첫번째 PR](https://github.com/yagom-academy/ios-open-market/pull/2)
+- [두번째 PR](https://github.com/yagom-academy/ios-open-market/pull/10)
+- [세번째 PR](https://github.com/yagom-academy/ios-open-market/pull/18)
 
 </br>
 
 
-### 여덟번째 프로젝트 - 날씨정보
-🗓 기간 :
+### 여덟번째 프로젝트 - 날씨 정보
+🗓 기간 : 2021/01/18 ~ 2021/01/24 (1w)
 
-📝 설명 : 
+📝 설명 : 날씨 API를 이용해서, 날씨 정보를 알려드립니다~
 
-📎 [해당 폴더로 이동]()
+📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2021_01_24_weatherForecast)
 
 </br>
 
@@ -85,66 +100,42 @@
 ### 일곱번째 프로젝트 - 은행 창구 매니저
 🗓 기간 : 2021/01/04 ~ 2021/01/17(2w)
 
-📝 설명 : (console app)
+📝 설명 : 은행을 개점하면 10~30명의 고객이 방문한다! 고객 등급과 업무에 따라 은행원과 본사가 재빠르게 일처리를 하는 콘솔앱 🏦
 
-<img width="300" src="">
+<img width="250" src="https://user-images.githubusercontent.com/49546979/117671143-72ffee80-b1e3-11eb-981f-8863778b72bf.gif">
 
 🗂 세부사항
-- 
+- GCD 기반 비동기(Asynchronous) 프로그래밍 구현
+- global queue를 활용한 동시성(Concurrency) 프로그래밍 구현
+- DispatchGroup과 DispatchSemaphore 사용
 
 📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2021_01_17_bankManager)
 
-🖇 해당 주차 TIL
--  : []()
+📝 [Pull Request && Review](https://github.com/yagom-academy/ios-bank-manager/pulls)
+- [첫번째 PR](https://github.com/yagom-academy/ios-bank-manager/pull/4)
+- [두번째 PR](https://github.com/yagom-academy/ios-bank-manager/pull/15)
+- [세번째 PR](https://github.com/yagom-academy/ios-bank-manager/pull/19)
 
 
 ### 여섯번째 프로젝트 - 만국박람회
 🗓 기간 : 2020/12/21 ~ 2021/12/27(1w)
 
-📝 설명 : 
-
-<img width="300" src="">
-
-🗂 세부사항
-- 
 📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2021_01_03_exposition)
-
-🖇 해당 주차 TIL
--  : []()
 
 </br>
 
 ### 다섯번째 프로젝트 - 계산기
 🗓 기간 : 2020/12/07 ~ 2020/12/20(2w)
 
-📝 설명 : 
-
-<img width="300" src="">
-
-🗂 세부사항
-- 
-
 📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2020_12_20_calculator)
 
-🖇 해당 주차 TIL
--  : []()
 
 </br>
 
 ### 네번째 프로젝트 - 회원가입
 🗓 기간 : 2020/11/30 ~ 2020/12/06(1w)
 
-📝 설명 : 
-
-<img width="300" src="">
-
-🗂 세부사항
-- 
-
 📎 [해당 폴더로 이동](https://github.com/lina0322/iOS_yagom_starter_camp/tree/main/2020_12_06_signUpFlow)
-
-🖇 해당 주차 TIL
--  : []()
 
 </br>
 
