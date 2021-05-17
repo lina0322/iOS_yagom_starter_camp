@@ -213,12 +213,6 @@ custom queue가 serial 하게 동작하기때문에, 은행원의 큐 내부에�
 만약 지금처럼 업무 시간이 모두 동일하면 커스텀 큐에 미리 대기해도, 시간이 크게 차이가 나지 않아서 상관이 없을 것 같습니다.  
 하지만, 뒤쪽에서는 일반업무와 대출업무 2가지로 나누어지고, 시간도 많이 달라지기때문에 global queue를 사용하여 한줄서기로 진행하는 것이 더 맞는 동작방식이라 생각되어 global queue를 사용하게 되었습니다.  
 
-
-### 비동기로 이루어진 작업이 끝났다는 것을 어떻게 알 수 있을까 
-
-dispatch queue
-dispatch semaphore
-
 ## 참고 주소
 
 - 🛠 [original repository](https://github.com/jryoun1/ios-bank-manager/tree/step3-lina-develop)
